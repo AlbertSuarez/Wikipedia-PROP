@@ -3,9 +3,9 @@ package wikipedia.domain;
 import java.util.Map;
 import java.util.concurrent.ConcurrentSkipListMap;
 
+<<<<<<< HEAD
 public class WP
 {
-
     // private Graph
     private Map<String, Category> catMap;
     private Map<String, Page> pagMap;
