@@ -12,4 +12,8 @@ public class Community {
 	}
 	public void PrintCommunity(){ //Muestra una lista ordenada de las categorias pertenecientes a la comunidad		
 	}
+	public boolean Belongs(Category c){ //retorna true si la categoria c pertenece a la comunidad
+		boolean  pertany = false;
+		return pertany;
+	}
 }
