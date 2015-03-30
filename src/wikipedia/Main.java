@@ -13,6 +13,7 @@ public class Main
 		PresentationController pc = new PresentationController();
 		pc.run();
 
+		DomainController dc = new DomainController();
 		print("PROP - Wikipedia - End main");
 	}
 }
