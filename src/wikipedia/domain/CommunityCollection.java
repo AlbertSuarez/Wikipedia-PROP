@@ -1,7 +1,9 @@
 package wikipedia.domain;
 
+import java.util.Iterator;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Locale.Category;
 
 public class CommunityCollection {
 	
@@ -14,11 +16,23 @@ public class CommunityCollection {
 		collection = new HashSet<Community>();
 	}
 	
+	// Pre:  Community c is not in the Community.
+    // Post: Community c is in the Community.
+	public void AddCommunity(Community c)
+	{
+		collection.add(c);
+	}
+	
 	// Pre:  True.
     // Post: Return the list of all Communities of the Collection.	
-	public void GetCommunities()
+	public Community[] GetCommunities()
 	{
-		//canviar void por metodo de guardado "array,list,map..."
+		Community[] vector = new Community[collection.size()];
+		Iterator<Community> it = collection.iterator();
+		for (int i = 0; i < collection.size(); i++){
+			vector[i] = (Community)it.next();
+		}
+		return vector;
 	}
 	
 	// Pre:  True.
@@ -34,21 +48,14 @@ public class CommunityCollection {
     // Post: Compare the goodness with Golden Collection.
 	public void GoldenCompare()
 	{
-			
-	}
-	
-	// Pre:  Community c is not in the Community.
-    // Post: Community c is in the Community.
-	public void AddCommunity(Community c)
-	{
-		collection.add(c);
+			// NI ZORRA IDEA
 	}
 	
 	// Pre:  Community c is in the Community.
     // Post: Community c is not in the Community.
 	public void EraseCommunity(Community c)
 	{
-		
+		collection.remove(c);
 	}
 	
 	// Pre:  True.

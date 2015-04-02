@@ -1,4 +1,5 @@
 package wikipedia.domain;
+import static es.upc.fib.prop.shared13.*;
 
 public class WP
 {
@@ -7,7 +8,9 @@ public class WP
 	// DEBERIA SER UN GRAPH (DE LA CLASE COMPARTIDA) Y NO UNA COMMUNITY COLLECTION.
 	
 	// private Graph
-	private CommunityCollection cc;
+	private CommunityCollection cc;	// <- ESTO DIRIA QUE NO!
+	
+	// private Graph graf;			   <- ESTO TIENE MEJOR PINTA CREO!
 	
 	// Pre:  True.
 	// Post: Create a empty WP.

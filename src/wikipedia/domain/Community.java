@@ -1,5 +1,7 @@
 package wikipedia.domain;
 
+import java.util.Iterator;
+import java.util.Locale.Category;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -19,28 +21,36 @@ public class Community {
     // Post: Category c is in the Community.
 	public void AddCategory(Category c)
 	{ 
-		
+		catSet.add(c);
 	}
 	
 	// Pre:  True.
-    // Post: Return the list of all Categories of the Community.	
-	public void GetCategories()
+    // Post: Return a array of all Categories of the Community.	
+	public Category[] GetCategories()
 	{
-		//canviar void por metodo de guardado "array,list,map..."
+		Category[] vector = new Category[catSet.size()];
+		Iterator<Category> it = catSet.iterator();
+		for (int i = 0; i < catSet.size(); i++){
+			vector[i] = (Category)it.next();
+		}
+		return vector;
 	}
 	
 	// Pre:  Category c is in the Community.
     // Post: Category c is not in the Community.
 	public void EraseCategory(Category c)
 	{
-		
+		catSet.remove(c);
 	}
 	
 	// Pre:  True.
     // Post: Print a ordered list of all categories.
 	public void PrintCommunity()
 	{ 
-				
+		for (Iterator<Category> it = catSet.iterator(); it.hasNext();){ 
+		    Category aux = (Category)it.next();
+		    print(aux.getTitle());
+		}
 	}
 	
 	// Pre:  True.
