@@ -5,21 +5,48 @@ import java.util.TreeSet;
 
 public class Community {
 	
+	// catSet is only of Category because the statement reflects this. 
 	private Set<Category> catSet;
 	
-	public Community(){
+	// Pre:  True.
+    // Post: Create a empty Community.
+	public Community()
+	{
 		catSet = new TreeSet<Category>();
 	}
-	public void AddCategory(Category c){ // Add la categoria c a la comunidad
+	
+	// Pre:  Category c is not in the Community.
+    // Post: Category c is in the Community.
+	public void AddCategory(Category c)
+	{ 
+		
 	}
-	public void GetCategories(){ //canviar void por metodo de guardado "array,list,map..."
+	
+	// Pre:  True.
+    // Post: Return the list of all Categories of the Community.	
+	public void GetCategories()
+	{
+		//canviar void por metodo de guardado "array,list,map..."
 	}
-	// Pre: c pertenece a la comunidad
-	public void EraseCategory(Category c){ // borra la categoria c de la comunidad (establecer como pre q este??)
+	
+	// Pre:  Category c is in the Community.
+    // Post: Category c is not in the Community.
+	public void EraseCategory(Category c)
+	{
+		
 	}
-	public void PrintCommunity(){ //Muestra una lista ordenada de las categorias pertenecientes a la comunidad		
+	
+	// Pre:  True.
+    // Post: Print a ordered list of all categories.
+	public void PrintCommunity()
+	{ 
+				
 	}
-	public boolean Belongs(Category c){ //retorna true si la categoria c pertenece a la comunidad
+	
+	// Pre:  True.
+    // Post: Return true if 'c' is in 'catSet', false alternatively.
+	public boolean Belongs(Category c)
+	{
 		return catSet.contains(c);
 	}
 }

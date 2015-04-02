@@ -4,25 +4,65 @@ import java.util.Set;
 import java.util.HashSet;
 
 public class CommunityCollection {
+	
 	private Set<Community> collection;
 	
-	public CommunityCollection(){ //crea la collection vacia!
+	// Pre:  True.
+    // Post: Create a empty CommunityCollection.
+	public CommunityCollection()
+	{ 
 		collection = new HashSet<Community>();
 	}
-	public void PrintCollection(){ //muestra una lista de las comunidades y sus categorias correspondientes
+	
+	// Pre:  True.
+    // Post: Return the list of all Communities of the Collection.	
+	public void GetCommunities()
+	{
+		//canviar void por metodo de guardado "array,list,map..."
+	}
+	
+	// Pre:  True.
+    // Post: Print a list of all communities of collection.
+	public void PrintCollection()
+	{
 		for(Community com: collection){
 			com.PrintCommunity();
 		}
 	}
-	public void GoldenCompare(){ //comparacion de la coleccion con la golden	
+	
+	// Pre:  True.
+    // Post: Compare the goodness with Golden Collection.
+	public void GoldenCompare()
+	{
+			
 	}
-	public void AddCommunity(Community c){ //Add una comunidad a la coleccion
+	
+	// Pre:  Community c is not in the Community.
+    // Post: Community c is in the Community.
+	public void AddCommunity(Community c)
+	{
 		collection.add(c);
 	}
-	public void ResetCollection(){ //deja la collection vacia
+	
+	// Pre:  Community c is in the Community.
+    // Post: Community c is not in the Community.
+	public void EraseCommunity(Community c)
+	{
+		
+	}
+	
+	// Pre:  True.
+    // Post: Collection is empty.
+	public void ResetCollection()
+	{
 		collection.clear();
 	}
-	public Community Belongs(Category c){ //retorna la comunidad que contiene la categoria c
+	
+	// Pre:  True.
+    // Post: Return community that contains category 'c' if exists,
+	//		 return a empty community alternatively.
+	public Community Belongs(Category c)
+	{
 		Community pertany = null;
 		for (Community com: collection){
 			if (com.Belongs(c)) {

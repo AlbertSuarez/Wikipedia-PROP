@@ -2,6 +2,10 @@ package wikipedia.domain;
 
 public class WP
 {
+	// UNA COMMUNITY COLLECTION ES UN SET<SET<CATEGORY>>, ENTONCES
+	// NO EXISTEN PAGINAS. Y DEBERIAN EXISTIR!!!
+	// DEBERIA SER UN GRAPH (DE LA CLASE COMPARTIDA) Y NO UNA COMMUNITY COLLECTION.
+	
 	// private Graph
 	private CommunityCollection cc;
 	
@@ -63,7 +67,8 @@ public class WP
 	//		 false alternately.
 	boolean catExists(String title)
 	{
-		return true; // Porvisional
+		// PROVISIONAL
+		return true;
 		// return Graph contains cat(title)?
 	}
 
@@ -76,18 +81,29 @@ public class WP
 		// return Graph contains pag(title)?
 	}
 
+	// Pre:  c1 and c2 exist in cc.
+	// Post: c1 is a supercategory of c2.	
 	void addSuperLink(Category c1, Category c2)
 	{
 	
 	}
+	
+	// Pre:  c1 and c2 exist in cc.
+	// Post: c1 is a subcategory of c2.
 	void addSubLink(Category c1, Category c2)
 	{
 	
 	}
+	
+	// Pre:  c and p exist in cc.
+	// Post: c is the category of p.
 	void addCPLink(Category c, Page p)
 	{
 	
 	}
+	
+	// Pre:  p and c exist in cc.
+	// Post: p is a page of c.
 	void addPCLink(Page p, Category c)
 	{
 	
