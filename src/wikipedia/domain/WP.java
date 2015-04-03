@@ -1,5 +1,5 @@
 package wikipedia.domain;
-import static es.upc.fib.prop.shared13.*;
+import es.upc.fib.prop.shared13.*;
 
 public class WP
 {
@@ -10,7 +10,7 @@ public class WP
 	// private Graph
 	private CommunityCollection cc;	// <- ESTO DIRIA QUE NO!
 	
-	// private Graph graf;			   <- ESTO TIENE MEJOR PINTA CREO!
+	//private Graph graf;			   <- ESTO TIENE MEJOR PINTA CREO!
 	
 	// Pre:  True.
 	// Post: Create a empty WP.

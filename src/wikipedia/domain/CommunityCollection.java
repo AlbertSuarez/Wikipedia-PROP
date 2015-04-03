@@ -3,7 +3,7 @@ package wikipedia.domain;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.HashSet;
-import java.util.Locale.Category;
+//import java.util.Locale.Category;
 
 public class CommunityCollection {
 	

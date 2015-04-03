@@ -1,9 +1,10 @@
 package wikipedia.domain;
 
 import java.util.Iterator;
-import java.util.Locale.Category;
+//import java.util.Locale.Category;
 import java.util.Set;
 import java.util.TreeSet;
+import static wikipedia.utils.Print.*;
 
 public class Community {
 	
