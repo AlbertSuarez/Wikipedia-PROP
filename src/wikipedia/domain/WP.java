@@ -3,20 +3,18 @@ import es.upc.fib.prop.shared13.*;
 
 public class WP
 {
-	// UNA COMMUNITY COLLECTION ES UN SET<SET<CATEGORY>>, ENTONCES
-	// NO EXISTEN PAGINAS. Y DEBERIAN EXISTIR!!!
-	// DEBERIA SER UN GRAPH (DE LA CLASE COMPARTIDA) Y NO UNA COMMUNITY COLLECTION.
+	// The Community Collection of Wikipedia that only contains Categories.
+	private CommunityCollection cc;
 	
-	// private Graph
-	private CommunityCollection cc;	// <- ESTO DIRIA QUE NO!
-	
-	//private Graph graf;			   <- ESTO TIENE MEJOR PINTA CREO!
+	// The Graph of Wikipedia that contains Categories and Pages.
+	private Graph graf;
 	
 	// Pre:  True.
-	// Post: Create a empty WP.
+	// Post: Create a empty CommunityCollection and empty Graph.
 	public WP()
 	{
 		cc = new CommunityCollection();
+		graf = new Graph();
 	}
 	
 	// Pre:  Category with title 'title' exists in graph.
@@ -25,7 +23,7 @@ public class WP
 	{
 		// PROVISIONAL
 		Category c = new Category("Provisional");
-		return c;		
+		return c;
 	}
 	
 	// Pre:  Page with title 'title' exists in graph.
@@ -80,7 +78,8 @@ public class WP
 	//		 false alternately.
 	boolean pagExists(String title)
 	{
-		return true; // Porvisional
+		// PROVISIONAL
+		return true;
 		// return Graph contains pag(title)?
 	}
 
