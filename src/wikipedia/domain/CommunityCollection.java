@@ -8,7 +8,7 @@ public class CommunityCollection {
 	private Set<Community> collection;
 	
 	// Pre:  True.
-    // Post: Create a empty CommunityCollection.
+    // Post: Create an empty CommunityCollection.
 	public CommunityCollection()
 	{ 
 		collection = new LinkedHashSet<Community>();
@@ -22,7 +22,7 @@ public class CommunityCollection {
 	}
 	
 	// Pre:  True.
-    // Post: Return the list of all Communities of the Collection.	
+    // Post: Returns an array with all the Communities from the Collection.	
 	public Community[] GetCommunities()
 	{
 		Community[] vector = new Community[collection.size()];
@@ -34,7 +34,7 @@ public class CommunityCollection {
 	}
 	
 	// Pre:  True.
-    // Post: Print a list of all communities of collection.
+    // Post: Prints a list of all the communities from the collection.
 	public void PrintCollection()
 	{
 		for(Community com: collection){
@@ -42,15 +42,8 @@ public class CommunityCollection {
 		}
 	}
 	
-	// Pre:  True.
-    // Post: Compare the goodness with Golden Collection.
-	public void GoldenCompare()
-	{
-			// NI ZORRA IDEA
-	}
-	
 	// Pre:  Community c is in the Community.
-    // Post: Community c is not in the Community.
+    // Post: Community c is not in the Community anymore.
 	public void EraseCommunity(Community c)
 	{
 		collection.remove(c);
@@ -62,6 +55,8 @@ public class CommunityCollection {
 	{
 		collection.clear();
 	}
+	
+	/*hacer abstracta
 	
 	// Pre:  True.
     // Post: Return community that contains category 'c' if exists,
@@ -77,4 +72,5 @@ public class CommunityCollection {
 		}
 		return pertany;
 	}
+	*/
 }
