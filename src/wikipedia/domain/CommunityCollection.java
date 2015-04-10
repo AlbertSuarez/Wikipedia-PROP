@@ -1,8 +1,6 @@
 package wikipedia.domain;
 
-import java.util.Iterator;
-import java.util.Set;
-import java.util.HashSet;
+import java.util.*;
 //import java.util.Locale.Category;
 
 public class CommunityCollection {
@@ -13,7 +11,7 @@ public class CommunityCollection {
     // Post: Create a empty CommunityCollection.
 	public CommunityCollection()
 	{ 
-		collection = new HashSet<Community>();
+		collection = new LinkedHashSet<Community>();
 	}
 	
 	// Pre:  Community c is not in the Community.
