@@ -1,5 +1,5 @@
 package wikipedia.domain;
-import es.upc.fib.prop.shared13.*;
+import g13.*;
 
 public class WP
 {
