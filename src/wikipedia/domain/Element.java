@@ -11,8 +11,8 @@ public abstract class Element
 		title = null;
 	}
 
-	// Pre:  Element with title 'title' doesn't exist.
-	// Post: Create a Element with title 'title'.    
+	// Pre:  Element with title 'title' doesn't exist. 
+	// Post: Create a Element with title 'title'.	
 	public Element(String title)
 	{
 		this.title = title;

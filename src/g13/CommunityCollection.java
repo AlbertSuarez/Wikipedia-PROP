@@ -8,21 +8,21 @@ public class CommunityCollection {
 	private Set<Community> collection;
 	
 	// Pre:  True.
-    // Post: Create an empty CommunityCollection.
+	// Post: Create an empty CommunityCollection.
 	public CommunityCollection()
 	{ 
 		collection = new LinkedHashSet<Community>();
 	}
 	
 	// Pre:  Community c is not in the Community.
-    // Post: Community c is in the Community.
+	// Post: Community c is in the Community.
 	public void AddCommunity(Community c)
 	{
 		collection.add(c);
 	}
 	
 	// Pre:  True.
-    // Post: Returns an array with all the Communities from the Collection.	
+	// Post: Returns an array with all the Communities from the Collection.	
 	public Community[] GetCommunities()
 	{
 		Community[] vector = new Community[collection.size()];
@@ -34,7 +34,7 @@ public class CommunityCollection {
 	}
 	
 	// Pre:  True.
-    // Post: Prints a list of all the communities from the collection.
+	// Post: Prints a list of all the communities from the collection.
 	public void PrintCollection()
 	{
 		for(Community com: collection){
@@ -43,14 +43,14 @@ public class CommunityCollection {
 	}
 	
 	// Pre:  Community c is in the Community.
-    // Post: Community c is not in the Community anymore.
+	// Post: Community c is not in the Community anymore.
 	public void EraseCommunity(Community c)
 	{
 		collection.remove(c);
 	}
 	
 	// Pre:  True.
-    // Post: Collection is empty.
+	// Post: Collection is empty.
 	public void ResetCollection()
 	{
 		collection.clear();
@@ -59,7 +59,7 @@ public class CommunityCollection {
 	/*hacer abstracta
 	
 	// Pre:  True.
-    // Post: Return community that contains category 'c' if exists,
+	// Post: Return community that contains category 'c' if exists,
 	//		 return a empty community alternatively.
 	public Community Belongs(Category c)
 	{

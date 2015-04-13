@@ -7,14 +7,22 @@ public class WP
 	private CommunityCollection cc;
 	
 	// The Graph of Wikipedia that contains Categories and Pages.
-	private Graph graf;
+	private Graph graph;
+
+	// The instances of the algorithms.
+	private NewmanGirvan newmanGirvan;
 	
 	// Pre:  True.
 	// Post: Create a empty CommunityCollection and empty Graph.
 	public WP()
 	{
-		cc = new CommunityCollection();
-		graf = new Graph();
+		//cc = new CommunityCollection();
+		//graph = new Graph();
+	}
+
+	public CommunityCollection applyNewmanGirvan()
+	{
+		return cc;
 	}
 	
 	// Pre:  Category with title 'title' exists in graph.
