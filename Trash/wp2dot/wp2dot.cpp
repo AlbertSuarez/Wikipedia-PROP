@@ -27,7 +27,7 @@ enum LinkType {
 };
 
 struct Link {
-	LinkType lt;
+	LinkType type;
 	int dest;
 };
 
@@ -87,7 +87,7 @@ void print_dot(map<int, Node> &nodeMap)
 	map<int, Node>::const_iterator map_it;
 	list<Link>::const_iterator link_it;
 
-	cout << "graph {" << endl;
+	cout << "digraph {" << endl;
 
 	// Print nodes
 	for (map_it = nodeMap.begin(); map_it != nodeMap.end(); map_it++) {
@@ -99,7 +99,11 @@ void print_dot(map<int, Node> &nodeMap)
 	// Print edges
 	for (map_it = nodeMap.begin(); map_it != nodeMap.end(); map_it++) {
 		for (link_it = map_it->second.adj.begin(); link_it != map_it->second.adj.end(); link_it++) {
-			cout << "\t" << map_it->first << " -- " << link_it->dest << ";" << endl;
+			if (link_it->type != C_SUB_C && link_it->type != P_C) {
+				cout << "\t" << map_it->first << " -> " << link_it->dest <<
+				((link_it->type == C_P) ? (" [style=dashed, color=blue]") : "") <<
+				";" << endl;
+			}
 		}
 	}
 
