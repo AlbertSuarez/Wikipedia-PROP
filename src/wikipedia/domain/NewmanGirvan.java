@@ -1,6 +1,7 @@
 package wikipedia.domain;
 import g13.*;
 import java.util.*;
+import static wikipedia.utils.Print.*;
 
 public class NewmanGirvan implements Algorithm {
 
@@ -13,7 +14,7 @@ public class NewmanGirvan implements Algorithm {
 		boolean[] vist = new boolean[nodeCount];
 		for (int i = 0; i < nodeCount; i++) {
 			d[i] = Integer.MAX_VALUE;
-			d[i] = 0;
+			w[i] = 0;
 			vist[i] = false;
 		}
 		
@@ -21,7 +22,7 @@ public class NewmanGirvan implements Algorithm {
 		w[s] = 1;
 
 		Node[] nodes = G.getNodeSet().toArray(new Node[G.getOrder()]);
-		
+				
 		Queue<Integer> q = new LinkedList<Integer>();
 		q.add(s);
 		pila.push(s); // Guardar orden inverso
@@ -29,11 +30,10 @@ public class NewmanGirvan implements Algorithm {
 		while (!q.isEmpty()) {
 			int u = q.poll();
 			if (!vist[u]) {
-
 				vist[u] = true;
 				Set<Edge> adjEdgesSet = G.getAdjacencyList(nodes[u]);
 				Edge[] adjEdges = adjEdgesSet.toArray(new Edge[adjEdgesSet.size()]);
-
+				
 				for (int i = 0; i < adjEdges.length; ++i) {
 
 					Node adjNode = adjEdges[i].getNeighbor(nodes[u]);
@@ -56,6 +56,13 @@ public class NewmanGirvan implements Algorithm {
 							double[] b, int[] w, double[] arco) {
 
 		Node[] nodes = G.getNodeSet().toArray(new Node[G.getOrder()]);
+		Set<Edge> edgeSet = G.getEdgeSet();
+		Map<Edge, Integer> edgeMap = new LinkedHashMap<Edge, Integer>();
+		Integer id = 0;
+		
+		for (Edge e: edgeSet) {
+			edgeMap.put(e, id++);
+		}
 
 		while (!pila.isEmpty()) {
 			int u = pila.pop();
@@ -67,9 +74,9 @@ public class NewmanGirvan implements Algorithm {
 			for (int i = 0; i < adjEdges.length; ++i) {
 				Node adjNode = adjEdges[i].getNeighbor(nodes[u]);
 				int v = java.util.Arrays.asList(nodes).indexOf(adjNode);
-				/**int uvArco = G[u][i].second;*/
+				int uvArco = edgeMap.get(adjEdges[i]);
 				if (d[v] < d[u]) {
-					/**arco[uvArco] += (double)w[v]/w[u]*b[u];*/ // fraccion de shortest paths
+					arco[uvArco] += (double)w[v]/w[u]*b[u]; // fraccion de shortest paths
 					                                        // que pasan por la arista
 					b[v] += (double)w[v]/w[u]*b[u];         // fraccion de shortest paths
 															// que pasan por el vertice
@@ -83,8 +90,7 @@ public class NewmanGirvan implements Algorithm {
 		int nodeCount = G.getOrder();
 
 		// Build the edgeId -> Edge hashtable (*TODO*)
-		double[] arco = new double[nodeCount];
-		
+		double[] arco = new double[G.getEdgeCount()];
 		// Reset vector<> arco
 		for (int i = 0; i < arco.length; ++i) arco[i] = 0;
 		
@@ -103,6 +109,11 @@ public class NewmanGirvan implements Algorithm {
 			
 			stage2_betweenness(G, pila, d, b, w, arco);
 		}
+
+		/*for (int i = 0; i < arco.length; i++) {
+			print(arco[i]);
+		}*/
+		
 		return null;
 	}
 

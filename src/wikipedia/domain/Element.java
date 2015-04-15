@@ -33,13 +33,13 @@ public abstract class Element
 	}
 
 	@Override public boolean equals(Object o) {
-
+				
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 
 		final Element e = (Element) o;
 
-		return (e.title == this.title);
+		return (e.title.equals(this.title));
 	}
 
 	@Override public String toString()

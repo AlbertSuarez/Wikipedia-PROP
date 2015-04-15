@@ -2,7 +2,7 @@ package wikipedia.domain;
 
 import java.util.*;
 
-public abstract class CommunityCollection {
+public class CommunityCollection {
 	
 	private Set<Community> collection;
 	

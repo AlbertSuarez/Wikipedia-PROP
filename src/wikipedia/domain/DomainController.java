@@ -1,4 +1,5 @@
 package wikipedia.domain;
+import wikipedia.persistence.*;
 
 public class DomainController
 {
@@ -6,6 +7,10 @@ public class DomainController
 
 	public DomainController() {
 		wikipedia = new WP();
+	}
+	public void Run(){
+		PersistenceController pc = new PersistenceController();
+		pc.load(wikipedia);
 	}
 	
 }
