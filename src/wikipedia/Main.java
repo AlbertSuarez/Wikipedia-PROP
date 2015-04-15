@@ -14,6 +14,7 @@ public class Main
 		pc.run();
 
 		DomainController dc = new DomainController();
+		dc.Run();
 		print("PROP - Wikipedia - End main");
 	}
 }
