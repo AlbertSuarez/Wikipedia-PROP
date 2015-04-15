@@ -1,7 +1,6 @@
 package g13;
 
 import wikipedia.domain.Element;
-// import java.lang.Comparable;
 
 public class ONode implements Node
 {
@@ -47,7 +46,6 @@ public class ONode implements Node
 	// Pre:  True
 	// Post: Returns whether this Node is greater than the parameter node.
 	public boolean isGreater(Node n) {
-		return true; // Por poner algo
-		// return (this.compareTo(n) > 0)
+		return (this.e.getTitle().compareTo(((ONode) n).e.getTitle()) > 0);		// DIRIA QUE ESTA BIEN
 	}
 }
