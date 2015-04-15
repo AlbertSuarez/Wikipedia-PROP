@@ -20,13 +20,10 @@ public class GraphIO {
 		
 		while ((m--) > 0) {
 			
-			// HAY UN PROBLEMA CON el hasNode que compara
-			// REFERENCIAS!!!!
-			
 			ONode ni = new ONode(new Page(cin.next()));
 			ONode nj = new ONode(new Page(cin.next()));
 			
-			ONode n1 = null;
+			/*ONode n1 = null;
 			ONode n2 = null;
 			
 			for (Node nn : g.getNodeSet()) {
@@ -38,12 +35,12 @@ public class GraphIO {
 				}
 			}
 			if (n1 == null) n1 = ni;
-			if (n2 == null) n2 = nj;
+			if (n2 == null) n2 = nj;*/
 			
-			OEdge e = new OEdge(n1, n2, 1, OEdge.edgeType.CsubC);
+			OEdge e = new OEdge(ni, nj, 1, OEdge.edgeType.CsubC);
 			
-			if (!g.hasNode(n1)) g.addNode(n1);
-			if (!g.hasNode(n2)) g.addNode(n2);
+			if (!g.hasNode(ni)) g.addNode(ni);
+			if (!g.hasNode(nj)) g.addNode(nj);
 			g.addEdge(e);
 		}
 

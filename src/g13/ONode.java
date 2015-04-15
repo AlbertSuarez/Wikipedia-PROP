@@ -33,7 +33,11 @@ public class ONode implements Node
 	@Override public int hashCode()
 	{
 		if (e == null) return 0;
-		return e.hashCode();
+		
+		// Le pedimos al title (String) su hashCode,
+		// el cual estará calculado en base al texto
+		// que tenga
+		return e.getTitle().hashCode();
 	}
 	
 	// Pre:  True
