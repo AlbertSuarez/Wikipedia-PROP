@@ -7,6 +7,36 @@ public class NewmanGirvan implements Algorithm {
 
 	final private int PESO = 1;
 
+	private class CData implements Comparable<CData> {
+		private final int dist;
+		private final int idNode;
+
+		public CData(int dist, int idNode) {
+			this.dist = dist;
+			this.idNode = idNode;
+		}
+
+		public int getDist() { return dist; }
+
+		public int getIdNode() { return idNode; }
+
+		@Override
+		public int compareTo(CData other) {
+			//ascending order
+			return this.dist - other.dist;
+
+			//descending order
+			//return other.dist - this.dist;
+		}
+
+		/*@Override
+		public boolean equals(Object o) {
+			return o instanceof Data
+				&& (this.dist == (Data)o.dist)
+				&& (this.idNode == (Data)o.idNode);
+		}*/
+	}
+
 	private void stage1_BFS(Graph G, int[] d, int[] w, int s, Stack<Integer> pila) {
 
 		int nodeCount = G.getOrder();
@@ -17,23 +47,24 @@ public class NewmanGirvan implements Algorithm {
 			w[i] = 0;
 			vist[i] = false;
 		}
-		
+
 		d[s] = 0;
 		w[s] = 1;
 
 		Node[] nodes = G.getNodeSet().toArray(new Node[G.getOrder()]);
-				
-		Queue<Integer> q = new LinkedList<Integer>();
-		q.add(s);
+
+		PriorityQueue<CData> q = new PriorityQueue<CData>();
+		q.add(new CData(d[s], s));
 		pila.push(s); // Guardar orden inverso
-		
+
 		while (!q.isEmpty()) {
-			int u = q.poll();
+			CData dataU = q.poll();
+			int u = dataU.getIdNode();
 			if (!vist[u]) {
 				vist[u] = true;
 				Set<Edge> adjEdgesSet = G.getAdjacencyList(nodes[u]);
 				Edge[] adjEdges = adjEdgesSet.toArray(new Edge[adjEdgesSet.size()]);
-				
+
 				for (int i = 0; i < adjEdges.length; ++i) {
 
 					Node adjNode = adjEdges[i].getNeighbor(nodes[u]);
@@ -42,7 +73,7 @@ public class NewmanGirvan implements Algorithm {
 					if (d[v] > d[u] + PESO) {
 						d[v] = d[u] + PESO;
 						w[v] = w[u];
-						q.add(v);
+						q.add(new CData(d[v], v));
 						pila.push(v); // Guardar orden inverso
 					} else if (d[v] == d[u] + PESO) {
 						w[v] += w[u];
@@ -52,14 +83,14 @@ public class NewmanGirvan implements Algorithm {
 		}
 	}
 
-	private  void stage2_betweenness(Graph G, Stack<Integer> pila, int[] d, 
+	private  void stage2_betweenness(Graph G, Stack<Integer> pila, int[] d,
 							double[] b, int[] w, double[] arco) {
 
 		Node[] nodes = G.getNodeSet().toArray(new Node[G.getOrder()]);
 		Set<Edge> edgeSet = G.getEdgeSet();
 		Map<Edge, Integer> edgeMap = new LinkedHashMap<Edge, Integer>();
+
 		Integer id = 0;
-		
 		for (Edge e: edgeSet) {
 			edgeMap.put(e, id++);
 		}
@@ -69,17 +100,17 @@ public class NewmanGirvan implements Algorithm {
 			b[u] += 1;
 
 			Set<Edge> adjEdgesSet = G.getAdjacencyList(nodes[u]);
-			Edge[] adjEdges = adjEdgesSet.toArray(new Edge[adjEdgesSet.size()]);
 
-			for (int i = 0; i < adjEdges.length; ++i) {
-				Node adjNode = adjEdges[i].getNeighbor(nodes[u]);
+			for (Edge e : adjEdgesSet) {
+				Node adjNode = e.getNeighbor(nodes[u]);
 				int v = java.util.Arrays.asList(nodes).indexOf(adjNode);
-				int uvArco = edgeMap.get(adjEdges[i]);
+				int uvArco = edgeMap.get(e);
 				if (d[v] < d[u]) {
-					arco[uvArco] += (double)w[v]/w[u]*b[u]; // fraccion de shortest paths
+					double calc = (double)w[v]/w[u]*b[u];
+					arco[uvArco] += calc; // fraccion de shortest paths
 					                                        // que pasan por la arista
-					b[v] += (double)w[v]/w[u]*b[u];         // fraccion de shortest paths
-															// que pasan por el vertice
+					b[v] += calc;		// fraccion de shortest paths
+										// que pasan por el vertice
 				}
 			}
 		}
@@ -93,27 +124,27 @@ public class NewmanGirvan implements Algorithm {
 		double[] arco = new double[G.getEdgeCount()];
 		// Reset vector<> arco
 		for (int i = 0; i < arco.length; ++i) arco[i] = 0;
-		
+
 		for (int i = 0; i < nodeCount; ++i) {
 			int[] d; //Distancia
 			int[] w; //Number shortest path from source to i
 
 			d = new int[nodeCount];
 			w = new int[nodeCount];
-			
+
 			Stack<Integer> pila = new Stack<Integer>();
 			stage1_BFS(G, d, w, i, pila);
-			
+
 			double[] b = new double[G.getOrder()]; //Number shortest path between source to any
 			                                   //vertex in graph pass through vertex i
-			
+
 			stage2_betweenness(G, pila, d, b, w, arco);
 		}
 
-		/*for (int i = 0; i < arco.length; i++) {
+		for (int i = 0; i < arco.length; i++) {
 			print(arco[i]);
-		}*/
-		
+		}
+
 		return null;
 	}
 
