@@ -17,7 +17,6 @@ public class Main
 		NewmanGirvan ng = new NewmanGirvan();
 		CommunityCollection cc = ng.runAlgorithm(g);
 		
-		
 		GraphIO.writeGraph(g);
 
 		PresentationController pc = new PresentationController();

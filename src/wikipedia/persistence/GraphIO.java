@@ -22,7 +22,7 @@ public class GraphIO {
 			
 			ONode ni = new ONode(new Page(cin.next()));
 			ONode nj = new ONode(new Page(cin.next()));
-			
+			//double peso = cin.nextInt();
 			/*ONode n1 = null;
 			ONode n2 = null;
 			
@@ -54,9 +54,13 @@ public class GraphIO {
 			
 			Node n1 = e.getNode();
 			Node n2 = e.getNeighbor(n1);
-			
-			print(n1 + " " + n2);
+			double peso = e.getWeight();
+
+			print(n1 + " " + n2 + " " + peso);
 		}
+
+		/*Set<Node> nodeSet = g.getNodeSet();
+		for (Node nn : nodeSet) print(nn);*/
 
 		/*for (int i = 0; i < G.size(); ++i) {
 			cout << "Nodo " << i << ": ";

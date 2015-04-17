@@ -5,28 +5,26 @@ import static wikipedia.utils.Print.*;
 
 public class NewmanGirvan implements Algorithm {
 
-	final private int PESO = 1;
-
 	private class CData implements Comparable<CData> {
-		private final int dist;
+		private final double dist;
 		private final int idNode;
 
-		public CData(int dist, int idNode) {
+		public CData(double dist, int idNode) {
 			this.dist = dist;
 			this.idNode = idNode;
 		}
 
-		public int getDist() { return dist; }
+		public double getDist() { return dist; }
 
 		public int getIdNode() { return idNode; }
 
 		@Override
 		public int compareTo(CData other) {
 			//ascending order
-			return this.dist - other.dist;
+			return (int)(this.dist - other.dist);
 
 			//descending order
-			//return other.dist - this.dist;
+			//return (int)(other.dist - this.dist);
 		}
 
 		/*@Override
@@ -37,15 +35,17 @@ public class NewmanGirvan implements Algorithm {
 		}*/
 	}
 
-	private void stage1_BFS(Graph G, int[] d, int[] w, int s, Stack<Integer> pila) {
+	private void stage1_Dijkstra(Graph G, double[] d, double[] w, int s, Stack<Integer> pila) {
 
 		int nodeCount = G.getOrder();
 
+		//int p[] = new int[nodeCount];
 		boolean[] vist = new boolean[nodeCount];
 		for (int i = 0; i < nodeCount; i++) {
 			d[i] = Integer.MAX_VALUE;
 			w[i] = 0;
 			vist[i] = false;
+			//p[i] = -1;
 		}
 
 		d[s] = 0;
@@ -63,19 +63,18 @@ public class NewmanGirvan implements Algorithm {
 			if (!vist[u]) {
 				vist[u] = true;
 				Set<Edge> adjEdgesSet = G.getAdjacencyList(nodes[u]);
-				Edge[] adjEdges = adjEdgesSet.toArray(new Edge[adjEdgesSet.size()]);
 
-				for (int i = 0; i < adjEdges.length; ++i) {
+				for (Edge e : adjEdgesSet) {
 
-					Node adjNode = adjEdges[i].getNeighbor(nodes[u]);
+					Node adjNode = e.getNeighbor(nodes[u]);
 					int v = java.util.Arrays.asList(nodes).indexOf(adjNode);
-
-					if (d[v] > d[u] + PESO) {
-						d[v] = d[u] + PESO;
+					if (d[v] > d[u] + e.getWeight()) {
+						d[v] = d[u] + e.getWeight();
 						w[v] = w[u];
+						//p[v] = u;
 						q.add(new CData(d[v], v));
 						pila.push(v); // Guardar orden inverso
-					} else if (d[v] == d[u] + PESO) {
+					} else if (d[v] == d[u] + e.getWeight()) {
 						w[v] += w[u];
 					}
 				}
@@ -83,8 +82,8 @@ public class NewmanGirvan implements Algorithm {
 		}
 	}
 
-	private  void stage2_betweenness(Graph G, Stack<Integer> pila, int[] d,
-							double[] b, int[] w, double[] arco) {
+	private void stage2_betweenness(Graph G, Stack<Integer> pila, double[] d,
+							double[] b, double[] w, double[] arco) {
 
 		Node[] nodes = G.getNodeSet().toArray(new Node[G.getOrder()]);
 		Set<Edge> edgeSet = G.getEdgeSet();
@@ -106,7 +105,7 @@ public class NewmanGirvan implements Algorithm {
 				int v = java.util.Arrays.asList(nodes).indexOf(adjNode);
 				int uvArco = edgeMap.get(e);
 				if (d[v] < d[u]) {
-					double calc = (double)w[v]/w[u]*b[u];
+					double calc = w[v]/w[u]*b[u];
 					arco[uvArco] += calc; // fraccion de shortest paths
 					                                        // que pasan por la arista
 					b[v] += calc;		// fraccion de shortest paths
@@ -126,14 +125,14 @@ public class NewmanGirvan implements Algorithm {
 		for (int i = 0; i < arco.length; ++i) arco[i] = 0;
 
 		for (int i = 0; i < nodeCount; ++i) {
-			int[] d; //Distancia
-			int[] w; //Number shortest path from source to i
+			double[] d; //Distancia
+			double[] w; //Number shortest path from source to i
 
-			d = new int[nodeCount];
-			w = new int[nodeCount];
+			d = new double[nodeCount];
+			w = new double[nodeCount];
 
 			Stack<Integer> pila = new Stack<Integer>();
-			stage1_BFS(G, d, w, i, pila);
+			stage1_Dijkstra(G, d, w, i, pila);
 
 			double[] b = new double[G.getOrder()]; //Number shortest path between source to any
 			                                   //vertex in graph pass through vertex i
