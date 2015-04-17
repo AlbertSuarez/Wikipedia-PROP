@@ -76,6 +76,50 @@ public class GraphIO {
 			}
 		}*/
 	}
-		
 
+	public static OGraph readGraphWPformat() {
+		OGraph g = new OGraph();
+		Scanner cin = new Scanner(System.in);
+		Map<String, ONode> nodeMap = new LinkedHashMap<String, ONode>();
+
+		while (cin.hasNext()) {
+			String name1 = cin.next();    // Read name1
+			String type1 = cin.next();    // Read type1 (cat or page)
+			String linkType = cin.next(); // Read linkType (CsupC, Csubc, CP, PA)
+			String name2 = cin.next();    // Read name2
+			String type2 = cin.next();    // Read type2 (cat or page)
+
+			ONode node1 = nodeMap.get(name1);
+			if (node1 == null) {
+				// New node
+				if (type1.equals("cat")) {
+					node1 = new ONode(new Category(name1));
+				} else {
+					node1 = new ONode(new Page(name1));
+				}
+				nodeMap.put(name1, node1);
+			}
+
+			ONode node2 = nodeMap.get(name1);
+			if (node2 == null) {
+				// New node
+				if (type2.equals("cat")) {
+					node2 = new ONode(new Category(name2));
+				} else {
+					node2 = new ONode(new Page(name2));
+				}
+				nodeMap.put(name2, node2);
+			}
+
+			// Create the new edge
+			OEdge e = new OEdge(node1, node2, 1, OEdge.toEdgeType(linkType));
+
+			if (!g.hasNode(node1)) g.addNode(node1);
+			if (!g.hasNode(node2)) g.addNode(node2);
+			g.addEdge(e);
+		}
+
+		return g;
+
+	}
 }

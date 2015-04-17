@@ -67,4 +67,12 @@ public class OEdge extends Edge
 		String s1 = super.toString();
 		return s1 + " " + s;
 	}
+
+	public static edgeType toEdgeType(String s)
+	{
+		if (s.equals("CsubC")) return edgeType.CsubC;
+		else if (s.equals("CsupC")) return edgeType.CsuperC;
+		else if (s.equals("CP")) return edgeType.CP;
+		else return edgeType.PC;
+	}
 }
