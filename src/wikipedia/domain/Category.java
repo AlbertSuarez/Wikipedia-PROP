@@ -4,10 +4,11 @@ public class Category extends Element
 {
 	
 	// Pre:  True.
-	// Post: Create a empty Category.
+	// Post: Create an empty Category.
 	public Category()
 	{
 		super();
+		super.et = ElementType.ELEMENT_CATEGORY;
 	}
 	
 	// Pre:  Category with title 'title' doesn't exist.
@@ -15,6 +16,7 @@ public class Category extends Element
 	public Category(String title)
 	{
 		super(title);
+		super.et = ElementType.ELEMENT_CATEGORY;
 	}
 	
 }

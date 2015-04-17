@@ -2,6 +2,14 @@ package wikipedia.domain;
 
 public abstract class Element
 {
+	// For WP visibility public
+	public enum ElementType {
+		ELEMENT_PAGE,
+		ELEMENT_CATEGORY
+	}
+
+	protected ElementType et;
+
 	private String title;
 
 	// Pre:  True.
@@ -45,5 +53,27 @@ public abstract class Element
 	@Override public String toString()
 	{
 		return title;
+	}
+
+	public ElementType getElementType()
+	{
+		return et;
+	}
+
+	// Pre:  True
+	// Post: Returns the ElementType representing the string
+	public static ElementType toElementType(String s)
+	{
+		if (s.equals("cat")) return ElementType.ELEMENT_CATEGORY;
+		else return ElementType.ELEMENT_PAGE;
+	}
+
+	// Pre:  True
+	// Post: Returns the string representation of the element type
+	public static String toElementTypeString(ElementType et)
+	{
+		if (et == ElementType.ELEMENT_CATEGORY) return "cat";
+		else if (et == ElementType.ELEMENT_PAGE) return "page";
+		return null;
 	}
 }

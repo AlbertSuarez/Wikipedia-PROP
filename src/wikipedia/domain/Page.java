@@ -4,10 +4,11 @@ public class Page extends Element
 {
 	
 	// Pre:  True.
-	// Post: Create a empty Page.
+	// Post: Create an empty Page.
 	public Page()
 	{
 		super();
+		super.et = ElementType.ELEMENT_PAGE;
 	}
 	
 	// Pre:  Page with title 'title' doesn't exist.
@@ -15,6 +16,7 @@ public class Page extends Element
 	public Page(String title)
 	{
 		super(title);
+		super.et = ElementType.ELEMENT_PAGE;
 	}
 	
 }

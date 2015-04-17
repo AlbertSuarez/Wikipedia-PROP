@@ -37,7 +37,7 @@ public class GraphIO {
 			if (n1 == null) n1 = ni;
 			if (n2 == null) n2 = nj;*/
 			
-			OEdge e = new OEdge(ni, nj, 1, OEdge.edgeType.CsubC);
+			OEdge e = new OEdge(ni, nj, 1, OEdge.EdgeType.CsubC);
 			
 			if (!g.hasNode(ni)) g.addNode(ni);
 			if (!g.hasNode(nj)) g.addNode(nj);
@@ -100,7 +100,7 @@ public class GraphIO {
 				nodeMap.put(name1, node1);
 			}
 
-			ONode node2 = nodeMap.get(name1);
+			ONode node2 = nodeMap.get(name2);
 			if (node2 == null) {
 				// New node
 				if (type2.equals("cat")) {
@@ -121,5 +121,22 @@ public class GraphIO {
 
 		return g;
 
+	}
+
+	public static void writeGraphWPformat(OGraph g) {
+		Set<Edge> edgeSet = g.getEdgeSet();
+		for (Edge e: edgeSet) {
+			OEdge oe = (OEdge)e;
+			ONode node1 = (ONode)e.getNode();
+			ONode node2 = (ONode)e.getNeighbor(node1);
+
+			print(
+				node1.getElement().getTitle() + " " +
+				Element.toElementTypeString(node1.getElement().getElementType()) + " " +
+				OEdge.toEdgeTypeString(oe.getEdgeType()) + " " +
+				node2.getElement().getTitle() + " " +
+				Element.toElementTypeString(node2.getElement().getElementType())
+			);
+		}
 	}
 }

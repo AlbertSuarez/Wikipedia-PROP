@@ -52,4 +52,11 @@ public class ONode implements Node
 	public boolean isGreater(Node n) {
 		return (this.e.getTitle().compareTo(((ONode) n).e.getTitle()) > 0);		// DIRIA QUE ESTA BIEN
 	}
+
+	// Pre:  True
+	// Post: Returns the element of this node
+	public Element getElement()
+	{
+		return e;
+	}
 }

@@ -12,12 +12,12 @@ public class Main
 	{
 		print("PROP - Wikipedia - Start main");
 		
-		OGraph g = GraphIO.readGraph();
+		OGraph g = GraphIO.readGraphWPformat();
 		
-		NewmanGirvan ng = new NewmanGirvan();
-		CommunityCollection cc = ng.runAlgorithm(g);
+		//NewmanGirvan ng = new NewmanGirvan();
+		//CommunityCollection cc = ng.runAlgorithm(g);
 		
-		GraphIO.writeGraph(g);
+		GraphIO.writeGraphWPformat(g);
 
 		PresentationController pc = new PresentationController();
 		pc.run();

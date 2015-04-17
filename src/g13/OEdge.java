@@ -4,14 +4,14 @@ package g13;
 public class OEdge extends Edge
 {
 	// For WP visibility public
-	public enum edgeType {
+	public enum EdgeType {
 		CsubC,
-		CsuperC,
+		CsupC,
 		CP,
 		PC
 	}
 
-	private edgeType et;
+	private EdgeType et;
 	
 	// Pre: True
 	// Post: WP has an edge between node m1 and node m2 with weight 'w'.
@@ -22,7 +22,7 @@ public class OEdge extends Edge
 
 	// Pre: True
 	// Post: WP has an edge between node m1 and node m2 with weight 'w' and type 'et'.
-	public OEdge(Node m1, Node m2, double w, edgeType et)
+	public OEdge(Node m1, Node m2, double w, EdgeType et)
 	{
 		super(m1, m2, w);
 		this.et = et;
@@ -30,14 +30,14 @@ public class OEdge extends Edge
 	
 	// Pre: True
 	// Post: Return de type of Edge.
-	public edgeType getEdgeType()
+	public EdgeType getEdgeType()
 	{
 		return et;
 	}
 	
 	// Pre: True
 	// Post: Set Edge with edgeType 'et'.
-	public void setEdgeType(edgeType et)
+	public void setEdgeType(EdgeType et)
 	{
 		this.et = et;
 	}
@@ -46,33 +46,35 @@ public class OEdge extends Edge
 	// Post: Returns a String representation of the Edge.
 	@Override public String toString()
 	{
-		String s = null;
-		
-		switch (et)
-		{
-		case CsubC:
-			s = "CsubC";
-			break;
-		case CsuperC:
-			s = "CsuperC";
-			break;
-		case CP:
-			s = "CP";
-			break;
-		case PC:
-			s = "PC";
-			break;
-		}
-		
 		String s1 = super.toString();
-		return s1 + " " + s;
+		String s2 = toEdgeTypeString(this.et);
+		return s1 + " " + s2;
 	}
 
-	public static edgeType toEdgeType(String s)
+	// Pre:  True
+	// Post: Returns the string representation of the edge type
+	public static String toEdgeTypeString(EdgeType et)
 	{
-		if (s.equals("CsubC")) return edgeType.CsubC;
-		else if (s.equals("CsupC")) return edgeType.CsuperC;
-		else if (s.equals("CP")) return edgeType.CP;
-		else return edgeType.PC;
+		switch (et) {
+		case CsubC:
+			return "CsubC";
+		case CsupC:
+			return "CsupC";
+		case CP:
+			return "CP";
+		case PC:
+			return "PC";
+		}
+		return null;
+	}
+
+	// Pre:  True
+	// Post: Returns the EdgeType representing the string
+	public static EdgeType toEdgeType(String s)
+	{
+		if (s.equals("CsubC")) return EdgeType.CsubC;
+		else if (s.equals("CsupC")) return EdgeType.CsupC;
+		else if (s.equals("CP")) return EdgeType.CP;
+		else return EdgeType.PC;
 	}
 }
