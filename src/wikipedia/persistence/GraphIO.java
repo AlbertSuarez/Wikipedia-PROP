@@ -49,7 +49,7 @@ public class GraphIO {
 	
 	public static void writeGraph(OGraph g) {
 		
-		Set<Edge> edgeSet = g.getEdgeSet();
+		Collection<Edge> edgeSet = g.getEdges();
 		for (Edge e: edgeSet) {
 			
 			Node n1 = e.getNode();
@@ -124,7 +124,7 @@ public class GraphIO {
 	}
 
 	public static void writeGraphWPformat(OGraph g) {
-		Set<Edge> edgeSet = g.getEdgeSet();
+		Collection<Edge> edgeSet = g.getEdges();
 		for (Edge e: edgeSet) {
 			OEdge oe = (OEdge)e;
 			ONode node1 = (ONode)e.getNode();

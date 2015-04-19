@@ -51,7 +51,7 @@ public class NewmanGirvan implements Algorithm {
 		d[s] = 0;
 		w[s] = 1;
 
-		Node[] nodes = G.getNodeSet().toArray(new Node[G.getOrder()]);
+		Node[] nodes = G.getNodes().toArray(new Node[G.getOrder()]);
 
 		PriorityQueue<CData> q = new PriorityQueue<CData>();
 		q.add(new CData(d[s], s));
@@ -62,7 +62,7 @@ public class NewmanGirvan implements Algorithm {
 			int u = dataU.getIdNode();
 			if (!vist[u]) {
 				vist[u] = true;
-				Set<Edge> adjEdgesSet = G.getAdjacencyList(nodes[u]);
+				Collection<Edge> adjEdgesSet = G.getAdjacencyList(nodes[u]);
 
 				for (Edge e : adjEdgesSet) {
 
@@ -85,8 +85,8 @@ public class NewmanGirvan implements Algorithm {
 	private void stage2_betweenness(Graph G, Stack<Integer> pila, double[] d,
 							double[] b, double[] w, double[] arco) {
 
-		Node[] nodes = G.getNodeSet().toArray(new Node[G.getOrder()]);
-		Set<Edge> edgeSet = G.getEdgeSet();
+		Node[] nodes = G.getNodes().toArray(new Node[G.getOrder()]);
+		Collection<Edge> edgeSet = G.getEdges();
 		Map<Edge, Integer> edgeMap = new LinkedHashMap<Edge, Integer>();
 
 		Integer id = 0;
@@ -98,7 +98,7 @@ public class NewmanGirvan implements Algorithm {
 			int u = pila.pop();
 			b[u] += 1;
 
-			Set<Edge> adjEdgesSet = G.getAdjacencyList(nodes[u]);
+			Collection<Edge> adjEdgesSet = G.getAdjacencyList(nodes[u]);
 
 			for (Edge e : adjEdgesSet) {
 				Node adjNode = e.getNeighbor(nodes[u]);

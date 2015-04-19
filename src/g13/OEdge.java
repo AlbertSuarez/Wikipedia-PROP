@@ -13,6 +13,15 @@ public class OEdge extends Edge
 
 	private EdgeType et;
 	
+	// BEGIN CONSTRUCTORS --------------------
+	
+	// Pre: True
+	// Post: WP has an edge between node m1 and node m2 with weight 'w' and boolean valid.
+	public OEdge(Node m1, Node m2, double w, boolean valid)
+	{
+		super(m1, m2, w, valid);
+	}
+	
 	// Pre: True
 	// Post: WP has an edge between node m1 and node m2 with weight 'w'.
 	public OEdge(Node m1, Node m2, double w)
@@ -21,12 +30,37 @@ public class OEdge extends Edge
 	}
 
 	// Pre: True
+	// Post: WP has an edge between node m1 and node m2 with weight 'w', boolean valid and type 'et'.
+	public OEdge(Node m1, Node m2, double w, boolean valid, EdgeType et)
+	{
+		super(m1, m2, w, valid);
+		this.et = et;
+	}
+	
+	// Pre: True
 	// Post: WP has an edge between node m1 and node m2 with weight 'w' and type 'et'.
 	public OEdge(Node m1, Node m2, double w, EdgeType et)
 	{
 		super(m1, m2, w);
 		this.et = et;
 	}
+	
+	// Pre: True
+	// Post: WP has an edge between node m1 and node m2 with weight 1.
+	public OEdge(Node m1, Node m2)
+	{
+		super(m1, m2);
+	}
+
+	// Pre: True
+	// Post: WP has an edge between node m1 and node m2 with weight 1 and type 'et'.
+	public OEdge(Node m1, Node m2, EdgeType et)
+	{
+		super(m1, m2);
+		this.et = et;
+	}
+	
+	// END CONSTRUCTORS -----------------------
 	
 	// Pre: True
 	// Post: Return de type of Edge.
