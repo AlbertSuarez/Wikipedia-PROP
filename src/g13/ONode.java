@@ -2,7 +2,7 @@ package g13;
 
 import wikipedia.domain.Element;
 
-public class ONode implements Node
+public class ONode extends Node
 {
 	private Element e;
 	
@@ -20,12 +20,11 @@ public class ONode implements Node
 	{
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-
-		final ONode n = (ONode) o;
-
+		
 		// Revisar
-		//return (n.e.getTitle() == this.e.getTitle());
-		return n.e.equals(this.e);
+		// return ((ONode)o).getElement() == this.e;
+		// return (n.e.getTitle() == this.e.getTitle());
+		return ((ONode)o).e.equals(this.e);
 	}
 	
 	// Pre:  True
@@ -50,7 +49,7 @@ public class ONode implements Node
 	// Pre:  True
 	// Post: Returns whether this Node is greater than the parameter node.
 	public boolean isGreater(Node n) {
-		return (this.e.getTitle().compareTo(((ONode) n).e.getTitle()) > 0);		// DIRIA QUE ESTA BIEN
+		return compareTo(this.toString(),((ONode)n).toString()) > 0;
 	}
 
 	// Pre:  True
@@ -58,5 +57,17 @@ public class ONode implements Node
 	public Element getElement()
 	{
 		return e;
+	}
+
+	private int compareTo(String e1, String e2)
+	{
+		if (e1 == e2) return 0;
+		int i = 0;
+		while (i < e1.length() || i < e2.length()) {
+			if (e1.charAt(i) == e2.charAt(i)) ++i;
+			else if (e1.charAt(i) > e2.charAt(i)) return 1;
+			else return -1;
+		}
+		return -1;
 	}
 }

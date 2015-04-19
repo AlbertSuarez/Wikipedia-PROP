@@ -3,7 +3,7 @@
 .SUFFIXES: .java .class
 
 all: classes
-	javac -d classes -cp classes -sourcepath src src/wikipedia/Main.java
+	javac -d classes -cp ./lib/*.jar -sourcepath src src/wikipedia/Main.java
 
 run:
 	@java -cp classes wikipedia.Main

@@ -9,18 +9,9 @@ public class OGraph extends Graph
 		super();
 	}
 	
-	// Pre:  True
-	// Post: It doesn't exist an edge between node n1 and n2.
-	public boolean removeEdge(Node n1, Node n2)
-	{
-		if (n1 == null || n2 == null) throw new NullPointerException();
-		if (this.hasNode(n1) || this.hasNode(n2)) return false;
-		--edgeCount;
-		for (Edge e : getAdjacencyList(n1)) {
-			if (e.getNeighbor(n1).equals(n2)) {
-				return removeEdge(e);
-			}
-		}
-		return false;
-	}
+	// Pre: True
+	// Post: Validates all edges in the graph
+	public void invalidateAllEdges() {
+        for (Edge e : getEdges()) e.setValidity(true);
+    }
 }
