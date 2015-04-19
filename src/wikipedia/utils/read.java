@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.util.*;
 
 public class read {
+
 	//Pre: Exists a file named from file
 	//Post: s contains the first line of the file named from file
 	public static void read(String s,String file){
@@ -16,6 +17,7 @@ public class read {
 			System.out.println("Error al leer");
 		}
 	}
+
 	//Pre: Exists a file named from file
 	//Post: s contains as much strings as lines of the WP, each string
 	//		contains one line 

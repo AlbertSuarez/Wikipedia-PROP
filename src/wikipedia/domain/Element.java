@@ -40,6 +40,8 @@ public abstract class Element
 		return title;
 	}
 
+	// Pre:  True
+	// Post: Return true if implicit object is equals with 'o', false alternately
 	@Override public boolean equals(Object o) {
 				
 		if (this == o) return true;
@@ -50,11 +52,15 @@ public abstract class Element
 		return (e.title.equals(this.title));
 	}
 
+	// Pre:  True
+	// Post: Return de string convertion of implicit Element
 	@Override public String toString()
 	{
 		return title;
 	}
 
+	// Pre:  True
+	// Post: Return the type of Element (Category or Page)
 	public ElementType getElementType()
 	{
 		return et;

@@ -1,6 +1,7 @@
 package wikipedia.persistence;
 import wikipedia.domain.*;
 public class PersistenceController {
+
 	//Pre: True
 	//Post: A new persistenceController has been created
 	public PersistenceController(){

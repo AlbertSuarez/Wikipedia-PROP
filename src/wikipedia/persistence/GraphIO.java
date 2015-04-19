@@ -9,10 +9,14 @@ import java.util.*;
 
 public class GraphIO {
 	
+	// Pre:  True
+	// Post: A GraphIO empty is created.
 	public GraphIO() {
 		
 	}
 	
+	// Pre:  True
+	// Post: Read a Graph and return it.
 	public static OGraph readGraph() {
 		
 		OGraph g = new OGraph();
@@ -49,6 +53,9 @@ public class GraphIO {
 		return g;
 	}
 	
+
+	// Pre:  True
+	// Post: Write a Graph.
 	public static void writeGraph(OGraph g) {
 		
 		Collection<Edge> edgeSet = g.getEdges();;
@@ -79,6 +86,8 @@ public class GraphIO {
 		}*/
 	}
 
+	// Pre:  True
+	// Post: Read a Graph with WP format and return it.
 	public static OGraph readGraphWPformat() {
 		OGraph g = new OGraph();
 		Scanner cin = new Scanner(System.in);
@@ -124,6 +133,8 @@ public class GraphIO {
 
 	}
 
+	// Pre:  True
+	// Post: Write a Graph with WP format.
 	public static void writeGraphWPformat(OGraph g) {
 		Collection<Edge> edgeSet = g.getEdges();
 		for (Edge e: edgeSet) {
@@ -141,6 +152,8 @@ public class GraphIO {
 		}
 	}
 	
+	// Pre:  True
+	// Post: Read a Graph with WP format from an external file.
 	public static OGraph loadWP() {
 		OGraph g = new OGraph();
 		Map<String, ONode> nodeMap = new LinkedHashMap<String, ONode>();
@@ -188,6 +201,8 @@ public class GraphIO {
 		return g;
 	}
 	
+	// Pre:  True
+	// Post: Write Graph 'g' in an external file.
 	public static void saveWP(OGraph g) {
 		Collection<Edge> edgeSet = g.getEdges();
 		for (Edge e: edgeSet) {

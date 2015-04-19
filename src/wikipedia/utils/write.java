@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileWriter;
 
 public class write {
+
 	//Pre:
 	//Post: s has been added to the data file
 	public static void write(String s, String file) {
