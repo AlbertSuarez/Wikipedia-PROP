@@ -2,8 +2,13 @@
 
 .SUFFIXES: .java .class
 
-all: classes
-	javac -d classes -cp ./lib/*.jar -sourcepath src src/wikipedia/Main.java
+all: classes libExtract
+	javac -d classes -cp classes -sourcepath src src/wikipedia/Main.java
+
+## Extrae el contenido del jar en classes
+## En el caso de guava nos interesa la carpeta "com"
+libExtract:
+	cd classes; jar xf ../lib/*.jar;
 
 run:
 	@java -cp classes wikipedia.Main
