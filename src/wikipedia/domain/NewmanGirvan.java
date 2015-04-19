@@ -3,7 +3,7 @@ import g13.*;
 import java.util.*;
 import static wikipedia.utils.Print.*;
 
-public class NewmanGirvan implements Algorithm {
+public class NewmanGirvan extends Algorithm {
 
 	private class CData implements Comparable<CData> {
 		private final double dist;
@@ -115,7 +115,7 @@ public class NewmanGirvan implements Algorithm {
 		}
 	}
 
-	public CommunityCollection runAlgorithm(Graph G) {
+	public CommunityCollection runNGAlgorithm(Graph G) {
 
 		int nodeCount = G.getOrder();
 

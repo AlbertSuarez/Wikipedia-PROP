@@ -1,8 +1,8 @@
 package wikipedia.domain;
 import g13.*;
 
-public interface Algorithm {
+public abstract class Algorithm {
 
-	public CommunityCollection runAlgorithm(Graph G);
+	public abstract CommunityCollection runNGAlgorithm(Graph G);
 
 };

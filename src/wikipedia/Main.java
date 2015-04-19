@@ -12,20 +12,33 @@ public class Main
 	{
 		print("PROP - Wikipedia - Start main");
 		
-		OGraph g = GraphIO.readGraphWPformat();
-		//OGraph g = GraphIO.readGraph();		
-
-		NewmanGirvan ng = new NewmanGirvan();
-		CommunityCollection cc = ng.runAlgorithm(g);
-		
-		GraphIO.writeGraphWPformat(g);
-		//GraphIO.writeGraph(g);
-
 		PresentationController pc = new PresentationController();
 		pc.run();
 
 		DomainController dc = new DomainController();
 		dc.Run();
+		
+		dc.readGraph();
+		//dc.readWPformat();
+		
+		dc.runNG();
+		
+		//dc.printCC();
+		
+		dc.writeGraph();
+		//dc.writeWPformat();
+		
+		//OGraph g = GraphIO.readGraphWPformat();
+		//OGraph g = GraphIO.readGraph();		
+
+		//NewmanGirvan ng = new NewmanGirvan();
+		//CommunityCollection cc = Algorithm.runNGAlgorithm(g);
+		
+		//cc.printCollection();
+		
+		//GraphIO.writeGraphWPformat(g);
+		//GraphIO.writeGraph(g);
+		
 		print("PROP - Wikipedia - End main");
 	}
 }

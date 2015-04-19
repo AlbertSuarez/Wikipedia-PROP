@@ -49,7 +49,7 @@ public class ONode extends Node
 	// Pre:  True
 	// Post: Returns whether this Node is greater than the parameter node.
 	public boolean isGreater(Node n) {
-		return compareTo(this.toString(),((ONode)n).toString()) > 0;
+		return (this.toString()).compareTo(((ONode)n).toString()) > 0;
 	}
 
 	// Pre:  True
@@ -57,17 +57,5 @@ public class ONode extends Node
 	public Element getElement()
 	{
 		return e;
-	}
-
-	private int compareTo(String e1, String e2)
-	{
-		if (e1 == e2) return 0;
-		int i = 0;
-		while (i < e1.length() || i < e2.length()) {
-			if (e1.charAt(i) == e2.charAt(i)) ++i;
-			else if (e1.charAt(i) > e2.charAt(i)) return 1;
-			else return -1;
-		}
-		return -1;
 	}
 }

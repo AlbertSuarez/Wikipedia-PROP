@@ -56,4 +56,11 @@ public class CommunityCollection {
 		return collection.contains(c);
 	}
 	
+	// Pre: True
+	// Post: Print the community collection
+	public void printCollection()
+	{
+		for (Community c : collection) c.printCommunity();
+	}
+	
 }
