@@ -11,7 +11,7 @@ public class OGraph extends Graph
 	
 	// Pre: True
 	// Post: Validates all edges in the graph
-	public void invalidateAllEdges() {
+	public void validateAllEdges() {
         for (Edge e : getEdges()) e.setValidity(true);
     }
 }
