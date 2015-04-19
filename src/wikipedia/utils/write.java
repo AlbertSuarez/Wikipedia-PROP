@@ -5,10 +5,10 @@ import java.io.FileWriter;
 public class write {
 	//Pre:
 	//Post: s has been added to the data file
-	public static void write(String s) {
+	public static void write(String s, String file) {
 		try {
 			//creamos o abrimos acceso a fichero txt
-			File data=new File("data.txt");
+			File data=new File(file);
 			//el segundo apartado nos dice si sobreescribimos o escribimos al final
 			//como está en true, no sobreescribimos.
 			FileWriter escribe=new FileWriter(data,true); 
@@ -22,10 +22,10 @@ public class write {
 	
 	//Pre: s contains a WP line
 	//Post: the line contained in has been added to the data file
-	public static void writeWPline(String[] s) {
+	public static void writeWPline(String[] s, String file) {
 		try {
 			//creamos o abrimos acceso a fichero txt
-			File data=new File("data.txt");
+			File data=new File(file);
 			FileWriter escribe=new FileWriter(data,true); 
 			for(int i = 0; i < s.length;++i){
 				if( i != 0)escribe.write(" ");

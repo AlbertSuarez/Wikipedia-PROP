@@ -1,9 +1,10 @@
 package wikipedia.utils;
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.util.*;
 
 public class read {
-	//Pre:
+	//Pre: Exists a file named from file
 	//Post: s contains the first line of the file named from file
 	public static void read(String s,String file){
 		try{
@@ -15,19 +16,16 @@ public class read {
 			System.out.println("Error al leer");
 		}
 	}
-	//Pre:
+	//Pre: Exists a file named from file
 	//Post: s contains as much strings as lines of the WP, each string
 	//		contains one line 
-	public static void readWP(String[] s,String file){
+	public static void readWP(ArrayList<String> s,String file){
 		try{
 			FileReader lector=new FileReader(file);
 			BufferedReader texto =new BufferedReader(lector);
-			int i = 0;
-			while((s[i] = texto.readLine()) != null){
-				 String[] nuevo = new String[s.length + 1];
-				 System.arraycopy(s, 0, nuevo, 0, s.length);
-				 s = nuevo;
-				 ++i;
+			String linia;
+			while((linia = texto.readLine()) != null){
+				s.add(linia);
 			}
 		}
 		catch(Exception e){
