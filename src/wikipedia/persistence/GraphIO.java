@@ -43,7 +43,7 @@ public class GraphIO {
 			if (n1 == null) n1 = ni;
 			if (n2 == null) n2 = nj;*/
 			
-			OEdge e = new OEdge(ni, nj, 1, OEdge.EdgeType.CsubC);
+			OEdge e = new OEdge(ni, nj, 1, OEdge.EdgeType.CsupC);
 			
 			if (!g.hasNode(ni)) g.addNode(ni);
 			if (!g.hasNode(nj)) g.addNode(nj);
@@ -142,13 +142,23 @@ public class GraphIO {
 			ONode node1 = (ONode)e.getNode();
 			ONode node2 = (ONode)e.getNeighbor(node1);
 
-			print(
-				node1.getElement().getTitle() + " " +
-				Element.toElementTypeString(node1.getElement().getElementType()) + " " +
-				OEdge.toEdgeTypeString(oe.getEdgeType()) + " " +
-				node2.getElement().getTitle() + " " +
-				Element.toElementTypeString(node2.getElement().getElementType())
-			);
+			String[] wiki = new String[5];
+			wiki[0] = node1.getElement().getTitle();
+			wiki[1] = Element.toElementTypeString(node1.getElement().getElementType());
+			wiki[2] = OEdge.toEdgeTypeString(oe.getEdgeType());
+			wiki[3] = node2.getElement().getTitle();
+			wiki[4]	= Element.toElementTypeString(node2.getElement().getElementType());
+			print(wiki[0] + " " + wiki[1] + " " + wiki[2] + " " + wiki[3] + " " + wiki[4]);
+			String aux;
+			aux = wiki[0];
+			wiki[0] = wiki[3];
+			wiki[3] = aux;
+			aux = wiki[1];
+			wiki[1] = wiki[4];
+			wiki[4] = wiki[1];
+			if (wiki[2] == "CP")wiki[2] = "PC";
+			else wiki[2] = "CsubC";
+			print(wiki[0] + " " + wiki[1] + " " + wiki[2] + " " + wiki[3] + " " + wiki[4]);
 		}
 	}
 	
@@ -215,6 +225,16 @@ public class GraphIO {
 			wiki[2] = OEdge.toEdgeTypeString(oe.getEdgeType());
 			wiki[3] = node2.getElement().getTitle();
 			wiki[4]	= Element.toElementTypeString(node2.getElement().getElementType());
+			writeWPline(wiki,"data.txt");
+			String aux;
+			aux = wiki[0];
+			wiki[0] = wiki[3];
+			wiki[3] = aux;
+			aux = wiki[1];
+			wiki[1] = wiki[4];
+			wiki[4] = wiki[1];
+			if (wiki[2] == "CP")wiki[2] = "PC";
+			else wiki[2] = "CsubC";
 			writeWPline(wiki,"data.txt");
 		}
 	}

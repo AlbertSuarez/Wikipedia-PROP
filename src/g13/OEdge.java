@@ -1,14 +1,13 @@
 package g13;
 
 
+
 public class OEdge extends Edge
 {
 	// For WP visibility public
 	public enum EdgeType {
-		CsubC,
 		CsupC,
-		CP,
-		PC
+		CP
 	}
 
 	private EdgeType et;
@@ -90,14 +89,10 @@ public class OEdge extends Edge
 	public static String toEdgeTypeString(EdgeType et)
 	{
 		switch (et) {
-		case CsubC:
-			return "CsubC";
 		case CsupC:
 			return "CsupC";
 		case CP:
 			return "CP";
-		case PC:
-			return "PC";
 		}
 		return null;
 	}
@@ -106,9 +101,8 @@ public class OEdge extends Edge
 	// Post: Returns the EdgeType representing the string
 	public static EdgeType toEdgeType(String s)
 	{
-		if (s.equals("CsubC")) return EdgeType.CsubC;
-		else if (s.equals("CsupC")) return EdgeType.CsupC;
-		else if (s.equals("CP")) return EdgeType.CP;
-		else return EdgeType.PC;
+		
+		if (s.equals("CsupC")) return EdgeType.CsupC;
+		else return EdgeType.CP;
 	}
 }
