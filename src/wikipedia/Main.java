@@ -29,7 +29,8 @@ public class Main
 		//dc.writeWPformat();
 		
 		OGraph g = GraphIO.readGraphWPformat();
-		GraphIO.writeDOTformat(g);
+		GraphIO.saveDOTformat(g, "graphdot.dot");
+		//GraphIO.writeDOTformat(g);
 		//OGraph g = GraphIO.readGraph();		
 
 		//NewmanGirvan ng = new NewmanGirvan();

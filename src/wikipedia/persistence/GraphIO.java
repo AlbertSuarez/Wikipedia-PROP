@@ -280,4 +280,42 @@ public class GraphIO {
 		print("}");
 	}
 
+	// Pre:  True
+	// Post: Write Graph 'g' in an external file.
+	public static void saveDOTformat(OGraph g, String file) {
+
+		Collection<Node> nodes = g.getNodes();
+		Collection<Edge> edges = g.getEdges();
+
+		write("digraph {\n", file);
+
+		// Print nodes
+		for (Node n: nodes) {
+			ONode on = (ONode)n;
+			write(
+				"\t" + on.getElement().getTitle() + "\t[name=\"node " + on.getElement().getTitle() + "\",\n" +
+				"\t\tlabel=\"" + on.getElement().getTitle() + "\"" +
+				((on.getElement().getElementType() == Element.ElementType.ELEMENT_PAGE) ? (",\n\t\tshape=box") : "") +
+				"];\n",
+				file
+			);
+		}
+
+		// Print edges
+		for (Edge e: edges) {
+			OEdge oe = (OEdge)e;
+			if (oe.isValid()) {
+				ONode node1 = (ONode)e.getNode();
+				ONode node2 = (ONode)e.getNeighbor(node1);
+				write(
+					"\t" + node1.getElement().getTitle() + " -> " + node2.getElement().getTitle() +
+					((oe.getEdgeType() == OEdge.EdgeType.CP) ? (" [style=dashed, color=blue]") : "") +
+					";\n",
+					file
+				);
+			}
+		}
+
+		write("}", file);
+	}
 }
