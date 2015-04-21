@@ -139,7 +139,7 @@ public class GraphIO {
 		Collection<Edge> edgeSet = g.getEdges();
 		for (Edge e: edgeSet) {
 			OEdge oe = (OEdge)e;
-			if (!oe.isValid()) {
+			if (oe.isValid()) {
 				ONode node1 = (ONode)e.getNode();
 				ONode node2 = (ONode)e.getNeighbor(node1);
 
@@ -219,7 +219,7 @@ public class GraphIO {
 		Collection<Edge> edgeSet = g.getEdges();
 		for (Edge e: edgeSet) {
 			OEdge oe = (OEdge)e;
-			if (!oe.isValid()) {
+			if (oe.isValid()) {
 				ONode node1 = (ONode)e.getNode();
 				ONode node2 = (ONode)e.getNeighbor(node1);
 				String[] wiki = new String[5];

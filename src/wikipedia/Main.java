@@ -21,12 +21,12 @@ public class Main
 		dc.readGraph();
 		//dc.readWPformat();
 		
-		dc.runNG(1);
+		dc.runNG(3);
 		
 		//dc.printCC();
 		
-		dc.writeGraph();
-		//dc.writeWPformat();
+		//dc.writeGraph();
+		dc.writeWPformat();
 		
 		//OGraph g = GraphIO.readGraphWPformat();
 		//OGraph g = GraphIO.readGraph();		
