@@ -53,9 +53,9 @@ public class WP
 	
 	// Pre:  True
 	// Post: Return the community collecion that NewmanGirvan Algorithm produces
-	public CommunityCollection applyNewmanGirvan()
+	public CommunityCollection applyNewmanGirvan(int nCom)
 	{
-		return algoritmeNG.runNGAlgorithm(graph);
+		return algoritmeNG.runNGAlgorithm(graph, nCom);
 	}
 	
 	// Pre:  Category with title 'title' exists in graph.
