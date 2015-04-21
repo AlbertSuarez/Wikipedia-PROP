@@ -15,20 +15,21 @@ public class Main
 		PresentationController pc = new PresentationController();
 		pc.run();
 
-		DomainController dc = new DomainController();
-		dc.Run();
+		//DomainController dc = new DomainController();
+		//dc.Run();
 		
-		dc.readGraph();
+		//dc.readGraph();
 		//dc.readWPformat();
 		
-		dc.runNG(3);
+		//dc.runNG(3);
 		
 		//dc.printCC();
 		
 		//dc.writeGraph();
-		dc.writeWPformat();
+		//dc.writeWPformat();
 		
-		//OGraph g = GraphIO.readGraphWPformat();
+		OGraph g = GraphIO.readGraphWPformat();
+		GraphIO.writeDOTformat(g);
 		//OGraph g = GraphIO.readGraph();		
 
 		//NewmanGirvan ng = new NewmanGirvan();
