@@ -250,7 +250,7 @@ public class GraphIO {
 		Collection<Node> nodes = g.getNodes();
 		Collection<Edge> edges = g.getEdges();
 
-		print("digraph {");
+		print("graph {");
 
 		// Print nodes
 		for (Node n: nodes) {
@@ -270,7 +270,7 @@ public class GraphIO {
 				ONode node1 = (ONode)e.getNode();
 				ONode node2 = (ONode)e.getNeighbor(node1);
 				print(
-					"\t" + node1.getElement().getTitle() + " -> " + node2.getElement().getTitle() +
+					"\t" + node1.getElement().getTitle() + " -- " + node2.getElement().getTitle() +
 					((oe.getEdgeType() == OEdge.EdgeType.CP) ? (" [style=dashed, color=blue]") : "") +
 					";\n"
 				);
@@ -287,7 +287,7 @@ public class GraphIO {
 		Collection<Node> nodes = g.getNodes();
 		Collection<Edge> edges = g.getEdges();
 
-		write("digraph {\n", file);
+		write("graph {\n", file);
 
 		// Print nodes
 		for (Node n: nodes) {
@@ -308,7 +308,7 @@ public class GraphIO {
 				ONode node1 = (ONode)e.getNode();
 				ONode node2 = (ONode)e.getNeighbor(node1);
 				write(
-					"\t" + node1.getElement().getTitle() + " -> " + node2.getElement().getTitle() +
+					"\t" + node1.getElement().getTitle() + " -- " + node2.getElement().getTitle() +
 					((oe.getEdgeType() == OEdge.EdgeType.CP) ? (" [style=dashed, color=blue]") : "") +
 					";\n",
 					file

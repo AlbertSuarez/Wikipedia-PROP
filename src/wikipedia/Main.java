@@ -15,21 +15,21 @@ public class Main
 		PresentationController pc = new PresentationController();
 		pc.run();
 
-		//DomainController dc = new DomainController();
-		//dc.Run();
+		DomainController dc = new DomainController();
+		dc.Run();
 		
 		//dc.readGraph();
-		//dc.readWPformat();
+		dc.readWPformat();
 		
-		//dc.runNG(3);
+		dc.runNG(10);
 		
 		//dc.printCC();
 		
 		//dc.writeGraph();
 		//dc.writeWPformat();
 		
-		OGraph g = GraphIO.readGraphWPformat();
-		GraphIO.saveDOTformat(g, "graphdot.dot");
+		//OGraph g = GraphIO.readGraphWPformat();
+		//GraphIO.saveDOTformat(g, "graphdot.dot");
 		//GraphIO.writeDOTformat(g);
 		//OGraph g = GraphIO.readGraph();		
 

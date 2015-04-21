@@ -198,14 +198,16 @@ public class NewmanGirvan extends Algorithm {
 
 		for (Edge e : G.getEdges()) e.setValidity(true);
 		int ncc = getConnectedComponentCount(G);
+		int N = 1;
 
 		// Si no hay mas aristas en el grafo paramos
 		while (nCom > ncc && G.getValidEdgeCount() > 0) {
 			runNGAlgorithmIt(G);
 			ncc = getConnectedComponentCount(G);
 			//print(ncc);
+			GraphIO.saveDOTformat((OGraph)G, "graph" + N + ".dot");
+			N++;
 		}
-		//GraphIO.writeGraphWPformat((OGraph)G);
 		return null;
 	}
 };
