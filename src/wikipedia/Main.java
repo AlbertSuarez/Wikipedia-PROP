@@ -21,7 +21,7 @@ public class Main
 		//dc.readGraph();
 		dc.readWPformat();
 		
-		dc.runNG(10);
+		dc.runNG(2);
 		
 		//dc.printCC();
 		

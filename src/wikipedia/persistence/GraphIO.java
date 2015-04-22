@@ -129,6 +129,7 @@ public class GraphIO {
 			g.addEdge(e);
 		}
 
+		print("Node count: " + g.getOrder() + "\nEdge count: " + g.getEdgeCount());
 		return g;
 
 	}

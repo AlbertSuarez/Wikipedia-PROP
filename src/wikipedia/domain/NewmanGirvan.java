@@ -163,6 +163,7 @@ public class NewmanGirvan extends Algorithm {
 		for (int i = 0; i < arco.length; ++i) arco[i] = 0;
 
 		for (int i = 0; i < nodeCount; ++i) {
+			print("Doing node: " + i);
 			double[] d; //Distancia
 			double[] w; //Number shortest path from source to i
 
