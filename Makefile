@@ -10,7 +10,11 @@ endif
 
 all: classes
 	javac -d classes -cp $(CLASSES) -sourcepath src src/wikipedia/Main.java
+	javac -d classes -cp $(CLASSES) -sourcepath src src/wikipedia/Main.java
+	javac -d classes -cp $(CLASSES) -sourcepath src src/g13/DriverGraph.java
+	javac -d classes -cp $(CLASSES) -sourcepath src src/wikipedia/persistence/DriverPersistence.java
 ##	javac -d classes -cp classes -sourcepath src src/wikipedia/Main.java
+
 
 ## Extrae el contenido del jar en classes
 ## En el caso de guava nos interesa la carpeta "com"
@@ -19,7 +23,13 @@ all: classes
 ##	cd classes; jar xf ../lib/*.jar;
 
 run:
-	@java -cp classes wikipedia.Main
+	@java -cp $(CLASSES) wikipedia.Main
+
+DriverGraph:
+	@java -cp $(CLASSES) g13.DriverGraph
+
+DriverPersistence:
+	@java -cp $(CLASSES) wikipedia.persistence.DriverPersistence
 
 classes:
 	@mkdir -p classes

@@ -36,8 +36,42 @@ public class NewmanGirvan extends Algorithm {
 		}*/
 	}
 
+	private void getConnectedComponentCountIt(Graph G, boolean[] vist, int i) {
+		Node[] nodes = G.getNodes().toArray(new Node[G.getOrder()]);
+
+		Stack<Integer> s = new Stack<Integer>();
+		vist[i] = true;
+
+		s.push(i);
+		while (!s.isEmpty()) {
+			int j = s.peek();
+			s.pop();
+			Collection<Edge> adjEdgesSet = G.getAdjacencyList(nodes[j]);
+			for (Edge e : adjEdgesSet) {
+				Node adjNode = e.getNeighbor(nodes[j]);
+				int k = java.util.Arrays.asList(nodes).indexOf(adjNode);
+				if (!vist[k] && e.isValid()) {
+					vist[k] = true;
+					s.push(k);
+				}
+			}
+		}
+	}
+
 	private int getConnectedComponentCount(Graph G) {
-		return 1;
+		int nodeCount = G.getOrder();
+
+		boolean[] vist = new boolean[nodeCount];
+		for (int i = 0; i < nodeCount; i++) vist[i] = false;
+
+		int count = 0;
+		for (int i = 0; i < nodeCount; ++i) {
+			if (!vist[i]) {
+				getConnectedComponentCountIt(G, vist, i);
+				++count;
+			}
+		}
+		return count;
 	}
 
 	private void stage1_Dijkstra(Graph G, double[] d, double[] w, int s, Stack<Integer> pila) {
@@ -121,53 +155,59 @@ public class NewmanGirvan extends Algorithm {
 		}
 	}
 
+	private void runNGAlgorithmIt(Graph G) {
+		int nodeCount = G.getOrder();
+		// Build the edgeId -> Edge hashtable (*TODO*)
+		double[] arco = new double[G.getEdgeCount()];
+		// Reset vector<> arco
+		for (int i = 0; i < arco.length; ++i) arco[i] = 0;
+
+		for (int i = 0; i < nodeCount; ++i) {
+			double[] d; //Distancia
+			double[] w; //Number shortest path from source to i
+
+			d = new double[nodeCount];
+			w = new double[nodeCount];
+
+			Stack<Integer> pila = new Stack<Integer>();
+			stage1_Dijkstra(G, d, w, i, pila);
+
+			double[] b = new double[G.getOrder()]; //Number shortest path between source to any
+											//vertex in graph pass through vertex i
+
+			stage2_betweenness(G, pila, d, b, w, arco);
+		}
+
+		/*for (int i = 0; i < arco.length; i++) {
+			print(arco[i]);
+		}*/
+
+		int max = 0;
+		for (int i = 1; i < arco.length; i++) {
+			if (arco[max] < arco[i]) max = i;
+		}
+		//print("Max: " + arco[max]);
+
+		Edge[] edges = G.getEdges().toArray(new Edge[G.getEdgeCount()]);
+		edges[max].setValidity(false);
+
+		//print("----");
+	}
+
 	public CommunityCollection runNGAlgorithm(Graph G, int nCom) {
 
 		for (Edge e : G.getEdges()) e.setValidity(true);
 		int ncc = getConnectedComponentCount(G);
+		int N = 1;
 
-		while (nCom > ncc) {
-			int nodeCount = G.getOrder();
-
-			// Build the edgeId -> Edge hashtable (*TODO*)
-			double[] arco = new double[G.getEdgeCount()];
-			// Reset vector<> arco
-			for (int i = 0; i < arco.length; ++i) arco[i] = 0;
-
-			for (int i = 0; i < nodeCount; ++i) {
-				double[] d; //Distancia
-				double[] w; //Number shortest path from source to i
-
-				d = new double[nodeCount];
-				w = new double[nodeCount];
-
-				Stack<Integer> pila = new Stack<Integer>();
-				stage1_Dijkstra(G, d, w, i, pila);
-
-				double[] b = new double[G.getOrder()]; //Number shortest path between source to any
-												//vertex in graph pass through vertex i
-
-				stage2_betweenness(G, pila, d, b, w, arco);
-			}
-
-			/*for (int i = 0; i < arco.length; i++) {
-				print(arco[i]);
-			}*/
-
-			int max = 0;
-			for (int i = 1; i < arco.length; i++) {
-				if (arco[max] < arco[i]) max = i;
-			}
-
-			Edge[] edges = G.getEdges().toArray(new Edge[G.getEdgeCount()]);
-			edges[max].setValidity(false);
-
-			GraphIO.writeGraphWPformat((OGraph)G);
+		// Si no hay mas aristas en el grafo paramos
+		while (nCom > ncc && G.getValidEdgeCount() > 0) {
+			runNGAlgorithmIt(G);
 			ncc = getConnectedComponentCount(G);
+			//print(ncc);
+			GraphIO.saveDOTformat((OGraph)G, "graph" + N + ".dot");
+			N++;
 		}
-
 		return null;
 	}
-
-
 };

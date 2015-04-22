@@ -18,17 +18,19 @@ public class Main
 		DomainController dc = new DomainController();
 		dc.Run();
 		
-		dc.readGraph();
-		//dc.readWPformat();
+		//dc.readGraph();
+		dc.readWPformat();
 		
-		dc.runNG(1);
+		dc.runNG(10);
 		
 		//dc.printCC();
 		
-		dc.writeGraph();
+		//dc.writeGraph();
 		//dc.writeWPformat();
 		
 		//OGraph g = GraphIO.readGraphWPformat();
+		//GraphIO.saveDOTformat(g, "graphdot.dot");
+		//GraphIO.writeDOTformat(g);
 		//OGraph g = GraphIO.readGraph();		
 
 		//NewmanGirvan ng = new NewmanGirvan();

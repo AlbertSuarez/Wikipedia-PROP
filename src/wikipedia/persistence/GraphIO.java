@@ -139,7 +139,7 @@ public class GraphIO {
 		Collection<Edge> edgeSet = g.getEdges();
 		for (Edge e: edgeSet) {
 			OEdge oe = (OEdge)e;
-			if (!oe.isValid()) {
+			if (oe.isValid()) {
 				ONode node1 = (ONode)e.getNode();
 				ONode node2 = (ONode)e.getNeighbor(node1);
 
@@ -219,7 +219,7 @@ public class GraphIO {
 		Collection<Edge> edgeSet = g.getEdges();
 		for (Edge e: edgeSet) {
 			OEdge oe = (OEdge)e;
-			if (!oe.isValid()) {
+			if (oe.isValid()) {
 				ONode node1 = (ONode)e.getNode();
 				ONode node2 = (ONode)e.getNeighbor(node1);
 				String[] wiki = new String[5];
@@ -243,4 +243,79 @@ public class GraphIO {
 		}
 	}
 
+	// Pre:  True
+	// Post: Write a Graph with DOT format.
+	public static void writeDOTformat(OGraph g) {
+
+		Collection<Node> nodes = g.getNodes();
+		Collection<Edge> edges = g.getEdges();
+
+		print("graph {");
+
+		// Print nodes
+		for (Node n: nodes) {
+			ONode on = (ONode)n;
+			print(
+				"\t" + on.getElement().getTitle() + "\t[name=\"node " + on.getElement().getTitle() + "\",\n" +
+				"\t\tlabel=\"" + on.getElement().getTitle() + "\"" +
+				((on.getElement().getElementType() == Element.ElementType.ELEMENT_PAGE) ? (",\n\t\tshape=box") : "") +
+				"];\n"
+			);
+		}
+
+		// Print edges
+		for (Edge e: edges) {
+			OEdge oe = (OEdge)e;
+			if (oe.isValid()) {
+				ONode node1 = (ONode)e.getNode();
+				ONode node2 = (ONode)e.getNeighbor(node1);
+				print(
+					"\t" + node1.getElement().getTitle() + " -- " + node2.getElement().getTitle() +
+					((oe.getEdgeType() == OEdge.EdgeType.CP) ? (" [style=dashed, color=blue]") : "") +
+					";\n"
+				);
+			}
+		}
+
+		print("}");
+	}
+
+	// Pre:  True
+	// Post: Write Graph 'g' in an external file.
+	public static void saveDOTformat(OGraph g, String file) {
+
+		Collection<Node> nodes = g.getNodes();
+		Collection<Edge> edges = g.getEdges();
+
+		write("graph {\n", file);
+
+		// Print nodes
+		for (Node n: nodes) {
+			ONode on = (ONode)n;
+			write(
+				"\t" + on.getElement().getTitle() + "\t[name=\"node " + on.getElement().getTitle() + "\",\n" +
+				"\t\tlabel=\"" + on.getElement().getTitle() + "\"" +
+				((on.getElement().getElementType() == Element.ElementType.ELEMENT_PAGE) ? (",\n\t\tshape=box") : "") +
+				"];\n",
+				file
+			);
+		}
+
+		// Print edges
+		for (Edge e: edges) {
+			OEdge oe = (OEdge)e;
+			if (oe.isValid()) {
+				ONode node1 = (ONode)e.getNode();
+				ONode node2 = (ONode)e.getNeighbor(node1);
+				write(
+					"\t" + node1.getElement().getTitle() + " -- " + node2.getElement().getTitle() +
+					((oe.getEdgeType() == OEdge.EdgeType.CP) ? (" [style=dashed, color=blue]") : "") +
+					";\n",
+					file
+				);
+			}
+		}
+
+		write("}", file);
+	}
 }
