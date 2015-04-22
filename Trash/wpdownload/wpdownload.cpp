@@ -52,7 +52,6 @@ string LinkType_to_string(const LinkType &lt);
 void http_wiki_reply_to_graph(string &reply, Graph &g, NameMap &catnm, NameMap &pagenm, int &curid, int maxnodes)
 {
 	int origid = curid;
-	if (curid >= maxnodes) return;
 
 	// Go to the "nodes" field
 	reply = reply.substr(reply.find("[categorymembers] => Array"));
@@ -68,6 +67,9 @@ void http_wiki_reply_to_graph(string &reply, Graph &g, NameMap &catnm, NameMap &
 		string title;
 		getline(ss, title);
 
+		Utility::replaceChar(title, ' ', '_');
+		//Utility::replaceChar(title, '–', '_'); // Š, β
+
 		// Skip the title of the node
 		reply = reply.substr(title.length());
 
@@ -79,13 +81,12 @@ void http_wiki_reply_to_graph(string &reply, Graph &g, NameMap &catnm, NameMap &
 				// Skip the "Category:" thing
 				string cat = title.substr(pos3 + strlen("Category:"));
 
-				Utility::replaceChar(cat, ' ', '_');
-
 				// Check if the category already exists
 				map<string, int>::iterator it = catnm.find(cat);
 
 				if (it == catnm.end()) { // Create a new Category
 					//cout << "NEW CATEGORY: " << cat << endl;
+					if (curid >= maxnodes) continue;
 					int newid = ++curid;
 					// Add the new category to the NameMap
 					catnm.insert(pair<string, int>(cat, newid));
@@ -113,6 +114,7 @@ void http_wiki_reply_to_graph(string &reply, Graph &g, NameMap &catnm, NameMap &
 
 			if (it == pagenm.end()) { // Create a new Page
 				//cout << "NEW PAGE: " << title << endl;
+				if (curid >= maxnodes) continue;
 				int newid = ++curid;
 				// Add the new Page to the NameMap
 				pagenm.insert(pair<string, int>(title, newid));
@@ -163,7 +165,7 @@ int main(int argc, char *argv[])
 	g.insert(g.end(), pair<int, Node>(curid, node));
 
 	string reply = http_wiki_req_cat(root_name);
-	http_wiki_reply_to_graph(reply, g, catnm, pagenm, curid, 300);
+	http_wiki_reply_to_graph(reply, g, catnm, pagenm, curid, 100);
 	graph_export_wp_format(g);
 }
 
