@@ -68,8 +68,8 @@ public class DriverPersistence {
                                 GraphIO.writeGraphWPformat(G);
                                 break;
                         case "LOAD_GRAPH":
-                                print("Carga el grafo del archivo en el grafo implicito:");
-                                G = GraphIO.loadWP();
+                                print("Selecciona el Archivo txt que contiene el grafo:");
+                                G = GraphIO.loadWP(false);
                                 break;
                         case "SAVE_GRAPH":
                                 print("Salva el grafo implicito en un fichero.");

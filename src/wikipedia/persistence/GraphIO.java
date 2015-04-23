@@ -1,10 +1,15 @@
 package wikipedia.persistence;
 import wikipedia.domain.*;
 import g13.*;
+
+import java.io.File;
 import java.util.Scanner;
+
 import static wikipedia.utils.Print.*;
 import static wikipedia.utils.read.*;
 import static wikipedia.utils.write.*;
+import static wikipedia.utils.Chooser.*;
+
 import java.util.*;
 
 public class GraphIO {
@@ -166,11 +171,15 @@ public class GraphIO {
 
 	// Pre:  True
 	// Post: Read a Graph with WP format from an external file.
-	public static OGraph loadWP() {
+	public static OGraph loadWP(Boolean carrega) {
 		OGraph g = new OGraph();
 		Map<String, ONode> nodeMap = new LinkedHashMap<String, ONode>();
 		ArrayList<String> wiki = new ArrayList<String>();
-		readWP(wiki,"data.txt");
+		if(carrega)readWP(wiki,"data.txt");
+		else{
+			File f = Choose();
+			readWP(wiki,f);
+		}
 		Iterator<String> itwiki = wiki.iterator();
 		while(itwiki.hasNext()){
 			String[] parts = itwiki.next().split(" ");
