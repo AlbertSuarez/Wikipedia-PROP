@@ -74,7 +74,6 @@ int main()
 			id2 = s2->second;
 			it2 = nodeMap.find(id2);
 		}
-
 		Link l1 = (Link){string_to_LinkType(link), id2};
 		
 		it1->second.adj.push_back(l1);
@@ -99,7 +98,7 @@ void print_dot(map<int, Node> &nodeMap)
 	// Print edges
 	for (map_it = nodeMap.begin(); map_it != nodeMap.end(); map_it++) {
 		for (link_it = map_it->second.adj.begin(); link_it != map_it->second.adj.end(); link_it++) {
-			if (link_it->type != C_SUB_C && link_it->type != P_C) {
+			if (link_it->type != P_C) {
 				cout << "\t" << map_it->first << " -> " << link_it->dest <<
 				((link_it->type == C_P) ? (" [style=dashed, color=blue]") : "") <<
 				";" << endl;

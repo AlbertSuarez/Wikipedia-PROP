@@ -78,4 +78,14 @@ namespace Utility {
 		}
 		return str;
 	}
+
+	std::string toAscii(std::string &str)
+	{
+		for (int i = 0; i < str.length(); ++i) {
+			if (str[i] < 32 || str[i] >126) {
+				str[i] = '_';
+			}
+		}
+		return str;
+	}
 }

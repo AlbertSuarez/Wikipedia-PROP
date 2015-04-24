@@ -157,6 +157,7 @@ int main(int argc, char *argv[])
 	NameMap catnm, pagenm;
 
 	string root_name = (argc > 1) ? argv[1] : "Medicine";
+	int nnodes = (argc > 2) ? atoi(argv[2]) : 100;
 
 	// Add the root category to the NameMap
 	catnm.insert(pair<string, int>(root_name, curid));
@@ -165,7 +166,7 @@ int main(int argc, char *argv[])
 	g.insert(g.end(), pair<int, Node>(curid, node));
 
 	string reply = http_wiki_req_cat(root_name);
-	http_wiki_reply_to_graph(reply, g, catnm, pagenm, curid, 100);
+	http_wiki_reply_to_graph(reply, g, catnm, pagenm, curid, nnodes);
 	graph_export_wp_format(g);
 }
 
@@ -205,11 +206,9 @@ string http_wiki_req(const string &url)
 		string req = "GET " + url + "\r\nHost: en.wikipedia.org\r\nConnection: close\r\n\r\n";
 		send(sock, req.c_str(), req.length(), 0);
 		stringstream ss;
-		char buf[512];
-		int n;
-		while ((n = read(sock, buf, sizeof(buf))) > 0) {
-			buf[n-1] = '\0';
-			ss << buf;
+		char c;
+		while (read(sock, &c, sizeof(c)) > 0) {
+			ss << c;
 		}
 		string tmp;
 		int err;

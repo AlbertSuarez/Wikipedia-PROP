@@ -8,4 +8,5 @@ namespace Utility {
 	unsigned char hexToChar(const std::string &str);
 
 	std::string replaceChar(std::string &str, char ch1, char ch2);
+	std::string toAscii(std::string &str);
 }
