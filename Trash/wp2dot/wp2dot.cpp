@@ -45,31 +45,63 @@ int main()
 {
 	int id = 0;
 	map<int, Node> nodeMap;
-	map<string, int> stringMap;
+	map<string, int> catMap;
+	map<string, int> pageMap;
 
-	string name1, type1, link, name2, type2;
-	while (cin >> name1 >> type1 >> link >> name2 >> type2) {
+	string name1, type1str, link, name2, type2str;
+	while (cin >> name1 >> type1str >> link >> name2 >> type2str) {
 		int id1, id2;
 		map<int, Node>::iterator it1, it2;
+		map<string, int>::iterator s1, s2;
+		bool name1found, name2found;
 
-		map<string, int>::iterator s1 = stringMap.find(name1);
-		map<string, int>::iterator s2 = stringMap.find(name2);
+		ElementType type1 = string_to_ElementType(type1str);
+		ElementType type2 = string_to_ElementType(type2str);
 
-		if (s1 == stringMap.end()) {
-			id1 = id++;
-			Node n1 = (Node){name1, string_to_ElementType(type1), list<Link>()};
+		if (type1 == CATEGORY) {
+			s1 = catMap.find(name1);
+			name1found = not (s1 == catMap.end());
+			if (not name1found) {
+				id1 = id++;
+				catMap.insert(pair<string, int>(name1, id1));
+
+			}
+		} else {
+			s1 = pageMap.find(name1);
+			name1found = not (s1 == pageMap.end());
+			if (not name1found) {
+				id1 = id++;
+				pageMap.insert(pair<string, int>(name1, id1));
+			}
+		}
+
+		if (type2 == CATEGORY) {
+			s2 = catMap.find(name2);
+			name2found = not (s2 == catMap.end());
+			if (not name2found) {
+				id2 = id++;
+				catMap.insert(pair<string, int>(name2, id2));
+			}
+		} else {
+			s2 = pageMap.find(name2);
+			name2found = not (s2 == pageMap.end());
+			if (not name2found) {
+				id2 = id++;
+				pageMap.insert(pair<string, int>(name2, id2));
+			}
+		}
+
+		if (not name1found) {
+			Node n1 = (Node){name1, type1, list<Link>()};
 			it1 = nodeMap.insert(nodeMap.end(), pair<int, Node>(id1, n1));
-			stringMap.insert(pair<string, int>(name1, id1));
 		} else {
 			id1 = s1->second;
 			it1 = nodeMap.find(id1);
 		}
 
-		if (s2 == stringMap.end()) {
-			id2 = id++;
-			Node n2 = (Node){name2, string_to_ElementType(type2), list<Link>()};
+		if (not name2found) {
+			Node n2 = (Node){name2, type2, list<Link>()};
 			it2 = nodeMap.insert(nodeMap.end(), pair<int, Node>(id2, n2));
-			stringMap.insert(pair<string, int>(name2, id2));
 		} else {
 			id2 = s2->second;
 			it2 = nodeMap.find(id2);

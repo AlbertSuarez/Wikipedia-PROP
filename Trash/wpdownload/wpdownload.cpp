@@ -49,14 +49,15 @@ typedef map<string, int> NameMap;
 string ElementType_to_string(const ElementType &et);
 string LinkType_to_string(const LinkType &lt);
 
-void http_wiki_reply_to_graph(string &reply, Graph &g, NameMap &catnm, NameMap &pagenm, int &curid, int maxnodes)
+bool http_wiki_reply_to_graph(string &reply, Graph &g, NameMap &catnm, NameMap &pagenm, int &curid, int maxnodesPerCat, int maxnodes)
 {
+	if (curid >= maxnodes) return false;
 	int origid = curid;
 
 	// Go to the "nodes" field
 	reply = reply.substr(reply.find("[categorymembers] => Array"));
 
-	while (1) {
+	while (g[origid].adj.size() < maxnodesPerCat) {
 		// Go to the title of the node
 		size_t pos = reply.find("[title] => ");
 		if (pos == string::npos) break;
@@ -68,6 +69,7 @@ void http_wiki_reply_to_graph(string &reply, Graph &g, NameMap &catnm, NameMap &
 		getline(ss, title);
 
 		Utility::replaceChar(title, ' ', '_');
+		Utility::toAscii(title);
 		//Utility::replaceChar(title, '–', '_'); // Š, β
 
 		// Skip the title of the node
@@ -86,7 +88,6 @@ void http_wiki_reply_to_graph(string &reply, Graph &g, NameMap &catnm, NameMap &
 
 				if (it == catnm.end()) { // Create a new Category
 					//cout << "NEW CATEGORY: " << cat << endl;
-					if (curid >= maxnodes) continue;
 					int newid = ++curid;
 					// Add the new category to the NameMap
 					catnm.insert(pair<string, int>(cat, newid));
@@ -101,7 +102,7 @@ void http_wiki_reply_to_graph(string &reply, Graph &g, NameMap &catnm, NameMap &
 
 				//Recursive!
 				string req = http_wiki_req_cat(Utility::urlEncode(cat));
-				http_wiki_reply_to_graph(req, g, catnm, pagenm, curid, maxnodes);
+				if (not http_wiki_reply_to_graph(req, g, catnm, pagenm, curid, maxnodesPerCat, maxnodes)) return false;
 
 			}
 		} else { // Page
@@ -114,7 +115,6 @@ void http_wiki_reply_to_graph(string &reply, Graph &g, NameMap &catnm, NameMap &
 
 			if (it == pagenm.end()) { // Create a new Page
 				//cout << "NEW PAGE: " << title << endl;
-				if (curid >= maxnodes) continue;
 				int newid = ++curid;
 				// Add the new Page to the NameMap
 				pagenm.insert(pair<string, int>(title, newid));
@@ -129,6 +129,7 @@ void http_wiki_reply_to_graph(string &reply, Graph &g, NameMap &catnm, NameMap &
 
 		}
 	}
+	return true;
 }
 
 void graph_export_wp_format(const Graph &g)
@@ -157,7 +158,12 @@ int main(int argc, char *argv[])
 	NameMap catnm, pagenm;
 
 	string root_name = (argc > 1) ? argv[1] : "Medicine";
-	int nnodes = (argc > 2) ? atoi(argv[2]) : 100;
+	int maxnodesPerCat = (argc > 2) ? atoi(argv[2]) : 10;
+	int maxnodes = (argc > 3) ? atoi(argv[3]) : 100;
+
+	cerr << "Root category:     " << root_name << endl
+	     << "Max nodes per cat: " << maxnodesPerCat << endl
+	     << "Max nodes:         " << maxnodes << endl;
 
 	// Add the root category to the NameMap
 	catnm.insert(pair<string, int>(root_name, curid));
@@ -166,7 +172,7 @@ int main(int argc, char *argv[])
 	g.insert(g.end(), pair<int, Node>(curid, node));
 
 	string reply = http_wiki_req_cat(root_name);
-	http_wiki_reply_to_graph(reply, g, catnm, pagenm, curid, nnodes);
+	http_wiki_reply_to_graph(reply, g, catnm, pagenm, curid, maxnodesPerCat, maxnodes);
 	graph_export_wp_format(g);
 }
 
