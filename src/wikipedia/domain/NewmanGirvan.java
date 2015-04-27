@@ -107,8 +107,8 @@ public class NewmanGirvan extends Algorithm {
 					if (e.isValid()) {
 						Node adjNode = e.getNeighbor(nodes[u]);
 						int v = java.util.Arrays.asList(nodes).indexOf(adjNode);
-						if (d[v] > d[u] + e.getWeight()) {
-							d[v] = d[u] + e.getWeight();
+						if (d[v] > d[u] + 1/e.getWeight()) {
+							d[v] = d[u] + 1/e.getWeight();
 							w[v] = w[u];
 							//p[v] = u;
 							q.add(new CData(d[v], v));
@@ -177,6 +177,7 @@ public class NewmanGirvan extends Algorithm {
 											//vertex in graph pass through vertex i
 
 			stage2_betweenness(G, pila, d, b, w, arco);
+
 		}
 
 		/*for (int i = 0; i < arco.length; i++) {
