@@ -12,7 +12,8 @@ public class DriverDomain {
 	private static String op;
     private static BufferedReader cin;
     private static final String[] OPTION_LIST = new String[] {
-        "SET_TITLE", "GET_TITLE", "EQUALS_ELEMENT", "GET_ELEMENTTYPE",
+        "SET_TITLE", "GET_TITLE", "EQUALS_ELEMENT",
+        "TO_CATEGORY", "TO_PAGE", "GET_ELEMENTTYPE",
         "PRINT_OPTION_LIST", "EXIT"
     };
    
@@ -70,20 +71,37 @@ public class DriverDomain {
             		break;
             	case "GET_TITLE":
             		print("Devuelve el título del elemento implicito:");
-            		print(E.getTitle());
+            		if (E.getTitle() == null) print("El elemento implicito no tiene titulo.");
+            		else print(E.getTitle());
             		break;
             	case "EQUALS_ELEMENT":
+            		// NO FUNCA NI PA TRAS
             		print("Compara la igualdad entre dos elementos:");
-            		print("Introduce el titulo del elemento a comparar");
+            		print("Introduce los titulos de los elementos a comparar");
+            		Element E1 = new Element(){};
+            		E1.setTitle(readString());
+            		
             		Element E2 = new Element(){};
             		E2.setTitle(readString());
-            		print("1 si son iguales, O alternativamente");
-            		printBoolean(E.equals(E2));
+            		
+            		print("true si son iguales, false alternativamente");
+            		printBoolean(E1.equals(E2));
+            		break;
+            	case "TO_CATEGORY":
+            		print("Convierte el elemento implicito en una categoria:");
+            		E = new Category(E.getTitle());
+            		break;
+            	case "TO_PAGE":
+            		print("Convierte el elemento implicito en una pagina:");
+            		E = new Page(E.getTitle());
             		break;
             	case "GET_ELEMENTTYPE":
-            		print("Devuelve el tipo del elemento implicito: Categoria o Pagina");
+            		print("Devuelve el tipo del elemento implicito: Categoria (cat) o Pagina (page)");
             		print(Element.toElementTypeString(E.getElementType()));
             		break;
+            		
+            		
+            		
                 case "PRINT_OPTION_LIST":
             		printOptions();
             		break;

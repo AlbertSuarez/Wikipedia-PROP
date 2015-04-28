@@ -12,6 +12,7 @@ all: classes
 	javac -d classes -cp $(CLASSES) -sourcepath src src/wikipedia/Main.java
 	javac -d classes -cp $(CLASSES) -sourcepath src src/g13/DriverGraph.java
 	javac -d classes -cp $(CLASSES) -sourcepath src src/wikipedia/persistence/DriverPersistence.java
+	javac -d classes -cp $(CLASSES) -sourcepath src src/wikipedia/domain/DriverDomain.java
 ##	javac -d classes -cp classes -sourcepath src src/wikipedia/Main.java
 
 
@@ -29,6 +30,9 @@ DriverGraph:
 
 DriverPersistence:
 	@java -cp $(CLASSES) wikipedia.persistence.DriverPersistence
+	
+DriverDomain:
+	@java -cp $(CLASSES) wikipedia.domain.DriverDomain
 
 classes:
 	@mkdir -p classes

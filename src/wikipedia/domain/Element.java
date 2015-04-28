@@ -42,14 +42,9 @@ public abstract class Element
 
 	// Pre:  True
 	// Post: Return true if implicit object is equals with 'o', false alternately
-	@Override public boolean equals(Object o) {
-				
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-
-		final Element e = (Element) o;
-
-		return (e.title.equals(this.title));
+	public boolean equals(Element o) {
+		// NO FUNCA
+		return (o.getTitle() == this.title);
 	}
 
 	// Pre:  True
