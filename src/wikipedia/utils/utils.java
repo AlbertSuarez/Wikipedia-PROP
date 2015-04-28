@@ -38,6 +38,21 @@ public class utils
 		return System.out.printf(format, args);
 	}
 	
+	// Pre:  True
+	// Post: Print with no line break
+	public static String readln() {
+		try {
+			BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
+			String s = read.readLine();
+			return s;
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+	
 	
 	//Pre: Exists a file named from file
 	//Post: s contains the first line of the file named from file

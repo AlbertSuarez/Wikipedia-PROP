@@ -23,6 +23,12 @@ public class DomainController
 	public void readWPformat() {
 		wikipedia.setGraph(GraphIO.readGraphWPformat());
 	}
+	
+	// Pre:  True
+	// Post: Implicit graph is loaded with WP format.
+	public void loadWP(Boolean b) {
+		wikipedia.setGraph(GraphIO.loadWP(b));
+	}
 
 	// Pre:  True
 	// Post: Implicit graph is read it.
