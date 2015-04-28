@@ -1,5 +1,6 @@
 package wikipedia.domain;
 import wikipedia.persistence.*;
+import static wikipedia.utils.utils.*;
 
 public class DomainController
 {
@@ -58,6 +59,8 @@ public class DomainController
 	// Post: Print Implicit Community Collection.
 	public void printCC()
 	{
-		wikipedia.getCC().printCollection();
+		CommunityCollection COM = wikipedia.getCC();
+		if (COM == null) print("The community collection is empty.");
+		else COM.printCollection();
 	}
 }
