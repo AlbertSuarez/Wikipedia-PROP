@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.Collections;
-import static wikipedia.utils.Print.*;
+import static wikipedia.utils.utils.*;
 
 public class Community {
 	

@@ -15,7 +15,6 @@ public class utils
 		System.out.println(obj);
 	}
 	
-	
 	// Pre:  True
 	// Post: Print a newline by itself
 	public static void print()
