@@ -2,7 +2,7 @@ package wikipedia.domain;
 import wikipedia.persistence.*;
 import g13.*;
 import java.util.*;
-import static wikipedia.utils.Print.*;
+import static wikipedia.utils.utils.*;
 
 public class NewmanGirvan extends Algorithm {
 
