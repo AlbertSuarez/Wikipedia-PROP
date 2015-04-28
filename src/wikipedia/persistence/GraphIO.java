@@ -3,13 +3,7 @@ import wikipedia.domain.*;
 import g13.*;
 
 import java.io.File;
-import java.util.Scanner;
-
-import static wikipedia.utils.Print.*;
-import static wikipedia.utils.read.*;
-import static wikipedia.utils.write.*;
-import static wikipedia.utils.Chooser.*;
-
+import static wikipedia.utils.utils.*;
 import java.util.*;
 
 public class GraphIO {

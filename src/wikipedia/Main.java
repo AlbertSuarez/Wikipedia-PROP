@@ -1,6 +1,6 @@
 package wikipedia;
 
-import static wikipedia.utils.Print.*;
+import static wikipedia.utils.utils.*;
 import wikipedia.domain.*;
 import wikipedia.presentation.*;
 import wikipedia.persistence.*;
