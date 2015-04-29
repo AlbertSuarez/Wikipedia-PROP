@@ -74,10 +74,9 @@ public class NewmanGirvan extends Algorithm {
 		return count;
 	}
 
-	private void stage1_Dijkstra(Graph G, double[] d, double[] w, int s, Stack<Integer> pila) {
+	private void stage1_BFS(Graph G, double[] d, double[] w, int s, Stack<Integer> pila) {
 
 		int nodeCount = G.getOrder();
-
 		//int p[] = new int[nodeCount];
 		boolean[] vist = new boolean[nodeCount];
 		for (int i = 0; i < nodeCount; i++) {
@@ -92,13 +91,12 @@ public class NewmanGirvan extends Algorithm {
 
 		Node[] nodes = G.getNodes().toArray(new Node[G.getOrder()]);
 
-		PriorityQueue<CData> q = new PriorityQueue<CData>();
-		q.add(new CData(d[s], s));
+		Queue<Integer> q = new LinkedList<Integer>();
+		q.add(s);
 		pila.push(s); // Guardar orden inverso
 
 		while (!q.isEmpty()) {
-			CData dataU = q.poll();
-			int u = dataU.getIdNode();
+			int u = q.poll();
 			if (!vist[u]) {
 				vist[u] = true;
 				Collection<Edge> adjEdgesSet = G.getAdjacencyList(nodes[u]);
@@ -107,13 +105,13 @@ public class NewmanGirvan extends Algorithm {
 					if (e.isValid()) {
 						Node adjNode = e.getNeighbor(nodes[u]);
 						int v = java.util.Arrays.asList(nodes).indexOf(adjNode);
-						if (d[v] > d[u] + 1/e.getWeight()) {
-							d[v] = d[u] + 1/e.getWeight();
+						if (d[v] > d[u] + 1) {
+							d[v] = d[u] + 1;
 							w[v] = w[u];
 							//p[v] = u;
-							q.add(new CData(d[v], v));
+							q.add(v);
 							pila.push(v); // Guardar orden inverso
-						} else if (d[v] == d[u] + e.getWeight()) {
+						} else if (d[v] == d[u] + 1) {
 							w[v] += w[u];
 						}
 					}
@@ -171,7 +169,7 @@ public class NewmanGirvan extends Algorithm {
 			w = new double[nodeCount];
 
 			Stack<Integer> pila = new Stack<Integer>();
-			stage1_Dijkstra(G, d, w, i, pila);
+			stage1_BFS(G, d, w, i, pila);
 
 			double[] b = new double[G.getOrder()]; //Number shortest path between source to any
 											//vertex in graph pass through vertex i
@@ -184,13 +182,16 @@ public class NewmanGirvan extends Algorithm {
 			print(arco[i]);
 		}*/
 
+		Edge[] edges = G.getEdges().toArray(new Edge[G.getEdgeCount()]);
+
 		int max = 0;
 		for (int i = 1; i < arco.length; i++) {
-			if (arco[max] < arco[i]) max = i;
+			if (arco[max]/edges[max].getWeight()
+				< arco[i]/edges[i].getWeight()) max = i;
 		}
 		//print("Max: " + arco[max]);
 
-		Edge[] edges = G.getEdges().toArray(new Edge[G.getEdgeCount()]);
+
 		edges[max].setValidity(false);
 
 		//print("----");
