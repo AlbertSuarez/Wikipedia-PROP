@@ -36,9 +36,7 @@ public class NewmanGirvan extends Algorithm {
 		}*/
 	}
 
-	private void getConnectedComponentCountIt(Graph G, boolean[] vist, int i) {
-		Node[] nodes = G.getNodes().toArray(new Node[G.getOrder()]);
-
+	private void getConnectedComponentCountIt(Graph G, Node[] nodes, boolean[] vist, int i) {
 		Stack<Integer> s = new Stack<Integer>();
 		vist[i] = true;
 
@@ -58,7 +56,7 @@ public class NewmanGirvan extends Algorithm {
 		}
 	}
 
-	private int getConnectedComponentCount(Graph G) {
+	private int getConnectedComponentCount(Graph G, Node[] nodes) {
 		int nodeCount = G.getOrder();
 
 		boolean[] vist = new boolean[nodeCount];
@@ -67,29 +65,25 @@ public class NewmanGirvan extends Algorithm {
 		int count = 0;
 		for (int i = 0; i < nodeCount; ++i) {
 			if (!vist[i]) {
-				getConnectedComponentCountIt(G, vist, i);
+				getConnectedComponentCountIt(G, nodes, vist, i);
 				++count;
 			}
 		}
 		return count;
 	}
 
-	private void stage1_BFS(Graph G, double[] d, double[] w, int s, Stack<Integer> pila) {
+	private void stage1_BFS(Graph G, Node[] nodes, double[] d, double[] w, int s, Stack<Integer> pila) {
 
 		int nodeCount = G.getOrder();
-		//int p[] = new int[nodeCount];
 		boolean[] vist = new boolean[nodeCount];
 		for (int i = 0; i < nodeCount; i++) {
 			d[i] = Integer.MAX_VALUE;
 			w[i] = 0;
 			vist[i] = false;
-			//p[i] = -1;
 		}
 
 		d[s] = 0;
 		w[s] = 1;
-
-		Node[] nodes = G.getNodes().toArray(new Node[G.getOrder()]);
 
 		Queue<Integer> q = new LinkedList<Integer>();
 		q.add(s);
@@ -108,7 +102,6 @@ public class NewmanGirvan extends Algorithm {
 						if (d[v] > d[u] + 1) {
 							d[v] = d[u] + 1;
 							w[v] = w[u];
-							//p[v] = u;
 							q.add(v);
 							pila.push(v); // Guardar orden inverso
 						} else if (d[v] == d[u] + 1) {
@@ -120,17 +113,8 @@ public class NewmanGirvan extends Algorithm {
 		}
 	}
 
-	private void stage2_betweenness(Graph G, Stack<Integer> pila, double[] d,
+	private void stage2_betweenness(Graph G, Node[] nodes, Map<Edge, Integer> edgeMap, Stack<Integer> pila, double[] d,
 							double[] b, double[] w, double[] arco) {
-
-		Node[] nodes = G.getNodes().toArray(new Node[G.getOrder()]);
-		Collection<Edge> edgeSet = G.getEdges();
-		Map<Edge, Integer> edgeMap = new LinkedHashMap<Edge, Integer>();
-
-		Integer id = 0;
-		for (Edge e: edgeSet) {
-			edgeMap.put(e, id++);
-		}
 
 		while (!pila.isEmpty()) {
 			int u = pila.pop();
@@ -153,15 +137,22 @@ public class NewmanGirvan extends Algorithm {
 		}
 	}
 
-	private void runNGAlgorithmIt(Graph G) {
+	private void runNGAlgorithmIt(Graph G, Node[] nodes, Edge[] edges) {
 		int nodeCount = G.getOrder();
 		// Build the edgeId -> Edge hashtable (*TODO*)
 		double[] arco = new double[G.getEdgeCount()];
 		// Reset vector<> arco
 		for (int i = 0; i < arco.length; ++i) arco[i] = 0;
+		// Create edgeMap
+		Collection<Edge> edgeSet = G.getEdges();
+		Map<Edge, Integer> edgeMap = new LinkedHashMap<Edge, Integer>();
+
+		Integer id = 0;
+		for (Edge e: edgeSet) {
+			edgeMap.put(e, id++);
+		}
 
 		for (int i = 0; i < nodeCount; ++i) {
-			print("Doing node: " + i);
 			double[] d; //Distancia
 			double[] w; //Number shortest path from source to i
 
@@ -169,12 +160,12 @@ public class NewmanGirvan extends Algorithm {
 			w = new double[nodeCount];
 
 			Stack<Integer> pila = new Stack<Integer>();
-			stage1_BFS(G, d, w, i, pila);
+			stage1_BFS(G, nodes, d, w, i, pila);
 
 			double[] b = new double[G.getOrder()]; //Number shortest path between source to any
 											//vertex in graph pass through vertex i
 
-			stage2_betweenness(G, pila, d, b, w, arco);
+			stage2_betweenness(G, nodes, edgeMap, pila, d, b, w, arco);
 
 		}
 
@@ -182,35 +173,31 @@ public class NewmanGirvan extends Algorithm {
 			print(arco[i]);
 		}*/
 
-		Edge[] edges = G.getEdges().toArray(new Edge[G.getEdgeCount()]);
-
 		int max = 0;
 		for (int i = 1; i < arco.length; i++) {
 			if (arco[max]/edges[max].getWeight()
 				< arco[i]/edges[i].getWeight()) max = i;
 		}
-		//print("Max: " + arco[max]);
-
 
 		edges[max].setValidity(false);
-
-		//print("----");
 	}
 
 	public CommunityCollection runNGAlgorithm(Graph G, int nCom) {
 
+		// Create node array
+		Node[] nodes = G.getNodes().toArray(new Node[G.getOrder()]);
+		// Create edges array
+		Edge[] edges = G.getEdges().toArray(new Edge[G.getEdgeCount()]);
+
 		for (Edge e : G.getEdges()) e.setValidity(true);
-		int ncc = getConnectedComponentCount(G);
-		int N = 1;
+		int ncc = getConnectedComponentCount(G, nodes);
 
 		// Si no hay mas aristas en el grafo paramos
 		while (nCom > ncc && G.getValidEdgeCount() > 0) {
-			runNGAlgorithmIt(G);
-			ncc = getConnectedComponentCount(G);
-			//print(ncc);
-			GraphIO.saveDOTformat((OGraph)G, "graph" + N + ".dot");
-			N++;
+			runNGAlgorithmIt(G, nodes, edges);
+			ncc = getConnectedComponentCount(G, nodes);
 		}
+		GraphIO.saveDOTformat((OGraph)G, "graph_out.dot");
 		return null;
 	}
 };
