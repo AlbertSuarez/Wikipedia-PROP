@@ -1,8 +1,8 @@
 package wikipedia.utils;
 import java.io.*;
 import java.util.ArrayList;
-
-import javax.swing.JFileChooser;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class utils
 {
@@ -141,12 +141,31 @@ public class utils
 		}
 	}
 	
-	
-	//anadir filter para filtrar que el archivo debe ser formato txt;
+	//PRE:
+	//POST:
 	public static File Choose(){
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+		fileChooser.setDialogTitle("Specify which file you wanna load");
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
+		fileChooser.setFileFilter(filter);
 		int result = fileChooser.showOpenDialog(fileChooser);
+		if (result == JFileChooser.APPROVE_OPTION) {
+		    File selectedFile = fileChooser.getSelectedFile();
+		    return selectedFile;
+		}
+		return null;
+	}
+	
+	//pre:
+	//post
+	public static File save(){
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+		fileChooser.setDialogTitle("Specify the name of the file to save");
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
+		fileChooser.setFileFilter(filter);
+		int result = fileChooser.showSaveDialog(fileChooser);
 		if (result == JFileChooser.APPROVE_OPTION) {
 		    File selectedFile = fileChooser.getSelectedFile();
 		    return selectedFile;
