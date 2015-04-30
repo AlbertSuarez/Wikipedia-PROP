@@ -17,7 +17,10 @@ public class DriverDomain {
         "GET_COMMUNITY_COUNT", "ERASE_COMMUNITY",
         "RESET_COLLECTION", "BELONGS_COLLECTION",
         "PRINT_COLLECTION", "ADD_NODE_TO_COM",
-        "PRINT_OPTION_LIST", "EXIT"
+        "ADD_CATEGORY", "ADD_PAGE", "DEL_CATEGORY", "DEL_PAGE",
+        "CAT_EXISTS", "PAGE_EXISTS", "ADD_SUPERLINK",
+        "ADD_SUBLINK", "ADD_PCLINK", "ADD_CPLINK", "PRINT_GRAPH",
+        "APPLY_NG", "PRINT_OPTION_LIST", "EXIT"
     };
    
     // FUNCIONS AUXILIARS
@@ -42,7 +45,7 @@ public class DriverDomain {
         print("OPTION LIST:");
         int i = 0;
         for (String option : OPTION_LIST) {
-        	if (i == 6 || i == 10 || i == 17) print("");
+        	if (i == 6 || i == 10 || i == 17 || i == 29) print("");
         	print("* " + option); ++i;
         }
         print("END OF OPTION LIST\n");
@@ -67,7 +70,8 @@ public class DriverDomain {
  
    
     public static void main(String args[]) throws IOException {
-        OGraph G = new OGraph();
+    	WP W = new WP();
+        OGraph G = W.getGraph();
         Community C = new Community();
         CommunityCollection CC = new CommunityCollection();
         Element E = new Element(){};
@@ -144,54 +148,87 @@ public class DriverDomain {
             		printInteger(CC.getCommunityCount());
             		break;
             	case "ERASE_COMMUNITY":
-            		// NO FINALIZADA
             		print("Elimina una comunidad de la colleccion:");
             		print("Indica el numero de la comunidad que desea eliminar:");
-            		int i = readInteger();
-            		
+            		Community aux = CC.getCommunity(readInteger()-1);
+            		CC.eraseCommunity(aux);
             		break;
             	case "RESET_COLLECTION":
             		print("Resetea la colección implicita:");
             		CC.resetCollection();
             		break;
             	case "BELONGS_COLLECTION":
-            		// NO FINALIZADA
-            		print("Indica si una comunidad esta en la coleccion o no:");
-            		print("Indica el numero de nodos que tiene la comunidad a buscar:");
-            		int size = readInteger();
-            		print("Introduce los titulos de los nodos de la comunidad buscada:");
-            		Community aux = new Community();
-            		for (i = 0; i < size; ++i) C.addNode(new ONode(new Category(readString())));
-            		print("True si existe en la coleccion, false alternativamente:");
-            		printBoolean(CC.belongs(aux));
+            		print("Devuelve cierto si el nodo indicado existe en la coleccion y falso alternativamente:");
+            		print("Introduce el titulo del nodo (Categoria) a buscar:");
+            		ONode nBelong = new ONode(new Category(readString()));
+            		printBoolean(CC.belongs(nBelong));
             		break;
             	case "PRINT_COLLECTION":
             		print("Imprime la collecion implicita:");
             		CC.printCollection();
             		break;
             	case "ADD_NODE_TO_COM":
-            		// NO FINALIZADA
             		print("Anade un nodo a la comunidad indicada de la coleccion:");
             		print("Indica en que comunidad desea anadir el nodo:");
-            		int j = readInteger();
-            		
+            		int j = readInteger() -1;
+            		Community CAux = CC.getCommunity(j);
             		print("Introduce el título del nodo (Categoria) a anadir:");
             		Node m = new ONode(new Category(readString()));
-            		C.addNode(m);
-            		
+            		CAux.addNode(m);
+            		CC.setCommunity(j,CAux);
             		break;
             		
             		
             	// CLASS WP ************************************
+            	case "ADD_CATEGORY":
+            		print("Anade una categoria al grafo implicito:");
             		
+            		break;
+            	case "ADD_PAGE":
+            		print("Anade una pagina al grafo implicito:");
             		
+            		break;
+            	case "DEL_CATEGORY":
+            		print("Elimina una categoria al grafo implicito:");
             		
+            		break;
+            	case "DEL_PAGE":
+            		print("Elimina una pagina al grafo implicito:");
             		
-            	// CLASS NEWMANN-GIRVAN ************************
+            		break;
+            	case "CAT_EXISTS":
+            		print("Devuelve cierto si la categoria existe en el grafo implicito, falso alternativamente:");
             		
+            		break;
+            	case "PAGE_EXISTS":
+            		print("Devuelve cierto si la pagina existe en el grafo implicito, falso alternativamente:");
             		
+            		break;
+            	case "ADD_SUPERLINK":
+            		print("Anade un enlace de SuperCategoria entre dos nodos:");
             		
+            		break;
+            	case "ADD_SUBLINK":
+            		print("Anade un enlace de SubCategoria entre dos nodos:");
             		
+            		break;
+            	case "ADD_CPLINK":
+            		print("Anade un enlace de Categoria a Pagina entre dos nodos:");
+            		
+            		break;
+            	case "ADD_PCLINK":
+            		print("Anade un enlace de Pagina a Categoria entre dos nodos:");
+            		
+            		break;
+            	case "PRINT_GRAPH":
+            		print("Imprime el grafo implicito:");
+            		
+            		break;
+            	case "APPLY_NG":
+            		print("Aplica el algoritmo de Newman-Girvan al grafo implicito:");
+            		
+            		break;
+
             		
             	// OTHERS **************************************	
                 case "PRINT_OPTION_LIST":

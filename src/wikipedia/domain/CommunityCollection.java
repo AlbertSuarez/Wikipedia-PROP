@@ -1,17 +1,17 @@
 package wikipedia.domain;
 
 import java.util.*;
-import static wikipedia.utils.utils.*;
+import g13.*;
 
 public class CommunityCollection {
 	
-	private Set<Community> collection;
+	private ArrayList<Community> collection;
 	
 	// Pre:  True.
 	// Post: Create an empty CommunityCollection.
 	public CommunityCollection()
 	{ 
-		collection = new LinkedHashSet<Community>();
+		collection = new ArrayList<Community>();
 	}
 	
 	// Pre:  Community c is not in the Community.
@@ -23,9 +23,23 @@ public class CommunityCollection {
 	
 	// Pre:  True.
 	// Post: Returns a non-modificable set with all the Communities from the Collection.
-	public Set<Community> getCommunities()
+	public ArrayList<Community> getCommunities()
 	{
-		return Collections.unmodifiableSet(collection);
+		return collection;
+	}
+	
+	// Pre:  True
+	// Post: Returns the community 'i' of the collection.
+	public Community getCommunity(int i)
+	{
+		return collection.get(i);
+	}
+	
+	// Pre:  True
+	// Post: Change the community of the collection that her position is 'i' to 'c'.
+	public void setCommunity(int i, Community c)
+	{
+		collection.set(i,c);
 	}
 	
 	// Pre:	True
@@ -52,9 +66,12 @@ public class CommunityCollection {
 	// Pre:  True.
 	// Post: If c belongs to CommunityCollection -> true
 	//		 Else -> false
-	public boolean belongs(Community c)
+	public boolean belongs(Node n)
 	{
-		return collection.contains(c);
+		for (Community c : collection) {
+			if (c.belongs(n)) return true;
+		}
+		return false;
 	}
 	
 	// Pre: True
@@ -63,7 +80,7 @@ public class CommunityCollection {
 	{
 		int i = 1;
 		for (Community c : collection) {
-			print("Community num. " + i);
+			System.out.println("Community num. " + i);
 			c.printCommunity(); ++i;
 		}
 	}
