@@ -2,7 +2,7 @@ package wikipedia.domain;
 
 import java.util.Iterator;
 import java.util.Set;
-import java.util.TreeSet;
+import java.util.LinkedHashSet;
 import java.util.Collections;
 import g13.*;
 
@@ -14,7 +14,7 @@ public class Community {
 	// Post: Create a empty Community.
 	public Community()
 	{
-		nodeSet = new TreeSet<Node>();
+		nodeSet = new LinkedHashSet<Node>();
 	}
 	
 	// Pre:  Node n is not in the Community.

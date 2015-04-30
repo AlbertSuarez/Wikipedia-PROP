@@ -1,6 +1,7 @@
 package wikipedia.domain;
 
 import java.util.*;
+import static wikipedia.utils.utils.*;
 
 public class CommunityCollection {
 	
@@ -60,7 +61,11 @@ public class CommunityCollection {
 	// Post: Print the community collection
 	public void printCollection()
 	{
-		for (Community c : collection) c.printCommunity();
+		int i = 1;
+		for (Community c : collection) {
+			print("Community num. " + i);
+			c.printCommunity(); ++i;
+		}
 	}
 	
 }

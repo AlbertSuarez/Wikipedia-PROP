@@ -13,7 +13,10 @@ public class DriverDomain {
         "SET_TITLE", "GET_TITLE", "EQUALS_ELEMENT",
         "TO_CATEGORY", "TO_PAGE", "GET_ELEMENTTYPE",
         "ADD_NODE", "ERASE_NODE", "PRINT_COMMUNITY",
-        "BELONGS_COMMUNITY",
+        "BELONGS_COMMUNITY", "ADD_COMMUNITY",
+        "GET_COMMUNITY_COUNT", "ERASE_COMMUNITY",
+        "RESET_COLLECTION", "BELONGS_COLLECTION",
+        "PRINT_COLLECTION", "ADD_NODE_TO_COM",
         "PRINT_OPTION_LIST", "EXIT"
     };
    
@@ -39,7 +42,7 @@ public class DriverDomain {
         print("OPTION LIST:");
         int i = 0;
         for (String option : OPTION_LIST) {
-        	if (i == 6 || i == 10) print("");
+        	if (i == 6 || i == 10 || i == 17) print("");
         	print("* " + option); ++i;
         }
         print("END OF OPTION LIST\n");
@@ -53,6 +56,10 @@ public class DriverDomain {
         return cin.readLine();
     }
    
+    public static int readInteger() throws IOException {
+        return Integer.parseInt(readString());
+    }
+    
     private static void readOption() throws IOException {
         print("\nEnter an option: ");
         op = readString();
@@ -62,6 +69,7 @@ public class DriverDomain {
     public static void main(String args[]) throws IOException {
         OGraph G = new OGraph();
         Community C = new Community();
+        CommunityCollection CC = new CommunityCollection();
         Element E = new Element(){};
         cin = new BufferedReader(new InputStreamReader(System.in));
  
@@ -127,10 +135,51 @@ public class DriverDomain {
             		break;
             		
             	// CLASS COMMUNITY COLLECTION ******************
+            	case "ADD_COMMUNITY":
+            		print("Anade una comunidad a la colleccion implicita:");
+            		CC.addCommunity(new Community());
+            		break;
+            	case "GET_COMMUNITY_COUNT":
+            		print("Muestra el numero de comunidades a la colleccion implicita:");
+            		printInteger(CC.getCommunityCount());
+            		break;
+            	case "ERASE_COMMUNITY":
+            		// NO FINALIZADA
+            		print("Elimina una comunidad de la colleccion:");
+            		print("Indica el numero de la comunidad que desea eliminar:");
+            		int i = readInteger();
             		
+            		break;
+            	case "RESET_COLLECTION":
+            		print("Resetea la colección implicita:");
+            		CC.resetCollection();
+            		break;
+            	case "BELONGS_COLLECTION":
+            		// NO FINALIZADA
+            		print("Indica si una comunidad esta en la coleccion o no:");
+            		print("Indica el numero de nodos que tiene la comunidad a buscar:");
+            		int size = readInteger();
+            		print("Introduce los titulos de los nodos de la comunidad buscada:");
+            		Community aux = new Community();
+            		for (i = 0; i < size; ++i) C.addNode(new ONode(new Category(readString())));
+            		print("True si existe en la coleccion, false alternativamente:");
+            		printBoolean(CC.belongs(aux));
+            		break;
+            	case "PRINT_COLLECTION":
+            		print("Imprime la collecion implicita:");
+            		CC.printCollection();
+            		break;
+            	case "ADD_NODE_TO_COM":
+            		// NO FINALIZADA
+            		print("Anade un nodo a la comunidad indicada de la coleccion:");
+            		print("Indica en que comunidad desea anadir el nodo:");
+            		int j = readInteger();
             		
+            		print("Introduce el título del nodo (Categoria) a anadir:");
+            		Node m = new ONode(new Category(readString()));
+            		C.addNode(m);
             		
-            		
+            		break;
             		
             		
             	// CLASS WP ************************************
