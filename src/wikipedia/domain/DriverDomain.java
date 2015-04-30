@@ -6,6 +6,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import wikipedia.persistence.GraphIO;
+
 public class DriverDomain {
 	private static String op;
     private static BufferedReader cin;
@@ -71,7 +73,6 @@ public class DriverDomain {
    
     public static void main(String args[]) throws IOException {
     	WP W = new WP();
-        OGraph G = W.getGraph();
         Community C = new Community();
         CommunityCollection CC = new CommunityCollection();
         Element E = new Element(){};
@@ -182,51 +183,62 @@ public class DriverDomain {
             	// CLASS WP ************************************
             	case "ADD_CATEGORY":
             		print("Anade una categoria al grafo implicito:");
-            		
+            		print("Introduce el titulo de la categoria a anadir:");
+            		W.addCategory(new Category(readString()));
             		break;
             	case "ADD_PAGE":
             		print("Anade una pagina al grafo implicito:");
-            		
+            		print("Introduce el titulo de la pagina a anadir:");
+            		W.addPage(new Page(readString()));
             		break;
             	case "DEL_CATEGORY":
             		print("Elimina una categoria al grafo implicito:");
-            		
+            		print("Introduce el titulo de la categoria a eliminar:");
+            		W.delCategory(new Category(readString()));
             		break;
             	case "DEL_PAGE":
             		print("Elimina una pagina al grafo implicito:");
-            		
+            		print("Introduce el titulo de la pagina a eliminar:");
+            		W.delPage(new Page(readString()));
             		break;
             	case "CAT_EXISTS":
             		print("Devuelve cierto si la categoria existe en el grafo implicito, falso alternativamente:");
-            		
+            		print("Introduce el titulo de la categoria a buscar:");
+            		printBoolean(W.catExists(readString()));
             		break;
             	case "PAGE_EXISTS":
             		print("Devuelve cierto si la pagina existe en el grafo implicito, falso alternativamente:");
-            		
+            		print("Introduce el titulo de la pagina a buscar:");
+            		printBoolean(W.pagExists(readString()));
             		break;
             	case "ADD_SUPERLINK":
             		print("Anade un enlace de SuperCategoria entre dos nodos:");
-            		
+            		print("Introduce los titulos de las dos categorias:");
+            		W.addSuperLink(new Category(readString()), new Category(readString()));
             		break;
             	case "ADD_SUBLINK":
             		print("Anade un enlace de SubCategoria entre dos nodos:");
-            		
+            		print("Introduce los titulos de las dos categorias:");
+            		W.addSubLink(new Category(readString()), new Category(readString()));
             		break;
             	case "ADD_CPLINK":
             		print("Anade un enlace de Categoria a Pagina entre dos nodos:");
-            		
+            		print("Introduce el titulo de la categoria y de la pagina:");
+            		W.addCPLink(new Category(readString()), new Page(readString()));
             		break;
             	case "ADD_PCLINK":
             		print("Anade un enlace de Pagina a Categoria entre dos nodos:");
-            		
+            		print("Introduce el titulo de la pagina y de la categoria:");
+            		W.addPCLink(new Page(readString()), new Category(readString()));
             		break;
             	case "PRINT_GRAPH":
             		print("Imprime el grafo implicito:");
-            		
+            		GraphIO.writeGraphWPformat(W.getGraph());
             		break;
             	case "APPLY_NG":
             		print("Aplica el algoritmo de Newman-Girvan al grafo implicito:");
-            		
+            		print("Indica cuantas comunidades desea obtener:");
+            		W.applyNewmanGirvan(readInteger());
             		break;
 
             		
