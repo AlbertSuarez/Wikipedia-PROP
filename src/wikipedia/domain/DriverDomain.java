@@ -81,17 +81,12 @@ public class DriverDomain {
             		else print(E.getTitle());
             		break;
             	case "EQUALS_ELEMENT":
-            		// NO FUNCA NI PA TRAS
             		print("Compara la igualdad entre dos elementos:");
             		print("Introduce los titulos de los elementos a comparar");
-            		Element E1 = new Element(){};
-            		E1.setTitle(readString());
-            		
-            		Element E2 = new Element(){};
-            		E2.setTitle(readString());
-            		
+            		Category C1 = new Category(readString());
+            		Category C2 = new Category(readString());            		
             		print("true si son iguales, false alternativamente");
-            		printBoolean(E1.equals(E2));
+            		printBoolean(C1.equals(C2));
             		break;
             	case "TO_CATEGORY":
             		print("Convierte el elemento implicito en una categoria:");
