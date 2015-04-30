@@ -3,6 +3,7 @@ package g13;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
 import wikipedia.domain.*;
 
 public class DriverGraph {
@@ -192,11 +193,16 @@ public class DriverGraph {
         NodePair e = readNodePair();
         print("Enter the edge weight (double): ");
         double w = readDouble();
-        return new OEdge(e.first, e.second, w, true);
+        print("Enter the type of edge (CsupC or CP):");
+        return new OEdge(e.first, e.second, w, true, OEdge.toEdgeType(readString()));
     }
 
     private static ONode readNode() throws IOException {
+    	print("Enter the type of Node: Category or Page:");
     	Element e = new Element(){};
+    	String type = readString();
+    	if (type.equals("Category")) e = new Category();
+    	else e = new Page();
         print("Enter the title of node's element: ");
         e.setTitle(readString());
         return new ONode(e);

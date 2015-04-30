@@ -1,0 +1,339 @@
+OPTION LIST:
+* ADD_NODE
+* REMOVE_NODE
+* ADD_EDGE
+* REMOVE_EDGE
+* HAS_EDGE
+* HAS_VALID_EDGE
+* HAS_NODE
+* GET_ORDER
+* GET_EDGE_COUNT
+* GET_VALID_EDGE_COUNT
+* GET_EDGES
+* GET_VALID_EDGES
+* GET_NODES
+* GET_ADJACENCY_LIST
+* GET_VALID_ADJACENCY_LIST
+* GET_NODE_DEGREE
+* GET_VALID_NODE_DEGREE
+* GET_EDGE
+* REMOVE_ALL_NODE_EDGES
+* INVALIDATE_ALL_EDGES
+* SET_EDGE_WEIGHT
+* SET_EDGE_VALIDITY
+* PRINT_GRAPH
+* PRINT_OPTION_LIST
+* EXIT
+END OF OPTION LIST
+
+
+Enter an option: 
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+
+Enter an option: 
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+
+Enter an option: 
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+
+Enter an option: 
+Order: 3
+Number of edges: 0
+
+Nodes:
+    [Medicina, Deportes, Informatica]
+
+Edges:
+    []
+
+
+Enter an option: 
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+
+Enter an option: 
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+
+Enter an option: 
+Order: 2
+Number of edges: 0
+
+Nodes:
+    [Medicina, Informatica]
+
+Edges:
+    []
+
+
+Enter an option: 
+Enter the first node:
+
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+Enter the second node:
+
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+Enter the edge weight (double): 
+Enter the type of edge (CsupC or CP):
+
+Enter an option: 
+Order: 2
+Number of edges: 1
+
+Nodes:
+    [Medicina, Informatica]
+
+Edges:
+    [{Informatica, Medicina, 3.0} CsupC]
+
+
+Enter an option: 
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+
+Enter an option: 
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+
+Enter an option: 
+Enter the first node:
+
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+Enter the second node:
+
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+Enter the edge weight (double): 
+Enter the type of edge (CsupC or CP):
+
+Enter an option: 
+Enter the first node:
+
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+Enter the second node:
+
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+Enter the edge weight (double): 
+Enter the type of edge (CsupC or CP):
+
+Enter an option: 
+OPTION LIST:
+* ADD_NODE
+* REMOVE_NODE
+* ADD_EDGE
+* REMOVE_EDGE
+* HAS_EDGE
+* HAS_VALID_EDGE
+* HAS_NODE
+* GET_ORDER
+* GET_EDGE_COUNT
+* GET_VALID_EDGE_COUNT
+* GET_EDGES
+* GET_VALID_EDGES
+* GET_NODES
+* GET_ADJACENCY_LIST
+* GET_VALID_ADJACENCY_LIST
+* GET_NODE_DEGREE
+* GET_VALID_NODE_DEGREE
+* GET_EDGE
+* REMOVE_ALL_NODE_EDGES
+* INVALIDATE_ALL_EDGES
+* SET_EDGE_WEIGHT
+* SET_EDGE_VALIDITY
+* PRINT_GRAPH
+* PRINT_OPTION_LIST
+* EXIT
+END OF OPTION LIST
+
+
+Enter an option: 
+Enter the first node:
+
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+Enter the second node:
+
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+true
+
+Enter an option: 
+Enter the first node:
+
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+Enter the second node:
+
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+false
+
+Enter an option: 
+Enter the first node:
+
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+Enter the second node:
+
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+true
+
+Enter an option: 
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+true
+
+Enter an option: 
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+false
+
+Enter an option: 
+4
+
+Enter an option: 
+3
+
+Enter an option: 
+3
+
+Enter an option: 
+[{Informatica, Medicina, 3.0} CsupC, {Medicina, Optica, 5.6} CsupC, {Dinero, Medicina, 15.3} CsupC]
+
+Enter an option: 
+[{Informatica, Medicina, 3.0} CsupC, {Medicina, Optica, 5.6} CsupC, {Dinero, Medicina, 15.3} CsupC]
+
+Enter an option: 
+[Medicina, Informatica, Optica, Dinero]
+
+Enter an option: 
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+[{Informatica, Medicina, 3.0} CsupC, {Medicina, Optica, 5.6} CsupC, {Dinero, Medicina, 15.3} CsupC]
+
+Enter an option: 
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+[{Informatica, Medicina, 3.0} CsupC]
+
+Enter an option: 
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+3
+
+Enter an option: 
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+1
+
+Enter an option: 
+Enter the first node:
+
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+Enter the second node:
+
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+{Dinero, Medicina, 15.3} CsupC
+
+Enter an option: 
+OPTION LIST:
+* ADD_NODE
+* REMOVE_NODE
+* ADD_EDGE
+* REMOVE_EDGE
+* HAS_EDGE
+* HAS_VALID_EDGE
+* HAS_NODE
+* GET_ORDER
+* GET_EDGE_COUNT
+* GET_VALID_EDGE_COUNT
+* GET_EDGES
+* GET_VALID_EDGES
+* GET_NODES
+* GET_ADJACENCY_LIST
+* GET_VALID_ADJACENCY_LIST
+* GET_NODE_DEGREE
+* GET_VALID_NODE_DEGREE
+* GET_EDGE
+* REMOVE_ALL_NODE_EDGES
+* INVALIDATE_ALL_EDGES
+* SET_EDGE_WEIGHT
+* SET_EDGE_VALIDITY
+* PRINT_GRAPH
+* PRINT_OPTION_LIST
+* EXIT
+END OF OPTION LIST
+
+
+Enter an option: 
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+
+Enter an option: 
+Order: 4
+Number of edges: 2
+
+Nodes:
+    [Medicina, Informatica, Optica, Dinero]
+
+Edges:
+    [{Informatica, Medicina, 3.0} CsupC, {Medicina, Optica, 5.6} CsupC]
+
+
+Enter an option: 
+2
+
+Enter an option: 
+
+Enter an option: 
+0
+
+Enter an option: 
+Enter the first node:
+
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+Enter the second node:
+
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+Enter the edge weight (double): 
+Enter the type of edge (CsupC or CP):
+
+Enter an option: 
+Enter the first node:
+
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+Enter the second node:
+
+Enter the type of Node: Category or Page:
+Enter the title of node's element: 
+Enter the desired validity: 
+
+Enter an option: 
+Order: 4
+Number of edges: 2
+
+Nodes:
+    [Medicina, Informatica, Optica, Dinero]
+
+Edges:
+    [{Informatica, Medicina, 40.2} CsupC, {Medicina, Optica, 5.6} CsupC]
+
+
+Enter an option: 
+1
+
+Enter an option: 
