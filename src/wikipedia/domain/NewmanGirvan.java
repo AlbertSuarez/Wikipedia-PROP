@@ -36,6 +36,45 @@ public class NewmanGirvan extends Algorithm {
 		}*/
 	}
 
+	private Community putToCollectionIt(Graph G, Node[] nodes, boolean[] vist, int i) {
+		Stack<Integer> s = new Stack<Integer>();
+		Community c = new Community();
+		vist[i] = true;
+	
+		s.push(i);
+		while (!s.isEmpty()) {
+			int j = s.peek();
+			c.addNode(nodes[j]);
+			s.pop();
+			Collection<Edge> adjEdgesSet = G.getAdjacencyList(nodes[j]);
+			for (Edge e : adjEdgesSet) {
+				Node adjNode = e.getNeighbor(nodes[j]);
+				int k = java.util.Arrays.asList(nodes).indexOf(adjNode);
+				if (!vist[k] && e.isValid()) {
+					vist[k] = true;
+					s.push(k);
+				}
+			}
+		}
+		return c;
+	}
+
+	private CommunityCollection putToCollection(Graph G, Node[] nodes) {
+		int nodeCount = G.getOrder();
+		CommunityCollection cc = new CommunityCollection();
+
+		boolean[] vist = new boolean[nodeCount];
+		for (int i = 0; i < nodeCount; i++) vist[i] = false;
+
+		for (int i = 0; i < nodeCount; ++i) {
+			if (!vist[i]) {
+				cc.addCommunity(putToCollectionIt(G, nodes, vist, i));
+			}
+		}
+		return cc;
+	}
+	
+	
 	private void getConnectedComponentCountIt(Graph G, Node[] nodes, boolean[] vist, int i) {
 		Stack<Integer> s = new Stack<Integer>();
 		vist[i] = true;
@@ -198,6 +237,6 @@ public class NewmanGirvan extends Algorithm {
 			ncc = getConnectedComponentCount(G, nodes);
 		}
 		GraphIO.saveDOTformat((OGraph)G, "graph_out.dot");
-		return null;
+		return putToCollection(G, nodes);
 	}
 };

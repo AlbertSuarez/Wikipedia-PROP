@@ -43,8 +43,8 @@ public class Community {
 	public void printCommunity()
 	{ 
 		for (Iterator<Node> it = nodeSet.iterator(); it.hasNext();){ 
-			Node aux = (Node)it.next();
-			System.out.println(aux.toString());
+			ONode aux = (ONode)it.next();
+			if (aux.getElement() instanceof Category) System.out.println(aux.toString());
 		}
 	}
 	
