@@ -68,7 +68,7 @@ public class DomainController
 				if (n.getElement() instanceof Page) c.eraseNode(n);
 			}
 			
-			if (c.isEmpty()) cc.eraseCommunity(c);
+			if (c.isEmpty()) { cc.eraseCommunity(c); --i;}
 			else cc.setCommunity(i, c);
 		}
 		wikipedia.setCC(cc);
