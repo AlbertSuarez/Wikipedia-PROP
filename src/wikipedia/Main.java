@@ -35,12 +35,12 @@ public class Main
 		 while (!s.equals("EXIT")) {
 	            switch(s) {
 	            	case "READ":
-	            		print("write on screen the graph you wanna enter in wikipedia format\n "
-	            				+ "**HINT: if you don't see the window to choose, maybe it's running on backwards");
+	            		print("write on screen the graph you wanna enter in wikipedia format");
 	            		dc.readWPformat();
 	            		break;
 	            	case "LOAD":
-	            		print("select the file you want to load");
+	            		print("select the file you want to load\n"
+	            				+ "**HINT: if you don't see the window to choose, maybe it's running on backwards");
 	            		dc.loadWP();
 	            		break;
 	            	case "COMMUNITY_DETECTION":
