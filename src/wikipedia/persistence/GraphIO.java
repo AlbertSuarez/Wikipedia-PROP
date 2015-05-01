@@ -20,7 +20,6 @@ public class GraphIO {
 
 		OGraph g = new OGraph();
 		Scanner cin = new Scanner(System.in);
-		int n = cin.nextInt();
 		int m = cin.nextInt();
 
 		while ((m--) > 0) {
@@ -48,7 +47,7 @@ public class GraphIO {
 			if (!g.hasNode(nj)) g.addNode(nj);
 			g.addEdge(e);
 		}
-
+		cin.close();
 		return g;
 	}
 
@@ -127,7 +126,7 @@ public class GraphIO {
 			if (!g.hasNode(node2)) g.addNode(node2);
 			g.addEdge(e);
 		}
-
+		cin.close();
 		print("Node count: " + g.getOrder() + "\nEdge count: " + g.getEdgeCount());
 		return g;
 
@@ -166,15 +165,12 @@ public class GraphIO {
 
 	// Pre:  True
 	// Post: Read a Graph with WP format from an external file.
-	public static OGraph loadWP(Boolean carrega) {
+	public static OGraph loadWP() {
 		OGraph g = new OGraph();
 		Map<String, ONode> nodeMap = new LinkedHashMap<String, ONode>();
 		ArrayList<String> wiki = new ArrayList<String>();
-		if(carrega)readWP(wiki,"data.txt");
-		else{
-			File f = Choose();
-			readWP(wiki,f);
-		}
+		File f = Choose();
+		readWP(wiki,f);
 		Iterator<String> itwiki = wiki.iterator();
 		while(itwiki.hasNext()){
 			String[] parts = itwiki.next().split(" ");
@@ -221,6 +217,7 @@ public class GraphIO {
 	// Post: Write Graph 'g' in an external file.
 	public static void saveWP(OGraph g) {
 		Collection<Edge> edgeSet = g.getEdges();
+		File f = save();
 		for (Edge e: edgeSet) {
 			OEdge oe = (OEdge)e;
 			if (oe.isValid()) {
@@ -232,7 +229,7 @@ public class GraphIO {
 				wiki[2] = OEdge.toEdgeTypeString(oe.getEdgeType());
 				wiki[3] = node2.getElement().getTitle();
 				wiki[4]	= Element.toElementTypeString(node2.getElement().getElementType());
-				writeWPline(wiki,"data.txt");
+				writeWPline(wiki,f);
 				String aux;
 				aux = wiki[0];
 				wiki[0] = wiki[3];
@@ -242,7 +239,7 @@ public class GraphIO {
 				wiki[4] = wiki[1];
 				if (wiki[2] == "CP")wiki[2] = "PC";
 				else wiki[2] = "CsubC";
-				writeWPline(wiki,"data.txt");
+				writeWPline(wiki,f);
 			}
 		}
 	}

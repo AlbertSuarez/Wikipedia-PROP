@@ -84,26 +84,8 @@ public class utils
 			System.out.println("Error al leer");
 		}
 	}
-	
-	
-	//Pre: Exists a file named from file
-	//Post: s contains as much strings as lines of the WP, each string contains one line
-	public static void readWP(ArrayList<String> s,String file){
-		try{
-			FileReader lector=new FileReader(file);
-			BufferedReader texto =new BufferedReader(lector);
-			String linia;
-			while((linia = texto.readLine()) != null){
-				s.add(linia);
-			}
-			texto.close();
-		}
-		catch(Exception e){
-			System.out.println("Error al leer");
-		}
-	}
 		
-
+	
 	//Pre:
 	//Post: s has been added to the data file
 	public static void write(String s, String file) {
@@ -124,11 +106,10 @@ public class utils
 	
 	//Pre: s contains a WP line
 	//Post: the line contained in has been added to the data file
-	public static void writeWPline(String[] s, String file) {
+	public static void writeWPline(String[] s, File file) {
 		try {
 			//creamos o abrimos acceso a fichero txt
-			File data=new File(file);
-			FileWriter escribe=new FileWriter(data,true); 
+			FileWriter escribe=new FileWriter(file,true); 
 			for(int i = 0; i < s.length;++i){
 				if( i != 0)escribe.write(" ");
 				escribe.write(s[i]);
