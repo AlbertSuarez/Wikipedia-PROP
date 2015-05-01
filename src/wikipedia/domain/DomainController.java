@@ -1,5 +1,6 @@
 package wikipedia.domain;
 import wikipedia.persistence.*;
+import g13.*;
 import static wikipedia.utils.utils.*;
 
 public class DomainController
@@ -58,7 +59,19 @@ public class DomainController
 	// Pre:  True
 	// Post: Apply Newman-Girvan Algorithm in Implicit Community Collection of WP.
 	public void runNG(int nCom){
-		wikipedia.setCC(wikipedia.applyNewmanGirvan(nCom));
+		CommunityCollection cc = wikipedia.applyNewmanGirvan(nCom);
+		for (int i = 0; i < cc.getCommunityCount(); i++) {
+			Community c = cc.getCommunity(i);
+			Object nodes[] = c.getNodes().toArray();
+			for (int j = 0; j < nodes.length; ++j) {
+				ONode n = (ONode) nodes[j];
+				if (n.getElement() instanceof Page) c.eraseNode(n);
+			}
+			
+			if (c.isEmpty()) cc.eraseCommunity(c);
+			else cc.setCommunity(i, c);
+		}
+		wikipedia.setCC(cc);
 	}
 
 	// Pre:  True
@@ -66,7 +79,7 @@ public class DomainController
 	public void printCC()
 	{
 		CommunityCollection COM = wikipedia.getCC();
-		if (COM == null) print("The community collection is empty.");
+		if (COM.getCommunities().isEmpty()) print("The community collection is empty.");
 		else COM.printCollection();
 	}
 }

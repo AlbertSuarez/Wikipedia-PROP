@@ -43,7 +43,7 @@ public class NewmanGirvan extends Algorithm {
 		s.push(i);
 		while (!s.isEmpty()) {
 			int j = s.peek();
-			if (((ONode)nodes[j]).getElement() instanceof Category) c.addNode(nodes[j]);
+			c.addNode(nodes[j]);
 			s.pop();
 			Collection<Edge> adjEdgesSet = G.getAdjacencyList(nodes[j]);
 			for (Edge e : adjEdgesSet) {
@@ -67,8 +67,7 @@ public class NewmanGirvan extends Algorithm {
 
 		for (int i = 0; i < nodeCount; ++i) {
 			if (!vist[i]) {
-				Community put = putToCollectionIt(G, nodes, vist, i);
-				if (put != null) cc.addCommunity(put);
+				cc.addCommunity(putToCollectionIt(G, nodes, vist, i));
 			}
 		}
 		return cc;

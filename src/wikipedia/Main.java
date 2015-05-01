@@ -2,15 +2,13 @@ package wikipedia;
 
 import static wikipedia.utils.utils.*;
 
-import java.io.IOException;
-
 import wikipedia.domain.*;
 //import wikipedia.presentation.*;
 
 public class Main
 {	
 	 private static final String[] OPTION_LIST = new String[] {
-	        "READ", "LOAD", "COMMUNITY_DETECTION", "PRINTWP",
+	        "READ", "LOAD", "COMMUNITY_DETECTION", "PRINT_CC", "PRINT_WP",
 	        "SAVE","PRINT_OPTION_LIST", "EXIT"
 	    };
 	 
@@ -52,10 +50,12 @@ public class Main
 	            		print("insert how many communities you want to detect");
 	            		s = readln();
 	            		dc.runNG(Integer.parseInt(s));
-	            		print("this is the result of theoperation:");
+	            		break;
+	            	case "PRINT_CC":
+	            		print("the community collection of WP is:");
 	            		dc.printCC();
 	            		break;
-	            	case "PRINTWP":
+	            	case "PRINT_WP":
 	            		print("This is the content of the wikipedia in wikipedia format");
 	            		dc.writeWPformat();
 	            		break;

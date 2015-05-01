@@ -37,13 +37,19 @@ public class Community {
 		nodeSet.remove(n);
 	}
 	
+	// Pre:  True
+	// Post: Return true if the community is empty, false alternatively
+	public boolean isEmpty()
+	{
+		return nodeSet.isEmpty();
+	}
+	
 	// Pre:  True.
 	// Post: Print a ordered list of all nodes.
 	public void printCommunity()
 	{ 
 		for (Node nn : nodeSet){
-			ONode onn = (ONode)nn;
-			System.out.println(onn.toString());
+			System.out.println(nn.toString());
 		}
 	}
 	
