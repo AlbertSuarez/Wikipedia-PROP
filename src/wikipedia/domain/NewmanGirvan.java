@@ -64,7 +64,7 @@ public class NewmanGirvan extends Algorithm {
 		CommunityCollection cc = new CommunityCollection();
 
 		boolean[] vist = new boolean[nodeCount];
-		for (int i = 0; i < nodeCount; i++) vist[i] = false;
+		Arrays.fill(vist, false);
 
 		for (int i = 0; i < nodeCount; ++i) {
 			if (!vist[i]) {
@@ -99,7 +99,7 @@ public class NewmanGirvan extends Algorithm {
 		int nodeCount = G.getOrder();
 
 		boolean[] vist = new boolean[nodeCount];
-		for (int i = 0; i < nodeCount; i++) vist[i] = false;
+		Arrays.fill(vist, false);
 
 		int count = 0;
 		for (int i = 0; i < nodeCount; ++i) {
@@ -115,11 +115,9 @@ public class NewmanGirvan extends Algorithm {
 
 		int nodeCount = G.getOrder();
 		boolean[] vist = new boolean[nodeCount];
-		for (int i = 0; i < nodeCount; i++) {
-			d[i] = Integer.MAX_VALUE;
-			w[i] = 0;
-			vist[i] = false;
-		}
+		Arrays.fill(vist, false);
+		Arrays.fill(d, Integer.MAX_VALUE);
+		Arrays.fill(w, 0);
 
 		d[s] = 0;
 		w[s] = 1;
@@ -181,7 +179,7 @@ public class NewmanGirvan extends Algorithm {
 		// Build the edgeId -> Edge hashtable (*TODO*)
 		double[] arco = new double[G.getEdgeCount()];
 		// Reset vector<> arco
-		for (int i = 0; i < arco.length; ++i) arco[i] = 0;
+		Arrays.fill(arco, 0);
 		// Create edgeMap
 		Collection<Edge> edgeSet = G.getEdges();
 		Map<Edge, Integer> edgeMap = new LinkedHashMap<Edge, Integer>();

@@ -42,9 +42,9 @@ public class Community {
 	// Post: Print a ordered list of all nodes.
 	public void printCommunity()
 	{ 
-		for (Iterator<Node> it = nodeSet.iterator(); it.hasNext();){ 
-			ONode aux = (ONode)it.next();
-			if (aux.getElement() instanceof Category) System.out.println(aux.toString());
+		for (Node nn : nodeSet){
+			ONode onn = (ONode)nn;
+			if (onn.getElement() instanceof Category) System.out.println(onn.toString());
 		}
 	}
 	
