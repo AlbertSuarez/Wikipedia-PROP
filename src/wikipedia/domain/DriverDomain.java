@@ -21,8 +21,8 @@ public class DriverDomain {
         "PRINT_COLLECTION", "ADD_NODE_TO_COM",
         "ADD_CATEGORY", "ADD_PAGE", "DEL_CATEGORY", "DEL_PAGE",
         "CAT_EXISTS", "PAGE_EXISTS", "ADD_SUPERLINK",
-        "ADD_SUBLINK", "ADD_PCLINK", "ADD_CPLINK", "PRINT_GRAPH",
-        "APPLY_NG", "PRINT_OPTION_LIST", "EXIT"
+        "ADD_CPLINK", "PRINT_GRAPH", "APPLY_NG",
+        "PRINT_OPTION_LIST", "EXIT"
     };
    
     // FUNCIONS AUXILIARS
@@ -47,7 +47,7 @@ public class DriverDomain {
         print("OPTION LIST:");
         int i = 0;
         for (String option : OPTION_LIST) {
-        	if (i == 6 || i == 10 || i == 17 || i == 29) print("");
+        	if (i == 6 || i == 10 || i == 17 || i == 27) print("");
         	print("* " + option); ++i;
         }
         print("END OF OPTION LIST\n");
@@ -216,20 +216,10 @@ public class DriverDomain {
             		print("Introduce los titulos de las dos categorias:");
             		W.addSuperLink(new Category(readString()), new Category(readString()));
             		break;
-            	case "ADD_SUBLINK":
-            		print("Anade un enlace de SubCategoria entre dos nodos:");
-            		print("Introduce los titulos de las dos categorias:");
-            		W.addSubLink(new Category(readString()), new Category(readString()));
-            		break;
             	case "ADD_CPLINK":
             		print("Anade un enlace de Categoria a Pagina entre dos nodos:");
             		print("Introduce el titulo de la categoria y de la pagina:");
             		W.addCPLink(new Category(readString()), new Page(readString()));
-            		break;
-            	case "ADD_PCLINK":
-            		print("Anade un enlace de Pagina a Categoria entre dos nodos:");
-            		print("Introduce el titulo de la pagina y de la categoria:");
-            		W.addPCLink(new Page(readString()), new Category(readString()));
             		break;
             	case "PRINT_GRAPH":
             		print("Imprime el grafo implicito:");

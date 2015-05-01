@@ -2,7 +2,6 @@ package wikipedia.domain;
 import wikipedia.persistence.*;
 import g13.*;
 import java.util.*;
-import static wikipedia.utils.utils.*;
 
 public class NewmanGirvan extends Algorithm {
 
@@ -44,7 +43,7 @@ public class NewmanGirvan extends Algorithm {
 		s.push(i);
 		while (!s.isEmpty()) {
 			int j = s.peek();
-			c.addNode(nodes[j]);
+			if (((ONode)nodes[j]).getElement() instanceof Category) c.addNode(nodes[j]);
 			s.pop();
 			Collection<Edge> adjEdgesSet = G.getAdjacencyList(nodes[j]);
 			for (Edge e : adjEdgesSet) {
@@ -68,7 +67,8 @@ public class NewmanGirvan extends Algorithm {
 
 		for (int i = 0; i < nodeCount; ++i) {
 			if (!vist[i]) {
-				cc.addCommunity(putToCollectionIt(G, nodes, vist, i));
+				Community put = putToCollectionIt(G, nodes, vist, i);
+				if (put != null) cc.addCommunity(put);
 			}
 		}
 		return cc;

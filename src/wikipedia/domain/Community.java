@@ -1,6 +1,5 @@
 package wikipedia.domain;
 
-import java.util.Iterator;
 import java.util.Set;
 import java.util.LinkedHashSet;
 import java.util.Collections;
@@ -44,7 +43,7 @@ public class Community {
 	{ 
 		for (Node nn : nodeSet){
 			ONode onn = (ONode)nn;
-			if (onn.getElement() instanceof Category) System.out.println(onn.toString());
+			System.out.println(onn.toString());
 		}
 	}
 	

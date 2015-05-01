@@ -1,6 +1,9 @@
 package wikipedia;
 
 import static wikipedia.utils.utils.*;
+
+import java.io.IOException;
+
 import wikipedia.domain.*;
 //import wikipedia.presentation.*;
 
@@ -15,7 +18,8 @@ public class Main
         print("OPTION LIST:");
         for (String option : OPTION_LIST) print("* " + option);
         print("END OF OPTION LIST\n");
-    } 
+    }
+ 	
  	
 	public static void main(String[] args)
 	{
@@ -31,6 +35,7 @@ public class Main
 		print("welcome to the wikipedia project, select one of the following options by "
 				+ "writting it");
 		printOptions();
+		print("\nEnter an option: ");
 		String s = readln();
 		 while (!s.equals("EXIT")) {
 	            switch(s) {
@@ -67,6 +72,7 @@ public class Main
 	                            "PRINT_OPTION_LIST to list available options");
 	                    break;
 	            }
+	        print("\nEnter an option: ");
 	        s = readln();
 	        }
 		print("PROP - Wikipedia - End main");

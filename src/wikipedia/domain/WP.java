@@ -11,8 +11,6 @@ public class WP
 
 	// The instances of the algorithms.
 	private Algorithm algoritmeNG;
-	private Algorithm algoritmeLouvain;
-	private Algorithm algoritmeClique;
 	
 	// Pre:  True.
 	// Post: Create a empty CommunityCollection and empty Graph.
@@ -146,16 +144,6 @@ public class WP
 		graph.addEdge(e);
 	}
 	
-	// Pre:  c1 and c2 exist in cc.
-	// Post: c1 is a subcategory of c2.
-	public void addSubLink(Category c1, Category c2)
-	{
-		ONode n1 = new ONode(c1);
-		ONode n2 = new ONode(c2);
-		OEdge e = new OEdge(n1,n2,OEdge.toEdgeType("CsubC"));
-		graph.addEdge(e);
-	}
-	
 	// Pre:  c and p exist in cc.
 	// Post: c is the category of p.
 	public void addCPLink(Category c, Page p)
@@ -165,15 +153,4 @@ public class WP
 		OEdge e = new OEdge(n1,n2,OEdge.toEdgeType("CP"));
 		graph.addEdge(e);
 	}
-	
-	// Pre:  p and c exist in cc.
-	// Post: p is a page of c.
-	public void addPCLink(Page p, Category c)
-	{
-		ONode n1 = new ONode(p);
-		ONode n2 = new ONode(c);
-		OEdge e = new OEdge(n1,n2,OEdge.toEdgeType("PC"));
-		graph.addEdge(e);
-	}
-
 }
