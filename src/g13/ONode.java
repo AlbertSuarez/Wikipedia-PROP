@@ -18,13 +18,8 @@ public class ONode extends Node
 	//		 Return true if it's equal, false alternately.
 	@Override public boolean equals(Object o)
 	{
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		
-		// Revisar
-		// return ((ONode)o).getElement() == this.e;
-		// return (n.e.getTitle() == this.e.getTitle());
-		return ((ONode)o).e.equals(this.e);
+		return o instanceof ONode
+				&&((ONode)o).e.equals(this.e);
 	}
 	
 	// Pre:  True

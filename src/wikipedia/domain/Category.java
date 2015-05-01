@@ -19,4 +19,8 @@ public class Category extends Element
 		super.et = ElementType.ELEMENT_CATEGORY;
 	}
 	
+	@Override public boolean equals(Object o) {
+		return o instanceof Category
+				&& (((Category)o).title.equals(this.title));
+	}
 }

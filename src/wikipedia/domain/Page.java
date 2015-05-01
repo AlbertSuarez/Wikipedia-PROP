@@ -19,4 +19,8 @@ public class Page extends Element
 		super.et = ElementType.ELEMENT_PAGE;
 	}
 	
+	@Override public boolean equals(Object o) {
+		return o instanceof Page
+				&& (((Page)o).title.equals(this.title));
+	}
 }

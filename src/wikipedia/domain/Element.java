@@ -10,7 +10,7 @@ public abstract class Element
 
 	protected ElementType et;
 
-	private String title;
+	protected String title;
 
 	// Pre:  True.
 	// Post: Create a empty Element.
@@ -42,14 +42,9 @@ public abstract class Element
 
 	// Pre:  True
 	// Post: Return true if implicit object is equals with 'o', false alternately
-	public boolean equals(Element o) {
-		// NO FUNCA
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-
-		final Element e = (Element) o;
-
-		return (e.title.equals(this.title));
+	@Override public boolean equals(Object o) {
+		return o instanceof Element
+				&& (((Element)o).title.equals(this.title));
 	}
 
 	// Pre:  True
