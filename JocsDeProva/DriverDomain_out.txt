@@ -1,0 +1,343 @@
+OPTION LIST:
+* SET_TITLE
+* GET_TITLE
+* EQUALS_ELEMENT
+* TO_CATEGORY
+* TO_PAGE
+* GET_ELEMENTTYPE
+
+* ADD_NODE
+* ERASE_NODE
+* PRINT_COMMUNITY
+* BELONGS_COMMUNITY
+
+* ADD_COMMUNITY
+* GET_COMMUNITY_COUNT
+* ERASE_COMMUNITY
+* RESET_COLLECTION
+* BELONGS_COLLECTION
+* PRINT_COLLECTION
+* ADD_NODE_TO_COM
+
+* ADD_CATEGORY
+* ADD_PAGE
+* DEL_CATEGORY
+* DEL_PAGE
+* CAT_EXISTS
+* PAGE_EXISTS
+* ADD_SUPERLINK
+* ADD_CPLINK
+* PRINT_GRAPH
+* APPLY_NG
+
+* PRINT_OPTION_LIST
+* EXIT
+END OF OPTION LIST
+
+
+Enter an option: 
+Devuelve el título del elemento implicito:
+El elemento implicito no tiene titulo.
+
+Enter an option: 
+Cambiar título del elemento implicito:
+
+Enter an option: 
+Devuelve el título del elemento implicito:
+Medicina
+
+Enter an option: 
+Convierte el elemento implicito en una categoria:
+
+Enter an option: 
+Devuelve el tipo del elemento implicito: Categoria (cat) o Pagina (page)
+cat
+
+Enter an option: 
+Convierte el elemento implicito en una pagina:
+
+Enter an option: 
+Devuelve el tipo del elemento implicito: Categoria (cat) o Pagina (page)
+page
+
+Enter an option: 
+Compara la igualdad entre dos elementos:
+Introduce los titulos de los elementos a comparar
+true si son iguales, false alternativamente
+true
+
+Enter an option: 
+Compara la igualdad entre dos elementos:
+Introduce los titulos de los elementos a comparar
+true si son iguales, false alternativamente
+false
+
+Enter an option: 
+OPTION LIST:
+* SET_TITLE
+* GET_TITLE
+* EQUALS_ELEMENT
+* TO_CATEGORY
+* TO_PAGE
+* GET_ELEMENTTYPE
+
+* ADD_NODE
+* ERASE_NODE
+* PRINT_COMMUNITY
+* BELONGS_COMMUNITY
+
+* ADD_COMMUNITY
+* GET_COMMUNITY_COUNT
+* ERASE_COMMUNITY
+* RESET_COLLECTION
+* BELONGS_COLLECTION
+* PRINT_COLLECTION
+* ADD_NODE_TO_COM
+
+* ADD_CATEGORY
+* ADD_PAGE
+* DEL_CATEGORY
+* DEL_PAGE
+* CAT_EXISTS
+* PAGE_EXISTS
+* ADD_SUPERLINK
+* ADD_CPLINK
+* PRINT_GRAPH
+* APPLY_NG
+
+* PRINT_OPTION_LIST
+* EXIT
+END OF OPTION LIST
+
+
+Enter an option: 
+Anade un nodo a la comunidad implicita:
+Introduce el título del nodo (Categoria) a anadir:
+
+Enter an option: 
+Anade un nodo a la comunidad implicita:
+Introduce el título del nodo (Categoria) a anadir:
+
+Enter an option: 
+Imprime por pantalla la comunidad implicita:
+Informatica
+Dinero
+
+Enter an option: 
+Anade un nodo a la comunidad implicita:
+Introduce el título del nodo (Categoria) a anadir:
+
+Enter an option: 
+Imprime por pantalla la comunidad implicita:
+Informatica
+Dinero
+Deportes
+
+Enter an option: 
+Devuelve cierto si el nodo indicado existe en la comunidad y falso alternativamente:
+Introduce el titulo del nodo (Categoria) a buscar:
+true
+
+Enter an option: 
+Elimina el nodo indicado de la comunidad implicita:
+Introduce el titulo del nodo (Categoria) a eliminar:
+
+Enter an option: 
+Devuelve cierto si el nodo indicado existe en la comunidad y falso alternativamente:
+Introduce el titulo del nodo (Categoria) a buscar:
+false
+
+Enter an option: 
+Imprime por pantalla la comunidad implicita:
+Informatica
+Dinero
+
+Enter an option: 
+OPTION LIST:
+* SET_TITLE
+* GET_TITLE
+* EQUALS_ELEMENT
+* TO_CATEGORY
+* TO_PAGE
+* GET_ELEMENTTYPE
+
+* ADD_NODE
+* ERASE_NODE
+* PRINT_COMMUNITY
+* BELONGS_COMMUNITY
+
+* ADD_COMMUNITY
+* GET_COMMUNITY_COUNT
+* ERASE_COMMUNITY
+* RESET_COLLECTION
+* BELONGS_COLLECTION
+* PRINT_COLLECTION
+* ADD_NODE_TO_COM
+
+* ADD_CATEGORY
+* ADD_PAGE
+* DEL_CATEGORY
+* DEL_PAGE
+* CAT_EXISTS
+* PAGE_EXISTS
+* ADD_SUPERLINK
+* ADD_CPLINK
+* PRINT_GRAPH
+* APPLY_NG
+
+* PRINT_OPTION_LIST
+* EXIT
+END OF OPTION LIST
+
+
+Enter an option: 
+Anade una comunidad a la colleccion implicita:
+
+Enter an option: 
+Anade una comunidad a la colleccion implicita:
+
+Enter an option: 
+Muestra el numero de comunidades a la colleccion implicita:
+2
+
+Enter an option: 
+Anade un nodo a la comunidad indicada de la coleccion:
+Indica en que comunidad desea anadir el nodo:
+Introduce el título del nodo (Categoria) a anadir:
+
+Enter an option: 
+Anade un nodo a la comunidad indicada de la coleccion:
+Indica en que comunidad desea anadir el nodo:
+Introduce el título del nodo (Categoria) a anadir:
+
+Enter an option: 
+Imprime la collecion implicita:
+Community num. 1
+Informatica
+Community num. 2
+Medicina
+
+Enter an option: 
+Devuelve cierto si el nodo indicado existe en la coleccion y falso alternativamente:
+Introduce el titulo del nodo (Categoria) a buscar:
+false
+
+Enter an option: 
+Devuelve cierto si el nodo indicado existe en la coleccion y falso alternativamente:
+Introduce el titulo del nodo (Categoria) a buscar:
+true
+
+Enter an option: 
+Elimina una comunidad de la colleccion:
+Indica el numero de la comunidad que desea eliminar:
+
+Enter an option: 
+Muestra el numero de comunidades a la colleccion implicita:
+1
+
+Enter an option: 
+Resetea la colección implicita:
+
+Enter an option: 
+Muestra el numero de comunidades a la colleccion implicita:
+0
+
+Enter an option: 
+Imprime la collecion implicita:
+
+Enter an option: 
+OPTION LIST:
+* SET_TITLE
+* GET_TITLE
+* EQUALS_ELEMENT
+* TO_CATEGORY
+* TO_PAGE
+* GET_ELEMENTTYPE
+
+* ADD_NODE
+* ERASE_NODE
+* PRINT_COMMUNITY
+* BELONGS_COMMUNITY
+
+* ADD_COMMUNITY
+* GET_COMMUNITY_COUNT
+* ERASE_COMMUNITY
+* RESET_COLLECTION
+* BELONGS_COLLECTION
+* PRINT_COLLECTION
+* ADD_NODE_TO_COM
+
+* ADD_CATEGORY
+* ADD_PAGE
+* DEL_CATEGORY
+* DEL_PAGE
+* CAT_EXISTS
+* PAGE_EXISTS
+* ADD_SUPERLINK
+* ADD_CPLINK
+* PRINT_GRAPH
+* APPLY_NG
+
+* PRINT_OPTION_LIST
+* EXIT
+END OF OPTION LIST
+
+
+Enter an option: 
+Anade una categoria al grafo implicito:
+Introduce el titulo de la categoria a anadir:
+
+Enter an option: 
+Anade una categoria al grafo implicito:
+Introduce el titulo de la categoria a anadir:
+
+Enter an option: 
+Anade un enlace de SuperCategoria entre dos nodos:
+Introduce los titulos de las dos categorias:
+
+Enter an option: 
+Anade una pagina al grafo implicito:
+Introduce el titulo de la pagina a anadir:
+
+Enter an option: 
+Anade un enlace de Categoria a Pagina entre dos nodos:
+Introduce el titulo de la categoria y de la pagina:
+
+Enter an option: 
+Imprime el grafo implicito:
+Informatica cat CsupC Medicina cat
+Medicina cat CsubC Informatica cat
+Futbol page CP Medicina cat
+Medicina cat PC Futbol cat
+
+Enter an option: 
+Devuelve cierto si la categoria existe en el grafo implicito, falso alternativamente:
+Introduce el titulo de la categoria a buscar:
+true
+
+Enter an option: 
+Devuelve cierto si la pagina existe en el grafo implicito, falso alternativamente:
+Introduce el titulo de la pagina a buscar:
+false
+
+Enter an option: 
+Devuelve cierto si la pagina existe en el grafo implicito, falso alternativamente:
+Introduce el titulo de la pagina a buscar:
+true
+
+Enter an option: 
+Aplica el algoritmo de Newman-Girvan al grafo implicito:
+Indica cuantas comunidades desea obtener:
+
+Enter an option: 
+Elimina una pagina al grafo implicito:
+Introduce el titulo de la pagina a eliminar:
+
+Enter an option: 
+Elimina una categoria al grafo implicito:
+Introduce el titulo de la categoria a eliminar:
+
+Enter an option: 
+Imprime el grafo implicito:
+
+Enter an option: 
