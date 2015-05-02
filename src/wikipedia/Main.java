@@ -1,3 +1,15 @@
+/**
+* @mainpage Wikipedia - PROP Project
+* This is the documentation of the PROP Project: Wikipedia
+*/
+
+/**
+ * @file Main.java
+ * @author G13.2
+ * @date 2 May 2015
+ * @brief Main class
+ */
+
 package wikipedia;
 
 import static wikipedia.utils.utils.*;

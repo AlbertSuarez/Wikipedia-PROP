@@ -11,7 +11,7 @@ public class DriverPersistence {
         private static String op;
     private static BufferedReader cin;
     private static final String[] OPTION_LIST = new String[] {
-        "READ_GRAPH", "WRITE_GRAPH", "READ_WP_GRAPH", "WRITE_WP_GRAPH",
+        "READ_WP_GRAPH", "WRITE_WP_GRAPH",
         "LOAD_GRAPH", "SAVE_GRAPH", "READ_AND_SAVE_GRAPH",
         "WRITE_DOT_FORMAT", "SAVE_DOT_FORMAT", "PRINT_OPTION_LIST", "EXIT"
     };
@@ -51,14 +51,6 @@ public class DriverPersistence {
         readOption();
         while (!op.equals("EXIT")) {
                 switch(op) {
-                        case "READ_GRAPH":
-                                print("Introduce un grafo:");
-                                G = GraphIO.readGraph();
-                                break;
-                        case "WRITE_GRAPH":
-                                print("Escribe el grafo:");
-                                GraphIO.writeGraph(G);
-                                break;
                         case "READ_WP_GRAPH":
                                 print("Introduce un grafo con el formato de Wikipedia:");
                                 G = GraphIO.readGraphWPformat();
