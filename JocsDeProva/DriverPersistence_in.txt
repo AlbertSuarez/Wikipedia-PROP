@@ -1,0 +1,46 @@
+READ_WP_GRAPH
+5 cat CsupC 14 cat
+14 cat CsubC 5 cat
+13 cat CsupC 15 cat
+15 cat CsubC 13 cat
+14 cat CsupC 15 cat
+15 cat CsubC 14 cat
+14 cat CsupC 16 cat
+16 cat CsubC 14 cat
+16 cat CsupC 15 cat
+15 cat CsubC 16 cat
+5 cat CsupC 17 cat
+17 cat CsubC 5 cat
+17 cat CsupC 16 cat
+16 cat CsubC 17 cat
+17 cat CsupC 18 cat
+18 cat CsubC 17 cat
+16 cat CsupC 19 cat
+19 cat CsubC 16 cat
+18 cat CsupC 19 cat
+19 cat CsubC 18 cat
+6 cat CsupC 20 cat
+20 cat CsubC 6 cat
+17 cat CsupC 20 cat
+20 cat CsubC 17 cat
+6 cat CsupC 21 cat
+21 cat CsubC 6 cat
+6 cat CsupC 22 cat
+22 cat CsubC 6 cat
+6 cat CsupC 23 cat
+23 cat CsubC 6 cat
+6 cat CsupC 24 cat
+24 cat CsubC 6 cat
+6 cat CsupC 25 cat
+25 cat CsubC 6 cat
+20 cat CsupC 26 cat
+26 cat CsubC 20 cat
+21 cat CsupC 26 cat
+26 cat CsubC 21 cat
+22 cat CsupC 27 cat
+27 cat CsubC 22 cat
+-1
+WRITE_WP_GRAPH
+PRINT_OPTION_LIST
+WRITE_DOT_FORMAT
+EXIT
