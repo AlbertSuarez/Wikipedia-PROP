@@ -38,4 +38,4 @@ classes:
 	@mkdir -p classes
 
 clean:
-	@rm -rf classes
+	@rm -rf classes latex html

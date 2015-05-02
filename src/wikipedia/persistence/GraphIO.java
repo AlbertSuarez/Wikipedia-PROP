@@ -1,3 +1,10 @@
+/**
+ * @file GraphIO.java
+ * @author G13.2
+ * @date 2 May 2015
+ * @brief Graph loading/saving helping routines
+ */
+
 package wikipedia.persistence;
 import wikipedia.domain.*;
 import g13.*;
@@ -6,85 +13,20 @@ import java.io.File;
 import static wikipedia.utils.utils.*;
 import java.util.*;
 
-public class GraphIO {
+/**
+ * @class GraphIO
+ * @brief Graph Input/Output utility
+ */
+public final class GraphIO {
 
-	// Pre:  True
-	// Post: A GraphIO empty is created.
-	public GraphIO() {
-
+	private GraphIO() {
+		// Utility classes should always be final and have a private constructor
 	}
 
-	// Pre:  True
-	// Post: Read a Graph and return it.
-	public static OGraph readGraph() {
-
-		OGraph g = new OGraph();
-		Scanner cin = new Scanner(System.in);
-		int m = cin.nextInt();
-
-		while ((m--) > 0) {
-
-			ONode ni = new ONode(new Page(cin.next()));
-			ONode nj = new ONode(new Page(cin.next()));
-			//double peso = cin.nextInt();
-			/*ONode n1 = null;
-			ONode n2 = null;
-
-			for (Node nn : g.getNodeSet()) {
-				if (nn.equals(ni)) {
-					n1 = (ONode) nn;
-				}
-				if (nn.equals(nj)) {
-					n2 = (ONode) nn;
-				}
-			}
-			if (n1 == null) n1 = ni;
-			if (n2 == null) n2 = nj;*/
-
-			OEdge e = new OEdge(ni, nj, 1, OEdge.EdgeType.CsupC);
-
-			if (!g.hasNode(ni)) g.addNode(ni);
-			if (!g.hasNode(nj)) g.addNode(nj);
-			g.addEdge(e);
-		}
-		return g;
-	}
-
-
-	// Pre:  True
-	// Post: Write a Graph.
-	public static void writeGraph(OGraph g) {
-
-		Collection<Edge> edgeSet = g.getEdges();;
-		for (Edge e: edgeSet) {
-
-			Node n1 = e.getNode();
-			Node n2 = e.getNeighbor(n1);
-			double peso = e.getWeight();
-
-			print(n1 + " " + n2 + " " + peso);
-		}
-
-		/*Set<Node> nodeSet = g.getNodeSet();
-		for (Node nn : nodeSet) print(nn);*/
-
-		/*for (int i = 0; i < G.size(); ++i) {
-			cout << "Nodo " << i << ": ";
-			for (int j = 0; j < G[i].size(); ++j) {
-				cout << "nodoDest " << G[i][j].first << " idArco " << G[i][j].second << " ";
-			}
-			cout << endl;
-		}
-
-		for (int i = 0; i < G.size(); ++i) {
-			for (int j = 0; j < G[i].size(); ++j) {
-				if (i < G[i][j].first) cout << i << " " << G[i][j].first << " -> " << arco[G[i][j].second] << endl;
-			}
-		}*/
-	}
-
-	// Pre:  True
-	// Post: Read a Graph with WP format and return it.
+	/**
+	 * @brief Reads an OGraph with the WP format from the standard input
+	 * @returns the read OGraph
+	 */
 	public static OGraph readGraphWPformat() {
 		OGraph g = new OGraph();
 		Scanner cin = new Scanner(System.in);
@@ -131,8 +73,10 @@ public class GraphIO {
 
 	}
 
-	// Pre:  True
-	// Post: Write a Graph with WP format.
+	/**
+	 * @brief Writes an OGraph with the WP format to the standard output
+	 * @param g the OGraph to write
+	 */
 	public static void writeGraphWPformat(OGraph g) {
 		Collection<Edge> edgeSet = g.getEdges();
 		for (Edge e: edgeSet) {
@@ -160,8 +104,10 @@ public class GraphIO {
 		}
 	}
 
-	// Pre:  True
-	// Post: Read a Graph with WP format from an external file.
+	/**
+	 * @brief Loads an OGraph with the WP format from an external file
+	 * @returns the loaded OGraph
+	 */
 	public static OGraph loadWP() {
 		OGraph g = new OGraph();
 		Map<String, ONode> nodeMap = new LinkedHashMap<String, ONode>();
@@ -210,8 +156,10 @@ public class GraphIO {
 		return g;
 	}
 
-	// Pre:  True
-	// Post: Write Graph 'g' in an external file.
+	/**
+	 * @brief Saves an OGraph with the WP format to an external file
+	 * @param g the OGraph to save
+	 */
 	public static void saveWP(OGraph g) {
 		Collection<Edge> edgeSet = g.getEdges();
 		File f = save();
@@ -239,8 +187,10 @@ public class GraphIO {
 		}
 	}
 
-	// Pre:  True
-	// Post: Write a Graph with DOT format.
+	/**
+	 * @brief Writes an OGraph with the DOT format to the standard output
+	 * @param g the OGraph to write
+	 */
 	public static void writeDOTformat(OGraph g) {
 
 		Collection<Node> nodes = g.getNodes();
@@ -276,8 +226,11 @@ public class GraphIO {
 		print("}");
 	}
 
-	// Pre:  True
-	// Post: Write Graph 'g' in an external file.
+	/**
+	 * @brief Saves an OGraph with the DOT format to an external file
+	 * @param g the OGraph to save
+	 * @param file the filename to save the OGraph to
+	 */
 	public static void saveDOTformat(OGraph g, String file) {
 
 		Collection<Node> nodes = g.getNodes();

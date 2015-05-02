@@ -32,21 +32,9 @@ public class DomainController
 	}
 
 	// Pre:  True
-	// Post: Implicit graph is read it.
-	public void readGraph() {
-		wikipedia.setGraph(GraphIO.readGraph());
-	}
-
-	// Pre:  True
 	// Post: Implicit graph is write it with WP format.
 	public void writeWPformat() {
 		GraphIO.writeGraphWPformat(wikipedia.getGraph());
-	}
-
-	// Pre:  True
-	// Post: Implicit graph is write it.
-	public void writeGraph() {
-		GraphIO.writeGraph(wikipedia.getGraph());
 	}
 
 	// Pre:  True
