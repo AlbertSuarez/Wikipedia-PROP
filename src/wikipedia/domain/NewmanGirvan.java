@@ -1,9 +1,16 @@
+/**
+ * @file NewmanGirvan.java
+ * @author G13.2
+ * @date 2 May 2015
+ * @brief Newman-Girvan algorithm implementation
+ */
+
 package wikipedia.domain;
 import wikipedia.persistence.*;
 import g13.*;
 import java.util.*;
 
-public class NewmanGirvan extends Algorithm {
+public class NewmanGirvan implements Algorithm {
 
 	private class CData implements Comparable<CData> {
 		private final double dist;
@@ -73,7 +80,7 @@ public class NewmanGirvan extends Algorithm {
 		return cc;
 	}
 	
-	
+
 	private void getConnectedComponentCountIt(Graph G, Node[] nodes, boolean[] vist, int i) {
 		Stack<Integer> s = new Stack<Integer>();
 		vist[i] = true;
@@ -218,7 +225,15 @@ public class NewmanGirvan extends Algorithm {
 		edges[max].setValidity(false);
 	}
 
-	public CommunityCollection runNGAlgorithm(Graph G, int nCom) {
+	/**
+	 * @brief Applies the Newman-Girvan repeatedly to a graph until
+	 *        there are nCom's left or the algorithm can't be applied
+	 *        anymore, and returns the CommunityCollection of them
+	 * @param G the Graph to apply the Newman-Girvan algorithm
+	 * @param nCom the number of communities one wants to split the graph into
+	 * @return the CommunityCollection result
+	 */
+	public CommunityCollection runAlgorithm(Graph G, int nCom) {
 
 		// Create node array
 		Node[] nodes = G.getNodes().toArray(new Node[G.getOrder()]);

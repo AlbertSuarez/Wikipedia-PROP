@@ -1,3 +1,10 @@
+/**
+ * @file WP.java
+ * @author G13.2
+ * @date 2 May 2015
+ * @brief WikiPedia class
+ */
+
 package wikipedia.domain;
 import g13.*;
 
@@ -12,8 +19,9 @@ public class WP
 	// The instances of the algorithms.
 	private Algorithm algoritmeNG;
 	
-	// Pre:  True.
-	// Post: Create a empty CommunityCollection and empty Graph.
+	/**
+	 * @brief Creates a new WP with an empty CommunityCollection and an empty Graph
+	 */
 	public WP()
 	{
 		cc = new CommunityCollection();
@@ -21,43 +29,57 @@ public class WP
 		algoritmeNG = new NewmanGirvan();
 	}
 
-	// Pre:  True
-	// Post: Return the Graph of Wikipedia	
+	/**
+	 * @brief Returns the OGraph
+	 * @return the OGraph
+	 */
 	public OGraph getGraph()
 	{
 		return graph;
 	}
 	
-	// Pre:  True
-	// Post: Graph of Wikipedia is 'g'
+	/**
+	 * @brief Sets the OGraph
+	 * @param g the OGraph to set
+	 */
 	public void setGraph(OGraph g)
 	{
 		this.graph = g;
 	}
 	
-	// Pre:  True
-	// Post: Return the community collection of Wikipedia
+	/**
+	 * @brief Returns the CommunityCollection
+	 * @return the CommunityCollection
+	 */
 	public CommunityCollection getCC()
 	{
 		return cc;
 	}
 		
-	// Pre:  True
-	// Post: Community collection of Wikipedia is 'cc'
+	/**
+	 * @brief Sets the CommunityCollection
+	 * @param cc the CommunityCollection to set
+	 */
 	public void setCC(CommunityCollection cc)
 	{
 		this.cc = cc;
 	}
 	
-	// Pre:  True
-	// Post: Return the community collecion that NewmanGirvan Algorithm produces
+	/**
+	 * @brief Applies the Newman-Girvan algorithm to the graph
+	 * @param nCom the number of Communities to split the graph into
+	 * @return the CommunityCollecion that Newman-Girvan Algorithm produces
+	 */
 	public CommunityCollection applyNewmanGirvan(int nCom)
 	{
-		return algoritmeNG.runNGAlgorithm(graph, nCom);
+		return algoritmeNG.runAlgorithm(graph, nCom);
 	}
-	
-	// Pre:  Category with title 'title' exists in graph.
-	// Post: Return Graph get category by title.
+
+	/**
+	 * @brief Returns the Category identified by a String
+	 * @param title the title of the Category to search for
+	 * @return the Category identified by the title, or null if not found
+	 */
 	public Category getCategory(String title)
 	{
 		Category c = new Category(title);
@@ -66,11 +88,14 @@ public class WP
 			if (n.equals(node)) return c;
 		}
 		System.out.println("The category doesn't belong to the graph");
-		return new Category(null);
+		return null;
 	}
 	
-	// Pre:  Page with title 'title' exists in graph.
-	// Post: Return Graph get page by title.
+	/**
+	 * @brief Returns the Page identified by a String
+	 * @param title the title of the Page to search for
+	 * @return the Page identified by the title, or null if not found
+	 */
 	public Page getPage(String title)
 	{
 		Page p = new Page(title);
@@ -79,44 +104,55 @@ public class WP
 			if (n.equals(node)) return p;
 		}
 		System.out.println("The page doesn't belong to the graph");
-		return new Page(null);
+		return null;
 	}
 	
-	// Pre:  Category c is not in the Graph.
-	// Post: Category c is in the Graph.
+	/**
+	 * @brief Adds a new Category to the graph
+	 * @param c the new Category to add
+	 */
 	public void addCategory(Category c)
 	{
 		ONode n = new ONode(c);
 		graph.addNode(n);
 	}
 	
-	// Pre:  Page c is not in the Graph.
-	// Post: Page c is in the Graph.
+	/**
+	 * @brief Adds a new Page to the graph
+	 * @param p the new Page to add
+	 */
 	public void addPage(Page p)
 	{
 		ONode n = new ONode(p);
 		graph.addNode(n);
 	}
 	
-	// Pre:  Category c is in the Graph.
-	// Post: Category c is not in the Graph.
+	/**
+	 * @brief Removes a Category from the graph
+	 * @param c te Category to remove
+	 */
 	public void delCategory(Category c)
 	{
 		ONode n = new ONode(c);
 		graph.removeNode(n);
 	}
 	
-	// Pre:  Page c is in the Graph.
-	// Post: Page c is not in the Graph.
+	/**
+	 * @brief Removes a Page from the graph
+	 * @param p te Page to remove
+	 */
 	public void delPage(Page p)
 	{
 		ONode n = new ONode(p);
 		graph.removeNode(n);
 	}
 	
-	// Pre:  True.
-	// Post: Return true if category with title 'title' exists in graph,
-	//		 false alternately.
+	/**
+	 * @brief Returns if the Category with title 'title' exists in graph
+	 * @param title the title of the Category
+	 * @return true if the Category with title 'title' exists in graph,
+	 *         false otherwise
+	 */
 	public boolean catExists(String title)
 	{
 		Category c = new Category(title);
@@ -124,9 +160,12 @@ public class WP
 		return graph.hasNode(n);
 	}
 
-	// Pre:  True.
-	// Post: Return true if page with title 'title' exists in graph,
-	//		 false alternately.
+	/**
+	 * @brief Returns if the Page with title 'title' exists in graph
+	 * @param title the title of the Page
+	 * @return true if the Page with title 'title' exists in graph,
+	 *         false otherwise
+	 */
 	public boolean pagExists(String title)
 	{
 		Page p = new Page(title);
@@ -134,23 +173,29 @@ public class WP
 		return graph.hasNode(n);
 	}
 
-	// Pre:  c1 and c2 exist in cc.
-	// Post: c1 is a supercategory of c2.	
+	/**
+	 * @brief Creates a new Edge between two Categories
+	 * @param c1 one of the Categories to create the Edge to
+	 * @param c2 the other Category
+	 */
 	public void addSuperLink(Category c1, Category c2)
 	{
 		ONode n1 = new ONode(c1);
 		ONode n2 = new ONode(c2);
-		OEdge e = new OEdge(n1,n2,OEdge.toEdgeType("CsupC"));
+		OEdge e = new OEdge(n1, n2, OEdge.EdgeType.CsupC);
 		graph.addEdge(e);
 	}
 	
-	// Pre:  c and p exist in cc.
-	// Post: c is the category of p.
+	/**
+	 * @brief Creates a new Edge between a Category and a Page
+	 * @param c the Category to create the Edge to
+	 * @param p the Page to create the Edge to
+	 */
 	public void addCPLink(Category c, Page p)
 	{
 		ONode n1 = new ONode(c);
 		ONode n2 = new ONode(p);
-		OEdge e = new OEdge(n1,n2,OEdge.toEdgeType("CP"));
+		OEdge e = new OEdge(n1, n2, OEdge.EdgeType.CP);
 		graph.addEdge(e);
 	}
 }
