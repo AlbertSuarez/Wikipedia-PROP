@@ -1,0 +1,553 @@
+PROP - Wikipedia - Start main
+welcome to the wikipedia project, select one of the following options by writting it
+OPTION LIST:
+* READ
+* LOAD
+* COMMUNITY_DETECTION
+* PRINT_CC
+* PRINT_WP
+* SAVE
+* PRINT_OPTION_LIST
+* EXIT
+END OF OPTION LIST
+
+
+Enter an option: 
+write on screen the graph you wanna enter in wikipedia format
+Once you end, write "-1" to finish the input
+Node count: 75
+Edge count: 91
+
+Enter an option: 
+This is the content of the wikipedia in wikipedia format
+1 cat CsupC 2 cat
+2 cat CsubC 1 cat
+1 cat CsupC 3 cat
+3 cat CsubC 1 cat
+1 cat CsupC 4 cat
+4 cat CsubC 1 cat
+1 cat CsupC 5 cat
+5 cat CsubC 1 cat
+1 cat CsupC 6 cat
+6 cat CsubC 1 cat
+2 cat CsupC 7 cat
+7 cat CsubC 2 cat
+2 cat CsupC 8 cat
+8 cat CsubC 2 cat
+3 cat CsupC 8 cat
+8 cat CsubC 3 cat
+7 cat CsupC 9 cat
+9 cat CsubC 7 cat
+10 cat CsupC 7 cat
+7 cat CsubC 10 cat
+11 cat CsupC 7 cat
+7 cat CsubC 11 cat
+10 cat CsupC 11 cat
+11 cat CsubC 10 cat
+12 cat CsupC 4 cat
+4 cat CsubC 12 cat
+13 cat CsupC 4 cat
+4 cat CsubC 13 cat
+14 cat CsupC 4 cat
+4 cat CsubC 14 cat
+14 cat CsupC 5 cat
+5 cat CsubC 14 cat
+13 cat CsupC 15 cat
+15 cat CsubC 13 cat
+14 cat CsupC 15 cat
+15 cat CsubC 14 cat
+14 cat CsupC 16 cat
+16 cat CsubC 14 cat
+15 cat CsupC 16 cat
+16 cat CsubC 15 cat
+17 cat CsupC 5 cat
+5 cat CsubC 17 cat
+16 cat CsupC 17 cat
+17 cat CsubC 16 cat
+17 cat CsupC 18 cat
+18 cat CsubC 17 cat
+16 cat CsupC 19 cat
+19 cat CsubC 16 cat
+18 cat CsupC 19 cat
+19 cat CsubC 18 cat
+20 cat CsupC 6 cat
+6 cat CsubC 20 cat
+17 cat CsupC 20 cat
+20 cat CsubC 17 cat
+21 cat CsupC 6 cat
+6 cat CsubC 21 cat
+22 cat CsupC 6 cat
+6 cat CsubC 22 cat
+23 cat CsupC 6 cat
+6 cat CsubC 23 cat
+24 cat CsupC 6 cat
+6 cat CsubC 24 cat
+25 cat CsupC 6 cat
+6 cat CsubC 25 cat
+20 cat CsupC 26 cat
+26 cat CsubC 20 cat
+21 cat CsupC 26 cat
+26 cat CsubC 21 cat
+22 cat CsupC 27 cat
+27 cat CsubC 22 cat
+26 cat CsupC 27 cat
+27 cat CsubC 26 cat
+22 cat CsupC 28 cat
+28 cat CsubC 22 cat
+19 cat CsupC 29 cat
+29 cat CsubC 19 cat
+26 cat CsupC 29 cat
+29 cat CsubC 26 cat
+26 cat CsupC 30 cat
+30 cat CsubC 26 cat
+26 cat CsupC 31 cat
+31 cat CsubC 26 cat
+29 cat CsupC 32 cat
+32 cat CsubC 29 cat
+29 cat CsupC 33 cat
+33 cat CsubC 29 cat
+30 cat CsupC 33 cat
+33 cat CsubC 30 cat
+30 cat CsupC 34 cat
+34 cat CsubC 30 cat
+31 cat CsupC 34 cat
+34 cat CsubC 31 cat
+31 cat CsupC 35 cat
+35 cat CsubC 31 cat
+27 cat CsupC 36 cat
+36 cat CsubC 27 cat
+36 cat CsupC 37 cat
+37 cat CsubC 36 cat
+24 cat CsupC 38 cat
+38 cat CsubC 24 cat
+24 cat CsupC 39 cat
+39 cat CsubC 24 cat
+25 cat CsupC 40 cat
+40 cat CsubC 25 cat
+40 cat CsupC 41 cat
+41 cat CsubC 40 cat
+40 cat CsupC 42 cat
+42 cat CsubC 40 cat
+25 cat CsupC 43 cat
+43 cat CsubC 25 cat
+9 cat CP p1 page
+p1 page PC 9 page
+9 cat CP p2 page
+p2 page PC 9 page
+9 cat CP p3 page
+p3 page PC 9 page
+11 cat CP p4 page
+p4 page PC 11 page
+11 cat CP p5 page
+p5 page PC 11 page
+11 cat CP p6 page
+p6 page PC 11 page
+8 cat CP p7 page
+p7 page PC 8 page
+8 cat CP p8 page
+p8 page PC 8 page
+8 cat CP p9 page
+p9 page PC 8 page
+12 cat CP p10 page
+p10 page PC 12 page
+12 cat CP p11 page
+p11 page PC 12 page
+12 cat CP p12 page
+p12 page PC 12 page
+15 cat CP p13 page
+p13 page PC 15 page
+15 cat CP p14 page
+p14 page PC 15 page
+15 cat CP p15 page
+p15 page PC 15 page
+32 cat CP p16 page
+p16 page PC 32 page
+33 cat CP p16 page
+p16 page PC 33 page
+34 cat CP p17 page
+p17 page PC 34 page
+34 cat CP p18 page
+p18 page PC 34 page
+35 cat CP p18 page
+p18 page PC 35 page
+35 cat CP p19 page
+p19 page PC 35 page
+35 cat CP p20 page
+p20 page PC 35 page
+37 cat CP p21 page
+p21 page PC 37 page
+37 cat CP p22 page
+p22 page PC 37 page
+28 cat CP p22 page
+p22 page PC 28 page
+28 cat CP p23 page
+p23 page PC 28 page
+28 cat CP p24 page
+p24 page PC 28 page
+23 cat CP p25 page
+p25 page PC 23 page
+23 cat CP p26 page
+p26 page PC 23 page
+39 cat CP p27 page
+p27 page PC 39 page
+38 cat CP p27 page
+p27 page PC 38 page
+39 cat CP p28 page
+p28 page PC 39 page
+41 cat CP p29 page
+p29 page PC 41 page
+42 cat CP p30 page
+p30 page PC 42 page
+43 cat CP p31 page
+p31 page PC 43 page
+43 cat CP p32 page
+p32 page PC 43 page
+
+Enter an option: 
+OPTION LIST:
+* READ
+* LOAD
+* COMMUNITY_DETECTION
+* PRINT_CC
+* PRINT_WP
+* SAVE
+* PRINT_OPTION_LIST
+* EXIT
+END OF OPTION LIST
+
+
+Enter an option: 
+insert how many communities you want to detect
+
+Enter an option: 
+the community collection of WP is:
+Community num. 1
+1
+5
+17
+18
+19
+16
+15
+13
+14
+4
+3
+8
+2
+Community num. 2
+6
+23
+21
+26
+31
+35
+34
+30
+33
+32
+29
+20
+Community num. 3
+7
+11
+10
+9
+Community num. 4
+12
+Community num. 5
+22
+28
+37
+36
+27
+Community num. 6
+24
+39
+38
+Community num. 7
+25
+43
+40
+42
+41
+
+Enter an option: 
+insert how many communities you want to detect
+
+Enter an option: 
+the community collection of WP is:
+Community num. 1
+1
+Community num. 2
+2
+Community num. 3
+3
+Community num. 4
+4
+Community num. 5
+5
+Community num. 6
+6
+Community num. 7
+7
+Community num. 8
+8
+Community num. 9
+9
+Community num. 10
+10
+Community num. 11
+11
+Community num. 12
+12
+Community num. 13
+13
+Community num. 14
+14
+Community num. 15
+15
+Community num. 16
+16
+Community num. 17
+17
+Community num. 18
+18
+Community num. 19
+19
+Community num. 20
+20
+Community num. 21
+21
+Community num. 22
+22
+Community num. 23
+23
+Community num. 24
+24
+Community num. 25
+25
+Community num. 26
+26
+Community num. 27
+27
+Community num. 28
+28
+Community num. 29
+29
+Community num. 30
+30
+Community num. 31
+31
+Community num. 32
+32
+Community num. 33
+33
+Community num. 34
+34
+Community num. 35
+35
+Community num. 36
+36
+Community num. 37
+37
+Community num. 38
+38
+Community num. 39
+39
+Community num. 40
+40
+Community num. 41
+41
+Community num. 42
+42
+Community num. 43
+43
+
+Enter an option: 
+This is the content of the wikipedia in wikipedia format
+1 cat CsupC 2 cat
+2 cat CsubC 1 cat
+1 cat CsupC 3 cat
+3 cat CsubC 1 cat
+1 cat CsupC 4 cat
+4 cat CsubC 1 cat
+1 cat CsupC 5 cat
+5 cat CsubC 1 cat
+1 cat CsupC 6 cat
+6 cat CsubC 1 cat
+2 cat CsupC 7 cat
+7 cat CsubC 2 cat
+2 cat CsupC 8 cat
+8 cat CsubC 2 cat
+3 cat CsupC 8 cat
+8 cat CsubC 3 cat
+7 cat CsupC 9 cat
+9 cat CsubC 7 cat
+10 cat CsupC 7 cat
+7 cat CsubC 10 cat
+11 cat CsupC 7 cat
+7 cat CsubC 11 cat
+10 cat CsupC 11 cat
+11 cat CsubC 10 cat
+12 cat CsupC 4 cat
+4 cat CsubC 12 cat
+13 cat CsupC 4 cat
+4 cat CsubC 13 cat
+14 cat CsupC 4 cat
+4 cat CsubC 14 cat
+14 cat CsupC 5 cat
+5 cat CsubC 14 cat
+13 cat CsupC 15 cat
+15 cat CsubC 13 cat
+14 cat CsupC 15 cat
+15 cat CsubC 14 cat
+14 cat CsupC 16 cat
+16 cat CsubC 14 cat
+15 cat CsupC 16 cat
+16 cat CsubC 15 cat
+17 cat CsupC 5 cat
+5 cat CsubC 17 cat
+16 cat CsupC 17 cat
+17 cat CsubC 16 cat
+17 cat CsupC 18 cat
+18 cat CsubC 17 cat
+16 cat CsupC 19 cat
+19 cat CsubC 16 cat
+18 cat CsupC 19 cat
+19 cat CsubC 18 cat
+20 cat CsupC 6 cat
+6 cat CsubC 20 cat
+17 cat CsupC 20 cat
+20 cat CsubC 17 cat
+21 cat CsupC 6 cat
+6 cat CsubC 21 cat
+22 cat CsupC 6 cat
+6 cat CsubC 22 cat
+23 cat CsupC 6 cat
+6 cat CsubC 23 cat
+24 cat CsupC 6 cat
+6 cat CsubC 24 cat
+25 cat CsupC 6 cat
+6 cat CsubC 25 cat
+20 cat CsupC 26 cat
+26 cat CsubC 20 cat
+21 cat CsupC 26 cat
+26 cat CsubC 21 cat
+22 cat CsupC 27 cat
+27 cat CsubC 22 cat
+26 cat CsupC 27 cat
+27 cat CsubC 26 cat
+22 cat CsupC 28 cat
+28 cat CsubC 22 cat
+19 cat CsupC 29 cat
+29 cat CsubC 19 cat
+26 cat CsupC 29 cat
+29 cat CsubC 26 cat
+26 cat CsupC 30 cat
+30 cat CsubC 26 cat
+26 cat CsupC 31 cat
+31 cat CsubC 26 cat
+29 cat CsupC 32 cat
+32 cat CsubC 29 cat
+29 cat CsupC 33 cat
+33 cat CsubC 29 cat
+30 cat CsupC 33 cat
+33 cat CsubC 30 cat
+30 cat CsupC 34 cat
+34 cat CsubC 30 cat
+31 cat CsupC 34 cat
+34 cat CsubC 31 cat
+31 cat CsupC 35 cat
+35 cat CsubC 31 cat
+27 cat CsupC 36 cat
+36 cat CsubC 27 cat
+36 cat CsupC 37 cat
+37 cat CsubC 36 cat
+24 cat CsupC 38 cat
+38 cat CsubC 24 cat
+24 cat CsupC 39 cat
+39 cat CsubC 24 cat
+25 cat CsupC 40 cat
+40 cat CsubC 25 cat
+40 cat CsupC 41 cat
+41 cat CsubC 40 cat
+40 cat CsupC 42 cat
+42 cat CsubC 40 cat
+25 cat CsupC 43 cat
+43 cat CsubC 25 cat
+9 cat CP p1 page
+p1 page PC 9 page
+9 cat CP p2 page
+p2 page PC 9 page
+9 cat CP p3 page
+p3 page PC 9 page
+11 cat CP p4 page
+p4 page PC 11 page
+11 cat CP p5 page
+p5 page PC 11 page
+11 cat CP p6 page
+p6 page PC 11 page
+8 cat CP p7 page
+p7 page PC 8 page
+8 cat CP p8 page
+p8 page PC 8 page
+8 cat CP p9 page
+p9 page PC 8 page
+12 cat CP p10 page
+p10 page PC 12 page
+12 cat CP p11 page
+p11 page PC 12 page
+12 cat CP p12 page
+p12 page PC 12 page
+15 cat CP p13 page
+p13 page PC 15 page
+15 cat CP p14 page
+p14 page PC 15 page
+15 cat CP p15 page
+p15 page PC 15 page
+32 cat CP p16 page
+p16 page PC 32 page
+33 cat CP p16 page
+p16 page PC 33 page
+34 cat CP p17 page
+p17 page PC 34 page
+34 cat CP p18 page
+p18 page PC 34 page
+35 cat CP p18 page
+p18 page PC 35 page
+35 cat CP p19 page
+p19 page PC 35 page
+35 cat CP p20 page
+p20 page PC 35 page
+37 cat CP p21 page
+p21 page PC 37 page
+37 cat CP p22 page
+p22 page PC 37 page
+28 cat CP p22 page
+p22 page PC 28 page
+28 cat CP p23 page
+p23 page PC 28 page
+28 cat CP p24 page
+p24 page PC 28 page
+23 cat CP p25 page
+p25 page PC 23 page
+23 cat CP p26 page
+p26 page PC 23 page
+39 cat CP p27 page
+p27 page PC 39 page
+38 cat CP p27 page
+p27 page PC 38 page
+39 cat CP p28 page
+p28 page PC 39 page
+41 cat CP p29 page
+p29 page PC 41 page
+42 cat CP p30 page
+p30 page PC 42 page
+43 cat CP p31 page
+p31 page PC 43 page
+43 cat CP p32 page
+p32 page PC 43 page
+
+Enter an option:
+PROP - Wikipedia - End main
