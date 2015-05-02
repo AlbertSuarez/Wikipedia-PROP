@@ -1,16 +1,26 @@
+/**
+ * @file OGraph.java
+ * @author G13.2
+ * @date 2 May 2015
+ * @brief Own Graph implementation
+ */
+
 package g13;
+
 
 public class OGraph extends Graph
 {
-	// Pre:  True
-	// Post: Creates an empty graph.
+	/**
+	 * @brief Creates a empty OGraph
+	 */ 
 	public OGraph()
 	{
 		super();
 	}
 	
-	// Pre: True
-	// Post: Validates all edges in the graph
+	/**
+	 * @brief Validates all edges of implicit OGraph
+	 */ 
 	public void validateAllEdges() {
         for (Edge e : getEdges()) e.setValidity(true);
     }
