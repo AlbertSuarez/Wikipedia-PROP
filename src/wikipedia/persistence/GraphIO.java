@@ -47,7 +47,6 @@ public class GraphIO {
 			if (!g.hasNode(nj)) g.addNode(nj);
 			g.addEdge(e);
 		}
-		cin.close();
 		return g;
 	}
 
@@ -92,6 +91,7 @@ public class GraphIO {
 		Map<String, ONode> nodeMap = new LinkedHashMap<String, ONode>();
 		while (cin.hasNext()) {
 			String name1 = cin.next();    // Read name1
+			if(name1.equals("-1"))break;
 			String type1 = cin.next();    // Read type1 (cat or page)
 			String linkType = cin.next(); // Read linkType (CsupC, Csubc, CP, PA)
 			String name2 = cin.next();    // Read name2
@@ -126,7 +126,6 @@ public class GraphIO {
 			if (!g.hasNode(node2)) g.addNode(node2);
 			g.addEdge(e);
 		}
-		cin.close();
 		print("Node count: " + g.getOrder() + "\nEdge count: " + g.getEdgeCount());
 		return g;
 
@@ -138,28 +137,26 @@ public class GraphIO {
 		Collection<Edge> edgeSet = g.getEdges();
 		for (Edge e: edgeSet) {
 			OEdge oe = (OEdge)e;
-			if (oe.isValid()) {
-				ONode node1 = (ONode)e.getNode();
-				ONode node2 = (ONode)e.getNeighbor(node1);
+			ONode node1 = (ONode)e.getNode();
+			ONode node2 = (ONode)e.getNeighbor(node1);
 
-				String[] wiki = new String[5];
-				wiki[0] = node1.getElement().getTitle();
-				wiki[1] = Element.toElementTypeString(node1.getElement().getElementType());
-				wiki[2] = OEdge.toEdgeTypeString(oe.getEdgeType());
-				wiki[3] = node2.getElement().getTitle();
-				wiki[4]	= Element.toElementTypeString(node2.getElement().getElementType());
-				print(wiki[0] + " " + wiki[1] + " " + wiki[2] + " " + wiki[3] + " " + wiki[4]);
-				String aux;
-				aux = wiki[0];
-				wiki[0] = wiki[3];
-				wiki[3] = aux;
-				aux = wiki[1];
-				wiki[1] = wiki[4];
-				wiki[4] = wiki[1];
-				if (wiki[2] == "CP")wiki[2] = "PC";
-				else wiki[2] = "CsubC";
-				print(wiki[0] + " " + wiki[1] + " " + wiki[2] + " " + wiki[3] + " " + wiki[4]);
-			}
+			String[] wiki = new String[5];
+			wiki[0] = node1.getElement().getTitle();
+			wiki[1] = Element.toElementTypeString(node1.getElement().getElementType());
+			wiki[2] = OEdge.toEdgeTypeString(oe.getEdgeType());
+			wiki[3] = node2.getElement().getTitle();
+			wiki[4]	= Element.toElementTypeString(node2.getElement().getElementType());
+			print(wiki[0] + " " + wiki[1] + " " + wiki[2] + " " + wiki[3] + " " + wiki[4]);
+			String aux;
+			aux = wiki[0];
+			wiki[0] = wiki[3];
+			wiki[3] = aux;
+			aux = wiki[1];
+			wiki[1] = wiki[4];
+			wiki[4] = wiki[1];
+			if (wiki[2] == "CP")wiki[2] = "PC";
+			else wiki[2] = "CsubC";
+			print(wiki[0] + " " + wiki[1] + " " + wiki[2] + " " + wiki[3] + " " + wiki[4]);
 		}
 	}
 
@@ -220,27 +217,25 @@ public class GraphIO {
 		File f = save();
 		for (Edge e: edgeSet) {
 			OEdge oe = (OEdge)e;
-			if (oe.isValid()) {
-				ONode node1 = (ONode)e.getNode();
-				ONode node2 = (ONode)e.getNeighbor(node1);
-				String[] wiki = new String[5];
-				wiki[0] = node1.getElement().getTitle();
-				wiki[1] = Element.toElementTypeString(node1.getElement().getElementType());
-				wiki[2] = OEdge.toEdgeTypeString(oe.getEdgeType());
-				wiki[3] = node2.getElement().getTitle();
-				wiki[4]	= Element.toElementTypeString(node2.getElement().getElementType());
-				writeWPline(wiki,f);
-				String aux;
-				aux = wiki[0];
-				wiki[0] = wiki[3];
-				wiki[3] = aux;
-				aux = wiki[1];
-				wiki[1] = wiki[4];
-				wiki[4] = wiki[1];
-				if (wiki[2] == "CP")wiki[2] = "PC";
-				else wiki[2] = "CsubC";
-				writeWPline(wiki,f);
-			}
+			ONode node1 = (ONode)e.getNode();
+			ONode node2 = (ONode)e.getNeighbor(node1);
+			String[] wiki = new String[5];
+			wiki[0] = node1.getElement().getTitle();
+			wiki[1] = Element.toElementTypeString(node1.getElement().getElementType());
+			wiki[2] = OEdge.toEdgeTypeString(oe.getEdgeType());
+			wiki[3] = node2.getElement().getTitle();
+			wiki[4]	= Element.toElementTypeString(node2.getElement().getElementType());
+			writeWPline(wiki,f);
+			String aux;
+			aux = wiki[0];
+			wiki[0] = wiki[3];
+			wiki[3] = aux;
+			aux = wiki[1];
+			wiki[1] = wiki[4];
+			wiki[4] = wiki[1];
+			if (wiki[2] == "CP")wiki[2] = "PC";
+			else wiki[2] = "CsubC";
+			writeWPline(wiki,f);
 		}
 	}
 

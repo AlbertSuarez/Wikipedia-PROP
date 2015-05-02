@@ -2,6 +2,8 @@ package wikipedia;
 
 import static wikipedia.utils.utils.*;
 
+import java.io.IOException;
+
 import wikipedia.domain.*;
 //import wikipedia.presentation.*;
 
@@ -19,7 +21,7 @@ public class Main
     }
  	
  	
-	public static void main(String[] args)
+	public static void main(String[] args) throws IOException
 	{
 		print("PROP - Wikipedia - Start main");
 		
@@ -28,7 +30,6 @@ public class Main
 		//pc.run();
 
 		DomainController dc = new DomainController();
-		dc.Run();
 		
 		print("welcome to the wikipedia project, select one of the following options by "
 				+ "writting it");
@@ -38,7 +39,8 @@ public class Main
 		 while (!s.equals("EXIT")) {
 	            switch(s) {
 	            	case "READ":
-	            		print("write on screen the graph you wanna enter in wikipedia format");
+	            		print("write on screen the graph you wanna enter in wikipedia format\n"
+	            				+ "Once you end, write \"-1\" to finish the input");
 	            		dc.readWPformat();
 	            		break;
 	            	case "LOAD":

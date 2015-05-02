@@ -14,13 +14,6 @@ public class DomainController
 	}
 
 	// Pre:  True
-	// Post: Load data with a external file.
-	public void Run(){
-		PersistenceController pc = new PersistenceController();
-		pc.load(wikipedia);
-	}
-
-	// Pre:  True
 	// Post: Implicit graph is read it with WP format.
 	public void readWPformat() {
 		wikipedia.setGraph(GraphIO.readGraphWPformat());

@@ -1,6 +1,7 @@
 package wikipedia.utils;
 import java.io.*;
 import java.util.ArrayList;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -39,17 +40,10 @@ public class utils
 	
 	// Pre:  True
 	// Post: Print with no line break
-	public static String readln() {
-		try {
-			BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
-			String s = read.readLine();
-			return s;
-		} 
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
-		
+	public static String readln() throws IOException {
+		BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
+		String s = read.readLine();
+		return s;
 	}
 	
 	
