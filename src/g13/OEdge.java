@@ -13,8 +13,8 @@ public class OEdge extends Edge
 	 * @author G13.2
 	 */
 	public enum EdgeType {
-		CsupC,         /**< Category to Category edge. */
-		CP             /**< Category to Page edge. */
+		CsupC,         /** Category to Category edge. */
+		CP             /** Category to Page edge. */
 	}
 
 	/**

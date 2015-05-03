@@ -37,7 +37,7 @@ DriverDomain:
 	@java -cp $(CLASSES) wikipedia.domain.DriverDomain
 
 doc:
-	@javadoc -private $(JAVA_TAGS) -d html -sourcepath src -subpackages wikipedia
+	@javadoc -private $(JAVA_TAGS) -d html -sourcepath src -classpath $(CLASSES) -subpackages wikipedia:g13
 
 classes:
 	@mkdir -p classes
