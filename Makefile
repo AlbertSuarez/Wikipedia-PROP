@@ -2,6 +2,8 @@
 
 .SUFFIXES: .java .class
 
+JAVA_TAGS = -tag pre:cm:"Precondition:"  -tag post:cm:"Postcondition:"
+
 ifeq ($(OS), Windows_NT)
 CLASSES = "classes;lib/guava-18.0.jar"
 else
@@ -35,7 +37,7 @@ DriverDomain:
 	@java -cp $(CLASSES) wikipedia.domain.DriverDomain
 
 doc:
-	@javadoc -private -d html -sourcepath src -subpackages wikipedia
+	@javadoc -private $(JAVA_TAGS) -d html -sourcepath src -subpackages wikipedia
 
 classes:
 	@mkdir -p classes

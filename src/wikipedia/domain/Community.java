@@ -27,7 +27,7 @@ public class Community {
 	/**
 	 * Add node to community
 	 * @param n The node to be added
-	 * <dt><b>Precondition:</b><dd> n is not in Community
+	 * @pre n is not in Community
 	 */
 	public void addNode(Node n)
 	{ 
@@ -46,7 +46,7 @@ public class Community {
 	/**
 	 * Erase node from community
 	 * @param n The node to be erased
-	 * <dt><b>Precondition:</b><dd> n is in Community
+	 * @pre n is in Community
 	 */
 	public void eraseNode(Node n)
 	{
