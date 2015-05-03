@@ -74,6 +74,7 @@ public class Community {
 	
 	/**
 	 * See if a node belongs to community
+	 * @param n The node
 	 * @return True if 'n' is in 'nodeSet', false alternatively.
 	 */
 	public boolean belongs(Node n)

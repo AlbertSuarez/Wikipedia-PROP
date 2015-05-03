@@ -18,6 +18,7 @@ public class Category extends Element
 
 	/**
 	 * Create a Category with title 'title'
+	 * @param title The title to set
 	 */
 	public Category(String title)
 	{

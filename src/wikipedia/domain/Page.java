@@ -18,6 +18,7 @@ public class Page extends Element
 	
 	/**
 	 * Create a Page with title 'title'
+	 * @param title The title to set
 	 */
 	public Page(String title)
 	{
