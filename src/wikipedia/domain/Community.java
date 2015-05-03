@@ -27,7 +27,7 @@ public class Community {
 	/**
 	 * Add node to community
 	 * @param n The node to be added
-	 * <dt><b>Precondition:</b><dd> n is not in Community
+	 * @pre n is not in Community
 	 */
 	public void addNode(Node n)
 	{ 
