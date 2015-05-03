@@ -34,6 +34,9 @@ DriverPersistence:
 DriverDomain:
 	@java -cp $(CLASSES) wikipedia.domain.DriverDomain
 
+doc:
+	@javadoc -d html -sourcepath src -subpackages wikipedia
+
 classes:
 	@mkdir -p classes
 
