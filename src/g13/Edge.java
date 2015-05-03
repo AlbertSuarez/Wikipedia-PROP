@@ -15,6 +15,7 @@ public abstract class Edge {
     private final Node n2;
     private double weight;
     private boolean valid; // For invalidating edges without deleting them
+    private final int hash; // Cached hash value
 
     /**
      * Creates a weighted edge between two nodes with weight w and validity v.
@@ -34,7 +35,7 @@ public abstract class Edge {
         setWeight(w);
         setValidity(valid);
 
-        if (m2.isGreater(m1)) {
+        if (m2.compareTo(m1) > 0) {
             n1 = m1;
             n2 = m2;
         }
@@ -42,6 +43,15 @@ public abstract class Edge {
             n1 = m2;
             n2 = m1;
         }
+
+        hash = computeHash();
+    }
+
+    private int computeHash() {
+        int hashC = n1.hashCode();
+        hashC = 31*hashC + n2.hashCode();
+
+        return hashC;
     }
 
     /**
@@ -143,9 +153,6 @@ public abstract class Edge {
      * @return returns a hash code value for this edge.
      */
     @Override public int hashCode() {
-        int hash = n1.hashCode();
-        hash = 31*hash + n2.hashCode();
-
         return hash;
     }
 

@@ -55,8 +55,8 @@ public class ONode extends Node
 	 * @param n the node to compare.
 	 * @return true if this node is greater than n, false alternatively.
 	 */
-	public boolean isGreater(Node n) {
-		return (this.toString()).compareTo(((ONode)n).toString()) > 0;
+	public int compareTo(Node n) {
+		return (this.toString()).compareTo(((ONode)n).toString());
 	}
 
 	/**
