@@ -1,8 +1,6 @@
 /**
- * @file DomainController.java
+ * Domain Controller Class
  * @author G13.2
- * @date 2 May 2015
- * @brief Domain Controller Class
  */
 
 package wikipedia.domain;
@@ -12,46 +10,49 @@ import static wikipedia.utils.utils.*;
 
 public class DomainController
 {
+	/**
+	 * Represents the domain package
+	 */
 	private WP wikipedia;
 
 	/**
-	 * @brief Creates a new DomainController
+	 * Creates a new DomainController
 	 */
 	public DomainController() {
 		wikipedia = new WP();
 	}
 
 	/**
-	 * @brief Reads with the WP format into the implicit graph
+	 * Reads with the WP format into the implicit graph
 	 */
 	public void readWPformat() {
 		wikipedia.setGraph(GraphIO.readGraphWPformat());
 	}
 	
 	/**
-	 * @brief Loads with the WP format into the implicit graph
+	 * Loads with the WP format into the implicit graph
 	 */
 	public void loadWP() {
 		wikipedia.setGraph(GraphIO.loadWP());
 	}
 	
 	/**
-	 * @brief Saves with the WP format from the implicit graph
+	 * Saves with the WP format from the implicit graph
 	 */
 	public void saveWP() {
 		GraphIO.saveWP(wikipedia.getGraph());
 	}
 
 	/**
-	 * @brief Writes with the WP format from the implicit graph
+	 * Writes with the WP format from the implicit graph
 	 */
 	public void writeWPformat() {
 		GraphIO.writeGraphWPformat(wikipedia.getGraph());
 	}
 
 	/**
-	 * @brief Applies the Newman-Girvan Algorithm to the implicit graph
-	 *        and saves it to the implicit CommunityCollection
+	 * Applies the Newman-Girvan Algorithm to the implicit graph
+	 * and saves it to the implicit CommunityCollection
 	 * @param nCom the number of Communities to split the graph into
 	 */
 	public void runNG(int nCom) {
@@ -73,7 +74,7 @@ public class DomainController
 	}
 
 	/**
-	 * @brief Prints the implicit CommunityCollection
+	 * Prints the implicit CommunityCollection
 	 */
 	public void printCC()
 	{

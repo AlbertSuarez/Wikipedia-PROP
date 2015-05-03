@@ -8,9 +8,26 @@ import java.io.InputStreamReader;
 
 import wikipedia.persistence.GraphIO;
 
+/**
+ * Driver Domain Class
+ * @author G13.2
+ */
+
 public class DriverDomain {
+	
+	/**
+	 * The string's representation of operation
+	 */
 	private static String op;
+	
+	/**
+	 * The used Buffered Reader
+	 */
     private static BufferedReader cin;
+    
+    /**
+     * The Option List
+     */
     private static final String[] OPTION_LIST = new String[] {
         "SET_TITLE", "GET_TITLE", "EQUALS_ELEMENT",
         "TO_CATEGORY", "TO_PAGE", "GET_ELEMENTTYPE",
@@ -27,22 +44,41 @@ public class DriverDomain {
    
     // FUNCIONS AUXILIARS
    
+    /**
+     * Print a String
+     * @param s String to be printed
+     */
     public static void print(String s) {
         System.out.println(s);
     }
 
+    /**
+     * Print a Integer
+     * @param x Integer to be printed
+     */
     public static void printInteger(int x) {
         print(Integer.toString(x));
     }
 
+    /**
+     * Print a Double
+     * @param x Double to be printed
+     */
     public static void printDouble(double x) {
         print(Double.toString(x));
     }
 
+    /**
+     * Print a Boolean
+     * @param x Boolean to be printed
+     */
     public static void printBoolean(boolean x) {
         print(Boolean.toString(x));
     }
     
+    /**
+     * Print Options
+     */
     public static void printOptions() {
         print("OPTION LIST:");
         int i = 0;
@@ -53,24 +89,47 @@ public class DriverDomain {
         print("END OF OPTION LIST\n");
     }
  
+    /**
+     * Print a Error
+     * @param s Error to be printed
+     */
     private static void printErr(String s) {
         print("!!! ERR: " + s);
     }
  
+    /**
+     * Read a String
+     * @return The read String 
+     * @throws IOException if you can't write the String
+     */
     public static String readString() throws IOException {
         return cin.readLine();
     }
-   
+
+    /**
+     * Read a Integer
+     * @return The read Integer 
+     * @throws IOException if you can't write the Integer
+     */
     public static int readInteger() throws IOException {
         return Integer.parseInt(readString());
     }
     
+    /**
+     * Read a Option
+     * @return The read Option 
+     * @throws IOException if you can't write the Option
+     */
     private static void readOption() throws IOException {
         print("\nEnter an option: ");
         op = readString();
     }
  
-   
+    /**
+     * The main method
+     * @param args Arguments of main
+     * @throws IOException if you can't write for the program
+     */
     public static void main(String args[]) throws IOException {
     	WP W = new WP();
         Community C = new Community();

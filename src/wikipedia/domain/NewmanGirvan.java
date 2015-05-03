@@ -1,30 +1,59 @@
-/**
- * @file NewmanGirvan.java
- * @author G13.2
- * @date 2 May 2015
- * @brief Newman-Girvan algorithm implementation
- */
-
 package wikipedia.domain;
-import wikipedia.persistence.*;
 import g13.*;
 import java.util.*;
 
+/**
+ * Newman-Girvan algorithm implementation
+ * @author G13.2
+ */
+
 public class NewmanGirvan implements Algorithm {
 
+	/**
+	 * CData private class
+	 * @author G13.2
+	 */
 	private class CData implements Comparable<CData> {
+		
+		/**
+		 * The distance
+		 */
 		private final double dist;
+		
+		/**
+		 * The identifier of Node
+		 */
 		private final int idNode;
 
+		/**
+		 * Create a parameterized CData
+		 * @param dist The distance
+		 * @param idNode The identifier
+		 */
 		public CData(double dist, int idNode) {
 			this.dist = dist;
 			this.idNode = idNode;
 		}
 
+		/**
+		 * Get the distance of Node
+		 * @return The distance of Node
+		 */
 		public double getDist() { return dist; }
 
+		/**
+		 * Get the identifier of Node
+		 * @return The identifier of Node
+		 */
 		public int getIdNode() { return idNode; }
 
+		/**
+		 * Compare two CData's
+		 * @param other The CData to compare
+		 * @return If the result is positive: implicit CData is greater than other;
+		 * it's negative: other is greater than implicit CData;
+		 * it's zero: they're equals
+		 */
 		@Override
 		public int compareTo(CData other) {
 			//ascending order
@@ -42,6 +71,14 @@ public class NewmanGirvan implements Algorithm {
 		}*/
 	}
 
+	/**
+	 * Put the nodes of connected component to community 
+	 * @param G The Graph where the nodes are
+	 * @param nodes The Nodes of the Graph
+	 * @param vist Indicate if the node are visited or not
+	 * @param i The index of the first node of the connected component
+	 * @return A community with nodes of the connected component
+	 */
 	private Community putToCollectionIt(Graph G, Node[] nodes, boolean[] vist, int i) {
 		Stack<Integer> s = new Stack<Integer>();
 		Community c = new Community();
@@ -65,6 +102,12 @@ public class NewmanGirvan implements Algorithm {
 		return c;
 	}
 
+	/**
+	 * Put the nodes of Graph to community collection 
+	 * @param G The Graph where the nodes are
+	 * @param nodes The Nodes of the Graph
+	 * @return The community collection of the Graph
+	 */
 	private CommunityCollection putToCollection(Graph G, Node[] nodes) {
 		int nodeCount = G.getOrder();
 		CommunityCollection cc = new CommunityCollection();
@@ -80,7 +123,13 @@ public class NewmanGirvan implements Algorithm {
 		return cc;
 	}
 	
-
+	/**
+	 * Travel the nodes of connected component 
+	 * @param G The Graph where the nodes are
+	 * @param nodes The Nodes of the Graph
+	 * @param vist Indicate if the node are visited or not
+	 * @param i The index of the first node of the connected component
+	 */
 	private void getConnectedComponentCountIt(Graph G, Node[] nodes, boolean[] vist, int i) {
 		Stack<Integer> s = new Stack<Integer>();
 		vist[i] = true;
@@ -101,6 +150,12 @@ public class NewmanGirvan implements Algorithm {
 		}
 	}
 
+	/**
+	 * Get the number of connected components 
+	 * @param G The Graph where the nodes are
+	 * @param nodes The Nodes of the Graph
+	 * @return The number of connected components
+	 */
 	private int getConnectedComponentCount(Graph G, Node[] nodes) {
 		int nodeCount = G.getOrder();
 
@@ -117,6 +172,14 @@ public class NewmanGirvan implements Algorithm {
 		return count;
 	}
 
+	/**
+	 * The first step of Newman-Girvan algorithm 
+	 * @param G The Graph
+	 * @param nodes The Nodes of the Graph
+	 * @param d The distances from source to s
+	 * @param w The number shortest path from source to s
+	 * @param pila The integer stack that be used for the algorithm
+	 */
 	private void stage1_BFS(Graph G, Node[] nodes, double[] d, double[] w, int s, Stack<Integer> pila) {
 
 		int nodeCount = G.getOrder();
@@ -156,6 +219,17 @@ public class NewmanGirvan implements Algorithm {
 		}
 	}
 
+	/**
+	 * The second step of Newman-Girvan algorithm 
+	 * @param G The Graph
+	 * @param nodes The Nodes of the Graph
+	 * @param edgeMap The Map representation of Edge's Set
+	 * @param pila The integer stack that be used for the algorithm
+	 * @param d The distances from source to s
+	 * @param b Number shortest path between source to any vertex in graph pass through vertex i
+	 * @param w The number shortest path from source to s
+	 * @param arco The weight of the nodes
+	 */
 	private void stage2_betweenness(Graph G, Node[] nodes, Map<Edge, Integer> edgeMap, Stack<Integer> pila, double[] d,
 							double[] b, double[] w, double[] arco) {
 
@@ -180,6 +254,12 @@ public class NewmanGirvan implements Algorithm {
 		}
 	}
 
+	/**
+	 * Applies a iteration of the Newman-Girvan algorithm
+	 * @param G the Graph to apply the Newman-Girvan algorithm
+	 * @param nodes The nodes of the Graph
+	 * @param edges The edges of the Graph
+	 */
 	private void runNGAlgorithmIt(Graph G, Node[] nodes, Edge[] edges) {
 		int nodeCount = G.getOrder();
 		// Build the edgeId -> Edge hashtable (*TODO*)
@@ -226,9 +306,9 @@ public class NewmanGirvan implements Algorithm {
 	}
 
 	/**
-	 * @brief Applies the Newman-Girvan repeatedly to a graph until
-	 *        there are nCom's left or the algorithm can't be applied
-	 *        anymore, and returns the CommunityCollection of them
+	 * Applies the Newman-Girvan repeatedly to a graph until
+	 * there are nCom's left or the algorithm can't be applied
+	 * anymore, and returns the CommunityCollection of them
 	 * @param G the Graph to apply the Newman-Girvan algorithm
 	 * @param nCom the number of communities one wants to split the graph into
 	 * @return the CommunityCollection result
@@ -248,7 +328,7 @@ public class NewmanGirvan implements Algorithm {
 			runNGAlgorithmIt(G, nodes, edges);
 			ncc = getConnectedComponentCount(G, nodes);
 		}
-		GraphIO.saveDOTformat((OGraph)G, "graph_out.dot");
+		//GraphIO.saveDOTformat((OGraph)G, "graph_out.dot");
 		return putToCollection(G, nodes);
 	}
 };

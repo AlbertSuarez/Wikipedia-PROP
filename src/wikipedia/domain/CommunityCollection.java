@@ -3,69 +3,96 @@ package wikipedia.domain;
 import java.util.*;
 import g13.*;
 
+/**
+ * CommunityCollection class
+ * @author G13.2
+ */
 public class CommunityCollection {
 	
+	/**
+	 * Represents the community collection
+	 */
 	private ArrayList<Community> collection;
 	
-	// Pre:  True.
-	// Post: Create an empty CommunityCollection.
+	/**
+	 * Create a empty Community Collection
+	 */
 	public CommunityCollection()
 	{ 
 		collection = new ArrayList<Community>();
 	}
 	
-	// Pre:  Community c is not in the Community.
-	// Post: Community c is in the Community.
+	/**
+	 * Add community to collection
+	 * @param c The community to be added
+	 * @pre c is not in Collection
+	 */
 	public void addCommunity(Community c)
 	{
 		collection.add(c);
 	}
 	
-	// Pre:  True.
-	// Post: Returns a non-modificable set with all the Communities from the Collection.
+	/**
+	 * Get communities from collection
+	 * @return An array list of all Communities of the Collection
+	 */
 	public ArrayList<Community> getCommunities()
 	{
 		return collection;
 	}
 	
-	// Pre:  True
-	// Post: Returns the community 'i' of the collection.
+	/**
+	 * Get a determinate community from collection
+	 * @param i The community's index to be get
+	 * @return A determinate community of collection
+	 */
 	public Community getCommunity(int i)
 	{
 		return collection.get(i);
 	}
 	
-	// Pre:  True
-	// Post: Change the community of the collection that her position is 'i' to 'c'.
+	/**
+	 * Change a determinate community from collection for an other community
+	 * @param i The community's index to be change
+	 * @param c The new community
+	 */
 	public void setCommunity(int i, Community c)
 	{
 		collection.set(i,c);
 	}
 	
-	// Pre:	True
-	// Post: Returns number of communities
+	/**
+	 * Get the number of communities of the collection
+	 * @return The number of communities
+	 */
 	public int getCommunityCount()
 	{
 		return collection.size();
 	}
 	
-	// Pre:  Community c is in the Community.
-	// Post: Community c is not in the Community anymore.
+	/**
+	 * Erase community to collection
+	 * @param c The community to be erased
+	 * @pre c is in Collection
+	 */
 	public void eraseCommunity(Community c)
 	{
 		collection.remove(c);
 	}
 	
-	// Pre:  True.
-	// Post: Collection is empty.
+	/**
+	 * Reset the Community Collection
+	 */
 	public void resetCollection()
 	{
 		collection.clear();
 	}
 		
-	// Pre:  True.
-	// Post: If c belongs to CommunityCollection -> true
-	//		 Else -> false
+	/**
+	 * See if a node belongs to community
+	 * @param n The node
+	 * @return True if 'n' is in 'collection', false alternatively.
+	 */
 	public boolean belongs(Node n)
 	{
 		for (Community c : collection) {
@@ -74,8 +101,9 @@ public class CommunityCollection {
 		return false;
 	}
 	
-	// Pre: True
-	// Post: Print the community collection
+	/**
+	 * Print all communities.
+	 */
 	public void printCollection()
 	{
 		int i = 1;
