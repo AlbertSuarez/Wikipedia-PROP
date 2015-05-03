@@ -1,8 +1,3 @@
-/**
-* @mainpage Wikipedia - PROP Project
-* This is the documentation of the PROP Project: Wikipedia
-*/
-
 package wikipedia;
 
 import static wikipedia.utils.utils.*;
@@ -18,18 +13,28 @@ import wikipedia.domain.*;
  */
 public class Main
 {	
-	 private static final String[] OPTION_LIST = new String[] {
+	/**
+	 * The Option List.
+	 */
+	private static final String[] OPTION_LIST = new String[] {
 	        "READ", "LOAD", "COMMUNITY_DETECTION", "PRINT_CC", "PRINT_WP",
 	        "SAVE","PRINT_OPTION_LIST", "EXIT"
 	    };
 	 
+	/**
+	 * Print Options
+	 */
  	private static void printOptions() {
         print("OPTION LIST:");
         for (String option : OPTION_LIST) print("* " + option);
         print("END OF OPTION LIST\n");
     }
  	
- 	
+    /**
+     * The main method
+     * @param args Arguments of main
+     * @throws IOException if you can't write for the program
+     */
 	public static void main(String[] args) throws IOException
 	{
 		print("PROP - Wikipedia - Start main");

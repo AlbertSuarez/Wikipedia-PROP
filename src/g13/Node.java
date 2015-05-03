@@ -9,6 +9,7 @@ package g13;
  *  contain data like an article's content or a parliament member's information,
  *  as it could not be retrieved. A translation must be done instead in another
  *  class (graph class maybe) from node identifiers to node data.
+ * @author G13.1
  */
 public abstract class Node implements Comparable<Node> {
 

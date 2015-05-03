@@ -1,15 +1,22 @@
 package wikipedia.presentation;
 
+/**
+ * The Controller of Presentation Package
+ * @author G13.2
+ */
 public class PresentationController
 {
-	// Pre:  True
-	// Post: A empty PresentacionController is created.
+
+	/**
+	 * Create a PresentacionController
+	 */
 	public PresentationController() {
 
 	}
 
-	// Pre:  True
-	// Post: Execute the Presentacion Controller.
+	/**
+	 * Execute the Presentation Controller
+	 */
 	public void run() {
 
 	}

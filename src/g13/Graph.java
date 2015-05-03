@@ -24,7 +24,7 @@ import com.google.common.collect.Sets;
  *  their size. Using operations like <code>contains</code> is not recommended,
  *  as its cost is linear.
  *
- *
+ * @author G13.1 G13.3
  */
 public abstract class Graph {
 

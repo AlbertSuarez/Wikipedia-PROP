@@ -1,35 +1,36 @@
-/**
- * @file OEdge.java
- * @author G13.2
- * @date 2 May 2015
- * @brief Own Edge implementation
- */
-
 package g13;
 
+/**
+ * Own Edge implementation
+ * @author G13.2
+ */
 public class OEdge extends Edge
 {
 	// For WP visibility public
 
 	/**
-	 * @brief Represents a Wikipedia edge type
+	 * Represents a Wikipedia edge type.
+	 * @author G13.2
 	 */
 	public enum EdgeType {
-		CsupC,         /**< Category to Category edge */
-		CP             /**< Category to Page edge */
+		CsupC,         /**< Category to Category edge. */
+		CP             /**< Category to Page edge. */
 	}
 
+	/**
+	 * The Type of Edge.
+	 */
 	private EdgeType et;
 
 
 	// BEGIN CONSTRUCTORS --------------------
 
 	/**
-	 * @brief Creates a new OEdge
-	 * @param n1 one of the nodes of the edge
-	 * @param n2 the other node of the edge
-	 * @param w the weight of the edge
-	 * @param valid whether the edge will be valid or not
+	 * Creates a new OEdge.
+	 * @param n1 one of the nodes of the edge.
+	 * @param n2 the other node of the edge.
+	 * @param w the weight of the edge.
+	 * @param valid whether the edge will be valid or not.
 	 */
 	public OEdge(Node n1, Node n2, double w, boolean valid)
 	{
@@ -37,10 +38,10 @@ public class OEdge extends Edge
 	}
 	
 	/**
-	 * @brief Creates a new valid OEdge
-	 * @param n1 one of the nodes of the edge
-	 * @param n2 the other node of the edge
-	 * @param w the weight of the edge
+	 * Creates a new valid OEdge.
+	 * @param n1 one of the nodes of the edge.
+	 * @param n2 the other node of the edge.
+	 * @param w the weight of the edge.
 	 */
 	public OEdge(Node n1, Node n2, double w)
 	{
@@ -48,12 +49,12 @@ public class OEdge extends Edge
 	}
 
 	/**
-	 * @brief Creates a new OEdge
-	 * @param n1 one of the nodes of the edge
-	 * @param n2 the other node of the edge
-	 * @param w the weight of the edge
-	 * @param valid whether the edge will be valid or not
-	 * @param et the EdgeType
+	 * Creates a new OEdge.
+	 * @param n1 one of the nodes of the edge.
+	 * @param n2 the other node of the edge.
+	 * @param w the weight of the edge.
+	 * @param valid whether the edge will be valid or not.
+	 * @param et the EdgeType.
 	 */
 	public OEdge(Node n1, Node n2, double w, boolean valid, EdgeType et)
 	{
@@ -62,11 +63,11 @@ public class OEdge extends Edge
 	}
 	
 	/**
-	 * @brief Creates a new valid OEdge
-	 * @param n1 one of the nodes of the edge
-	 * @param n2 the other node of the edge
-	 * @param w the weight of the edge
-	 * @param et the EdgeType
+	 * Creates a new valid OEdge.
+	 * @param n1 one of the nodes of the edge.
+	 * @param n2 the other node of the edge.
+	 * @param w the weight of the edge.
+	 * @param et the EdgeType.
 	 */
 	public OEdge(Node n1, Node n2, double w, EdgeType et)
 	{
@@ -75,9 +76,9 @@ public class OEdge extends Edge
 	}
 	
 	/**
-	 * @brief Creates a new valid OEdge with weight 1
-	 * @param n1 one of the nodes of the edge
-	 * @param n2 the other node of the edge
+	 * Creates a new valid OEdge with weight 1.
+	 * @param n1 one of the nodes of the edge.
+	 * @param n2 the other node of the edge.
 	 */
 	public OEdge(Node n1, Node n2)
 	{
@@ -85,10 +86,10 @@ public class OEdge extends Edge
 	}
 
 	/**
-	 * @brief Creates a new valid OEdge with weight 1
-	 * @param n1 one of the nodes of the edge
-	 * @param n2 the other node of the edge
-	 * @param et the EdgeType
+	 * Creates a new valid OEdge with weight 1.
+	 * @param n1 one of the nodes of the edge.
+	 * @param n2 the other node of the edge.
+	 * @param et the EdgeType.
 	 */
 	public OEdge(Node n1, Node n2, EdgeType et)
 	{
@@ -99,8 +100,8 @@ public class OEdge extends Edge
 	// END CONSTRUCTORS -----------------------
 	
 	/**
-	 * @brief Returns the edge type
-	 * @return the edge type
+	 * Returns the edge type.
+	 * @return the edge type.
 	 */
 	public EdgeType getEdgeType()
 	{
@@ -108,8 +109,8 @@ public class OEdge extends Edge
 	}
 	
 	/**
-	 * @brief Sets the edge type
-	 * @param et the edge type to set
+	 * Sets the edge type.
+	 * @param et the edge type to set.
 	 */
 	public void setEdgeType(EdgeType et)
 	{
@@ -117,8 +118,8 @@ public class OEdge extends Edge
 	}
 	
 	/**
-	 * @brief Returns the String representation of the Edge
-	 * @return the String representation of the Edge
+	 * Returns the String representation of the Edge.
+	 * @return the String representation of the Edge.
 	 */
 	@Override
 	public String toString()
@@ -129,9 +130,9 @@ public class OEdge extends Edge
 	}
 
 	/**
-	 * @brief Returns the String representation of the EdgeType
-	 * @param et the EdgeType to set
-	 * @return the String representation of the EdgeType
+	 * Returns the String representation of the EdgeType.
+	 * @param et the EdgeType to set.
+	 * @return the String representation of the EdgeType.
 	 */
 	public static String toEdgeTypeString(EdgeType et)
 	{
@@ -145,9 +146,9 @@ public class OEdge extends Edge
 	}
 
 	/**
-	 * @brief Returns an EdgeType from a String
-	 * @param s the String to get the EdgeType from
-	 * @return the EdgeType that the String represents
+	 * Returns an EdgeType from a String.
+	 * @param s the String to get the EdgeType from.
+	 * @return the EdgeType that the String represents.
 	 */
 	public static EdgeType toEdgeType(String s)
 	{

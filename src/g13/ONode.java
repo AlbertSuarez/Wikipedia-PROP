@@ -1,21 +1,21 @@
-/**
- * @file ONode.java
- * @author G13.2
- * @date 2 May 2015
- * @brief Own Node implementation
- */
-
 package g13;
 
 import wikipedia.domain.Element;
 
+/**
+ * Own Node implementation
+ * @author G13.2
+ */
 public class ONode extends Node
 {
+	/**
+	 * The element of Node.
+	 */
 	private Element e;
 	
 	/**
-	 * @brief Creates a new ONode
-	 * @param e element of the ONode
+	 * Creates a new ONode.
+	 * @param e element of the ONode.
 	 */
 	public ONode(Element e)
 	{
@@ -23,8 +23,8 @@ public class ONode extends Node
 	}
 	
 	/**
-	 * @brief Compares the specified object with this ONode for equality.
-	 * @param o object for the comparison
+	 * Compares the specified object with this ONode for equality.
+	 * @param o object for the comparison.
 	 * @return true if this node is equals than o, false alternatively.
 	 */
 	@Override public boolean equals(Object o)
@@ -34,7 +34,8 @@ public class ONode extends Node
 	}
 	
 	/**
-	 * @brief Returns a hash code value for this Node.
+	 * Returns a hash code value for this Node.
+	 * @return The hashCode of ONode.
 	 */
 	@Override public int hashCode()
 	{
@@ -43,7 +44,8 @@ public class ONode extends Node
 	}
 	
 	/**
-	 * @brief Returns a string representation of this Node.
+	 * Returns a string representation of this Node.
+	 * @return The string representation of this Node.
 	 */
 	@Override public String toString()
 	{
@@ -51,7 +53,7 @@ public class ONode extends Node
 	}
 	
 	/**
-	 * @brief Returns whether this Node is greater than the parameter node.
+	 * Returns whether this Node is greater than the parameter node.
 	 * @param n the node to compare.
 	 * @return true if this node is greater than n, false alternatively.
 	 */
@@ -60,7 +62,8 @@ public class ONode extends Node
 	}
 
 	/**
-	 * @brief Returns the element of implicit ONode.
+	 * Returns the element of implicit ONode.
+	 * @return The element of implicit ONode.
 	 */
 	public Element getElement()
 	{

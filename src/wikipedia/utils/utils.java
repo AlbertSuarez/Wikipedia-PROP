@@ -5,41 +5,56 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+/**
+ * Utils class
+ * @author G13.2
+ */
 public class utils
 {
 	
-	
-	// Pre:  True
-	// Post: Print 'obj' with a newline
+	/**
+	 * Print with a newline
+	 * @param obj Object to be printed
+	 */
 	public static void print(Object obj)
 	{
 		System.out.println(obj);
 	}
 	
-	// Pre:  True
-	// Post: Print a newline by itself
+	/**
+	 * Print with a newline by itself
+	 */
 	public static void print()
 	{
 		System.out.println();
 	}
 	
 	
-	// Pre:  True
-	// Post: Print with no line break
+	/**
+	 * Print with a no line break
+	 * @param obj Object to be printed
+	 */
 	public static void printnb(Object obj)
 	{
 		System.out.print(obj);
 	}
 	
 	
-	// Pre:  True
-	// Post: The new Java SE5 printf() (from C)
+	/**
+	 * The new Java SE5 printf()
+	 * @param format The format to print
+	 * @param args The arguments to print
+	 * @return The result of print
+	 */
 	public static PrintStream printf(String format, Object... args) {
 		return System.out.printf(format, args);
 	}
 	
-	// Pre:  True
-	// Post: Print with no line break
+	/**
+	 * Read with line break
+	 * @return The read String
+	 * @throws IOException if you can't write the String
+	 */
 	public static String readln() throws IOException {
 		BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
 		String s = read.readLine();
@@ -47,8 +62,12 @@ public class utils
 	}
 	
 	
-	//Pre: Exists a file named from file
-	//Post: s contains the first line of the file named from file
+	/**
+	 * Read a String
+	 * @param s Contains the first line of the file named from file
+	 * @param file The file
+	 * @pre Exists a file named from file
+	 */
 	public static void read(String s,String file){
 		try{
 			FileReader lector=new FileReader(file);
@@ -61,9 +80,12 @@ public class utils
 		}
 	}
 
-	
-	//Pre: Exists a file named from file
-	//Post: s contains as much strings as lines of the WP, each string contains one line
+	/**
+	 * Read a String with WP format
+	 * @param s Contains as much strings as lines of the WP, each string contains one line
+	 * @param file The file
+	 * @pre Exists a file named from file
+	 */
 	public static void readWP(ArrayList<String> s,File file){
 		try{
 			FileReader lector=new FileReader(file);
@@ -79,9 +101,11 @@ public class utils
 		}
 	}
 		
-	
-	//Pre:
-	//Post: s has been added to the data file
+	/**
+	 * Write a String
+	 * @param s Has been added to the data file
+	 * @param file The file
+	 */
 	public static void write(String s, String file) {
 		try {
 			//creamos o abrimos acceso a fichero txt
@@ -97,9 +121,12 @@ public class utils
 		}
 	}
 	
-	
-	//Pre: s contains a WP line
-	//Post: the line contained in has been added to the data file
+	/**
+	 * Write a String with WP format
+	 * @param s The line contained in has been added to the data file
+	 * @param file The file
+	 * @pre s contains a WP line
+	 */
 	public static void writeWPline(String[] s, File file) {
 		try {
 			//creamos o abrimos acceso a fichero txt
@@ -116,8 +143,10 @@ public class utils
 		}
 	}
 	
-	//PRE:
-	//POST:
+	/**
+	 * Choose a file
+	 * @return A file
+	 */
 	public static File Choose(){
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
@@ -132,8 +161,10 @@ public class utils
 		return null;
 	}
 	
-	//pre:
-	//post
+	/**
+	 * Save to file
+	 * @return A file
+	 */
 	public static File save(){
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));

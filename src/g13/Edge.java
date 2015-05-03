@@ -3,6 +3,7 @@ package g13;
 /**
  * Edge class representing undirected weighted graph edges.
  * Created mainly by Albert Segarra with some contributions by Miquel Jubert.
+ * @author G13.1 G13.3
  */
 public abstract class Edge {
 

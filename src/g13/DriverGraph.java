@@ -6,20 +6,52 @@ import java.io.InputStreamReader;
 
 import wikipedia.domain.*;
 
+/**
+ * Driver Graph Class
+ * @author G13.2 G13.1
+ */
 public class DriverGraph {
 
+	/**
+	 * NodePair Private Class
+	 * @author G13.1
+	 */
     private static class NodePair {
+    	
+    	/**
+    	 * The first node of pair.
+    	 */
         public Node first;
+        
+        /**
+         * The second node of pair.
+         */
         public Node second;
 
+        /**
+         * Create a Node Pair
+         * @param first The first node
+         * @param second The second node
+         */
         public NodePair(Node first, Node second) {
             this.first = first;
             this.second = second;
         }
     }
 
+	/**
+	 * The string's representation of operation
+	 */
     private static String op;
+    
+	/**
+	 * The used Buffered Reader
+	 */
     private static BufferedReader cin;
+    
+    /**
+     * The Option List
+     */
     private static final String[] OPTION_LIST = new String[] {
             "ADD_NODE", "REMOVE_NODE", "ADD_EDGE", "REMOVE_EDGE",
             "HAS_EDGE", "HAS_VALID_EDGE", "HAS_NODE", "GET_ORDER",
@@ -32,48 +64,96 @@ public class DriverGraph {
 
     };
 
+    /**
+     * Print a String
+     * @param s String to be printed
+     */
     public static void print(String s) {
         System.out.println(s);
     }
 
+    /**
+     * Print a Integer
+     * @param x Integer to be printed
+     */
     public static void printInteger(int x) {
         print(Integer.toString(x));
     }
 
+    /**
+     * Print a Double
+     * @param x Double to be printed
+     */
     public static void printDouble(double x) {
         print(Double.toString(x));
     }
 
+    /**
+     * Print a Boolean
+     * @param x Boolean to be printed
+     */
     public static void printBoolean(boolean x) {
         print(Boolean.toString(x));
     }
 
+    /**
+     * Print Options
+     */
     public static void printOptions() {
         print("OPTION LIST:");
         for (String option : OPTION_LIST) print("* " + option);
         print("END OF OPTION LIST\n");
     }
 
+    /**
+     * Print a Error
+     * @param s Error to be printed
+     */
     private static void printErr(String s) {
         print("!!! ERR: " + s);
     }
 
+    /**
+     * Read a Boolean
+     * @return The read Boolean 
+     * @throws IOException if you can't write the Boolean
+     */
     public static boolean readBoolean() throws IOException {
         return Boolean.parseBoolean(readString());
     }
 
+    /**
+     * Read a Integer
+     * @return The read Integer 
+     * @throws IOException if you can't write the Integer
+     */
     public static int readInteger() throws IOException {
         return Integer.parseInt(readString());
     }
     
+    /**
+     * Read a String
+     * @return The read String 
+     * @throws IOException if you can't write the String
+     */
     public static String readString() throws IOException {
         return cin.readLine();
     }
     
+    /**
+     * Read a Double
+     * @return The read Double 
+     * @throws IOException if you can't write the Double
+     */
     public static double readDouble() throws IOException {
         return Double.parseDouble(readString());
     }
     
+    /**
+     * The main method
+     * @param args Arguments of main
+     * @throws IOException if you can't write for the program
+     */
     public static void main(String args[]) throws IOException {
         OGraph G = new OGraph();
         cin = new BufferedReader(new InputStreamReader(System.in));
@@ -181,6 +261,11 @@ public class DriverGraph {
         }
     }
 
+    /**
+     * Read a NodePair
+     * @return The read NodePair 
+     * @throws IOException if you can't write the NodePair
+     */
     private static NodePair readNodePair() throws IOException {
         print("Enter the first node:\n");
         ONode n1 = readNode();
@@ -189,6 +274,11 @@ public class DriverGraph {
         return new NodePair(n1, n2);
     }
 
+    /**
+     * Read a OEdge
+     * @return The read OEdge 
+     * @throws IOException if you can't write the OEdge
+     */
     private static OEdge readEdge() throws IOException {
         NodePair e = readNodePair();
         print("Enter the edge weight (double): ");
@@ -197,6 +287,11 @@ public class DriverGraph {
         return new OEdge(e.first, e.second, w, true, OEdge.toEdgeType(readString()));
     }
 
+    /**
+     * Read a ONode
+     * @return The read ONode 
+     * @throws IOException if you can't write the ONode
+     */
     private static ONode readNode() throws IOException {
     	print("Enter the type of Node: Category or Page:");
     	Element e = new Element(){};
@@ -208,6 +303,10 @@ public class DriverGraph {
         return new ONode(e);
     }
 
+    /**
+     * Read a Option
+     * @throws IOException if you can't write the Option
+     */
     private static void readOption() throws IOException {
         print("\nEnter an option: ");
         op = readString();
