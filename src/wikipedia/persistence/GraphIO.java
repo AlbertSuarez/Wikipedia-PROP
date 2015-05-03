@@ -1,10 +1,3 @@
-/**
- * @file GraphIO.java
- * @author G13.2
- * @date 2 May 2015
- * @brief Graph loading/saving helping routines
- */
-
 package wikipedia.persistence;
 import wikipedia.domain.*;
 import g13.*;
@@ -14,18 +7,21 @@ import static wikipedia.utils.utils.*;
 import java.util.*;
 
 /**
- * @class GraphIO
- * @brief Graph Input/Output utility
+ * Graph loading/saving helping routines
+ * @author G13.2
  */
 public final class GraphIO {
 
+	/**
+	 * Create a GraphIO
+	 */
 	private GraphIO() {
 		// Utility classes should always be final and have a private constructor
 	}
 
 	/**
-	 * @brief Reads an OGraph with the WP format from the standard input
-	 * @returns the read OGraph
+	 * Reads an OGraph with the WP format from the standard input
+	 * @return the read OGraph
 	 */
 	public static OGraph readGraphWPformat() {
 		OGraph g = new OGraph();
@@ -74,7 +70,7 @@ public final class GraphIO {
 	}
 
 	/**
-	 * @brief Writes an OGraph with the WP format to the standard output
+	 * Writes an OGraph with the WP format to the standard output
 	 * @param g the OGraph to write
 	 */
 	public static void writeGraphWPformat(OGraph g) {
@@ -105,8 +101,8 @@ public final class GraphIO {
 	}
 
 	/**
-	 * @brief Loads an OGraph with the WP format from an external file
-	 * @returns the loaded OGraph
+	 * Loads an OGraph with the WP format from an external file
+	 * @return the loaded OGraph
 	 */
 	public static OGraph loadWP() {
 		OGraph g = new OGraph();
@@ -157,7 +153,7 @@ public final class GraphIO {
 	}
 
 	/**
-	 * @brief Saves an OGraph with the WP format to an external file
+	 * Saves an OGraph with the WP format to an external file
 	 * @param g the OGraph to save
 	 */
 	public static void saveWP(OGraph g) {
@@ -188,7 +184,7 @@ public final class GraphIO {
 	}
 
 	/**
-	 * @brief Writes an OGraph with the DOT format to the standard output
+	 * Writes an OGraph with the DOT format to the standard output
 	 * @param g the OGraph to write
 	 */
 	public static void writeDOTformat(OGraph g) {
@@ -227,7 +223,7 @@ public final class GraphIO {
 	}
 
 	/**
-	 * @brief Saves an OGraph with the DOT format to an external file
+	 * Saves an OGraph with the DOT format to an external file
 	 * @param g the OGraph to save
 	 * @param file the filename to save the OGraph to
 	 */

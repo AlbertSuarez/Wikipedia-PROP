@@ -6,13 +6,23 @@ package wikipedia.domain;
  */
 public abstract class Element
 {
+	/**
+	 * Enumeration that describes the type of Element
+	 * @author G13.2
+	 */
 	public enum ElementType {
 		ELEMENT_PAGE,
 		ELEMENT_CATEGORY
 	}
 
+	/**
+	 * The type of Element
+	 */
 	protected ElementType et;
 
+	/**
+	 * The title of Element
+	 */
 	protected String title;
 
 	/**

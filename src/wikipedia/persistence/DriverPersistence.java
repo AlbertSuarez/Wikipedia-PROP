@@ -5,11 +5,27 @@ import g13.OGraph;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
- 
+
+/**
+ * Driver Persistence Class
+ * @author G13.2
+ */
+
 public class DriverPersistence {
-       
-        private static String op;
+    
+	/**
+	 * The string's representation of operation
+	 */
+	private static String op;
+	
+	/**
+	 * The used Buffered Reader
+	 */
     private static BufferedReader cin;
+    
+    /**
+     * The Option List
+     */
     private static final String[] OPTION_LIST = new String[] {
         "READ_WP_GRAPH", "WRITE_WP_GRAPH",
         "LOAD_GRAPH", "SAVE_GRAPH", "READ_AND_SAVE_GRAPH",
@@ -17,31 +33,56 @@ public class DriverPersistence {
     };
    
     // FUNCIONS AUXILIARS
-   
+
+    /**
+     * Print a String
+     * @param s String to be printed
+     */
     public static void print(String s) {
         System.out.println(s);
     }
- 
+    
+    /**
+     * Print Options
+     */
     public static void printOptions() {
         print("OPTION LIST:");
         for (String option : OPTION_LIST) print("* " + option);
         print("END OF OPTION LIST\n");
     }
- 
+
+    /**
+     * Print a Error
+     * @param s Error to be printed
+     */
     private static void printErr(String s) {
         print("!!! ERR: " + s);
     }
- 
+
+    /**
+     * Read a String
+     * @return The read String 
+     * @throws IOException if you can't write the String
+     */
     public static String readString() throws IOException {
         return cin.readLine();
     }
    
+    /**
+     * Read a Option
+     * @return The read Option 
+     * @throws IOException if you can't write the Option
+     */
     private static void readOption() throws IOException {
         print("\nEnter an option: ");
         op = readString();
     }
  
-   
+    /**
+     * The main method
+     * @param args Arguments of main
+     * @throws IOException if you can't write for the program
+     */
     public static void main(String args[]) throws IOException {
         OGraph G = new OGraph();
         cin = new BufferedReader(new InputStreamReader(System.in));
