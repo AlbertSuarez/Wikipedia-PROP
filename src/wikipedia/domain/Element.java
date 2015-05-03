@@ -1,5 +1,9 @@
 package wikipedia.domain;
 
+/**
+ * Element class
+ * @author G13.2
+ */
 public abstract class Element
 {
 	public enum ElementType {
