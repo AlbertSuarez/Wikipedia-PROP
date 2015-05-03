@@ -2,7 +2,6 @@ package wikipedia.domain;
 
 public abstract class Element
 {
-	// For WP visibility public
 	public enum ElementType {
 		ELEMENT_PAGE,
 		ELEMENT_CATEGORY
@@ -12,65 +11,87 @@ public abstract class Element
 
 	protected String title;
 
-	// Pre:  True.
-	// Post: Create a empty Element.
+	/**
+	 * Create a empty Element
+	 */
 	public Element()
 	{
 		title = null;
 	}
 
-	// Pre:  Element with title 'title' doesn't exist. 
-	// Post: Create a Element with title 'title'.	
+	/**
+	 * Create a Element with title 'title'
+	 * @param title The title to set
+	 */
 	public Element(String title)
 	{
 		this.title = title;
 	}
 
-	// Pre:  Element with title 'title' doesn't exist.
-	// Post: Set element wiht title 'title'.
+	/**
+	 * Set element with title 'title'
+	 * @param title The title to set
+	 */
 	public void setTitle(String title)
 	{
 		this.title = title;
 	}
 
-	// Pre:  True.
-	// Post: Retrun the title of Element.
+	/**
+	 * Getter of title
+	 * @return The title
+	 */
 	public String getTitle()
 	{
 		return title;
 	}
 
-	// Pre:  True
-	// Post: Return true if implicit object is equals with 'o', false alternately
+	/**
+	 * Compares the specified object with this element for equality.
+	 * Returns true if the specified object is also a element and the two elements
+	 * have the same title
+	 * @param o Object to be compared for equality
+	 * @return True if the specified object is equal to this element
+	 */
 	@Override public boolean equals(Object o) {
 		return o instanceof Element
 				&& (((Element)o).title.equals(this.title));
 	}
 
-	// Pre:  True
-	// Post: Return de string convertion of implicit Element
+	/**
+	 * String representation of Element
+	 * @return A string representation of the value of this Element object
+	 */
 	@Override public String toString()
 	{
 		return title;
 	}
 
-	// Pre:  True
-	// Post: Return the type of Element (Category or Page)
+	/**
+	 * Getter of type of Element (Category or Page)
+	 * @return ElementType object
+	 */
 	public ElementType getElementType()
 	{
 		return et;
 	}
 
-	// Pre:  True
-	// Post: Returns the ElementType representing the string
+	/**
+	 * String to ElementType
+	 * @param s String that indicates 'cat' or 'page'
+	 * @return The associated ElementType
+	 */
 	public static ElementType toElementType(String s)
 	{
 		if (s.equals("cat")) return ElementType.ELEMENT_CATEGORY;
 		else return ElementType.ELEMENT_PAGE;
 	}
 
-	// Pre:  True
-	// Post: Returns the string representation of the element type
+	/**
+	 * ElementType to String
+	 * @param et ElementType
+	 * @return The associated String
+	 */
 	public static String toElementTypeString(ElementType et)
 	{
 		if (et == ElementType.ELEMENT_CATEGORY) return "cat";
