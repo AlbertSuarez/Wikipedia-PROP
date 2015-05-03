@@ -178,6 +178,7 @@ public class NewmanGirvan implements Algorithm {
 	 * @param nodes The Nodes of the Graph
 	 * @param d The distances from source to s
 	 * @param w The number shortest path from source to s
+	 * @param s The node that applies BFS
 	 * @param pila The integer stack that be used for the algorithm
 	 */
 	private void stage1_BFS(Graph G, Node[] nodes, double[] d, double[] w, int s, Stack<Integer> pila) {

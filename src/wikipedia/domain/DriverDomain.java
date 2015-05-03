@@ -117,7 +117,6 @@ public class DriverDomain {
     
     /**
      * Read a Option
-     * @return The read Option 
      * @throws IOException if you can't write the Option
      */
     private static void readOption() throws IOException {

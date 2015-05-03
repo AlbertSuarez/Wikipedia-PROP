@@ -3,13 +3,6 @@
 * This is the documentation of the PROP Project: Wikipedia
 */
 
-/**
- * @file Main.java
- * @author G13.2
- * @date 2 May 2015
- * @brief Main class
- */
-
 package wikipedia;
 
 import static wikipedia.utils.utils.*;
@@ -19,6 +12,10 @@ import java.io.IOException;
 import wikipedia.domain.*;
 //import wikipedia.presentation.*;
 
+/**
+ * Main Class
+ * @author G13.2
+ */
 public class Main
 {	
 	 private static final String[] OPTION_LIST = new String[] {
