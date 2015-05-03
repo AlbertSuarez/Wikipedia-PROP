@@ -1,0 +1,42 @@
+MANUAL D'ÚS DEL PROGRAMA 'WIKIPEDIA'
+------------------------------------
+Per al bon funcionament del programa, abans de continuar cal verificar
+que l'ordinador disposa de la versió 1.8 de java.
+
+La carpeta 'Golden' conté un fitxer de text amb extensió .txt que conté
+el graf usat a l'hora d'establir una golden community collection. Serveix
+alhora com a archiu de prova a l'hora de carregar una wikipedia des d'arxiu.
+A la carpeta també es trova una representació gràfica d'aquest graf
+en format d'arbre per tal de poder visualitzar amb major claredat la
+distribució de les categories i les seves relacions.
+
+La carpeta JocsdeProva, conté els diferents jocs de prova creats especificament
+per a cada driver. Cada driver té assignat un fitxer de text amb una entrada i
+un altre amb la sortida corresponent a aquesta entrada.
+
+La carpeta lib consta d'una llibreria externa usada per la classe compartida graf.
+
+La carpeta src conté les diferents classes que formen el projecte. Consta de les
+classes específiques d'aquest projecte i de les classes compartides per els tres 
+grups. Les classes compartides incloses actualment en aquesta carpeta són: Graph,
+Node, Edge, CommunityCollection, Community i NewmanGirvan.
+
+Adicionalment, s'inclou un fitxer pdf anomenat uml_segona_entrega.pdf que
+conté l'esquema actual del projecte en format uml. Tamé s'incloubicat  un fitxer
+README que conté la llicencia del projecte i el fitxer present, "USAGE", que 
+explica qué són i com utilitzar els fitxers del projecte.
+
+Finalment, el projecte consta d'un arxiu MAKEFILE que compila i executa el programa
+d'una manera simple i efectiva. Per posar en funcionament el projecte, cal fer ús
+de la comanda 'make' en un terminal ubicat en el directori del projecte. Aquesta
+comanda compilarà el projecte. Un cop executada la comanda 'make', l'ús de 'make run'
+executarà el projecte desde la classe main, on es poden fer accions com llegir una
+wikipedia, imprimirla per pantalla, detectar comunitats o carregar i salvar la wikipedia 
+des d'un fitxer extern (aquestes útimes funcionalitats no s'inclouen en els jocs de prova
+degut a que l'arxiu a carregar va en funció de l'usuari. Recomanem que si es vol comprobar
+la funcionalitat, es carregui el fitxer de la carpeta golden). Altrament, des del terminal,
+també es pot fer ús de comandes com 'make DriverGraph', 'make DriverPersistence' o 
+'make Driver Domain' que executaran el programa des de el driver corresponent per comprobar
+certes funcionalitats. Adicionalment, s'han aderit funcions com 'make doc' que generarà la 
+documentació del projecte o 'make clean' que elimina els archius creats mitjançant una comanda
+make.
