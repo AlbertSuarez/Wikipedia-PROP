@@ -1,0 +1,51 @@
+ 
+Community num. 1
+1
+2
+3
+8
+Community num. 2
+7
+11
+10
+9
+Community num. 3
+4
+5
+12
+13
+14
+17
+18
+19
+16
+15
+Community num. 4
+26
+31
+35
+34
+30
+33
+32
+29
+20
+Community num. 5
+6
+21
+22
+23
+28
+37
+36
+27
+Community num. 6
+24
+39
+38
+Community num. 7
+25
+43
+40
+42
+41
