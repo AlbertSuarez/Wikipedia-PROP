@@ -10,68 +10,6 @@ import java.util.*;
 public class NewmanGirvan implements Algorithm {
 
 	/**
-	 * CData private class
-	 * @author G13.2
-	 */
-	private class CData implements Comparable<CData> {
-		
-		/**
-		 * The distance
-		 */
-		private final double dist;
-		
-		/**
-		 * The identifier of Node
-		 */
-		private final int idNode;
-
-		/**
-		 * Create a parameterized CData
-		 * @param dist The distance
-		 * @param idNode The identifier
-		 */
-		public CData(double dist, int idNode) {
-			this.dist = dist;
-			this.idNode = idNode;
-		}
-
-		/**
-		 * Get the distance of Node
-		 * @return The distance of Node
-		 */
-		public double getDist() { return dist; }
-
-		/**
-		 * Get the identifier of Node
-		 * @return The identifier of Node
-		 */
-		public int getIdNode() { return idNode; }
-
-		/**
-		 * Compare two CData's
-		 * @param other The CData to compare
-		 * @return If the result is positive: implicit CData is greater than other;
-		 * it's negative: other is greater than implicit CData;
-		 * it's zero: they're equals
-		 */
-		@Override
-		public int compareTo(CData other) {
-			//ascending order
-			return (int)(this.dist - other.dist);
-
-			//descending order
-			//return (int)(other.dist - this.dist);
-		}
-
-		/*@Override
-		public boolean equals(Object o) {
-			return o instanceof Data
-				&& (this.dist == (Data)o.dist)
-				&& (this.idNode == (Data)o.idNode);
-		}*/
-	}
-
-	/**
 	 * Put the nodes of connected component to community 
 	 * @param G The Graph where the nodes are
 	 * @param nodes The Nodes of the Graph
