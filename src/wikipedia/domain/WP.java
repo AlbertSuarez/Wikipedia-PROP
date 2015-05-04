@@ -154,7 +154,7 @@ public class WP
 	 * Returns if the Category with title 'title' exists in graph
 	 * @param title The title of the Category
 	 * @return True if the Category with title 'title' exists in graph,
-	 *         False otherwise
+	 *	   False otherwise
 	 */
 	public boolean catExists(String title)
 	{
@@ -167,7 +167,7 @@ public class WP
 	 * Returns if the Page with title 'title' exists in graph
 	 * @param title The title of the Page
 	 * @return True if the Page with title 'title' exists in graph,
-	 *         False otherwise
+	 *	   False otherwise
 	 */
 	public boolean pagExists(String title)
 	{

@@ -1,6 +1,6 @@
 package wikipedia.utils;
 import java.io.*;
-import java.util.ArrayList;
+import java.util.*;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -9,8 +9,28 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * Utils class
  * @author G13.2
  */
-public class utils
+public class Utils
 {
+
+	static public class cin {
+		private final static Scanner input = new Scanner(System.in);
+
+		private cin() {
+			// Utility classes should always be final and have a private constructor
+		}
+
+		public static boolean hasNext() {
+			return input.hasNext();
+		}
+
+		public static int nextInt() {
+			return input.nextInt();
+		}
+
+		public static String next() {
+			return input.next();
+		}
+	}
 	
 	/**
 	 * Print with a newline

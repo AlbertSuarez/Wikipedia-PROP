@@ -42,5 +42,9 @@ doc:
 classes:
 	@mkdir -p classes
 
+jar: all
+	#@unzip lib/guava-18.0.jar
+	@jar -cvfm Wikipedia.jar MANIFEST.MF lib/guava-18.0.jar -C classes .
+
 clean:
-	@rm -rf classes latex html
+	@rm -rf classes latex html Wikipedia.jar

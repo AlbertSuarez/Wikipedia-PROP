@@ -1,9 +1,11 @@
 package wikipedia;
 
-import static wikipedia.utils.utils.*;
+import static wikipedia.utils.Utils.*;
+import wikipedia.utils.Utils;
 
 import java.io.IOException;
-
+import java.io.File;
+import java.util.*;
 import wikipedia.domain.*;
 //import wikipedia.presentation.*;
 
@@ -17,24 +19,24 @@ public class Main
 	 * The Option List.
 	 */
 	private static final String[] OPTION_LIST = new String[] {
-	        "READ", "LOAD", "COMMUNITY_DETECTION", "PRINT_CC", "PRINT_WP",
-	        "SAVE","PRINT_OPTION_LIST", "EXIT"
-	    };
+		"READ", "LOAD", "COMMUNITY_DETECTION", "PRINT_CC", "PRINT_WP",
+		"SAVE","PRINT_OPTION_LIST", "EXIT"
+	};
 	 
 	/**
 	 * Print Options
 	 */
- 	private static void printOptions() {
-        print("OPTION LIST:");
-        for (String option : OPTION_LIST) print("* " + option);
-        print("END OF OPTION LIST\n");
-    }
- 	
-    /**
-     * The main method
-     * @param args Arguments of main
-     * @throws IOException if you can't write for the program
-     */
+	private static void printOptions() {
+		print("OPTION LIST:");
+		for (String option : OPTION_LIST) print("* " + option);
+		print("END OF OPTION LIST\n");
+	}
+
+	/**
+	* The main method
+	* @param args Arguments of main
+	* @throws IOException if you can't write for the program
+	*/
 	public static void main(String[] args) throws IOException
 	{
 		print("PROP - Wikipedia - Start main");
@@ -49,48 +51,50 @@ public class Main
 				+ "writting it");
 		printOptions();
 		print("\nEnter an option: ");
-		String s = readln();
-		 while (!s.equals("EXIT")) {
-	            switch(s) {
-	            	case "READ":
-	            		print("write on screen the graph you wanna enter in wikipedia format\n"
-	            				+ "Once you end, write \"-1\" to finish the input");
-	            		dc.readWPformat();
-	            		break;
-	            	case "LOAD":
-	            		print("select the file you want to load\n"
-	            				+ "**HINT: if you don't see the window to choose, maybe it's running on backwards");
-	            		dc.loadWP();
-	            		break;
-	            	case "COMMUNITY_DETECTION":
-	            		print("insert how many communities you want to detect");
-	            		s = readln();
-	            		dc.runNG(Integer.parseInt(s));
-	            		break;
-	            	case "PRINT_CC":
-	            		print("the community collection of WP is:");
-	            		dc.printCC();
-	            		break;
-	            	case "PRINT_WP":
-	            		print("This is the content of the wikipedia in wikipedia format");
-	            		dc.writeWPformat();
-	            		break;
-	            	case "SAVE":
-	            		print("choose where do you want to save the wikipedia\n "
-	            				+ "**HINT: if you don't see the window to choose, maybe it's running on backwards");
-	            		dc.saveWP();
-	            		break;
-	                case "PRINT_OPTION_LIST":
-	            		printOptions();
-	            		break;
-	                default:
-	                    print("Invalid operation name\n*** HINT: Enter " +
-	                            "PRINT_OPTION_LIST to list available options");
-	                    break;
-	            }
-	        print("\nEnter an option: ");
-	        s = readln();
-	        }
+		String s = null;
+
+		while (cin.hasNext()) {
+			s = Utils.cin.next();
+			if (s.equals("EXIT")) break;
+
+			switch(s) {
+			case "READ":
+				print("write on screen the graph you wanna enter in wikipedia format\n"
+						+ "Once you end, write \"-1\" to finish the input");
+				dc.readWPformat();
+				break;
+			case "LOAD":
+				print("select the file you want to load\n"
+						+ "**HINT: if you don't see the window to choose, maybe it's running on backwards");
+				dc.loadWP();
+				break;
+			case "COMMUNITY_DETECTION":
+				print("insert how many communities you want to detect");
+				dc.runNG(Utils.cin.nextInt());
+				break;
+			case "PRINT_CC":
+				print("the community collection of WP is:");
+				dc.printCC();
+				break;
+			case "PRINT_WP":
+				print("This is the content of the wikipedia in wikipedia format");
+				dc.writeWPformat();
+				break;
+			case "SAVE":
+				print("choose where do you want to save the wikipedia\n "
+						+ "**HINT: if you don't see the window to choose, maybe it's running on backwards");
+				dc.saveWP();
+				break;
+			case "PRINT_OPTION_LIST":
+				printOptions();
+				break;
+			default:
+			    print("Invalid operation name\n*** HINT: Enter " +
+				    "PRINT_OPTION_LIST to list available options");
+			    break;
+			}
+			print("\nEnter an option: ");
+		}
 		print("PROP - Wikipedia - End main");
 	}
 }

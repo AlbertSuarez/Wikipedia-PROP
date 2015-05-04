@@ -247,9 +247,9 @@ public class NewmanGirvan implements Algorithm {
 				if (d[v] < d[u]) {
 					double calc = w[v]/w[u]*b[u];
 					arco[uvArco] += calc; // fraccion de shortest paths
-					                                        // que pasan por la arista
-					b[v] += calc;		// fraccion de shortest paths
-										// que pasan por el vertice
+					                      // que pasan por la arista
+					b[v] += calc;         // fraccion de shortest paths
+					                      // que pasan por el vertice
 				}
 			}
 		}

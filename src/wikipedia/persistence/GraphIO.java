@@ -3,7 +3,8 @@ import wikipedia.domain.*;
 import g13.*;
 
 import java.io.File;
-import static wikipedia.utils.utils.*;
+import static wikipedia.utils.Utils.*;
+import wikipedia.utils.Utils;
 import java.util.*;
 
 /**
@@ -25,15 +26,14 @@ public final class GraphIO {
 	 */
 	public static OGraph readGraphWPformat() {
 		OGraph g = new OGraph();
-		Scanner cin = new Scanner(System.in);
 		Map<String, ONode> nodeMap = new LinkedHashMap<String, ONode>();
 		while (cin.hasNext()) {
-			String name1 = cin.next();    // Read name1
+			String name1 = Utils.cin.next();    // Read name1
 			if(name1.equals("-1"))break;
-			String type1 = cin.next();    // Read type1 (cat or page)
-			String linkType = cin.next(); // Read linkType (CsupC, Csubc, CP, PA)
-			String name2 = cin.next();    // Read name2
-			String type2 = cin.next();    // Read type2 (cat or page)
+			String type1 = Utils.cin.next();    // Read type1 (cat or page)
+			String linkType = Utils.cin.next(); // Read linkType (CsupC, Csubc, CP, PA)
+			String name2 = Utils.cin.next();    // Read name2
+			String type2 = Utils.cin.next();    // Read type2 (cat or page)
 
 			ONode node1 = nodeMap.get(name1);
 			if (node1 == null) {
@@ -85,7 +85,7 @@ public final class GraphIO {
 			wiki[1] = Element.toElementTypeString(node1.getElement().getElementType());
 			wiki[2] = OEdge.toEdgeTypeString(oe.getEdgeType());
 			wiki[3] = node2.getElement().getTitle();
-			wiki[4]	= Element.toElementTypeString(node2.getElement().getElementType());
+			wiki[4] = Element.toElementTypeString(node2.getElement().getElementType());
 			print(wiki[0] + " " + wiki[1] + " " + wiki[2] + " " + wiki[3] + " " + wiki[4]);
 			String aux;
 			aux = wiki[0];
@@ -168,7 +168,7 @@ public final class GraphIO {
 			wiki[1] = Element.toElementTypeString(node1.getElement().getElementType());
 			wiki[2] = OEdge.toEdgeTypeString(oe.getEdgeType());
 			wiki[3] = node2.getElement().getTitle();
-			wiki[4]	= Element.toElementTypeString(node2.getElement().getElementType());
+			wiki[4] = Element.toElementTypeString(node2.getElement().getElementType());
 			writeWPline(wiki,f);
 			String aux;
 			aux = wiki[0];
