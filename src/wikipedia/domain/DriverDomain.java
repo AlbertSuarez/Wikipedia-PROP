@@ -1,5 +1,8 @@
 package wikipedia.domain;
 
+import static wikipedia.utils.Utils.*;
+import wikipedia.utils.Utils;
+
 import g13.*;
 
 import java.io.BufferedReader;
@@ -19,11 +22,6 @@ public class DriverDomain {
 	 * The string's representation of operation
 	 */
 	private static String op;
-	
-	/**
-	 * The used Buffered Reader
-	 */
-	private static BufferedReader cin;
     
 	/**
 	* The Option List
@@ -103,7 +101,7 @@ public class DriverDomain {
 	* @throws IOException if you can't write the String
 	*/
 	public static String readString() throws IOException {
-		return cin.readLine();
+		return Utils.cin.next();
 	}
 
 	/**
@@ -112,7 +110,7 @@ public class DriverDomain {
 	* @throws IOException if you can't write the Integer
 	*/
 	public static int readInteger() throws IOException {
-		return Integer.parseInt(readString());
+		return Utils.cin.nextInt();
 	}
 
 	/**
@@ -134,7 +132,6 @@ public class DriverDomain {
 		Community C = new Community();
 		CommunityCollection CC = new CommunityCollection();
 		Element E = new Element(){};
-		cin = new BufferedReader(new InputStreamReader(System.in));
 
 		printOptions();
 

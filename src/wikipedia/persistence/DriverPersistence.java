@@ -1,4 +1,7 @@
 package wikipedia.persistence;
+
+import static wikipedia.utils.Utils.*;
+import wikipedia.utils.Utils;
  
 import g13.OGraph;
  
@@ -17,11 +20,6 @@ public class DriverPersistence {
 	 * The string's representation of operation
 	 */
 	private static String op;
-	
-	/**
-	 * The used Buffered Reader
-	*/
-	private static BufferedReader cin;
 
 	/**
 	* The Option List
@@ -65,7 +63,7 @@ public class DriverPersistence {
 	* @throws IOException if you can't write the String
 	*/
 	public static String readString() throws IOException {
-	return cin.readLine();
+		return Utils.cin.next();
 	}
 
 	/**
@@ -84,7 +82,6 @@ public class DriverPersistence {
      */
     public static void main(String args[]) throws IOException {
 	OGraph G = new OGraph();
-	cin = new BufferedReader(new InputStreamReader(System.in));
  
 	printOptions();
  
@@ -93,7 +90,7 @@ public class DriverPersistence {
 		switch(op) {
 			case "READ_WP_GRAPH":
 				print("Introduce un grafo con el formato de Wikipedia:");
-				//G = GraphIO.readGraphWPformat();
+				G = GraphIO.readGraphWPformat();
 				break;
 			case "WRITE_WP_GRAPH":
 				print("Escribe el grafo con el formato de Wikipedia:");
