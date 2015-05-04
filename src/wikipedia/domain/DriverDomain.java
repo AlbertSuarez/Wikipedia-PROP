@@ -176,7 +176,7 @@ public class DriverDomain {
 			case "ADD_NODE":
 				print("Anade un nodo a la comunidad implicita:");
 				print("Introduce el título del nodo (Categoria) a anadir:");
-				Node n = new ONode(new Category(readString()));
+				ONode n = new ONode(new Category(readString()));
 				C.addNode(n);
 				break;
 			case "ERASE_NODE":

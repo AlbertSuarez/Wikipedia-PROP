@@ -22,7 +22,7 @@ grups. Les classes compartides incloses actualment en aquesta carpeta són: Graph
 Node, Edge, CommunityCollection, Community i NewmanGirvan.
 
 Adicionalment, s'inclou un fitxer pdf anomenat uml_segona_entrega.pdf que
-conté l'esquema actual del projecte en format uml. Tamé s'incloubicat  un fitxer
+conté l'esquema actual del projecte en format uml. Tamé s'inclo ubicat un fitxer
 README que conté la llicencia del projecte i el fitxer present, "USAGE", que 
 explica qué són i com utilitzar els fitxers del projecte.
 
