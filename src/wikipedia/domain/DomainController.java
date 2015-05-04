@@ -7,9 +7,6 @@ package wikipedia.domain;
 import wikipedia.persistence.*;
 import g13.*;
 import static wikipedia.utils.Utils.*;
-import java.io.IOException;
-import java.io.File;
-import java.util.*;
 
 public class DomainController
 {

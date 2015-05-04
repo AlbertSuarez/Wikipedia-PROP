@@ -6,7 +6,6 @@ import java.util.*;
  * Newman-Girvan algorithm implementation
  * @author G13.2
  */
-
 public class NewmanGirvan implements Algorithm {
 
 	/**

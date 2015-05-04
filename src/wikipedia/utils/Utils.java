@@ -11,22 +11,44 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class Utils
 {
-
+	/**
+	 * cin Class
+	 * @author G13.2
+	 */
 	static public class cin {
+		
+		/**
+		 * Scanner
+		 */
 		private final static Scanner input = new Scanner(System.in);
 
+		/**
+		 * cin's Constructor
+		 */
 		private cin() {
 			// Utility classes should always be final and have a private constructor
 		}
 
+		/**
+		 * Read
+		 * @return True if read it correctly, false alternatively
+		 */
 		public static boolean hasNext() {
 			return input.hasNext();
 		}
 
+		/**
+		 * Read a Integer
+		 * @return The read Integer
+		 */
 		public static int nextInt() {
 			return input.nextInt();
 		}
 
+		/**
+		 * Read a String
+		 * @return The read String
+		 */
 		public static String next() {
 			return input.next();
 		}

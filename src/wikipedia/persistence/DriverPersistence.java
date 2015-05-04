@@ -1,19 +1,13 @@
 package wikipedia.persistence;
 
-import static wikipedia.utils.Utils.*;
 import wikipedia.utils.Utils;
- 
 import g13.OGraph;
- 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 /**
  * Driver Persistence Class
  * @author G13.2
  */
-
 public class DriverPersistence {
     
 	/**

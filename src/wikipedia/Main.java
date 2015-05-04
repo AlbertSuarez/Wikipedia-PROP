@@ -4,8 +4,6 @@ import static wikipedia.utils.Utils.*;
 import wikipedia.utils.Utils;
 
 import java.io.IOException;
-import java.io.File;
-import java.util.*;
 import wikipedia.domain.*;
 //import wikipedia.presentation.*;
 
