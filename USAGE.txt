@@ -26,6 +26,14 @@ conté l'esquema actual del projecte en format uml. Tamé s'inclo ubicat un fitxer
 README que conté la llicencia del projecte i el fitxer present, "USAGE", que 
 explica qué són i com utilitzar els fitxers del projecte.
 
+Per tal de facilitar la visualitació dels grafs, es pot aplicar l'eina DOT de Graphviz
+sobre la sortida dels mètodes que expressin el resultat en format DOT.
+Un example d'ús de l'eina DOT seria el següent (suposant que el fitxer que conté el graf
+en format dot es diu sortida.dot):
+	dot -Tps sortida.dot -o sortida.ps
+Aquesta comanda generarà un fitxer "sortida.ps", fàcilment visualitzable mitjançant la
+majoria de visualitzadors d'imatges.
+
 Finalment, el projecte consta d'un arxiu MAKEFILE que compila i executa el programa
 d'una manera simple i efectiva. Per posar en funcionament el projecte, cal fer ús
 de la comanda 'make' en un terminal ubicat en el directori del projecte. Aquesta
