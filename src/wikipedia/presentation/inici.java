@@ -67,7 +67,7 @@ public class inici extends JFrame {
 		btnWriteGraph.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				//llamada a ventana de introducción de texto 
+				//llamada a ventana de introduccion de texto 
 			}
 		});
 		btnWriteGraph.setFont(new Font("Tahoma", Font.BOLD, 13));
