@@ -5,21 +5,18 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.Color;
-
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.DropMode;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.LineBorder;
 
 public class write extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtIntroduceTheWikipedias;
-
 
 	/**
 	 * Create the frame.
@@ -33,20 +30,37 @@ public class write extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(22, 49, 392, 212);
-		contentPane.add(scrollPane);
+		/**
+		 * Panel of Text Area
+		 */
+		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Introduce the Wikipedia's Graph", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(51, 51, 51)));
+		panel.setBounds(7, 83, 886, 482);
+		contentPane.add(panel);
+		panel.setLayout(null);
 		
+		/**
+		 * Scroll of Text Area
+		 */
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(5, 17, 876, 460);
+		panel.add(scrollPane);
+		
+		/**
+		 * Text Area
+		 */
 		final JTextArea txtrFafas = new JTextArea();
 		scrollPane.setViewportView(txtrFafas);
-		txtrFafas.setFont(new Font("DejaVu Sans Mono", Font.PLAIN, 12));
+		txtrFafas.setFont(new Font("DejaVu Sans Mono", Font.PLAIN, 18));
 		txtrFafas.setDropMode(DropMode.INSERT);
 		
-		
-		
+		/**
+		 * Button Back
+		 */
 		JButton btnNewButton = new JButton("BACK");
+		btnNewButton.setFont(new Font("Droid Sans", Font.BOLD, 30));
 		btnNewButton.setLocation(12, 12);
-		btnNewButton.setSize(70, 25);
+		btnNewButton.setSize(230, 59);
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -58,7 +72,11 @@ public class write extends JFrame {
 		});
 		contentPane.add(btnNewButton);
 		
+		/**
+		 * Button Continue
+		 */
 		JButton btnContinue = new JButton("CONTINUE");
+		btnContinue.setFont(new Font("Droid Sans", Font.BOLD, 30));
 		btnContinue.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -67,16 +85,9 @@ public class write extends JFrame {
 				
 			}
 		});
-		btnContinue.setBounds(330, 12, 104, 25);
+		btnContinue.setBounds(658, 12, 230, 59);
 		contentPane.add(btnContinue);
 		
-		txtIntroduceTheWikipedias = new JTextField();
-		txtIntroduceTheWikipedias.setBackground(new Color(50, 205, 50));
-		txtIntroduceTheWikipedias.setFont(new Font("Liberation Mono", Font.BOLD, 11));
-		txtIntroduceTheWikipedias.setHorizontalAlignment(SwingConstants.CENTER);
-		txtIntroduceTheWikipedias.setText("Introduce the Wikipedia's Graph");
-		txtIntroduceTheWikipedias.setBounds(94, 15, 224, 19);
-		contentPane.add(txtIntroduceTheWikipedias);
-		txtIntroduceTheWikipedias.setColumns(10);
+		
 	}
 }

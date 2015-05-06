@@ -2,8 +2,6 @@ package wikipedia;
 
 
 import wikipedia.presentation.*;
-import java.awt.EventQueue;
-//import wikipedia.presentation.*;
 
 /**
  * Main Class
@@ -16,15 +14,7 @@ public class Main
 	* @param args Arguments of main
 	*/
 	public static void main(String[] args){
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					inici frame = new inici();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		PresentationController pc = new PresentationController();
+		pc.run();
 	}
 }

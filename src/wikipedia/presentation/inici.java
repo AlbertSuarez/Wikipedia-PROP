@@ -1,38 +1,23 @@
 package wikipedia.presentation;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
+import static wikipedia.utils.Utils.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextPane;
-
 import java.awt.Color;
 import java.awt.Font;
-
 import javax.swing.JButton;
-import javax.swing.JLabel;
-
-import java.awt.TextArea;
-import java.awt.Label;
-import java.awt.Panel;
-
-import javax.swing.ImageIcon;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import static wikipedia.utils.Utils.*;
-import javax.swing.JMenuBar;
-import java.awt.Scrollbar;
-import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class inici extends JFrame {
 
 	private JPanel contentPane;
+	
 	/**
 	 * Create the frame.
 	 */
@@ -48,6 +33,9 @@ public class inici extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		/**
+		 * Subtitle
+		 */
 		JTextPane txtpnToStartDoing = new JTextPane();
 		txtpnToStartDoing.setEditable(false);
 		txtpnToStartDoing.setFont(new Font("Arial", Font.PLAIN, 32));
@@ -56,6 +44,9 @@ public class inici extends JFrame {
 		txtpnToStartDoing.setBounds(142, 192, 583, 82);
 		contentPane.add(txtpnToStartDoing);
 		
+		/**
+		 * Button Load Graph
+		 */
 		JButton btnContinue = new JButton("LOAD GRAPH");
 		btnContinue.setBounds(142, 387, 216, 60);
 		contentPane.add(btnContinue);
@@ -70,6 +61,9 @@ public class inici extends JFrame {
 		});
 		btnContinue.setFont(new Font("Tahoma", Font.BOLD, 20));
 		
+		/**
+		 * Button Write Graph
+		 */
 		JButton btnWriteGraph = new JButton("WRITE GRAPH");
 		btnWriteGraph.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -86,6 +80,9 @@ public class inici extends JFrame {
 		btnWriteGraph.setBounds(509, 387, 216, 60);
 		contentPane.add(btnWriteGraph);
 		
+		/**
+		 * Title
+		 */
 		JTextPane txtpnWelcomeToThe = new JTextPane();
 		txtpnWelcomeToThe.setEditable(false);
 		txtpnWelcomeToThe.setFont(new Font("Dialog", Font.PLAIN, 56));
