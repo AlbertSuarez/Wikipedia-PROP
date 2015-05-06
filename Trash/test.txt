@@ -1,0 +1,7 @@
+1 cat CsupC 2 cat
+1 cat CsupC 3 cat
+1 cat CP p1 page
+2 cat CP p2 page
+2 cat CP p3 page
+2 cat CP p4 page
+3 cat CP p5 page
