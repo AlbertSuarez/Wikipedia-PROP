@@ -24,6 +24,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import static wikipedia.utils.Utils.*;
+import javax.swing.JMenuBar;
+import java.awt.Scrollbar;
+import javax.swing.JScrollPane;
 
 public class inici extends JFrame {
 
@@ -33,7 +36,9 @@ public class inici extends JFrame {
 	 */
 	public inici() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setResizable(false);
+		setVisible(true);
+		setBounds(200,200,900,600);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(152, 251, 152));
 		contentPane.setForeground(new Color(248, 248, 255));
@@ -42,6 +47,8 @@ public class inici extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnContinue = new JButton("LOAD GRAPH");
+		btnContinue.setBounds(251, 460, 131, 27);
+		contentPane.add(btnContinue);
 		btnContinue.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -52,26 +59,25 @@ public class inici extends JFrame {
 			}
 		});
 		btnContinue.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnContinue.setBounds(69, 177, 131, 34);
-		contentPane.add(btnContinue);
 		
 		JTextPane txtpnWelcomeToThe = new JTextPane();
-		txtpnWelcomeToThe.setFont(new Font("Arial", Font.PLAIN, 28));
-		txtpnWelcomeToThe.setEnabled(false);
+		txtpnWelcomeToThe.setEditable(false);
+		txtpnWelcomeToThe.setFont(new Font("Droid Sans", Font.PLAIN, 43));
 		txtpnWelcomeToThe.setBackground(new Color(255, 165, 0));
 		txtpnWelcomeToThe.setText("Welcome to the wikipedia project");
-		txtpnWelcomeToThe.setBounds(10, 43, 414, 47);
+		txtpnWelcomeToThe.setBounds(28, 42, 843, 113);
 		contentPane.add(txtpnWelcomeToThe);
 		
 		JButton btnWriteGraph = new JButton("WRITE GRAPH");
 		btnWriteGraph.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				//llamada a ventana de introduccion de texto 
+				dispose();
+				new write().setVisible(true);
 			}
 		});
 		btnWriteGraph.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnWriteGraph.setBounds(235, 177, 131, 34);
+		btnWriteGraph.setBounds(590, 436, 136, 27);
 		contentPane.add(btnWriteGraph);
 		
 		JTextPane txtpnToStartDoing = new JTextPane();
@@ -79,7 +85,7 @@ public class inici extends JFrame {
 		txtpnToStartDoing.setFont(new Font("Arial", Font.PLAIN, 16));
 		txtpnToStartDoing.setBackground(new Color(255, 165, 0));
 		txtpnToStartDoing.setText("To start doing things, please load a graph\r\n in wikipedia format or write it on screen");
-		txtpnToStartDoing.setBounds(69, 89, 297, 47);
+		txtpnToStartDoing.setBounds(285, 282, 329, 47);
 		contentPane.add(txtpnToStartDoing);
 	}
 }
