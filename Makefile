@@ -5,9 +5,9 @@
 JAVA_TAGS = -tag pre:cm:"Precondition:"  -tag post:cm:"Postcondition:"
 
 ifeq ($(OS), Windows_NT)
-CLASSES = "classes;lib/guava-18.0.jar"
+CLASSES = "classes;lib/guava-18.0.jar;lib/jgraphx.jar"
 else
-CLASSES = "classes:lib/guava-18.0.jar"
+CLASSES = "classes:lib/guava-18.0.jar:lib/jgraphx.jar"
 endif
 
 all: classes
@@ -32,7 +32,7 @@ DriverGraph:
 
 DriverPersistence:
 	@java -cp $(CLASSES) wikipedia.persistence.DriverPersistence
-	
+
 DriverDomain:
 	@java -cp $(CLASSES) wikipedia.domain.DriverDomain
 
