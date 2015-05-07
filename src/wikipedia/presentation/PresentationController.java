@@ -1,6 +1,9 @@
 package wikipedia.presentation;
 
 import java.awt.EventQueue;
+import java.io.File;
+import java.util.ArrayList;
+
 import wikipedia.domain.*;
 
 /**
@@ -12,7 +15,7 @@ public class PresentationController
 	/**
 	 * The Controller of Domain
 	 */
-	public DomainController dc;
+	public static DomainController dc;
 
 	/**
 	 * Create a PresentacionController
@@ -35,5 +38,13 @@ public class PresentationController
 				}
 			}
 		});
+	}
+	
+	public static void readWiki(ArrayList<String> a){
+		dc.readWPformat(a);
+	}
+	
+	public static void loadWiki(File f){
+		dc.loadWP(f);
 	}
 }

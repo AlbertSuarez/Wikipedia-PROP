@@ -1,13 +1,18 @@
 package wikipedia.presentation;
 
 import static wikipedia.utils.Utils.*;
+import static wikipedia.presentation.PresentationController.*;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextPane;
+
 import java.awt.Color;
 import java.awt.Font;
+
 import javax.swing.JButton;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -55,7 +60,10 @@ public class inici extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				File f = Choose();
 				if(f != null){
-					// lectura de grafo y llamada a ventana de operaciones
+					loadWiki(f);
+					setVisible(false); //you can't see me!
+					dispose();
+					new options().setVisible(true);
 				}
 			}
 		});

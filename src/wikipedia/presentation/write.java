@@ -4,15 +4,22 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+
 import java.awt.Color;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.DropMode;
+
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.*;
+
 import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
+
+import static wikipedia.presentation.PresentationController.*;
 
 public class write extends JFrame {
 
@@ -80,9 +87,13 @@ public class write extends JFrame {
 		btnContinue.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String wr = txtrFafas.toString();
-				// en wr tienes el texto escrito en el panel
-				
+				String wr = txtrFafas.getText();
+				if(wr != ""){
+					readWiki(new ArrayList<String>(Arrays.asList(wr.split("\n"))));
+					setVisible(false); //you can't see me!
+					dispose();
+					new options().setVisible(true);
+				}
 			}
 		});
 		btnContinue.setBounds(658, 12, 230, 59);

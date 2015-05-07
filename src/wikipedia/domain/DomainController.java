@@ -4,6 +4,10 @@
  */
 
 package wikipedia.domain;
+
+import java.io.*;
+import java.util.*;
+
 import wikipedia.persistence.*;
 import g13.*;
 import static wikipedia.utils.Utils.*;
@@ -25,15 +29,15 @@ public class DomainController
 	/**
 	 * Reads with the WP format into the implicit graph
 	 */
-	public void readWPformat() {
-		wikipedia.setGraph(GraphIO.readGraphWPformat());
+	public void readWPformat(ArrayList<String> wiki) {
+		wikipedia.setGraph(GraphIO.readGraphWPformat(wiki));
 	}
 	
 	/**
 	 * Loads with the WP format into the implicit graph
 	 */
-	public void loadWP() {
-		wikipedia.setGraph(GraphIO.loadWP());
+	public void loadWP(File f) {
+		wikipedia.setGraph(GraphIO.loadWP(f));
 	}
 	
 	/**

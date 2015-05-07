@@ -35,7 +35,7 @@ public class Main
 	*/
 	public static void main(String[] args) {
 
-		OGraph g = GraphIO.readGraphWPformat();
+		/*OGraph g = GraphIO.readGraphWPformat();
 		mxGraph mxg = g.toMxGraph();
 		mxGraphComponent mxgc = new mxGraphComponent(mxg);
 
@@ -66,8 +66,8 @@ public class Main
 		} finally {
 			System.out.println("Done!");
 		}*/
-
-		//PresentationController pc = new PresentationController();
-		//pc.run();
+		
+		PresentationController pc = new PresentationController();
+		pc.run();
 	}
 }
