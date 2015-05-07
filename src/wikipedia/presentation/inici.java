@@ -27,6 +27,7 @@ public class inici extends JFrame {
 	 * Create the frame.
 	 */
 	public inici() {
+		super("Wikipedia");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setVisible(true);

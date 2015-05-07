@@ -39,6 +39,7 @@ public class options extends JFrame {
 	 * Create the frame.
 	 */
 	public options() {
+		super("Wikipedia");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 200, 900, 600);
 		contentPane = new JPanel();

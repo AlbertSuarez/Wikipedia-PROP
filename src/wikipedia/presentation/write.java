@@ -29,6 +29,7 @@ public class write extends JFrame {
 	 * Create the frame.
 	 */
 	public write() {
+		super("Wikipedia");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 200, 900, 600);
 		contentPane = new JPanel();
