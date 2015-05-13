@@ -1,7 +1,9 @@
 package wikipedia.presentation;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -41,7 +43,10 @@ public class options extends JFrame {
 	public options() {
 		super("Wikipedia");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(200, 200, 900, 600);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int)screenSize.getWidth();
+		int height = (int)screenSize.getHeight();
+		setBounds((width/2)-450,(height/2)-300,900,600);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(152, 251, 152));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

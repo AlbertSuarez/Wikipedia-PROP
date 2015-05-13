@@ -9,7 +9,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextPane;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 import javax.swing.JButton;
 
@@ -31,7 +33,10 @@ public class inici extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setVisible(true);
-		setBounds(200,200,900,600);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int)screenSize.getWidth();
+		int height = (int)screenSize.getHeight();
+		setBounds((width/2)-450,(height/2)-300,900,600);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(152, 251, 152));
 		contentPane.setForeground(new Color(248, 248, 255));
