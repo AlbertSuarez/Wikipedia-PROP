@@ -22,22 +22,6 @@ public class options extends JFrame {
 	private JPanel contentPane;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					options frame = new options();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public options() {
@@ -49,6 +33,7 @@ public class options extends JFrame {
 		setBounds((width/2)-450,(height/2)-300,900,600);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(152, 251, 152));
+		contentPane.setForeground(new Color(248, 248, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);

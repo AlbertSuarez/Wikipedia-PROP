@@ -38,7 +38,8 @@ public class write extends JFrame {
 		int height = (int)screenSize.getHeight();
 		setBounds((width/2)-450,(height/2)-300,900,600);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.GREEN);
+		contentPane.setBackground(new Color(152, 251, 152));
+		contentPane.setForeground(new Color(248, 248, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
