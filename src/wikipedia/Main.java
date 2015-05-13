@@ -69,5 +69,18 @@ public class Main
 		
 		PresentationController pc = new PresentationController();
 		pc.run();
+		
+		/*print("Clique Percolation Maxim Algorithm");
+		DomainController dc = new DomainController();
+		dc.loadWP(Choose());
+		dc.runCPMaxim();
+		print("");
+		dc.printCC();
+		
+		print("NewmanGirvan Algorithm");
+		print("");
+		dc.runNG(15);
+		dc.printCC();
+		*/
 	}
 }

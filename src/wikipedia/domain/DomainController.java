@@ -76,6 +76,29 @@ public class DomainController
 		}
 		wikipedia.setCC(cc);
 	}
+	
+	/**
+	 * Applies the Clique Percolation Algorithm (slow version) to the implicit graph
+	 * and saves it to the implicit CommunityCollection
+	 * @param nCom the number of Communities to split the graph into
+	 */
+	public void runCPMaxim() {
+		CommunityCollection cc = wikipedia.applyCliquePercolationMaxim();
+		for (int i = 0; i < cc.getCommunityCount(); i++) {
+			Community c = cc.getCommunity(i);
+			Object nodes[] = c.getNodes().toArray();
+			for (int j = 0; j < nodes.length; ++j) {
+				ONode n = (ONode) nodes[j];
+				if (n.getElement().getElementType() == Element.ElementType.ELEMENT_PAGE) {
+					c.eraseNode(n);
+				}
+			}
+			
+			if (c.isEmpty()) { cc.eraseCommunity(c); --i;}
+			else cc.setCommunity(i, c);
+		}
+		wikipedia.setCC(cc);
+	}
 
 	/**
 	 * Prints the implicit CommunityCollection
