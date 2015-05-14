@@ -67,20 +67,38 @@ public class Main
 			System.out.println("Done!");
 		}*/
 		
-		PresentationController pc = new PresentationController();
-		pc.run();
+		//PresentationController pc = new PresentationController();
+		//pc.run();
 		
-		/*print("Clique Percolation Maxim Algorithm");
+
 		DomainController dc = new DomainController();
 		dc.loadWP(Choose());
-		dc.runCPMaxim();
+		
+		print("Clique Percolation Maxim Algorithm");
 		print("");
+		dc.runCPMaxim();
 		dc.printCC();
+		print("");
+		
+		print("4-Clique Percolation Algorithm");
+		print("");
+		dc.runCPFour();
+		dc.printCC();
+		print("");
+		
+		print("Louvain Algorithm");
+		print("");
+		dc.runLouvain();
+		dc.printCC();
+		print("");
 		
 		print("NewmanGirvan Algorithm");
 		print("");
 		dc.runNG(15);
 		dc.printCC();
-		*/
+		print("");
+		
+		
+		
 	}
 }

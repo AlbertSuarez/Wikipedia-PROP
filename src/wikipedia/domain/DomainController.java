@@ -60,46 +60,33 @@ public class DomainController
 	 * @param nCom the number of Communities to split the graph into
 	 */
 	public void runNG(int nCom) {
-		CommunityCollection cc = wikipedia.applyNewmanGirvan(nCom);
-		for (int i = 0; i < cc.getCommunityCount(); i++) {
-			Community c = cc.getCommunity(i);
-			Object nodes[] = c.getNodes().toArray();
-			for (int j = 0; j < nodes.length; ++j) {
-				ONode n = (ONode) nodes[j];
-				if (n.getElement().getElementType() == Element.ElementType.ELEMENT_PAGE) {
-					c.eraseNode(n);
-				}
-			}
-			
-			if (c.isEmpty()) { cc.eraseCommunity(c); --i;}
-			else cc.setCommunity(i, c);
-		}
-		wikipedia.setCC(cc);
+		wikipedia.setCC(erasePages(wikipedia.applyNewmanGirvan(nCom)));
 	}
 	
 	/**
 	 * Applies the Clique Percolation Algorithm (slow version) to the implicit graph
 	 * and saves it to the implicit CommunityCollection
-	 * @param nCom the number of Communities to split the graph into
 	 */
 	public void runCPMaxim() {
-		CommunityCollection cc = wikipedia.applyCliquePercolationMaxim();
-		for (int i = 0; i < cc.getCommunityCount(); i++) {
-			Community c = cc.getCommunity(i);
-			Object nodes[] = c.getNodes().toArray();
-			for (int j = 0; j < nodes.length; ++j) {
-				ONode n = (ONode) nodes[j];
-				if (n.getElement().getElementType() == Element.ElementType.ELEMENT_PAGE) {
-					c.eraseNode(n);
-				}
-			}
-			
-			if (c.isEmpty()) { cc.eraseCommunity(c); --i;}
-			else cc.setCommunity(i, c);
-		}
-		wikipedia.setCC(cc);
+		wikipedia.setCC(erasePages(wikipedia.applyCliquePercolationMaxim()));
+	}
+	
+	/**
+	 * Applies the Clique Percolation Algorithm (fast version) to the implicit graph
+	 * and saves it to the implicit CommunityCollection
+	 */
+	public void runCPFour() {
+		wikipedia.setCC(erasePages(wikipedia.applyCliquePercolationFour()));
 	}
 
+	/**
+	 * Applies the Louvain Algorithm (fast version) to the implicit graph
+	 * and saves it to the implicit CommunityCollection
+	 */
+	public void runLouvain() {
+		wikipedia.setCC(erasePages(wikipedia.applyLouvain()));
+	}
+	
 	/**
 	 * Prints the implicit CommunityCollection
 	 */
@@ -108,5 +95,27 @@ public class DomainController
 		CommunityCollection COM = wikipedia.getCC();
 		if (COM.getCommunities().isEmpty()) print("The community collection is empty.");
 		else COM.printCollection();
+	}
+	
+	/**
+	 * Erase pages of a Community Collection
+	 * @param cc The community collection with Pages and Categories
+	 * @return The community collection with only Categories
+	 */
+	private CommunityCollection erasePages(CommunityCollection cc) {
+		for (int i = 0; i < cc.getCommunityCount(); i++) {
+			Community c = cc.getCommunity(i);
+			Object nodes[] = c.getNodes().toArray();
+			for (int j = 0; j < nodes.length; ++j) {
+				ONode n = (ONode) nodes[j];
+				if (n.getElement().getElementType() == Element.ElementType.ELEMENT_PAGE) {
+					c.eraseNode(n);
+				}
+			}
+			
+			if (c.isEmpty()) { cc.eraseCommunity(c); --i;}
+			else cc.setCommunity(i, c);
+		}
+		return cc;
 	}
 }

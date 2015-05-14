@@ -116,7 +116,6 @@ public class CliqueMaxim implements Algorithm {
 		matrix = HashBasedTable.create();
 		ListIterator<HashSet<Node>> it = Cliques.listIterator();
 		int i = 0;
-		long kl = 1;
 		double kf = 1.0;
 
 		while (it.hasNext()) {
