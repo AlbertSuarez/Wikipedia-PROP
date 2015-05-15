@@ -23,6 +23,16 @@ public class WP
 	private Algorithm algoritmeNG;
 	
 	/**
+	 * The instance of the Clique Percolation (Slow version).
+	 */
+	private Algorithm algoritmeCPMaxim;
+	
+	/**
+	 * The instance of the Louvain.
+	 */
+	private Algorithm algoritmeLouvain;
+	
+	/**
 	 * Creates a new WP with an empty CommunityCollection and an empty Graph
 	 */
 	public WP()
@@ -30,6 +40,8 @@ public class WP
 		cc = new CommunityCollection();
 		graph = new OGraph();
 		algoritmeNG = new NewmanGirvan();
+		algoritmeCPMaxim = new CliqueMaxim();
+		algoritmeLouvain = new Louvain();
 	}
 
 	/**
@@ -78,6 +90,24 @@ public class WP
 		return algoritmeNG.runAlgorithm(graph, nCom);
 	}
 
+	/**
+	 * Applies the Clique Percolation algorithm to the graph (slow version)
+	 * @return The CommunityCollecion that Clique Percolation Algorithm produces
+	 */
+	public CommunityCollection applyCliquePercolationMaxim()
+	{
+		return algoritmeCPMaxim.runAlgorithm(graph, 0);
+	}
+	
+	/**
+	 * Applies the Louvain algorithm to the graph
+	 * @return The CommunityCollecion that Louvain Algorithm produces
+	 */
+	public CommunityCollection applyLouvain()
+	{
+		return algoritmeLouvain.runAlgorithm(graph, 0);
+	}
+	
 	/**
 	 * Returns the Category identified by a String
 	 * @param title The title of the Category to search for

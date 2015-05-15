@@ -4,7 +4,6 @@ import g13.*;
 
 import java.io.File;
 import static wikipedia.utils.Utils.*;
-import wikipedia.utils.Utils;
 import java.util.*;
 
 /**

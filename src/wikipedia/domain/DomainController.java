@@ -60,7 +60,41 @@ public class DomainController
 	 * @param nCom the number of Communities to split the graph into
 	 */
 	public void runNG(int nCom) {
-		CommunityCollection cc = wikipedia.applyNewmanGirvan(nCom);
+		wikipedia.setCC(erasePages(wikipedia.applyNewmanGirvan(nCom)));
+	}
+	
+	/**
+	 * Applies the Clique Percolation Algorithm (slow version) to the implicit graph
+	 * and saves it to the implicit CommunityCollection
+	 */
+	public void runCPMaxim() {
+		wikipedia.setCC(erasePages(wikipedia.applyCliquePercolationMaxim()));
+	}
+	
+	/**
+	 * Applies the Louvain Algorithm (fast version) to the implicit graph
+	 * and saves it to the implicit CommunityCollection
+	 */
+	public void runLouvain() {
+		wikipedia.setCC(erasePages(wikipedia.applyLouvain()));
+	}
+	
+	/**
+	 * Prints the implicit CommunityCollection
+	 */
+	public void printCC()
+	{
+		CommunityCollection COM = wikipedia.getCC();
+		if (COM.getCommunities().isEmpty()) print("The community collection is empty.");
+		else COM.printCollection();
+	}
+	
+	/**
+	 * Erase pages of a Community Collection
+	 * @param cc The community collection with Pages and Categories
+	 * @return The community collection with only Categories
+	 */
+	private CommunityCollection erasePages(CommunityCollection cc) {
 		for (int i = 0; i < cc.getCommunityCount(); i++) {
 			Community c = cc.getCommunity(i);
 			Object nodes[] = c.getNodes().toArray();
@@ -74,16 +108,6 @@ public class DomainController
 			if (c.isEmpty()) { cc.eraseCommunity(c); --i;}
 			else cc.setCommunity(i, c);
 		}
-		wikipedia.setCC(cc);
-	}
-
-	/**
-	 * Prints the implicit CommunityCollection
-	 */
-	public void printCC()
-	{
-		CommunityCollection COM = wikipedia.getCC();
-		if (COM.getCommunities().isEmpty()) print("The community collection is empty.");
-		else COM.printCollection();
+		return cc;
 	}
 }

@@ -4,7 +4,6 @@ import wikipedia.domain.Element;
 
 import java.util.*;
 import java.awt.Color;
-import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.view.mxGraph;
 import com.mxgraph.layout.mxIGraphLayout;
 import com.mxgraph.layout.hierarchical.mxHierarchicalLayout;

@@ -84,7 +84,7 @@ public class DriverPersistence {
 		switch(op) {
 			case "READ_WP_GRAPH":
 				print("Introduce un grafo con el formato de Wikipedia:");
-				G = GraphIO.readGraphWPformat();
+				//G = GraphIO.readGraphWPformat();
 				break;
 			case "WRITE_WP_GRAPH":
 				print("Escribe el grafo con el formato de Wikipedia:");
@@ -92,7 +92,7 @@ public class DriverPersistence {
 				break;
 			case "LOAD_GRAPH":
 				print("Selecciona el Archivo txt que contiene el grafo:");
-				G = GraphIO.loadWP();
+				//G = GraphIO.loadWP();
 				break;
 			case "SAVE_GRAPH":
 				print("Salva el grafo implicito en un fichero.");

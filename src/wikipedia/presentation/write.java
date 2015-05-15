@@ -4,13 +4,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
-
 import java.awt.Color;
-
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.DropMode;
-
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -23,6 +22,7 @@ import static wikipedia.presentation.PresentationController.*;
 
 public class write extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
 	/**
@@ -31,9 +31,13 @@ public class write extends JFrame {
 	public write() {
 		super("Wikipedia");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(200, 200, 900, 600);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int)screenSize.getWidth();
+		int height = (int)screenSize.getHeight();
+		setBounds((width/2)-450,(height/2)-300,900,600);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.GREEN);
+		contentPane.setBackground(new Color(152, 251, 152));
+		contentPane.setForeground(new Color(248, 248, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);

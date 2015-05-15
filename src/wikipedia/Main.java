@@ -1,24 +1,18 @@
 package wikipedia;
 
 import g13.*;
-import wikipedia.domain.*;
 import wikipedia.presentation.*;
 import wikipedia.persistence.*;
-
+import static wikipedia.utils.Utils.*;
 import java.io.File;
 import javax.imageio.ImageIO;
-
 import java.awt.Color;
 import java.awt.image.BufferedImage;
-import java.awt.Point;
-import java.awt.PointerInfo;
-import java.awt.MouseInfo;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import com.mxgraph.view.mxGraph;
 import com.mxgraph.util.mxCellRenderer;
-
 import javax.swing.*;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.model.mxCell;
@@ -35,9 +29,9 @@ public class Main
 	*/
 	public static void main(String[] args) {
 
-		/*OGraph g = GraphIO.readGraphWPformat();
-		mxGraph mxg = g.toMxGraph();
-		mxGraphComponent mxgc = new mxGraphComponent(mxg);
+		/*OGraph g = GraphIO.loadWP(Choose());
+		final mxGraph mxg = g.toMxGraph();
+		final mxGraphComponent mxgc = new mxGraphComponent(mxg);
 
 		BufferedImage image = mxCellRenderer.createBufferedImage(mxg, null, 1, Color.WHITE, true, null);
 
@@ -59,7 +53,7 @@ public class Main
 			}
 		});
 
-		/*try {
+		try {
 			ImageIO.write(image, "PNG", new File("graph.png"));
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -69,5 +63,6 @@ public class Main
 		
 		PresentationController pc = new PresentationController();
 		pc.run();
+		
 	}
 }
