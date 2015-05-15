@@ -73,7 +73,7 @@ public class VistaOptions extends JFrame {
 		contentPane.add(btnAddCategory);
 		
 		JButton btnDelCategory = new JButton("Del category");
-		btnAddCategory.addMouseListener(new MouseAdapter() {
+		btnDelCategory.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if(textField.getText() != ""){
@@ -90,7 +90,7 @@ public class VistaOptions extends JFrame {
 		contentPane.add(textField_1);
 		
 		JButton btnAddPage = new JButton("Add Page");
-		btnAddCategory.addMouseListener(new MouseAdapter() {
+		btnAddPage.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if(textField_1.getText() != ""){
@@ -101,8 +101,8 @@ public class VistaOptions extends JFrame {
 		btnAddPage.setBounds(145, 144, 117, 25);
 		contentPane.add(btnAddPage);
 		
-		JButton btnAddPage_1 = new JButton("Del Page");
-		btnAddCategory.addMouseListener(new MouseAdapter() {
+		JButton btnDelPage = new JButton("Del Page");
+		btnDelPage.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if(textField_1.getText() != ""){
@@ -110,8 +110,8 @@ public class VistaOptions extends JFrame {
 				}
 			}
 		});
-		btnAddPage_1.setBounds(274, 144, 117, 25);
-		contentPane.add(btnAddPage_1);
+		btnDelPage.setBounds(274, 144, 117, 25);
+		contentPane.add(btnDelPage);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Newmann-Girvan", "Louvain", "Clique percolation"}));
@@ -124,7 +124,7 @@ public class VistaOptions extends JFrame {
 		contentPane.add(btnCommunityDetection);
 		
 		JButton btnPrintGraph = new JButton("Print Graph");
-		btnAddCategory.addMouseListener(new MouseAdapter() {
+		btnPrintGraph.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				pc.printGraph();
@@ -134,6 +134,12 @@ public class VistaOptions extends JFrame {
 		contentPane.add(btnPrintGraph);
 		
 		JButton btnSaveGraph = new JButton("Save Graph");
+		btnSaveGraph.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				pc.saveGraph();
+			}
+		});
 		btnSaveGraph.setBounds(703, 90, 169, 25);
 		contentPane.add(btnSaveGraph);
 		
@@ -148,6 +154,7 @@ public class VistaOptions extends JFrame {
 		panel.add(scrollPane);
 		
 		JTextPane textPane = new JTextPane();
+		textPane.setEditable(false);
 		scrollPane.setViewportView(textPane);
 		
 	}
