@@ -11,7 +11,7 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class options extends JFrame {
+public class VistaOptions extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -19,9 +19,10 @@ public class options extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public options() {
+	public VistaOptions(PresentationController pc) {
 		super("Wikipedia");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int)screenSize.getWidth();
 		int height = (int)screenSize.getHeight();
@@ -37,9 +38,7 @@ public class options extends JFrame {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				setVisible(false); //you can't see me!
-				dispose();
-				new inici().setVisible(true);
+				pc.optionsToInici();
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));

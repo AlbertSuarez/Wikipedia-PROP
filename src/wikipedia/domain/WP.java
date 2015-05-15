@@ -207,6 +207,36 @@ public class WP
 	}
 
 	/**
+	 * Modify the title of an Element's Node of the implicit graph
+	 * @param a element to modify
+	 * @param s new title of the element
+	 */
+	public void modElement(Element a, String s)
+	{
+		for (Node n : graph.getNodes()) {
+			ONode nn = (ONode) n;
+			if (nn.getElement().equals(a)) {
+				nn.getElement().setTitle(s);
+				break;
+			}
+		}
+	}
+	
+	/**
+	 * Move a Node of a community to another community
+	 * @param a title of element's node
+	 * @param i identifier of the new community
+	 */
+	public void modCommunity(String a, Integer i) {
+		ONode n = new ONode(new Category(a));
+		for (int j = 0; j < cc.getCommunityCount(); j++) {
+			if (cc.getCommunity(j).belongs(n)) {cc.getCommunity(j).eraseNode(n); break;}
+		}
+		cc.getCommunity(i).addNode(n);
+	}
+	
+	
+	/**
 	 * Creates a new Edge between two Categories
 	 * @param c1 One of the Categories to create the Edge to
 	 * @param c2 The other Category
@@ -230,5 +260,17 @@ public class WP
 		ONode n2 = new ONode(p);
 		OEdge e = new OEdge(n1, n2, OEdge.EdgeType.CP);
 		graph.addEdge(e);
+	}
+	
+	/**
+	 * Deletes the edge between the nodes with Elements e1 and e2
+	 * @param e1 The element of the first Node
+	 * @param e2 The element of the second Node
+	 */
+	public void delLink(Element e1, Element e2)
+	{
+		ONode n1 = new ONode(e1);
+		ONode n2 = new ONode(e2);
+		graph.removeEdge(n1, n2);
 	}
 }

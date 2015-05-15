@@ -26,6 +26,47 @@ public class DomainController
 		wikipedia = new WP();
 	}
 
+	public void addCategory(String a) {
+		wikipedia.addCategory(new Category(a));
+	}
+	
+	public void delCategory(String a) {
+		wikipedia.delCategory(new Category(a));
+	}
+	
+	public void addPage(String a) {
+		wikipedia.addPage(new Page(a));
+	}
+	
+	public void delPage(String a) {
+		wikipedia.delPage(new Page(a));
+	}
+	
+	public void addLink(String a, String b) {
+		if (wikipedia.catExists(a) && wikipedia.pagExists(b)) wikipedia.addCPLink(new Category(a), new Page(b));
+		else if (wikipedia.catExists(a) && wikipedia.catExists(b)) wikipedia.addSuperLink(new Category(a), new Category(b));
+		else if (wikipedia.pagExists(a) && wikipedia.catExists(b)) wikipedia.addCPLink(new Category(b), new Page(a));
+	}
+	
+	public void delLink(String a, String b) {
+		if (wikipedia.catExists(a) && wikipedia.pagExists(b)) wikipedia.delLink(new Category(a), new Page(b));
+		else if (wikipedia.catExists(a) && wikipedia.catExists(b)) wikipedia.delLink(new Category(a), new Category(b));
+		else if (wikipedia.pagExists(a) && wikipedia.catExists(b)) wikipedia.delLink(new Category(b), new Page(a));
+	}
+	
+	public void modElement(String a, String b) {
+		if (wikipedia.catExists(a)) {
+			wikipedia.modElement(new Category(a), b);
+		}
+		else if (wikipedia.pagExists(a)) {
+			wikipedia.modElement(new Page(a), b);
+		}
+	}
+	
+	public void modCommunity(String a, String b) {
+		wikipedia.modCommunity(a, Integer.parseInt(b));
+	}
+	
 	/**
 	 * Reads with the WP format into the implicit graph
 	 */
@@ -87,6 +128,11 @@ public class DomainController
 		CommunityCollection COM = wikipedia.getCC();
 		if (COM.getCommunities().isEmpty()) print("The community collection is empty.");
 		else COM.printCollection();
+	}
+	
+	public OGraph getGraph()
+	{
+		return wikipedia.getGraph();
 	}
 	
 	/**

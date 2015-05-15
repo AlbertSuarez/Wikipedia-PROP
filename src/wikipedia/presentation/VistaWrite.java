@@ -14,13 +14,10 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.*;
-
 import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
 
-import static wikipedia.presentation.PresentationController.*;
-
-public class write extends JFrame {
+public class VistaWrite extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -28,9 +25,10 @@ public class write extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public write() {
+	public VistaWrite(PresentationController pc) {
 		super("Wikipedia");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int)screenSize.getWidth();
 		int height = (int)screenSize.getHeight();
@@ -76,10 +74,7 @@ public class write extends JFrame {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setVisible(false); //you can't see me!
-				dispose();
-				new inici().setVisible(true);
-				
+				pc.writeToInici();				
 			}
 		});
 		contentPane.add(btnNewButton);
@@ -94,10 +89,8 @@ public class write extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				String wr = txtrFafas.getText();
 				if(wr != ""){
-					readWiki(new ArrayList<String>(Arrays.asList(wr.split("\n"))));
-					setVisible(false); //you can't see me!
-					dispose();
-					new options().setVisible(true);
+					pc.readWiki(new ArrayList<String>(Arrays.asList(wr.split("\n"))));
+					pc.writeToOptions();
 				}
 			}
 		});

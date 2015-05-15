@@ -1,27 +1,22 @@
 package wikipedia.presentation;
 
 import static wikipedia.utils.Utils.*;
-import static wikipedia.presentation.PresentationController.*;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextPane;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
-
 import javax.swing.JButton;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class inici extends JFrame {
+public class VistaInici extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -29,11 +24,10 @@ public class inici extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public inici() {
+	public VistaInici(PresentationController pc) {
 		super("Wikipedia");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
-		setVisible(true);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int)screenSize.getWidth();
 		int height = (int)screenSize.getHeight();
@@ -61,7 +55,7 @@ public class inici extends JFrame {
 		 */
 		JButton btnContinue = new JButton("LOAD GRAPH");
 		btnContinue.setToolTipText("This option displays a window"
-                                    + " to select a file containing a graph in WP format");
+                + " to select a file containing a graph in WP format");
 		btnContinue.setBounds(142, 387, 216, 60);
 		contentPane.add(btnContinue);
 		btnContinue.addMouseListener(new MouseAdapter() {
@@ -69,10 +63,8 @@ public class inici extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				File f = Choose();
 				if(f != null){
-					loadWiki(f);
-					setVisible(false); //you can't see me!
-					dispose();
-					new options().setVisible(true);
+					pc.loadWiki(f);
+					pc.iniciToOptions();
 				}
 			}
 		});
@@ -90,8 +82,7 @@ public class inici extends JFrame {
 		btnWriteGraph.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				dispose();
-				new write().setVisible(true);
+				pc.iniciToWrite();
 			}
 		});
 		btnWriteGraph.setFont(new Font("Tahoma", Font.BOLD, 20));
