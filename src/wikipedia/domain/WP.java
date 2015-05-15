@@ -28,11 +28,6 @@ public class WP
 	private Algorithm algoritmeCPMaxim;
 	
 	/**
-	 * The instance of the Clique Percolation (Fast version).
-	 */
-	private Algorithm algoritmeCPFour;
-	
-	/**
 	 * The instance of the Louvain.
 	 */
 	private Algorithm algoritmeLouvain;
@@ -46,7 +41,6 @@ public class WP
 		graph = new OGraph();
 		algoritmeNG = new NewmanGirvan();
 		algoritmeCPMaxim = new CliqueMaxim();
-		algoritmeCPFour = new FourClique();
 		algoritmeLouvain = new Louvain();
 	}
 
@@ -103,15 +97,6 @@ public class WP
 	public CommunityCollection applyCliquePercolationMaxim()
 	{
 		return algoritmeCPMaxim.runAlgorithm(graph, 0);
-	}
-	
-	/**
-	 * Applies the Clique Percolation algorithm to the graph (fast version)
-	 * @return The CommunityCollecion that Clique Percolation Algorithm produces
-	 */
-	public CommunityCollection applyCliquePercolationFour()
-	{
-		return algoritmeCPFour.runAlgorithm(graph, 0);
 	}
 	
 	/**

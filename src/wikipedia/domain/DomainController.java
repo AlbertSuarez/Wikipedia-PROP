@@ -72,14 +72,6 @@ public class DomainController
 	}
 	
 	/**
-	 * Applies the Clique Percolation Algorithm (fast version) to the implicit graph
-	 * and saves it to the implicit CommunityCollection
-	 */
-	public void runCPFour() {
-		wikipedia.setCC(erasePages(wikipedia.applyCliquePercolationFour()));
-	}
-
-	/**
 	 * Applies the Louvain Algorithm (fast version) to the implicit graph
 	 * and saves it to the implicit CommunityCollection
 	 */

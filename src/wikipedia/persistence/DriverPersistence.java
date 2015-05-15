@@ -2,7 +2,6 @@ package wikipedia.persistence;
 
 import wikipedia.utils.Utils;
 import g13.OGraph;
-import java.io.File;
 import java.io.IOException;
 
 /**
