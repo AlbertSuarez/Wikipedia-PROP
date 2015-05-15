@@ -79,8 +79,8 @@ public class OGraph extends Graph
 		for (Edge e: edges) {
 			OEdge oe = (OEdge)e;
 			if (oe.isValid()) {
-				ONode node1 = (ONode)e.getNode();
-				ONode node2 = (ONode)e.getNeighbor(node1);
+				ONode node1 = (ONode)oe.getOrigNode();
+				ONode node2 = (ONode)oe.getDestNode();
 				mxg.insertEdge(parent, null, null,
 					objMap.get(node1.getElement().getTitle()),
 					objMap.get(node2.getElement().getTitle()));
