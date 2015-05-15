@@ -54,6 +54,8 @@ public class inici extends JFrame {
 		 * Button Load Graph
 		 */
 		JButton btnContinue = new JButton("LOAD GRAPH");
+		btnContinue.setToolTipText("This option displays a window"
+                                    + " to select a file containing a graph in WP format");
 		btnContinue.setBounds(142, 387, 216, 60);
 		contentPane.add(btnContinue);
 		btnContinue.addMouseListener(new MouseAdapter() {
@@ -74,6 +76,7 @@ public class inici extends JFrame {
 		 * Button Write Graph
 		 */
 		JButton btnWriteGraph = new JButton("WRITE GRAPH");
+		btnWriteGraph.setToolTipText("This option allows handwrite a graph in WP format");
 		btnWriteGraph.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
