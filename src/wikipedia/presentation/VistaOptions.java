@@ -157,5 +157,15 @@ public class VistaOptions extends JFrame {
 		textPane.setEditable(false);
 		scrollPane.setViewportView(textPane);
 		
+		JButton btnShowGraph = new JButton("Show Graph");
+		btnShowGraph.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				pc.optionsToGraph();
+			}
+		});
+		btnShowGraph.setBounds(123, 483, 153, 31);
+		contentPane.add(btnShowGraph);
+		
 	}
 }

@@ -64,6 +64,11 @@ public class PresentationController
 		inici.setVisible(true);
 	}
 	
+	public void optionsToGraph() {
+		//options.setVisible(false);
+		new VistaGraph(this).setVisible(true);
+	}
+	
 	// FUNCIONS DELS BOTONS
 	
 	public void loadWiki(File f){
