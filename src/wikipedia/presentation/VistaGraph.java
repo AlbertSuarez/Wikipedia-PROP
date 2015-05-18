@@ -28,13 +28,13 @@ public class VistaGraph extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VistaGraph(PresentationController pc) {
+	public VistaGraph(final PresentationController pc) {
 		super("Wikipedia");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int width = (int)screenSize.getWidth();
-		int height = (int)screenSize.getHeight();
+		final int width = (int)screenSize.getWidth();
+		final int height = (int)screenSize.getHeight();
 		setBounds((width/2)-450,(height/2)-300,900,600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -46,8 +46,8 @@ public class VistaGraph extends JFrame {
 		final mxGraphComponent mxgc = new mxGraphComponent(mxg);
 
 		BufferedImage orig_img = mxCellRenderer.createBufferedImage(mxg, null, 1, Color.WHITE, true, null);
-		int orig_w = orig_img.getWidth();
-		int orig_h = orig_img.getHeight();
+		final int orig_w = orig_img.getWidth();
+		final int orig_h = orig_img.getHeight();
 
 		JLabel label;
 		if (orig_w > width || orig_h > height) {

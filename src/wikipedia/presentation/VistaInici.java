@@ -24,7 +24,7 @@ public class VistaInici extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VistaInici(PresentationController pc) {
+	public VistaInici(final PresentationController pc) {
 		super("Wikipedia");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);

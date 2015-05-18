@@ -25,7 +25,7 @@ public class VistaWrite extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VistaWrite(PresentationController pc) {
+	public VistaWrite(final PresentationController pc) {
 		super("Wikipedia");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);

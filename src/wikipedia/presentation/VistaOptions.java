@@ -29,7 +29,7 @@ public class VistaOptions extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VistaOptions(PresentationController pc) {
+	public VistaOptions(final PresentationController pc) {
 		super("Wikipedia");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -66,6 +66,7 @@ public class VistaOptions extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				if(textField.getText() != ""){
 					pc.addCat(textField.getText());
+					textField.setText("");
 				}
 			}
 		});
@@ -78,6 +79,7 @@ public class VistaOptions extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				if(textField.getText() != ""){
 					pc.delCat(textField.getText());
+					textField.setText("");
 				}
 			}
 		});
@@ -95,6 +97,7 @@ public class VistaOptions extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				if(textField_1.getText() != ""){
 					pc.addPage(textField_1.getText());
+					textField.setText("");
 				}
 			}
 		});
@@ -107,6 +110,7 @@ public class VistaOptions extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				if(textField_1.getText() != ""){
 					pc.delPage(textField_1.getText());
+					textField.setText("");
 				}
 			}
 		});
