@@ -104,13 +104,15 @@ public class CommunityCollection {
 	/**
 	 * Print all communities.
 	 */
-	public void printCollection()
+	public String printCollection()
 	{
+		String s = "";
 		int i = 1;
 		for (Community c : collection) {
-			System.out.println("Community num. " + i);
-			c.printCommunity(); ++i;
+			s = s + ("Community num. " + i) + "\n";
+			s = s + c.printCommunity() + "\n"; ++i;
 		}
+		return s;
 	}
 	
 }

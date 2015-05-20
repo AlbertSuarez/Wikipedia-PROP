@@ -111,18 +111,19 @@ public class PresentationController
 		dc.modCommunity(a, b);
 	}
 	
-	public void printGraph() {
-		dc.writeWPformat();
+	public String printGraph() {
+		return dc.writeWPformat();
 	}
 	
 	public void saveGraph() {
 		dc.saveWP();
 	}
 	
-	public void communityDetection(String a) {
-		if (a.equals("NewmanGirvan")) dc.runNG(10);
-		else if (a.equals("Clique Percolation")) dc.runCPMaxim();
-		else if (a.equals("Louvain")) dc.runLouvain();
+	public String communityDetection(Integer a) {
+		if (a == 0) dc.runNG(10);
+		else if (a == 1) dc.runLouvain();
+		else if (a == 2) dc.runCPMaxim();
+		return dc.printCC();
 	}
 	
 	public void showGraph() {

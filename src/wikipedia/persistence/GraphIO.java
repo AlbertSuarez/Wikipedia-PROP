@@ -73,8 +73,9 @@ public final class GraphIO {
 	 * Writes an OGraph with the WP format to the standard output
 	 * @param g the OGraph to write
 	 */
-	public static void writeGraphWPformat(OGraph g) {
+	public static String writeGraphWPformat(OGraph g) {
 		Collection<Edge> edgeSet = g.getEdges();
+		String s = "";
 		for (Edge e: edgeSet) {
 			OEdge oe = (OEdge)e;
 			ONode node1 = (ONode)e.getNode();
@@ -86,7 +87,7 @@ public final class GraphIO {
 			wiki[2] = OEdge.toEdgeTypeString(oe.getEdgeType());
 			wiki[3] = node2.getElement().getTitle();
 			wiki[4] = Element.toElementTypeString(node2.getElement().getElementType());
-			print(wiki[0] + " " + wiki[1] + " " + wiki[2] + " " + wiki[3] + " " + wiki[4]);
+			s = s + (wiki[0] + " " + wiki[1] + " " + wiki[2] + " " + wiki[3] + " " + wiki[4] + "\n");
 			String aux;
 			aux = wiki[0];
 			wiki[0] = wiki[3];
@@ -96,8 +97,9 @@ public final class GraphIO {
 			wiki[4] = wiki[1];
 			if (wiki[2] == "CP")wiki[2] = "PC";
 			else wiki[2] = "CsubC";
-			print(wiki[0] + " " + wiki[1] + " " + wiki[2] + " " + wiki[3] + " " + wiki[4]);
+			s = s + (wiki[0] + " " + wiki[1] + " " + wiki[2] + " " + wiki[3] + " " + wiki[4] + "\n");
 		}
+		return s;
 	}
 
 	/**

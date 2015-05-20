@@ -2,14 +2,19 @@ package wikipedia.presentation;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Color;
+
 import javax.swing.JButton;
+
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -97,7 +102,7 @@ public class VistaOptions extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				if(textField_1.getText() != ""){
 					pc.addPage(textField_1.getText());
-					textField.setText("");
+					textField_1.setText("");
 				}
 			}
 		});
@@ -110,42 +115,12 @@ public class VistaOptions extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				if(textField_1.getText() != ""){
 					pc.delPage(textField_1.getText());
-					textField.setText("");
+					textField_1.setText("");
 				}
 			}
 		});
 		btnDelPage.setBounds(274, 144, 117, 25);
 		contentPane.add(btnDelPage);
-
-		JComboBox<String> comboBox = new JComboBox<String> ();
-		comboBox.setModel(new DefaultComboBoxModel<String> (new String[] {"Newmann-Girvan", "Louvain", "Clique percolation"}));
-		comboBox.setBounds(703, 144, 169, 24);
-		contentPane.add(comboBox);
-
-		JButton btnCommunityDetection = new JButton("Community Detection");
-		btnCommunityDetection.setFont(new Font("Dialog", Font.BOLD, 12));
-		btnCommunityDetection.setBounds(497, 144, 194, 25);
-		contentPane.add(btnCommunityDetection);
-
-		JButton btnPrintGraph = new JButton("Print Graph");
-		btnPrintGraph.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				pc.printGraph();
-			}
-		});
-		btnPrintGraph.setBounds(497, 90, 194, 25);
-		contentPane.add(btnPrintGraph);
-
-		JButton btnSaveGraph = new JButton("Save Graph");
-		btnSaveGraph.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				pc.saveGraph();
-			}
-		});
-		btnSaveGraph.setBounds(703, 90, 169, 25);
-		contentPane.add(btnSaveGraph);
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Wikipedia", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(51, 51, 51)));
@@ -160,6 +135,42 @@ public class VistaOptions extends JFrame {
 		JTextPane textPane = new JTextPane();
 		textPane.setEditable(false);
 		scrollPane.setViewportView(textPane);
+
+		JComboBox<String> comboBox = new JComboBox<String> ();
+		comboBox.setModel(new DefaultComboBoxModel<String> (new String[] {"Newmann-Girvan", "Louvain", "Clique percolation"}));
+		comboBox.setBounds(703, 144, 169, 24);
+		contentPane.add(comboBox);
+
+		JButton btnCommunityDetection = new JButton("Community Detection");
+		btnCommunityDetection.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				textPane.setText(pc.communityDetection(comboBox.getSelectedIndex()));
+			}
+		});
+		btnCommunityDetection.setFont(new Font("Dialog", Font.BOLD, 12));
+		btnCommunityDetection.setBounds(497, 144, 194, 25);
+		contentPane.add(btnCommunityDetection);
+
+		JButton btnPrintGraph = new JButton("Print Graph");
+		btnPrintGraph.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				textPane.setText(pc.printGraph());
+			}
+		});
+		btnPrintGraph.setBounds(497, 90, 194, 25);
+		contentPane.add(btnPrintGraph);
+
+		JButton btnSaveGraph = new JButton("Save Graph");
+		btnSaveGraph.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				pc.saveGraph();
+			}
+		});
+		btnSaveGraph.setBounds(703, 90, 169, 25);
+		contentPane.add(btnSaveGraph);
 
 		JButton btnShowGraph = new JButton("Show Graph");
 		btnShowGraph.addMouseListener(new MouseAdapter() {

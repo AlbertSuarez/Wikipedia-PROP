@@ -65,11 +65,13 @@ public class Community {
 	/**
 	 * Print a ordered list of all nodes.
 	 */
-	public void printCommunity()
+	public String printCommunity()
 	{ 
+		String s = "";
 		for (Node nn : nodeSet){
-			System.out.println(nn.toString());
+			s = s + (nn.toString()) + "\n";
 		}
+		return s;
 	}
 	
 	/**

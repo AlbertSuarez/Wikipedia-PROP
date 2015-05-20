@@ -91,8 +91,8 @@ public class DomainController
 	/**
 	 * Writes with the WP format from the implicit graph
 	 */
-	public void writeWPformat() {
-		GraphIO.writeGraphWPformat(wikipedia.getGraph());
+	public String writeWPformat() {
+		return GraphIO.writeGraphWPformat(wikipedia.getGraph());
 	}
 
 	/**
@@ -123,11 +123,13 @@ public class DomainController
 	/**
 	 * Prints the implicit CommunityCollection
 	 */
-	public void printCC()
+	public String printCC()
 	{
+		String s = "";
 		CommunityCollection COM = wikipedia.getCC();
-		if (COM.getCommunities().isEmpty()) print("The community collection is empty.");
-		else COM.printCollection();
+		if (COM.getCommunities().isEmpty()) s = "The community collection is empty.";
+		else s = COM.printCollection();
+		return s;
 	}
 	
 	public OGraph getGraph()
