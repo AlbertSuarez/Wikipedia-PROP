@@ -220,7 +220,11 @@ public class WP
 		for (Node n : graph.getNodes()) {
 			ONode nn = (ONode) n;
 			if (nn.getElement().getTitle().equals(a)) {
+				Collection<Edge> c = graph.getAdjacencyList(nn);
+				graph.removeNode(nn);
 				nn.getElement().setTitle(s);
+				graph.addNode(nn);
+				for (Edge e : c) graph.addEdge(e);
 				break;
 			}
 		}
