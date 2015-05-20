@@ -10,6 +10,7 @@ import com.mxgraph.layout.hierarchical.mxHierarchicalLayout;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxStylesheet;
+import com.mxgraph.model.mxCell;
 
 /**
  * Own Graph implementation
@@ -53,6 +54,7 @@ public class OGraph extends Graph
 		pageStyle.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_RECTANGLE);
 		pageStyle.put(mxConstants.STYLE_PERIMETER, mxConstants.PERIMETER_ELLIPSE);
 
+
 		mxStylesheet stylesheet = mxg.getStylesheet();
 		stylesheet.putCellStyle("CatStyle", catStyle);
 		stylesheet.putCellStyle("PageStyle", pageStyle);
@@ -66,9 +68,9 @@ public class OGraph extends Graph
 			Object obj;
 
 			if (et == Element.ElementType.ELEMENT_PAGE) {
-				obj = mxg.insertVertex(parent, title, title, 0, 0, 50, 50, "PageStyle");
+				obj = mxg.insertVertex(parent, "Node:" + title, title, 0, 0, 50, 50, "PageStyle");
 			} else {
-				obj = mxg.insertVertex(parent, title, title, 0, 0, 50, 50, "CatStyle");
+				obj = mxg.insertVertex(parent, "Node:" + title, title, 0, 0, 50, 50, "CatStyle");
 			}
 
 			if (!objMap.containsKey(title)) {
@@ -81,11 +83,13 @@ public class OGraph extends Graph
 			if (oe.isValid()) {
 				ONode node1 = (ONode)oe.getOrigNode();
 				ONode node2 = (ONode)oe.getDestNode();
-				mxg.insertEdge(parent, null, null,
+				mxCell cell = (mxCell)mxg.insertEdge(parent, "Edge:" + oe.toString(), null,
 					objMap.get(node1.getElement().getTitle()),
 					objMap.get(node2.getElement().getTitle()));
+
 			}
 		}
+
 
 		mxIGraphLayout layout = new mxHierarchicalLayout(mxg);
 		layout.execute(parent);
