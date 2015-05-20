@@ -24,12 +24,20 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.UIManager;
+
 public class VistaOptions extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private int option;
+	private boolean com = false;
 
 	/**
 	 * Create the frame.
@@ -146,6 +154,7 @@ public class VistaOptions extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				textPane.setText(pc.communityDetection(comboBox.getSelectedIndex()));
+				com = true;
 			}
 		});
 		btnCommunityDetection.setFont(new Font("Dialog", Font.BOLD, 12));
@@ -179,8 +188,111 @@ public class VistaOptions extends JFrame {
 				pc.optionsToGraph();
 			}
 		});
-		btnShowGraph.setBounds(123, 483, 153, 31);
+		btnShowGraph.setBounds(29, 483, 153, 31);
 		contentPane.add(btnShowGraph);
+		
+		JButton btnShowCc = new JButton("Show CC");
+		btnShowCc.setBounds(238, 483, 153, 31);
+		contentPane.add(btnShowCc);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_1.setBounds(23, 372, 129, 48);
+		contentPane.add(panel_1);
+		panel_1.setLayout(null);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(6, 16, 117, 25);
+		panel_1.add(textField_2);
+		textField_2.setColumns(10);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new TitledBorder(null, "", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+		panel_2.setBounds(178, 372, 129, 48);
+		contentPane.add(panel_2);
+		panel_2.setLayout(null);
+		
+		textField_3 = new JTextField();
+		textField_3.setBounds(6, 16, 117, 25);
+		panel_2.add(textField_3);
+		textField_3.setColumns(10);
+		
+		JButton btnAddLink = new JButton("Add Link");
+		btnAddLink.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				textField_2.setText("");
+				textField_3.setText("");
+				panel_1.setBorder(new TitledBorder(null, "father's name", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+				panel_2.setBorder(new TitledBorder(null, "son's name", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+				option = 0;
+			}
+		});
+		btnAddLink.setBounds(29, 269, 117, 25);
+		contentPane.add(btnAddLink);
+
+		JButton btnDelLink = new JButton("Del Link");
+		btnDelLink.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				textField_2.setText("");
+				textField_3.setText("");
+				panel_1.setBorder(new TitledBorder(null, "father's name", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+				panel_2.setBorder(new TitledBorder(null, "son's name", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+				option = 1;
+			}
+		});
+		btnDelLink.setBounds(184, 269, 117, 25);
+		contentPane.add(btnDelLink);
+		
+		
+		JButton btnModifyElement = new JButton("modify Element");
+		btnModifyElement.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField_2.setText("");
+				textField_3.setText("");
+				panel_1.setBorder(new TitledBorder(null, "old name", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+				panel_2.setBorder(new TitledBorder(null, "new name", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+				option = 2;
+			}
+		});
+		btnModifyElement.setBounds(29, 324, 117, 25);
+		contentPane.add(btnModifyElement);
+		
+		JButton btnModifyCc = new JButton("Modify CC");
+		btnModifyCc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				textField_2.setText("");
+				textField_3.setText("");
+				panel_1.setBorder(new TitledBorder(null, "node", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+				panel_2.setBorder(new TitledBorder(null, "new community", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+				option = 3;
+			}
+		});
+		btnModifyCc.setBounds(184, 324, 117, 25);
+		contentPane.add(btnModifyCc);
+		
+		JButton button = new JButton("-->");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(option == 0)pc.addLink(textField_2.getText(),textField_3.getText());
+				else if (option == 1)pc.delLink(textField_2.getText(),textField_3.getText());
+				else if (option == 2)pc.modElement(textField_2.getText(),textField_3.getText());
+				else if (option == 3 && com){
+					pc.modCommunity(textField_2.getText(),textField_3.getText());
+					textPane.setText(pc.printCC());
+				}
+				panel_1.setBorder(new TitledBorder(null, "", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+				panel_2.setBorder(new TitledBorder(null, "", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+				textField_2.setText("");
+				textField_3.setText("");
+				option = -1;
+			}
+		});
+		button.setBounds(342, 389, 49, 23);
+		contentPane.add(button);
+		
+		JButton btnValidateGolden = new JButton("Validate Golden");
+		btnValidateGolden.setBounds(622, 39, 153, 31);
+		contentPane.add(btnValidateGolden);
 
 	}
 }

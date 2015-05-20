@@ -55,12 +55,7 @@ public class DomainController
 	}
 	
 	public void modElement(String a, String b) {
-		if (wikipedia.catExists(a)) {
-			wikipedia.modElement(new Category(a), b);
-		}
-		else if (wikipedia.pagExists(a)) {
-			wikipedia.modElement(new Page(a), b);
-		}
+			wikipedia.modElement(a, b);
 	}
 	
 	public void modCommunity(String a, String b) {

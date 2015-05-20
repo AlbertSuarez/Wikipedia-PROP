@@ -211,11 +211,11 @@ public class WP
 	 * @param a element to modify
 	 * @param s new title of the element
 	 */
-	public void modElement(Element a, String s)
+	public void modElement(String a, String s)
 	{
 		for (Node n : graph.getNodes()) {
 			ONode nn = (ONode) n;
-			if (nn.getElement().equals(a)) {
+			if (nn.getElement().getTitle().equals(a)) {
 				nn.getElement().setTitle(s);
 				break;
 			}
@@ -232,7 +232,7 @@ public class WP
 		for (int j = 0; j < cc.getCommunityCount(); j++) {
 			if (cc.getCommunity(j).belongs(n)) {cc.getCommunity(j).eraseNode(n); break;}
 		}
-		cc.getCommunity(i).addNode(n);
+		cc.getCommunity(i-1).addNode(n);
 	}
 	
 	

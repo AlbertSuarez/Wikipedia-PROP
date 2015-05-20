@@ -126,6 +126,10 @@ public class PresentationController
 		return dc.printCC();
 	}
 	
+	public String printCC() {
+		return dc.printCC();
+	}
+	
 	public void showGraph() {
 		graph = new VistaGraph(this);
 		graph.setVisible(true);
