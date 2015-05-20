@@ -71,6 +71,7 @@ public class VistaWrite extends JFrame {
 		btnNewButton.setFont(new Font("Droid Sans", Font.BOLD, 30));
 		btnNewButton.setLocation(12, 12);
 		btnNewButton.setSize(230, 59);
+		btnNewButton.setToolTipText("This option allows you to go to the previous window");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -84,6 +85,7 @@ public class VistaWrite extends JFrame {
 		 */
 		JButton btnContinue = new JButton("CONTINUE");
 		btnContinue.setFont(new Font("Droid Sans", Font.BOLD, 30));
+		btnContinue.setToolTipText("This option allows you to go to the options window");
 		btnContinue.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
