@@ -1,4 +1,8 @@
 package wikipedia.domain;
+import java.io.*;
+import java.util.*;
+
+import wikipedia.persistence.GraphIO;
 import g13.*;
 
 /**
@@ -272,5 +276,34 @@ public class WP
 		ONode n1 = new ONode(e1);
 		ONode n2 = new ONode(e2);
 		graph.removeEdge(n1, n2);
+	}
+	
+	private double calculateGoldenIt(Set<Node> nodes, CommunityCollection golden, CommunityCollection alg) {
+		double count = 0.0;
+		for (Node n : nodes) {
+			if (golden.getCommunityOfNode(n) == alg.getCommunityOfNode(n)) ++count;
+		}
+		return count/(double)nodes.size();
+	}
+	
+	public String calculateGolden()
+	{
+		OGraph goldenIn = GraphIO.loadWP(new File("golden/ENTRADAcodigo.txt"));
+		CommunityCollection goldenOut = GraphIO.loadCC(new File("golden/SALIDAesperadaGolden.txt"));
+		
+		Set<Node> nodes = goldenIn.getNodes();
+		
+		CommunityCollection NG = algoritmeNG.runAlgorithm(goldenIn, 7);
+		double affinity = calculateGoldenIt(nodes, goldenOut, NG);
+		
+		CommunityCollection L = algoritmeLouvain.runAlgorithm(goldenIn, 0);
+		double affinity1 = calculateGoldenIt(nodes, goldenOut, L);
+		
+		CommunityCollection CP = algoritmeCPMaxim.runAlgorithm(goldenIn, 0);
+		double affinity2 = calculateGoldenIt(nodes, goldenOut, CP);
+		
+		if (Math.max(Math.max(affinity, affinity1),affinity2) == affinity) return "NewmanGirvan";
+		else if (Math.max(Math.max(affinity, affinity1),affinity2) == affinity1) return "Louvain";
+		else return "Clique Percolation";
 	}
 }

@@ -101,6 +101,17 @@ public class CommunityCollection {
 		return false;
 	}
 	
+	public int getCommunityOfNode(Node n)
+	{
+		for (int i = 0; i < collection.size(); i++) {
+			for (Node nod : collection.get(i).getNodes()) {
+				if (nod.equals(n)) return i;
+			}
+		}
+		
+		return -1;
+	}
+	
 	/**
 	 * Print all communities.
 	 */

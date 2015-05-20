@@ -102,6 +102,23 @@ public final class GraphIO {
 		return s;
 	}
 
+	public static CommunityCollection writeCC(ArrayList<String> cc) {
+		CommunityCollection col = new CommunityCollection();
+		Iterator<String> itcol = cc.iterator();
+		Community com = new Community();
+		while (itcol.hasNext()) {
+			String s = itcol.next();
+			if (s.contains("Community")) {
+				if (!com.isEmpty()) col.addCommunity(com);
+				com = new Community();
+			}
+			else {
+				com.addNode(new ONode(new Category(s)));
+			}
+		}
+		return col;
+	}
+	
 	/**
 	 * Loads an OGraph with the WP format from an external file
 	 * @return the loaded OGraph
@@ -110,6 +127,12 @@ public final class GraphIO {
 		ArrayList<String> wiki = new ArrayList<String>();
 		readWP(wiki,f);
 		return readGraphWPformat(wiki);
+	}
+	
+	public static CommunityCollection loadCC(File f) {
+		ArrayList<String> cc = new ArrayList<String>();
+		readWP(cc,f);
+		return writeCC(cc);
 	}
 
 	/**
