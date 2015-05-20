@@ -132,6 +132,11 @@ public class DomainController
 		return wikipedia.getGraph();
 	}
 	
+	public String calculateGolden()
+	{
+		return wikipedia.calculateGolden();
+	}
+	
 	/**
 	 * Erase pages of a Community Collection
 	 * @param cc The community collection with Pages and Categories

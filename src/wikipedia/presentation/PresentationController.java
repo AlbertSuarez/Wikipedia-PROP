@@ -140,6 +140,12 @@ public class PresentationController
 		graph.setVisible(true);
 	}
 	
+	public String calculateGolden()
+	{
+		return dc.calculateGolden();
+	}
+	
+	
 	// FUNCIONS AUXILIARS
 	
 	public OGraph getGraph() {

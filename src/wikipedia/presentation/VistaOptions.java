@@ -291,8 +291,16 @@ public class VistaOptions extends JFrame {
 		contentPane.add(button);
 		
 		JButton btnValidateGolden = new JButton("Validate Golden");
+		btnValidateGolden.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				textPane.setText("The algorithm which produces the most similar \n" +
+								"community collection respect golden case is: \n" + pc.calculateGolden());
+			}
+		});
 		btnValidateGolden.setBounds(622, 39, 153, 31);
 		contentPane.add(btnValidateGolden);
-
+		
+		
 	}
 }
