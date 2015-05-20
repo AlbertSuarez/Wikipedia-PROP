@@ -140,11 +140,11 @@ public class VistaOptions extends JFrame {
 		scrollPane.setBounds(5, 17, 375, 339);
 		panel.add(scrollPane);
 
-		JTextPane textPane = new JTextPane();
+		final JTextPane textPane = new JTextPane();
 		textPane.setEditable(false);
 		scrollPane.setViewportView(textPane);
 
-		JComboBox<String> comboBox = new JComboBox<String> ();
+		final JComboBox<String> comboBox = new JComboBox<String> ();
 		comboBox.setModel(new DefaultComboBoxModel<String> (new String[] {"Newmann-Girvan", "Louvain", "Clique percolation"}));
 		comboBox.setBounds(703, 144, 169, 24);
 		contentPane.add(comboBox);
@@ -195,7 +195,7 @@ public class VistaOptions extends JFrame {
 		btnShowCc.setBounds(238, 483, 153, 31);
 		contentPane.add(btnShowCc);
 		
-		JPanel panel_1 = new JPanel();
+		final JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_1.setBounds(23, 372, 129, 48);
 		contentPane.add(panel_1);
@@ -206,7 +206,7 @@ public class VistaOptions extends JFrame {
 		panel_1.add(textField_2);
 		textField_2.setColumns(10);
 		
-		JPanel panel_2 = new JPanel();
+		final JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new TitledBorder(null, "", TitledBorder.CENTER, TitledBorder.TOP, null, null));
 		panel_2.setBounds(178, 372, 129, 48);
 		contentPane.add(panel_2);
