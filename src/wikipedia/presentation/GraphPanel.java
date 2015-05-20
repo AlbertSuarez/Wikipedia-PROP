@@ -15,7 +15,10 @@ import javax.swing.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.*;
+import java.awt.RenderingHints;
+import java.awt.RenderingHints.Key;
 
 
 public class GraphPanel extends JPanel {
@@ -149,6 +152,13 @@ public class GraphPanel extends JPanel {
 
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(orig_img, img_x, img_y, scaled_w, scaled_h, null);
+
+		Graphics2D g2d = (Graphics2D)g;
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+			RenderingHints.VALUE_ANTIALIAS_ON);
+		g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+			RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+
+		g2d.drawImage(orig_img, img_x, img_y, scaled_w, scaled_h, null);
 	}
 }
