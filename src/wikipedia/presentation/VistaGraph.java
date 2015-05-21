@@ -21,7 +21,7 @@ public class VistaGraph extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VistaGraph(final PresentationController pc) {
+	public VistaGraph(final PresentationController pc, boolean cc) {
 		super("Wikipedia");
 		setResizable(false);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -34,7 +34,7 @@ public class VistaGraph extends JFrame {
 		setContentPane(contentPane);
 
 		OGraph g = pc.getGraph();
-		GraphPanel gp = new GraphPanel(g, 900, 600);
+		GraphPanel gp = new GraphPanel(g, 900, 600, cc);
 		gp.addOnItemClickListener(new GraphPanelOnItemClickListener() {
 			public void onItemClick(String item) {
 				System.out.println("Item click event: " + item);

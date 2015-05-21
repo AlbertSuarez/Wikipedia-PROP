@@ -50,14 +50,14 @@ public class GraphPanel extends JPanel {
 	private int mouse_x;
 	private int mouse_y;
 
-	public GraphPanel(OGraph g, int w, int h) {
+	public GraphPanel(OGraph g, int w, int h, boolean cc) {
 
 		listenerList = new EventListenerList();
 
 		PANEL_W = w;
 		PANEL_H = h;
 
-		mxg = g.toMxGraph();
+		mxg = g.toMxGraph(cc);
 		mxgc = new mxGraphComponent(mxg);
 
 		orig_img = mxCellRenderer.createBufferedImage(mxg, null, 1, Color.WHITE, true, null);

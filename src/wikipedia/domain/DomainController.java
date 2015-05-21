@@ -127,6 +127,11 @@ public class DomainController
 		return s;
 	}
 	
+	public boolean CCisEmpty()
+	{
+		return (wikipedia.getCC().getCommunityCount() == 0);
+	}
+	
 	public OGraph getGraph()
 	{
 		return wikipedia.getGraph();

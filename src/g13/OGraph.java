@@ -33,7 +33,7 @@ public class OGraph extends Graph
 		for (Edge e : getEdges()) e.setValidity(true);
 	}
 
-	public mxGraph toMxGraph() {
+	public mxGraph toMxGraph(boolean cc) {
 		mxGraph mxg = new mxGraph();
 		Object parent = mxg.getDefaultParent();
 		Map<String, Object> objMap = new LinkedHashMap<>();
@@ -80,13 +80,20 @@ public class OGraph extends Graph
 
 		for (Edge e: edges) {
 			OEdge oe = (OEdge)e;
-			if (oe.isValid()) {
+			if (cc && oe.isValid()) {
 				ONode node1 = (ONode)oe.getOrigNode();
 				ONode node2 = (ONode)oe.getDestNode();
 				mxCell cell = (mxCell)mxg.insertEdge(parent, "Edge:" + oe.toString(), null,
 					objMap.get(node1.getElement().getTitle()),
 					objMap.get(node2.getElement().getTitle()));
 
+			}
+			else if (!cc) {
+				ONode node1 = (ONode)oe.getOrigNode();
+				ONode node2 = (ONode)oe.getDestNode();
+				mxCell cell = (mxCell)mxg.insertEdge(parent, "Edge:" + oe.toString(), null,
+					objMap.get(node1.getElement().getTitle()),
+					objMap.get(node2.getElement().getTitle()));
 			}
 		}
 

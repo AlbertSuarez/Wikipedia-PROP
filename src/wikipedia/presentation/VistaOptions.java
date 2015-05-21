@@ -211,6 +211,14 @@ public class VistaOptions extends JFrame {
 		JButton btnShowCc = new JButton("Show CC");
 		btnShowCc.setToolTipText("This option allows you to open a new window which displays a graphical\n" +
 				"version of the community collection");
+		btnShowCc.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (!pc.CCisEmpty()) pc.optionsToCC();
+				else textPane.setText("The community collection is empty\n"
+						+ "Please, select an algorithm and pulse 'Community Detection'");
+			}
+		});
 		btnShowCc.setBounds(238, 483, 153, 31);
 		contentPane.add(btnShowCc);
 		
@@ -265,7 +273,7 @@ public class VistaOptions extends JFrame {
 		contentPane.add(btnDelLink);
 		
 		
-		JButton btnModifyElement = new JButton("Ḿodify Element");
+		JButton btnModifyElement = new JButton("Modify Element");
 		btnModifyElement.setToolTipText("This option allows you to change the name of an element from the graph\n");
 		btnModifyElement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

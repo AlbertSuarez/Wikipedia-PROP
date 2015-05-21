@@ -65,8 +65,11 @@ public class PresentationController
 	}
 	
 	public void optionsToGraph() {
-		//options.setVisible(false);
-		new VistaGraph(this).setVisible(true);
+		new VistaGraph(this, false).setVisible(true);
+	}
+	
+	public void optionsToCC() {
+		new VistaGraph(this, true).setVisible(true);
 	}
 	
 	// FUNCIONS DELS BOTONS
@@ -130,15 +133,15 @@ public class PresentationController
 		return dc.printCC();
 	}
 	
-	public void showGraph() {
+	/*public void showGraph() {
 		graph = new VistaGraph(this);
 		graph.setVisible(true);
-	}
+	}*/
 	
-	public void showCC() {
+	/*public void showCC() {
 		graph = new VistaGraph(this);
 		graph.setVisible(true);
-	}
+	}*/
 	
 	public String calculateGolden()
 	{
@@ -150,5 +153,9 @@ public class PresentationController
 	
 	public OGraph getGraph() {
 		return dc.getGraph();
+	}
+	
+	public boolean CCisEmpty() {
+		return dc.CCisEmpty();
 	}
 }
