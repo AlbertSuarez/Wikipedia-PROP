@@ -67,12 +67,21 @@ public class GraphPanel extends JPanel {
 		img_w = orig_w;
 		img_h = orig_h;
 
-		double ratio = PANEL_W/(double)img_w;
-		scaled_w = (int)(ratio * img_w);
-		scaled_h = (int)(ratio * img_h);
+		if (img_w > img_h) {
+			double ratio = PANEL_W/(double)img_w;
+			scaled_w = (int)(ratio * img_w);
+			scaled_h = (int)(ratio * img_h);
 
-		img_x = 0;
-		img_y = PANEL_H/2 - scaled_h/2;
+			img_x = 0;
+			img_y = PANEL_H/2 - scaled_h/2;
+		} else {
+			double ratio = PANEL_H/(double)img_h;
+			scaled_w = (int)(ratio * img_w);
+			scaled_h = (int)(ratio * img_h);
+
+			img_x = PANEL_W/2 - scaled_w/2;
+			img_y = 0;
+		}
 
 		addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
