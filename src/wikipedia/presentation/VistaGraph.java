@@ -35,6 +35,11 @@ public class VistaGraph extends JFrame {
 
 		OGraph g = pc.getGraph();
 		GraphPanel gp = new GraphPanel(g, 900, 600);
+		gp.addOnItemClickListener(new GraphPanelOnItemClickListener() {
+			public void onItemClick(String item) {
+				System.out.println("Item click event: " + item);
+			}
+		});
 
 		contentPane.add(gp);
 		pack();

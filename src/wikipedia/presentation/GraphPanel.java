@@ -3,6 +3,9 @@ package wikipedia.presentation;
 import wikipedia.presentation.*;
 import g13.*;
 
+import javax.swing.event.EventListenerList;
+import java.util.EventListener;
+import java.util.EventObject;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
@@ -21,7 +24,13 @@ import java.awt.RenderingHints;
 import java.awt.RenderingHints.Key;
 
 
+interface GraphPanelOnItemClickListener extends EventListener {
+	public void onItemClick(String item);
+}
+
 public class GraphPanel extends JPanel {
+
+	protected EventListenerList listenerList;
 
 	private static int PANEL_W = 720;
 	private static int PANEL_H = 480;
@@ -42,6 +51,8 @@ public class GraphPanel extends JPanel {
 	private int mouse_y;
 
 	public GraphPanel(OGraph g, int w, int h) {
+
+		listenerList = new EventListenerList();
 
 		PANEL_W = w;
 		PANEL_H = h;
@@ -131,7 +142,7 @@ public class GraphPanel extends JPanel {
 		Object obj = mxgc.getCellAt(trans_x, trans_y);;
 		if (obj != null) {
 			mxCell cell = (mxCell)obj;
-			System.out.println(cell.getId());
+			fireOnItemClick(cell.getId());
 		}
 	}
 
@@ -160,5 +171,20 @@ public class GraphPanel extends JPanel {
 			RenderingHints.VALUE_INTERPOLATION_BICUBIC);
 
 		g2d.drawImage(orig_img, img_x, img_y, scaled_w, scaled_h, null);
+	}
+
+	public void addOnItemClickListener(GraphPanelOnItemClickListener listener) {
+		listenerList.add(GraphPanelOnItemClickListener.class, listener);
+	}
+	public void removeOnItemClickListener(GraphPanelOnItemClickListener listener) {
+		listenerList.remove(GraphPanelOnItemClickListener.class, listener);
+	}
+	void fireOnItemClick(String item) {
+		Object[] listeners = listenerList.getListenerList();
+		for (int i = 0; i < listeners.length; i = i+2) {
+			if (listeners[i] == GraphPanelOnItemClickListener.class) {
+				((GraphPanelOnItemClickListener) listeners[i+1]).onItemClick(item);
+			}
+		}
 	}
 }
