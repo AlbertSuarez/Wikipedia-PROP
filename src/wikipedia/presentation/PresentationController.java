@@ -38,6 +38,18 @@ public class PresentationController
 	
 	// FUNCIONS PER CANVIAR DE VISTA
 	
+	public void closeInici() {
+		inici.dispose();
+	}
+	
+	public void closeWrite() {
+		write.dispose();
+	}
+	
+	public void closeOptions() {
+		options.dispose();
+	}
+	
 	public void iniciToWrite() {
 		inici.setVisible(false);
 		write.setVisible(true);
@@ -146,5 +158,9 @@ public class PresentationController
 	
 	public boolean CCisEmpty() {
 		return dc.CCisEmpty();
+	}
+	
+	public void cleanCC() {
+		dc.cleanCC();
 	}
 }

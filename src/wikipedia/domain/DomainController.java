@@ -131,6 +131,11 @@ public class DomainController
 		return (wikipedia.getCC().getCommunityCount() == 0);
 	}
 	
+	public void cleanCC()
+	{
+		wikipedia.setCC(new CommunityCollection());;
+	}
+	
 	public OGraph getGraph()
 	{
 		return wikipedia.getGraph();
