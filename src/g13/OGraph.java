@@ -80,20 +80,13 @@ public class OGraph extends Graph
 
 		for (Edge e: edges) {
 			OEdge oe = (OEdge)e;
-			if (cc && oe.isValid()) {
+			if ((cc && oe.isValid()) || !cc) {
 				ONode node1 = (ONode)oe.getOrigNode();
 				ONode node2 = (ONode)oe.getDestNode();
 				mxCell cell = (mxCell)mxg.insertEdge(parent, "Edge:" + oe.toString(), null,
 					objMap.get(node1.getElement().getTitle()),
 					objMap.get(node2.getElement().getTitle()));
 
-			}
-			else if (!cc) {
-				ONode node1 = (ONode)oe.getOrigNode();
-				ONode node2 = (ONode)oe.getDestNode();
-				mxCell cell = (mxCell)mxg.insertEdge(parent, "Edge:" + oe.toString(), null,
-					objMap.get(node1.getElement().getTitle()),
-					objMap.get(node2.getElement().getTitle()));
 			}
 		}
 

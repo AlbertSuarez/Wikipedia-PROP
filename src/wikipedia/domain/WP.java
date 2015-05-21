@@ -220,11 +220,11 @@ public class WP
 		for (Node n : graph.getNodes()) {
 			ONode nn = (ONode) n;
 			if (nn.getElement().getTitle().equals(a)) {
-				Collection<Edge> c = graph.getAdjacencyList(nn);
+				Collection<Edge> adjacents = graph.getAdjacencyList(nn);
 				graph.removeNode(nn);
 				nn.getElement().setTitle(s);
 				graph.addNode(nn);
-				for (Edge e : c) graph.addEdge(e);
+				for (Edge e : adjacents) graph.addEdge(e);
 				break;
 			}
 		}
@@ -251,8 +251,13 @@ public class WP
 	 */
 	public void addSuperLink(Category c1, Category c2)
 	{
-		ONode n1 = new ONode(c1);
-		ONode n2 = new ONode(c2);
+		ONode n1 = new ONode(null);
+		ONode n2 = new ONode(null);
+		for (Node n : graph.getNodes()) {
+			ONode nn = (ONode) n;
+			if (nn.getElement().equals(c1)) n1 = nn;
+			else if (nn.getElement().equals(c2)) n2 = nn;
+		}
 		OEdge e = new OEdge(n1, n2, OEdge.EdgeType.CsupC);
 		graph.addEdge(e);
 	}
@@ -266,6 +271,11 @@ public class WP
 	{
 		ONode n1 = new ONode(c);
 		ONode n2 = new ONode(p);
+		for (Node n : graph.getNodes()) {
+			ONode nn = (ONode) n;
+			if (nn.getElement().equals(c)) n1 = nn;
+			else if (nn.getElement().equals(p)) n2 = nn;
+		}
 		OEdge e = new OEdge(n1, n2, OEdge.EdgeType.CP);
 		graph.addEdge(e);
 	}

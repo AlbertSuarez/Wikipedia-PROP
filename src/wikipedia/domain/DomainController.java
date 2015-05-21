@@ -10,7 +10,6 @@ import java.util.*;
 
 import wikipedia.persistence.*;
 import g13.*;
-import static wikipedia.utils.Utils.*;
 
 public class DomainController
 {

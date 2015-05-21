@@ -1,14 +1,10 @@
 package wikipedia.presentation;
 
-import wikipedia.presentation.*;
 import g13.*;
-
 import javax.swing.event.EventListenerList;
 import java.util.EventListener;
-import java.util.EventObject;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.mxGraphComponent;
@@ -16,12 +12,10 @@ import com.mxgraph.util.mxCellRenderer;
 import com.mxgraph.view.mxGraph;
 import javax.swing.*;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.*;
 import java.awt.RenderingHints;
-import java.awt.RenderingHints.Key;
 
 
 interface GraphPanelOnItemClickListener extends EventListener {
@@ -30,6 +24,7 @@ interface GraphPanelOnItemClickListener extends EventListener {
 
 public class GraphPanel extends JPanel {
 
+	private static final long serialVersionUID = 1L;
 	protected EventListenerList listenerList;
 
 	private static int PANEL_W = 720;

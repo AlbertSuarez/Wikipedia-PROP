@@ -18,7 +18,6 @@ public class PresentationController
 	private VistaInici inici;
 	private VistaWrite write;
 	private VistaOptions options;
-	private VistaGraph graph;
 	
 	/**
 	 * Create a PresentacionController
@@ -132,16 +131,6 @@ public class PresentationController
 	public String printCC() {
 		return dc.printCC();
 	}
-	
-	/*public void showGraph() {
-		graph = new VistaGraph(this);
-		graph.setVisible(true);
-	}*/
-	
-	/*public void showCC() {
-		graph = new VistaGraph(this);
-		graph.setVisible(true);
-	}*/
 	
 	public String calculateGolden()
 	{

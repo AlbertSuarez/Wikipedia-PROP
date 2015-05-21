@@ -2,20 +2,14 @@ package wikipedia.presentation;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.Color;
-
 import javax.swing.JButton;
-
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -23,7 +17,6 @@ import javax.swing.JTextPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
@@ -57,6 +50,9 @@ public class VistaOptions extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		/**
+		 * Button Change Graph
+		 */
 		JButton btnNewButton = new JButton("Change Graph");
 		btnNewButton.setToolTipText("This option allows you to go to the principal window");
 		btnNewButton.addMouseListener(new MouseAdapter() {
@@ -69,11 +65,17 @@ public class VistaOptions extends JFrame {
 		btnNewButton.setBounds(12, 12, 169, 31);
 		contentPane.add(btnNewButton);
 
+		/**
+		 * TextField to Add or Delete Category
+		 */
 		textField = new JTextField();
 		textField.setBounds(29, 90, 104, 25);
 		contentPane.add(textField);
 		textField.setColumns(10);
 
+		/**
+		 * Button Add Category
+		 */
 		JButton btnAddCategory = new JButton("Add Category");
 		btnAddCategory.setToolTipText("This option allows you to add a new category with the name\n" +
 				"you've written in the text field");
@@ -89,6 +91,9 @@ public class VistaOptions extends JFrame {
 		btnAddCategory.setBounds(145, 90, 117, 25);
 		contentPane.add(btnAddCategory);
 
+		/**
+		 * Button Delete Category
+		 */
 		JButton btnDelCategory = new JButton("Del category");
 		btnDelCategory.setToolTipText("This option allows you to delete a category with the name\n" +
 				"you've written in the text field");
@@ -104,11 +109,17 @@ public class VistaOptions extends JFrame {
 		btnDelCategory.setBounds(274, 90, 117, 25);
 		contentPane.add(btnDelCategory);
 
+		/**
+		 * Text Field to Add or Delete Page
+		 */
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		textField_1.setBounds(29, 147, 104, 25);
 		contentPane.add(textField_1);
 
+		/**
+		 * Button Add Page
+		 */
 		JButton btnAddPage = new JButton("Add Page");
 		btnAddPage.setToolTipText("This option allows you to add a new page with the name\n" +
 				"you've written in the text field");
@@ -124,6 +135,9 @@ public class VistaOptions extends JFrame {
 		btnAddPage.setBounds(145, 144, 117, 25);
 		contentPane.add(btnAddPage);
 
+		/**
+		 * Button Delete Page
+		 */
 		JButton btnDelPage = new JButton("Del Page");
 		btnDelPage.setToolTipText("This option allows you to delete a page with the name\n" +
 				"you've written in the text field");
@@ -139,6 +153,9 @@ public class VistaOptions extends JFrame {
 		btnDelPage.setBounds(274, 144, 117, 25);
 		contentPane.add(btnDelPage);
 
+		/**
+		 * Panel to put the outputs
+		 */
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Wikipedia", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(51, 51, 51)));
 		panel.setBounds(492, 189, 385, 361);
@@ -153,6 +170,9 @@ public class VistaOptions extends JFrame {
 		textPane.setEditable(false);
 		scrollPane.setViewportView(textPane);
 
+		/**
+		 * Box to select algorithm
+		 */
 		final JComboBox<String> comboBox = new JComboBox<String> ();
 		comboBox.setModel(new DefaultComboBoxModel<String> (new String[] {"Newmann-Girvan", "Louvain", "Clique percolation"}));
 		comboBox.setBounds(703, 144, 169, 24);
@@ -160,6 +180,9 @@ public class VistaOptions extends JFrame {
 				"community detection");
 		contentPane.add(comboBox);
 
+		/**
+		 * Button Community Detection
+		 */
 		JButton btnCommunityDetection = new JButton("Community Detection");
 		btnCommunityDetection.setToolTipText("This option allows you to apply the algorithm you've selected\n" +
 				"on the box bellow and displays the result");
@@ -174,6 +197,9 @@ public class VistaOptions extends JFrame {
 		btnCommunityDetection.setBounds(497, 144, 194, 25);
 		contentPane.add(btnCommunityDetection);
 
+		/**
+		 * Button Print Graph
+		 */
 		JButton btnPrintGraph = new JButton("Print Graph");
 		btnPrintGraph.setToolTipText("This option allows you to display the graph in wikipedia format\n");
 		btnPrintGraph.addMouseListener(new MouseAdapter() {
@@ -185,6 +211,9 @@ public class VistaOptions extends JFrame {
 		btnPrintGraph.setBounds(497, 90, 194, 25);
 		contentPane.add(btnPrintGraph);
 
+		/**
+		 * Button Save Graph
+		 */
 		JButton btnSaveGraph = new JButton("Save Graph");
 		btnSaveGraph.setToolTipText("This option allows you to save the graph on a text file\n");
 		btnSaveGraph.addMouseListener(new MouseAdapter() {
@@ -196,6 +225,9 @@ public class VistaOptions extends JFrame {
 		btnSaveGraph.setBounds(703, 90, 169, 25);
 		contentPane.add(btnSaveGraph);
 
+		/**
+		 * Button Show Graph
+		 */
 		JButton btnShowGraph = new JButton("Show Graph");
 		btnShowGraph.setToolTipText("This option allows you to open a new window which displays a graphical\n" +
 				"version of the graph");
@@ -208,6 +240,9 @@ public class VistaOptions extends JFrame {
 		btnShowGraph.setBounds(29, 483, 153, 31);
 		contentPane.add(btnShowGraph);
 		
+		/**
+		 * Button Show CC
+		 */
 		JButton btnShowCc = new JButton("Show CC");
 		btnShowCc.setToolTipText("This option allows you to open a new window which displays a graphical\n" +
 				"version of the community collection");
@@ -222,6 +257,9 @@ public class VistaOptions extends JFrame {
 		btnShowCc.setBounds(238, 483, 153, 31);
 		contentPane.add(btnShowCc);
 		
+		/**
+		 * Two Text Fields to Add or Delete Links or Modify Element or Community
+		 */
 		final JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_1.setBounds(23, 372, 129, 48);
@@ -244,6 +282,9 @@ public class VistaOptions extends JFrame {
 		panel_2.add(textField_3);
 		textField_3.setColumns(10);
 		
+		/**
+		 * Button Add Link
+		 */
 		JButton btnAddLink = new JButton("Add Link");
 		btnAddLink.setToolTipText("This option allows you to add a link between two element of the graph\n");
 		btnAddLink.addActionListener(new ActionListener() {
@@ -258,6 +299,9 @@ public class VistaOptions extends JFrame {
 		btnAddLink.setBounds(29, 269, 117, 25);
 		contentPane.add(btnAddLink);
 
+		/**
+		 * Button Delete Link
+		 */
 		JButton btnDelLink = new JButton("Del Link");
 		btnDelLink.setToolTipText("This option allows you to delete a link between two element of the graph\n");
 		btnDelLink.addActionListener(new ActionListener() {
@@ -272,7 +316,9 @@ public class VistaOptions extends JFrame {
 		btnDelLink.setBounds(184, 269, 117, 25);
 		contentPane.add(btnDelLink);
 		
-		
+		/**
+		 * Button Modify Element
+		 */
 		JButton btnModifyElement = new JButton("Modify Element");
 		btnModifyElement.setToolTipText("This option allows you to change the name of an element from the graph\n");
 		btnModifyElement.addActionListener(new ActionListener() {
@@ -287,6 +333,9 @@ public class VistaOptions extends JFrame {
 		btnModifyElement.setBounds(29, 324, 117, 25);
 		contentPane.add(btnModifyElement);
 		
+		/**
+		 * Button Modify CC
+		 */
 		JButton btnModifyCc = new JButton("Modify CC");
 		btnModifyCc.setToolTipText("This option allows you to change a node's community in a community collection\n");
 		btnModifyCc.addActionListener(new ActionListener() {
@@ -301,7 +350,10 @@ public class VistaOptions extends JFrame {
 		btnModifyCc.setBounds(184, 324, 117, 25);
 		contentPane.add(btnModifyCc);
 		
-		JButton button = new JButton("-->");
+		/**
+		 * Button Continue
+		 */
+		JButton button = new JButton("➤");
 		button.setToolTipText("This option allows you to execute the operation selected from the buttons above\n");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -322,6 +374,9 @@ public class VistaOptions extends JFrame {
 		button.setBounds(342, 389, 49, 23);
 		contentPane.add(button);
 		
+		/**
+		 * Button Validate Golden
+		 */
 		JButton btnValidateGolden = new JButton("Validate Golden");
 		btnValidateGolden.setToolTipText("This option allows you to compare the three algorithms with\n" +
 				"the expected golden's output to know which one get's the most similar result");
