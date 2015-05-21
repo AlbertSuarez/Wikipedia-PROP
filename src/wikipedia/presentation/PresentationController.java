@@ -1,7 +1,8 @@
 package wikipedia.presentation;
 
 import g13.*;
-import java.io.File;
+
+import java.io.*;
 import java.util.*;
 import wikipedia.domain.*;
 
@@ -18,12 +19,14 @@ public class PresentationController
 	private VistaInici inici;
 	private VistaWrite write;
 	private VistaOptions options;
+	private String language;
 	
 	/**
 	 * Create a PresentacionController
 	 */
 	public PresentationController() {
 		dc = new DomainController();
+		language = "english.";
 		inici = new VistaInici(this);
 		write = new VistaWrite(this);
 		options = new VistaOptions(this);
@@ -37,6 +40,27 @@ public class PresentationController
 	}
 	
 	// FUNCIONS PER CANVIAR DE VISTA
+	
+	public void refreshInici() {
+		inici = new VistaInici(this);
+		write = new VistaWrite(this);
+		options = new VistaOptions(this);
+		inici.setVisible(true);
+	}
+	
+	public void refreshWrite() {
+		inici = new VistaInici(this);
+		write = new VistaWrite(this);
+		options = new VistaOptions(this);
+		write.setVisible(true);
+	}
+	
+	public void refreshOptions() {
+		inici = new VistaInici(this);
+		write = new VistaWrite(this);
+		options = new VistaOptions(this);
+		options.setVisible(true);
+	}
 	
 	public void closeInici() {
 		inici.dispose();
@@ -84,6 +108,16 @@ public class PresentationController
 	}
 	
 	// FUNCIONS DELS BOTONS
+	
+	public String getLanguage()
+	{
+		return language;
+	}
+	
+	public void setLanguage(String s)
+	{
+		language = s;
+	}
 	
 	public void loadWiki(File f){
 		dc.loadWP(f);
