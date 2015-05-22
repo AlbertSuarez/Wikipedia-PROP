@@ -189,6 +189,7 @@ public class Louvain implements Algorithm {
         for(Node n:current.getNodes()){
             bestPartition.addCommunity(getComNodes(n));
         }
+
         return bestPartition;
     }
 
@@ -265,7 +266,15 @@ public class Louvain implements Algorithm {
 	 */
 	public CommunityCollection runAlgorithm(Graph G, int nCom) {
 		original = G;
-		return calculate();
+        CommunityCollection cc = calculate();
+        G.invalidateAllEdges();
+        for(Edge e: G.getEdges()){
+           if(cc.getCommunityOfNode(e.getNode()) == cc.getCommunityOfNode(e.getNeighbor(e.getNode()))){
+	           e.setValidity(true);
+           }
+        }        
+        
+		return cc;
 	}
     
     
