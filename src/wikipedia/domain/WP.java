@@ -238,7 +238,14 @@ public class WP
 	public void modCommunity(String a, Integer i) {
 		ONode n = new ONode(new Category(a));
 		for (int j = 0; j < cc.getCommunityCount(); j++) {
-			if (cc.getCommunity(j).belongs(n)) {cc.getCommunity(j).eraseNode(n); break;}
+			if (cc.getCommunity(j).belongs(n)) {
+				for (Edge e : graph.getAdjacencyList(n)) {
+					if (e.isValid()) e.setValidity(false);
+					else if (cc.getCommunityOfNode(e.getNeighbor(n)) == i-1) e.setValidity(true);
+				}
+				cc.getCommunity(j).eraseNode(n);
+				break;
+			}
 		}
 		cc.getCommunity(i-1).addNode(n);
 	}
@@ -292,6 +299,13 @@ public class WP
 		graph.removeEdge(n1, n2);
 	}
 	
+	/**
+	 * Compare the golden's output with algorithm's output
+	 * @param nodes all nodes of the graph
+	 * @param golden the golden's community collection
+	 * @param alg the algorithm's community collection
+	 * @return the ratio between same nodes and all nodes
+	 */
 	private double calculateGoldenIt(Set<Node> nodes, CommunityCollection golden, CommunityCollection alg) {
 		double count = 0.0;
 		for (Node n : nodes) {
@@ -300,6 +314,10 @@ public class WP
 		return count/(double)nodes.size();
 	}
 	
+	/**
+	 * Calculate the best algorithm with golden case
+	 * @return the algorithm with less difference respect golden case output
+	 */
 	public String calculateGolden()
 	{
 		OGraph goldenIn = GraphIO.loadWP(new File("golden/ENTRADAcodigo.txt"));

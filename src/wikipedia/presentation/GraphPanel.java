@@ -45,6 +45,13 @@ public class GraphPanel extends JPanel {
 	private int mouse_x;
 	private int mouse_y;
 
+	/**
+	 * Creates a Graph Panel
+	 * @param g graph
+	 * @param w width
+	 * @param h height
+	 * @param cc indicates if will be a community collection representation or not
+	 */
 	public GraphPanel(OGraph g, int w, int h, boolean cc) {
 
 		listenerList = new EventListenerList();
@@ -139,6 +146,11 @@ public class GraphPanel extends JPanel {
 		});
 	}
 
+	/**
+	 * Press to the graph
+	 * @param x x coordinate
+	 * @param y y coordinate
+	 */
 	private void graphPress(int x, int y) {
 		int trans_x = (int)((x - img_x) * (img_w/(double)scaled_w));
 		int trans_y = (int)((y - img_y) * (img_h/(double)scaled_h));
@@ -150,6 +162,11 @@ public class GraphPanel extends JPanel {
 		}
 	}
 
+	/**
+	 * Set image position
+	 * @param x x coordinate
+	 * @param y y coordinate
+	 */
 	private void setImagePosition(int x, int y) {
 		if (x > (PANEL_W-MOVE_THRESHOLD)) return;
 		if (x + scaled_w < MOVE_THRESHOLD) return;
@@ -160,7 +177,9 @@ public class GraphPanel extends JPanel {
 		repaint();
 	}
 
-
+	/**
+	 * Get preferred size
+	 */
 	public Dimension getPreferredSize() {
 		return new Dimension(PANEL_W, PANEL_H);
 	}
@@ -177,12 +196,26 @@ public class GraphPanel extends JPanel {
 		g2d.drawImage(orig_img, img_x, img_y, scaled_w, scaled_h, null);
 	}
 
+	/**
+	 * Add on item listener
+	 * @param listener the listener
+	 */
 	public void addOnItemClickListener(GraphPanelOnItemClickListener listener) {
 		listenerList.add(GraphPanelOnItemClickListener.class, listener);
 	}
+	
+	/**
+	 * Remove on item listener
+	 * @param listener the listener
+	 */
 	public void removeOnItemClickListener(GraphPanelOnItemClickListener listener) {
 		listenerList.remove(GraphPanelOnItemClickListener.class, listener);
 	}
+	
+	/**
+	 * Fire on item click
+	 * @param item the item
+	 */
 	void fireOnItemClick(String item) {
 		Object[] listeners = listenerList.getListenerList();
 		for (int i = 0; i < listeners.length; i = i+2) {

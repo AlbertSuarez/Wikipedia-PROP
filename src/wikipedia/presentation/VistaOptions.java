@@ -45,8 +45,6 @@ public class VistaOptions extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private int option;
-	//private boolean com = false;
-	//private boolean graf = true;
 
 	/**
 	 * Create the frame.
@@ -56,8 +54,6 @@ public class VistaOptions extends JFrame {
 		try {
 			Properties p = new Properties();
 			p.load(new FileInputStream("conf.ini"));
-			//com = (!pc.CCisEmpty() && pc.getGraph().getNodes().size() <= Integer.parseInt(p.getProperty("conf.maxcom")));
-			//graf = (pc.getGraph().getNodes().size() <= Integer.parseInt(p.getProperty("conf.maxnodes")) && pc.getGraph().getNodes().size() > 0);
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setResizable(false);
 			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -406,8 +402,14 @@ public class VistaOptions extends JFrame {
 			button.setToolTipText(p.getProperty(pc.getLanguage()+"execute_tool"));
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if(option == 0)pc.addLink(textField_2.getText(),textField_3.getText());
-					else if (option == 1)pc.delLink(textField_2.getText(),textField_3.getText());
+					if(option == 0){
+						pc.addLink(textField_2.getText(),textField_3.getText());
+						btnShowCc.setVisible(false);
+					}
+					else if (option == 1){
+						pc.delLink(textField_2.getText(),textField_3.getText());
+						btnShowCc.setVisible(false);
+					}
 					else if (option == 2)pc.modElement(textField_2.getText(),textField_3.getText());
 					else if (option == 3 && !pc.CCisEmpty()){
 						pc.modCommunity(textField_2.getText(),textField_3.getText());

@@ -33,6 +33,11 @@ public class OGraph extends Graph
 		for (Edge e : getEdges()) e.setValidity(true);
 	}
 
+	/**
+	 * Convert a Graph to MxGraph
+	 * @param cc indicates if the mxgraph will be a community collection or not
+	 * @return the mxgraph result
+	 */
 	public mxGraph toMxGraph(boolean cc) {
 		mxGraph mxg = new mxGraph();
 		Object parent = mxg.getDefaultParent();
@@ -65,15 +70,17 @@ public class OGraph extends Graph
 			String title = on.getElement().getTitle();
 
 			Element.ElementType et = on.getElement().getElementType();
-			Object obj;
-
-			if (et == Element.ElementType.ELEMENT_PAGE && !cc) {
-				obj = mxg.insertVertex(parent, "Node:" + title, title, 0, 0, 50, 50, "PageStyle");
-			} else {
+			Object obj = null;
+			boolean put = false;
+			if (et == Element.ElementType.ELEMENT_CATEGORY) {
 				obj = mxg.insertVertex(parent, "Node:" + title, title, 0, 0, 50, 50, "CatStyle");
+				put = true;
+			} else if (!cc) {
+				obj = mxg.insertVertex(parent, "Node:" + title, title, 0, 0, 50, 50, "PageStyle");
+				put = true;
 			}
 
-			if (!objMap.containsKey(title)) {
+			if (!objMap.containsKey(title) && put) {
 				objMap.put(title, obj);
 			}
 		}

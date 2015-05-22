@@ -101,6 +101,11 @@ public class CommunityCollection {
 		return false;
 	}
 	
+	/**
+	 * Get the community of node
+	 * @param n the node
+	 * @return identifier of the node's community
+	 */
 	public int getCommunityOfNode(Node n)
 	{
 		for (int i = 0; i < collection.size(); i++) {
