@@ -33,6 +33,8 @@ import java.io.FileInputStream;
 import java.util.Properties;
 
 import javax.swing.UIManager;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class VistaOptions extends JFrame {
 
@@ -71,7 +73,7 @@ public class VistaOptions extends JFrame {
 			 */
 			JPanel panel = new JPanel();
 			panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Wikipedia", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(51, 51, 51)));
-			panel.setBounds(492, 189, 385, 361);
+			panel.setBounds(460, 189, 387, 361);
 			contentPane.add(panel);
 			panel.setLayout(null);
 	
@@ -184,16 +186,27 @@ public class VistaOptions extends JFrame {
 			});
 			btnDelPage.setBounds(274, 144, 117, 25);
 			contentPane.add(btnDelPage);
-		
+			
+			JSpinner spinner = new JSpinner();
+			spinner.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+			spinner.setBounds(847, 147, 40, 25);
+			contentPane.add(spinner);
 			
 			/**
 			 * Box to select algorithm
 			 */
 			final JComboBox<String> comboBox = new JComboBox<String> ();
 			comboBox.setModel(new DefaultComboBoxModel<String> (new String[] {"Newmann-Girvan", "Louvain", "Clique percolation"}));
-			comboBox.setBounds(703, 144, 169, 24);
+			comboBox.setBounds(666, 147, 169, 24);
 			comboBox.setToolTipText(p.getProperty(pc.getLanguage()+"boxalgorithm"));
 			contentPane.add(comboBox);
+			comboBox.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					if(comboBox.getSelectedIndex() == 0)spinner.setVisible(true);
+					else spinner.setVisible(false);
+				}
+			});
 	
 			/**
 			 * Button Community Detection
@@ -204,12 +217,12 @@ public class VistaOptions extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					pc.cleanCC();
-					textPane.setText(pc.communityDetection(comboBox.getSelectedIndex()));
+					textPane.setText(pc.communityDetection(comboBox.getSelectedIndex(),(Integer)spinner.getValue()));
 					com = true;
 				}
 			});
 			btnCommunityDetection.setFont(new Font("Dialog", Font.BOLD, 12));
-			btnCommunityDetection.setBounds(497, 144, 194, 25);
+			btnCommunityDetection.setBounds(460, 147, 194, 25);
 			contentPane.add(btnCommunityDetection);
 	
 			/**
@@ -223,7 +236,7 @@ public class VistaOptions extends JFrame {
 					textPane.setText(pc.printGraph());
 				}
 			});
-			btnPrintGraph.setBounds(497, 90, 194, 25);
+			btnPrintGraph.setBounds(460, 90, 194, 25);
 			contentPane.add(btnPrintGraph);
 	
 			/**
@@ -237,7 +250,7 @@ public class VistaOptions extends JFrame {
 					pc.saveGraph();
 				}
 			});
-			btnSaveGraph.setBounds(703, 90, 169, 25);
+			btnSaveGraph.setBounds(666, 90, 169, 25);
 			contentPane.add(btnSaveGraph);
 	
 			/**
@@ -397,7 +410,7 @@ public class VistaOptions extends JFrame {
 					textPane.setText(p.getProperty(pc.getLanguage()+"validategolden_res") + pc.calculateGolden());
 				}
 			});
-			btnValidateGolden.setBounds(622, 39, 153, 31);
+			btnValidateGolden.setBounds(577, 39, 153, 31);
 			contentPane.add(btnValidateGolden);
 			
 			/**
@@ -470,6 +483,7 @@ public class VistaOptions extends JFrame {
 			
 			JMenuItem mntmNewMenuItem = new JMenuItem(p.getProperty(pc.getLanguage()+"exit"));
 			mnNewMenu_1.add(mntmNewMenuItem);
+			
 			mntmNewMenuItem.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
 	                pc.closeOptions();
