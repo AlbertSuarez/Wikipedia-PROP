@@ -176,6 +176,13 @@ public class CliqueMaxim implements Algorithm {
            }
            que.clear();
        }
+       
+        G.invalidateAllEdges();
+        for(Edge e: G.getEdges()){
+           if(cc.getCommunityOfNode(e.getNode()) == cc.getCommunityOfNode(e.getNeighbor(e.getNode()))){
+	           e.setValidity(true);
+           }
+        }
        return cc;
    }
 
