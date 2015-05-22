@@ -136,6 +136,11 @@ public class DomainController
 		wikipedia.setCC(new CommunityCollection());;
 	}
 	
+	public Integer sizeCC()
+	{
+		return wikipedia.getCC().getCommunityCount();
+	}
+	
 	public OGraph getGraph()
 	{
 		return wikipedia.getGraph();

@@ -45,7 +45,8 @@ public class VistaOptions extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private int option;
-	private boolean com = false;
+	//private boolean com = false;
+	//private boolean graf = true;
 
 	/**
 	 * Create the frame.
@@ -55,6 +56,8 @@ public class VistaOptions extends JFrame {
 		try {
 			Properties p = new Properties();
 			p.load(new FileInputStream("conf.ini"));
+			//com = (!pc.CCisEmpty() && pc.getGraph().getNodes().size() <= Integer.parseInt(p.getProperty("conf.maxcom")));
+			//graf = (pc.getGraph().getNodes().size() <= Integer.parseInt(p.getProperty("conf.maxnodes")) && pc.getGraph().getNodes().size() > 0);
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setResizable(false);
 			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -95,13 +98,43 @@ public class VistaOptions extends JFrame {
 				public void mouseClicked(MouseEvent arg0) {
 					textPane.setText("");
 					pc.cleanCC();
-					com = false;
 					pc.optionsToInici();
 				}
 			});
 			btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			btnNewButton.setBounds(12, 39, 169, 31);
 			contentPane.add(btnNewButton);
+			
+			/**
+			 * Button Show Graph
+			 */
+			JButton btnShowGraph = new JButton(p.getProperty(pc.getLanguage()+"showgraph"));
+			btnShowGraph.setToolTipText(p.getProperty(pc.getLanguage()+"showgraph_tool"));
+			btnShowGraph.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					pc.optionsToGraph();
+				}
+			});
+			btnShowGraph.setBounds(29, 483, 153, 31);
+			contentPane.add(btnShowGraph);
+			if (pc.getGraph().getNodes().size() > Integer.parseInt(p.getProperty("conf.maxnodes")) || pc.getGraph().getNodes().size() == 0) btnShowGraph.setVisible(false);
+			
+			/**
+			 * Button Show CC
+			 */
+			JButton btnShowCc = new JButton(p.getProperty(pc.getLanguage()+"showcc"));
+			btnShowCc.setToolTipText(p.getProperty(pc.getLanguage()+"showcc_tool"));
+			btnShowCc.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if (!pc.CCisEmpty()) pc.optionsToCC();
+					else textPane.setText(p.getProperty(pc.getLanguage()+"ccempty"));
+				}
+			});
+			btnShowCc.setBounds(238, 483, 153, 31);
+			contentPane.add(btnShowCc);
+			if (pc.CCisEmpty() || pc.sizeCC() > Integer.parseInt(p.getProperty("conf.maxcom"))) btnShowCc.setVisible(false);
 	
 			/**
 			 * TextField to Add or Delete Category
@@ -122,6 +155,10 @@ public class VistaOptions extends JFrame {
 					if(textField.getText() != ""){
 						pc.addCat(textField.getText());
 						textField.setText("");
+						if (pc.getGraph().getNodes().size() == 1) {
+							btnShowGraph.setVisible(true);
+						}
+						btnShowCc.setVisible(false);
 					}
 				}
 			});
@@ -139,6 +176,10 @@ public class VistaOptions extends JFrame {
 					if(textField.getText() != ""){
 						pc.delCat(textField.getText());
 						textField.setText("");
+						if (pc.getGraph().getNodes().size() == 0) {
+							btnShowGraph.setVisible(false);
+						}
+						btnShowCc.setVisible(false);
 					}
 				}
 			});
@@ -164,6 +205,10 @@ public class VistaOptions extends JFrame {
 					if(textField_1.getText() != ""){
 						pc.addPage(textField_1.getText());
 						textField_1.setText("");
+						if (pc.getGraph().getNodes().size() == 1) {
+							btnShowGraph.setVisible(true);
+						}
+						btnShowCc.setVisible(false);
 					}
 				}
 			});
@@ -181,15 +226,23 @@ public class VistaOptions extends JFrame {
 					if(textField_1.getText() != ""){
 						pc.delPage(textField_1.getText());
 						textField_1.setText("");
+						if (pc.getGraph().getNodes().size() == 0) {
+							btnShowGraph.setVisible(false);
+						}
+						btnShowCc.setVisible(false);
 					}
 				}
 			});
 			btnDelPage.setBounds(274, 144, 117, 25);
 			contentPane.add(btnDelPage);
 			
+			/**
+			 * Number of communities (NG)
+			 */
 			JSpinner spinner = new JSpinner();
 			spinner.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 			spinner.setBounds(847, 147, 40, 25);
+			spinner.setToolTipText(p.getProperty(pc.getLanguage()+"spinner_tool"));
 			contentPane.add(spinner);
 			
 			/**
@@ -200,13 +253,12 @@ public class VistaOptions extends JFrame {
 			comboBox.setBounds(666, 147, 169, 24);
 			comboBox.setToolTipText(p.getProperty(pc.getLanguage()+"boxalgorithm"));
 			contentPane.add(comboBox);
-			comboBox.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent arg0) {
+			comboBox.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
 					if(comboBox.getSelectedIndex() == 0)spinner.setVisible(true);
 					else spinner.setVisible(false);
-				}
-			});
+	            }
+	        });
 	
 			/**
 			 * Button Community Detection
@@ -218,7 +270,8 @@ public class VistaOptions extends JFrame {
 				public void mouseClicked(MouseEvent arg0) {
 					pc.cleanCC();
 					textPane.setText(pc.communityDetection(comboBox.getSelectedIndex(),(Integer)spinner.getValue()));
-					com = true;
+					if (!pc.CCisEmpty() && pc.sizeCC() <= Integer.parseInt(p.getProperty("conf.maxcom"))) btnShowCc.setVisible(true);
+					else btnShowCc.setVisible(false);
 				}
 			});
 			btnCommunityDetection.setFont(new Font("Dialog", Font.BOLD, 12));
@@ -252,35 +305,6 @@ public class VistaOptions extends JFrame {
 			});
 			btnSaveGraph.setBounds(666, 90, 169, 25);
 			contentPane.add(btnSaveGraph);
-	
-			/**
-			 * Button Show Graph
-			 */
-			JButton btnShowGraph = new JButton(p.getProperty(pc.getLanguage()+"showgraph"));
-			btnShowGraph.setToolTipText(p.getProperty(pc.getLanguage()+"showgraph_tool"));
-			btnShowGraph.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					pc.optionsToGraph();
-				}
-			});
-			btnShowGraph.setBounds(29, 483, 153, 31);
-			contentPane.add(btnShowGraph);
-			
-			/**
-			 * Button Show CC
-			 */
-			JButton btnShowCc = new JButton(p.getProperty(pc.getLanguage()+"showcc"));
-			btnShowCc.setToolTipText(p.getProperty(pc.getLanguage()+"showcc_tool"));
-			btnShowCc.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					if (!pc.CCisEmpty()) pc.optionsToCC();
-					else textPane.setText(p.getProperty(pc.getLanguage()+"ccempty"));
-				}
-			});
-			btnShowCc.setBounds(238, 483, 153, 31);
-			contentPane.add(btnShowCc);
 			
 			/**
 			 * Two Text Fields to Add or Delete Links or Modify Element or Community
@@ -385,7 +409,7 @@ public class VistaOptions extends JFrame {
 					if(option == 0)pc.addLink(textField_2.getText(),textField_3.getText());
 					else if (option == 1)pc.delLink(textField_2.getText(),textField_3.getText());
 					else if (option == 2)pc.modElement(textField_2.getText(),textField_3.getText());
-					else if (option == 3 && com){
+					else if (option == 3 && !pc.CCisEmpty()){
 						pc.modCommunity(textField_2.getText(),textField_3.getText());
 						textPane.setText(pc.printCC());
 					}
@@ -489,6 +513,7 @@ public class VistaOptions extends JFrame {
 	                pc.closeOptions();
 	            }
 	        });
+			
 		}
 		catch (Exception e) {
 			System.out.println("ERROR");

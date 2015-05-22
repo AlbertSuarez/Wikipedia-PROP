@@ -67,7 +67,7 @@ public class OGraph extends Graph
 			Element.ElementType et = on.getElement().getElementType();
 			Object obj;
 
-			if (et == Element.ElementType.ELEMENT_PAGE) {
+			if (et == Element.ElementType.ELEMENT_PAGE && !cc) {
 				obj = mxg.insertVertex(parent, "Node:" + title, title, 0, 0, 50, 50, "PageStyle");
 			} else {
 				obj = mxg.insertVertex(parent, "Node:" + title, title, 0, 0, 50, 50, "CatStyle");

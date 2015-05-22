@@ -29,7 +29,6 @@ public class PresentationController
 		language = "english.";
 		inici = new VistaInici(this);
 		write = new VistaWrite(this);
-		options = new VistaOptions(this);
 	}
 
 	/**
@@ -86,11 +85,13 @@ public class PresentationController
 	
 	public void writeToOptions() {
 		write.setVisible(false);
+		options = new VistaOptions(this);
 		options.setVisible(true);
 	}
 	
 	public void iniciToOptions() {
 		inici.setVisible(false);
+		options = new VistaOptions(this);
 		options.setVisible(true);
 	}
 	
@@ -167,8 +168,8 @@ public class PresentationController
 		dc.saveWP();
 	}
 	
-	public String communityDetection(Integer a) {
-		if (a == 0) dc.runNG(10);
+	public String communityDetection(Integer a, Integer nCom) {
+		if (a == 0) dc.runNG(nCom);
 		else if (a == 1) dc.runLouvain();
 		else if (a == 2) dc.runCPMaxim();
 		return dc.printCC();
@@ -196,5 +197,9 @@ public class PresentationController
 	
 	public void cleanCC() {
 		dc.cleanCC();
+	}
+	
+	public Integer sizeCC() {
+		return dc.sizeCC();
 	}
 }
