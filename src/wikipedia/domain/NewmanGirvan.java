@@ -9,7 +9,7 @@ import java.util.*;
 public class NewmanGirvan implements Algorithm {
 
 	/**
-	 * Put the nodes of connected component to community 
+	 * Put the nodes of connected component to community
 	 * @param G The Graph where the nodes are
 	 * @param nodes The Nodes of the Graph
 	 * @param vist Indicate if the node are visited or not
@@ -20,7 +20,7 @@ public class NewmanGirvan implements Algorithm {
 		Stack<Integer> s = new Stack<Integer>();
 		Community c = new Community();
 		vist[i] = true;
-	
+
 		s.push(i);
 		while (!s.isEmpty()) {
 			int j = s.peek();
@@ -40,7 +40,7 @@ public class NewmanGirvan implements Algorithm {
 	}
 
 	/**
-	 * Put the nodes of Graph to community collection 
+	 * Put the nodes of Graph to community collection
 	 * @param G The Graph where the nodes are
 	 * @param nodes The Nodes of the Graph
 	 * @return The community collection of the Graph
@@ -59,9 +59,9 @@ public class NewmanGirvan implements Algorithm {
 		}
 		return cc;
 	}
-	
+
 	/**
-	 * Travel the nodes of connected component 
+	 * Travel the nodes of connected component
 	 * @param G The Graph where the nodes are
 	 * @param nodes The Nodes of the Graph
 	 * @param vist Indicate if the node are visited or not
@@ -88,7 +88,7 @@ public class NewmanGirvan implements Algorithm {
 	}
 
 	/**
-	 * Get the number of connected components 
+	 * Get the number of connected components
 	 * @param G The Graph where the nodes are
 	 * @param nodes The Nodes of the Graph
 	 * @return The number of connected components
@@ -101,7 +101,9 @@ public class NewmanGirvan implements Algorithm {
 
 		int count = 0;
 		for (int i = 0; i < nodeCount; ++i) {
-			if (!vist[i]) {
+			//if (!vist[i]) {
+			// Arregla incoherencia con el boton de la vista?
+			if (!vist[i] && ((ONode)nodes[i]).getElement().getElementType() != Element.ElementType.ELEMENT_PAGE) {
 				getConnectedComponentCountIt(G, nodes, vist, i);
 				++count;
 			}
@@ -110,7 +112,7 @@ public class NewmanGirvan implements Algorithm {
 	}
 
 	/**
-	 * The first step of Newman-Girvan algorithm 
+	 * The first step of Newman-Girvan algorithm
 	 * @param G The Graph
 	 * @param nodes The Nodes of the Graph
 	 * @param d The distances from source to s
@@ -158,7 +160,7 @@ public class NewmanGirvan implements Algorithm {
 	}
 
 	/**
-	 * The second step of Newman-Girvan algorithm 
+	 * The second step of Newman-Girvan algorithm
 	 * @param G The Graph
 	 * @param nodes The Nodes of the Graph
 	 * @param edgeMap The Map representation of Edge's Set

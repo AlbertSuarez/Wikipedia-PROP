@@ -32,7 +32,7 @@ public class DomainController
 	public void addCategory(String a) {
 		wikipedia.addCategory(new Category(a));
 	}
-	
+
 	/**
 	 * Delete category
 	 * @param a the title of category
@@ -40,7 +40,7 @@ public class DomainController
 	public void delCategory(String a) {
 		wikipedia.delCategory(new Category(a));
 	}
-	
+
 	/**
 	 * Add page
 	 * @param a the title of page
@@ -48,7 +48,7 @@ public class DomainController
 	public void addPage(String a) {
 		wikipedia.addPage(new Page(a));
 	}
-	
+
 	/**
 	 * Delete page
 	 * @param a the title of page
@@ -56,7 +56,7 @@ public class DomainController
 	public void delPage(String a) {
 		wikipedia.delPage(new Page(a));
 	}
-	
+
 	/**
 	 * Add link between two nodes
 	 * @param a the title of first node
@@ -67,7 +67,7 @@ public class DomainController
 		else if (wikipedia.catExists(a) && wikipedia.catExists(b)) wikipedia.addSuperLink(new Category(a), new Category(b));
 		else if (wikipedia.pagExists(a) && wikipedia.catExists(b)) wikipedia.addCPLink(new Category(b), new Page(a));
 	}
-	
+
 	/**
 	 * Delete link between two nodes
 	 * @param a the title of first node
@@ -78,7 +78,7 @@ public class DomainController
 		else if (wikipedia.catExists(a) && wikipedia.catExists(b)) wikipedia.delLink(new Category(a), new Category(b));
 		else if (wikipedia.pagExists(a) && wikipedia.catExists(b)) wikipedia.delLink(new Category(b), new Page(a));
 	}
-	
+
 	/**
 	 * Modify title of an Element
 	 * @param a the old title
@@ -87,7 +87,7 @@ public class DomainController
 	public void modElement(String a, String b) {
 			wikipedia.modElement(a, b);
 	}
-	
+
 	/**
 	 * Modify the node's community
 	 * @param a the title of node
@@ -96,21 +96,21 @@ public class DomainController
 	public void modCommunity(String a, String b) {
 		wikipedia.modCommunity(a, Integer.parseInt(b));
 	}
-	
+
 	/**
 	 * Reads with the WP format into the implicit graph
 	 */
 	public void readWPformat(ArrayList<String> wiki) {
 		wikipedia.setGraph(GraphIO.readGraphWPformat(wiki));
 	}
-	
+
 	/**
 	 * Loads with the WP format into the implicit graph
 	 */
 	public void loadWP(File f) {
 		wikipedia.setGraph(GraphIO.loadWP(f));
 	}
-	
+
 	/**
 	 * Saves with the WP format from the implicit graph
 	 */
@@ -134,7 +134,7 @@ public class DomainController
 	public void runNG(int nCom) {
 		wikipedia.setCC(erasePages(wikipedia.applyNewmanGirvan(nCom)));
 	}
-	
+
 	/**
 	 * Applies the Clique Percolation Algorithm (slow version) to the implicit graph
 	 * and saves it to the implicit CommunityCollection
@@ -142,7 +142,7 @@ public class DomainController
 	public void runCPMaxim() {
 		wikipedia.setCC(erasePages(wikipedia.applyCliquePercolationMaxim()));
 	}
-	
+
 	/**
 	 * Applies the Louvain Algorithm (fast version) to the implicit graph
 	 * and saves it to the implicit CommunityCollection
@@ -150,7 +150,7 @@ public class DomainController
 	public void runLouvain() {
 		wikipedia.setCC(erasePages(wikipedia.applyLouvain()));
 	}
-	
+
 	/**
 	 * Prints the implicit CommunityCollection
 	 * @return the string representation
@@ -163,7 +163,7 @@ public class DomainController
 		else s = COM.printCollection();
 		return s;
 	}
-	
+
 	/**
 	 * Check if the community collection is empty
 	 * @return true if the community collection is empty, false alternately
@@ -172,7 +172,7 @@ public class DomainController
 	{
 		return (wikipedia.getCC().getCommunityCount() == 0);
 	}
-	
+
 	/**
 	 * Clean the community collection
 	 */
@@ -180,7 +180,7 @@ public class DomainController
 	{
 		wikipedia.setCC(new CommunityCollection());;
 	}
-	
+
 	/**
 	 * Check the size of the community collection
 	 * @return the size of the community collection
@@ -189,7 +189,7 @@ public class DomainController
 	{
 		return wikipedia.getCC().getCommunityCount();
 	}
-	
+
 	/**
 	 * Get Graph
 	 * @return the graph of wikipedia
@@ -198,7 +198,7 @@ public class DomainController
 	{
 		return wikipedia.getGraph();
 	}
-	
+
 	/**
 	 * Validate Golden
 	 * @return the algorithm with less difference respect golden case output
@@ -207,7 +207,7 @@ public class DomainController
 	{
 		return wikipedia.calculateGolden();
 	}
-	
+
 	/**
 	 * Erase pages of a Community Collection
 	 * @param cc The community collection with Pages and Categories
@@ -223,7 +223,7 @@ public class DomainController
 					c.eraseNode(n);
 				}
 			}
-			
+
 			if (c.isEmpty()) { cc.eraseCommunity(c); --i;}
 			else cc.setCommunity(i, c);
 		}
