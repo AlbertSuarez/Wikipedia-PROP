@@ -15,7 +15,7 @@ public class WP
 	 * The Community Collection of Wikipedia that only contains Categories.
 	 */
 	private CommunityCollection cc;
-	
+
 	/**
 	 * The Graph of Wikipedia that contains Categories and Pages.
 	 */
@@ -25,17 +25,17 @@ public class WP
 	 * The instance of the NewmanGirvan.
 	 */
 	private Algorithm algoritmeNG;
-	
+
 	/**
 	 * The instance of the Clique Percolation (Slow version).
 	 */
 	private Algorithm algoritmeCPMaxim;
-	
-	/**
-	 * The instance of the Louvain.
-	 */
-	private Algorithm algoritmeLouvain;
-	
+
+//	/**
+//	 * The instance of the Louvain.
+//	 */
+//	private Algorithm algoritmeLouvain;
+
 	/**
 	 * Creates a new WP with an empty CommunityCollection and an empty Graph
 	 */
@@ -45,7 +45,7 @@ public class WP
 		graph = new OGraph();
 		algoritmeNG = new NewmanGirvan();
 		algoritmeCPMaxim = new CliqueMaxim();
-		algoritmeLouvain = new Louvain();
+//		algoritmeLouvain = new Louvain();
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class WP
 	{
 		return graph;
 	}
-	
+
 	/**
 	 * Sets the OGraph
 	 * @param g The OGraph to set
@@ -65,7 +65,7 @@ public class WP
 	{
 		this.graph = g;
 	}
-	
+
 	/**
 	 * Returns the CommunityCollection
 	 * @return The CommunityCollection
@@ -74,7 +74,7 @@ public class WP
 	{
 		return cc;
 	}
-		
+
 	/**
 	 * Sets the CommunityCollection
 	 * @param cc The CommunityCollection to set
@@ -83,7 +83,7 @@ public class WP
 	{
 		this.cc = cc;
 	}
-	
+
 	/**
 	 * Applies the Newman-Girvan algorithm to the graph
 	 * @param nCom The number of Communities to split the graph into
@@ -102,16 +102,16 @@ public class WP
 	{
 		return algoritmeCPMaxim.runAlgorithm(graph, 0);
 	}
-	
+
 	/**
 	 * Applies the Louvain algorithm to the graph
 	 * @return The CommunityCollecion that Louvain Algorithm produces
 	 */
 	public CommunityCollection applyLouvain()
 	{
-		return algoritmeLouvain.runAlgorithm(graph, 0);
+		return new Louvain().runAlgorithm(graph, 0);
 	}
-	
+
 	/**
 	 * Returns the Category identified by a String
 	 * @param title The title of the Category to search for
@@ -127,7 +127,7 @@ public class WP
 		System.out.println("The category doesn't belong to the graph");
 		return null;
 	}
-	
+
 	/**
 	 * Returns the Page identified by a String
 	 * @param title The title of the Page to search for
@@ -143,7 +143,7 @@ public class WP
 		System.out.println("The page doesn't belong to the graph");
 		return null;
 	}
-	
+
 	/**
 	 * Adds a new Category to the graph
 	 * @param c The new Category to add
@@ -153,7 +153,7 @@ public class WP
 		ONode n = new ONode(c);
 		graph.addNode(n);
 	}
-	
+
 	/**
 	 * Adds a new Page to the graph
 	 * @param p The new Page to add
@@ -163,7 +163,7 @@ public class WP
 		ONode n = new ONode(p);
 		graph.addNode(n);
 	}
-	
+
 	/**
 	 * Removes a Category from the graph
 	 * @param c The Category to remove
@@ -173,7 +173,7 @@ public class WP
 		ONode n = new ONode(c);
 		graph.removeNode(n);
 	}
-	
+
 	/**
 	 * Removes a Page from the graph
 	 * @param p The Page to remove
@@ -183,7 +183,7 @@ public class WP
 		ONode n = new ONode(p);
 		graph.removeNode(n);
 	}
-	
+
 	/**
 	 * Returns if the Category with title 'title' exists in graph
 	 * @param title The title of the Category
@@ -229,7 +229,7 @@ public class WP
 			}
 		}
 	}
-	
+
 	/**
 	 * Move a Node of a community to another community
 	 * @param a title of element's node
@@ -249,8 +249,8 @@ public class WP
 		}
 		cc.getCommunity(i-1).addNode(n);
 	}
-	
-	
+
+
 	/**
 	 * Creates a new Edge between two Categories
 	 * @param c1 One of the Categories to create the Edge to
@@ -268,7 +268,7 @@ public class WP
 		OEdge e = new OEdge(n1, n2, OEdge.EdgeType.CsupC);
 		graph.addEdge(e);
 	}
-	
+
 	/**
 	 * Creates a new Edge between a Category and a Page
 	 * @param c The Category to create the Edge to
@@ -286,7 +286,7 @@ public class WP
 		OEdge e = new OEdge(n1, n2, OEdge.EdgeType.CP);
 		graph.addEdge(e);
 	}
-	
+
 	/**
 	 * Deletes the edge between the nodes with Elements e1 and e2
 	 * @param e1 The element of the first Node
@@ -298,7 +298,7 @@ public class WP
 		ONode n2 = new ONode(e2);
 		graph.removeEdge(n1, n2);
 	}
-	
+
 	/**
 	 * Compare the golden's output with algorithm's output
 	 * @param nodes all nodes of the graph
@@ -313,7 +313,7 @@ public class WP
 		}
 		return count/(double)nodes.size();
 	}
-	
+
 	/**
 	 * Calculate the best algorithm with golden case
 	 * @return the algorithm with less difference respect golden case output
@@ -322,18 +322,21 @@ public class WP
 	{
 		OGraph goldenIn = GraphIO.loadWP(new File("golden/ENTRADAcodigo.txt"));
 		CommunityCollection goldenOut = GraphIO.loadCC(new File("golden/SALIDAesperadaGolden.txt"));
-		
+
 		Set<Node> nodes = goldenIn.getNodes();
-		
+
 		CommunityCollection NG = algoritmeNG.runAlgorithm(goldenIn, 7);
 		double affinity = calculateGoldenIt(nodes, goldenOut, NG);
-		
-		CommunityCollection L = algoritmeLouvain.runAlgorithm(goldenIn, 0);
+
+		CommunityCollection L = new Louvain().runAlgorithm(goldenIn, 0);
+		//CommunityCollection L = applyLouvain.runAlgorithm(goldenIn, 0);
 		double affinity1 = calculateGoldenIt(nodes, goldenOut, L);
-		
+
 		CommunityCollection CP = algoritmeCPMaxim.runAlgorithm(goldenIn, 0);
 		double affinity2 = calculateGoldenIt(nodes, goldenOut, CP);
-		
+
+		//System.out.println(affinity + " " + affinity1 + " " + affinity2);
+
 		if (Math.max(Math.max(affinity, affinity1),affinity2) == affinity) return "NewmanGirvan";
 		else if (Math.max(Math.max(affinity, affinity1),affinity2) == affinity1) return "Louvain";
 		else return "Clique Percolation";
