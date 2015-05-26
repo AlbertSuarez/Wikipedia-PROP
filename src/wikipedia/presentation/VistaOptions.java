@@ -148,7 +148,7 @@ public class VistaOptions extends JFrame {
 			btnAddCategory.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-					if(textField.getText() != ""){
+					if(!textField.getText().isEmpty() && !textField.getText().contains(" ")){
 						pc.addCat(textField.getText());
 						textField.setText("");
 						if (pc.getGraph().getNodes().size() == 1) {
@@ -156,6 +156,7 @@ public class VistaOptions extends JFrame {
 						}
 						btnShowCc.setVisible(false);
 					}
+					else textPane.setText(p.getProperty(pc.getLanguage()+"error"));
 				}
 			});
 			btnAddCategory.setBounds(145, 90, 117, 25);
@@ -169,7 +170,7 @@ public class VistaOptions extends JFrame {
 			btnDelCategory.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-					if(textField.getText() != ""){
+					if(!textField.getText().isEmpty() && !textField.getText().contains(" ")){
 						pc.delCat(textField.getText());
 						textField.setText("");
 						if (pc.getGraph().getNodes().size() == 0) {
@@ -177,6 +178,7 @@ public class VistaOptions extends JFrame {
 						}
 						btnShowCc.setVisible(false);
 					}
+					else textPane.setText(p.getProperty(pc.getLanguage()+"error"));
 				}
 			});
 			btnDelCategory.setBounds(274, 90, 117, 25);
@@ -198,7 +200,7 @@ public class VistaOptions extends JFrame {
 			btnAddPage.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-					if(textField_1.getText() != ""){
+					if(!textField_1.getText().isEmpty() && !textField_1.getText().contains(" ")){
 						pc.addPage(textField_1.getText());
 						textField_1.setText("");
 						if (pc.getGraph().getNodes().size() == 1) {
@@ -206,6 +208,7 @@ public class VistaOptions extends JFrame {
 						}
 						btnShowCc.setVisible(false);
 					}
+					else textPane.setText(p.getProperty(pc.getLanguage()+"error"));
 				}
 			});
 			btnAddPage.setBounds(145, 144, 117, 25);
@@ -219,7 +222,7 @@ public class VistaOptions extends JFrame {
 			btnDelPage.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-					if(textField_1.getText() != ""){
+					if(!textField_1.getText().isEmpty() && !textField_1.getText().contains(" ")){
 						pc.delPage(textField_1.getText());
 						textField_1.setText("");
 						if (pc.getGraph().getNodes().size() == 0) {
@@ -227,6 +230,7 @@ public class VistaOptions extends JFrame {
 						}
 						btnShowCc.setVisible(false);
 					}
+					else textPane.setText(p.getProperty(pc.getLanguage()+"error"));
 				}
 			});
 			btnDelPage.setBounds(274, 144, 117, 25);
@@ -402,19 +406,22 @@ public class VistaOptions extends JFrame {
 			button.setToolTipText(p.getProperty(pc.getLanguage()+"execute_tool"));
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if(option == 0){
-						pc.addLink(textField_2.getText(),textField_3.getText());
-						btnShowCc.setVisible(false);
+					if ((!textField_2.getText().isEmpty() && !textField_2.getText().contains(" ")) && (!textField_3.getText().isEmpty() && !textField_3.getText().contains(" "))) {
+						if(option == 0){
+							pc.addLink(textField_2.getText(),textField_3.getText());
+							btnShowCc.setVisible(false);
+						}
+						else if (option == 1){
+							pc.delLink(textField_2.getText(),textField_3.getText());
+							btnShowCc.setVisible(false);
+						}
+						else if (option == 2)pc.modElement(textField_2.getText(),textField_3.getText());
+						else if (option == 3 && !pc.CCisEmpty()){
+							pc.modCommunity(textField_2.getText(),textField_3.getText());
+							textPane.setText(pc.printCC());
+						}
 					}
-					else if (option == 1){
-						pc.delLink(textField_2.getText(),textField_3.getText());
-						btnShowCc.setVisible(false);
-					}
-					else if (option == 2)pc.modElement(textField_2.getText(),textField_3.getText());
-					else if (option == 3 && !pc.CCisEmpty()){
-						pc.modCommunity(textField_2.getText(),textField_3.getText());
-						textPane.setText(pc.printCC());
-					}
+					else textPane.setText(p.getProperty(pc.getLanguage()+"error"));
 					panel_1.setBorder(new TitledBorder(null, "", TitledBorder.CENTER, TitledBorder.TOP, null, null));
 					panel_2.setBorder(new TitledBorder(null, "", TitledBorder.CENTER, TitledBorder.TOP, null, null));
 					textField_2.setText("");
