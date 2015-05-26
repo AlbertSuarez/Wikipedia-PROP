@@ -53,7 +53,9 @@ public class VistaGraph extends JFrame {
 				public void onItemClick(String item) {
 					System.out.println("Item click event: " + item);
 					setBounds((width/2)-450,(height/2)-300,1200,600);
-					txtpn.setText("has apretat " + item + ", qué vols fer amb aquest element?");
+					txtpn.setText(p.getProperty(pc.getLanguage()+"graph1") + " " + item +
+						p.getProperty(pc.getLanguage()+"graph2"));
+					node = item;
 				}
 			});
 			gp.setBackground(new Color(255, 255,255));
@@ -71,19 +73,63 @@ public class VistaGraph extends JFrame {
 			txtpn.setBounds(10, 134, 280, 76);
 			panel_1.add(txtpn);
 			
-			JButton btnBorrar = new JButton("borrar");
+			/**
+			 * Btn Borrar
+			 */
+			JButton btnBorrar = new JButton(p.getProperty(pc.getLanguage()+"deletegraph"));
 			btnBorrar.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
+					if (node.contains("Node")) {
+						String node_aux = node.split(":")[1];
+						if (pc.isCat(node_aux)) pc.delCat(node_aux);
+						else pc.delPage(node_aux);
+					}
+					else {
+						
+					}
 					setBounds((width/2)-450,(height/2)-300,900,600);
 				}
 			});
 			btnBorrar.setBounds(26, 276, 89, 23);
 			panel_1.add(btnBorrar);
+			if (cc) btnBorrar.setVisible(false);
 			
-			JButton button = new JButton("modificar");
-			button.setBounds(173, 276, 89, 23);
-			panel_1.add(button);
+			/**
+			 * Btn Modificar Element
+			 */
+			JButton btnMod = new JButton(p.getProperty(pc.getLanguage()+"modgraph"));
+			btnMod.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					if (node.contains("Node")) {
+						String node_aux = node.split(":")[1];
+						pc.modElement(node_aux,"NOU_NOM");
+					}
+					setBounds((width/2)-450,(height/2)-300,900,600);
+				}
+			});
+			btnMod.setBounds(173, 276, 89, 23);
+			panel_1.add(btnMod);
+			if (cc) btnMod.setVisible(false);
+			
+			/**
+			 * Btn Modificar Comunitat
+			 */
+			JButton btnCom = new JButton(p.getProperty(pc.getLanguage()+"comgraph"));
+			btnCom.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					if (node.contains("Node")) {
+						String node_aux = node.split(":")[1];
+						pc.modCommunity(node_aux,"1");		// Hi ha un 1 com comunitat exemple
+					}
+					setBounds((width/2)-450,(height/2)-300,900,600);
+				}
+			});
+			btnCom.setBounds(26, 276, 89, 23);
+			panel_1.add(btnCom);
+			if (!cc) btnCom.setVisible(false);
 			
 			setVisible(true);
 
