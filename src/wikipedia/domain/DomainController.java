@@ -78,6 +78,16 @@ public class DomainController
 		else if (wikipedia.catExists(a) && wikipedia.catExists(b)) wikipedia.delLink(new Category(a), new Category(b));
 		else if (wikipedia.pagExists(a) && wikipedia.catExists(b)) wikipedia.delLink(new Category(b), new Page(a));
 	}
+	
+	/**
+	 * Check the type of node
+	 * @param a title of the node
+	 * @return true if node is a category, false if node is a page
+	 */
+	public boolean isCat(String a) {
+		if (wikipedia.catExists(a)) return true;
+		else return false;
+	}
 
 	/**
 	 * Modify title of an Element

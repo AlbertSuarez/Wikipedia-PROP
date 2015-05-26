@@ -328,4 +328,8 @@ public class PresentationController
 	public Integer sizeCC() {
 		return dc.sizeCC();
 	}
+	
+	public boolean isCat(String a) {
+		return dc.isCat(a);
+	}
 }

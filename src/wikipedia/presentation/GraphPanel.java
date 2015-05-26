@@ -147,6 +147,18 @@ public class GraphPanel extends JPanel {
 	}
 
 	/**
+	 * Set Size Image
+	 * @param w new width
+	 * @param h new height
+	 */
+	public void setSizeImage(int w, int h) {
+		
+		scaled_w = w;
+		scaled_h = h;
+		repaint();
+	}
+	
+	/**
 	 * Press to the graph
 	 * @param x x coordinate
 	 * @param y y coordinate
