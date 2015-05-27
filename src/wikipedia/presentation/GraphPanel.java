@@ -36,12 +36,12 @@ public class GraphPanel extends JPanel {
 	private mxGraphComponent mxgc;
 	private BufferedImage orig_img;
 
-	private int scaled_w;
-	private int scaled_h;
-	private int img_w;
-	private int img_h;
-	private int img_x;
-	private int img_y;
+	private double scaled_w;
+	private double scaled_h;
+	private double img_w;
+	private double img_h;
+	private double img_x;
+	private double img_y;
 	private int mouse_x;
 	private int mouse_y;
 	private boolean cc;
@@ -83,7 +83,7 @@ public class GraphPanel extends JPanel {
 				if (SwingUtilities.isLeftMouseButton(e)) {
 					int p_x = e.getX();
 					int p_y = e.getY();
-					setImagePosition(img_x + (p_x - mouse_x), img_y + (p_y - mouse_y));
+					setImagePosition((int)(img_x + (p_x - mouse_x)), (int)(img_y + (p_y - mouse_y)));
 					mouse_x = p_x;
 					mouse_y = p_y;
 				}
@@ -98,11 +98,11 @@ public class GraphPanel extends JPanel {
 				double new_w = scaled_w * zoom;
 				double new_h = scaled_h * zoom;
 
-				if (new_w < 100 || new_h < 100) return;
-				if (new_w > img_w*5 || new_h > img_h*5) return;
+				if (new_w < 100 && new_h < 100) return;
+				if (new_w > img_w*5 && new_h > img_h*5) return;
 
-				int zoom_x = mouse_x - img_x;
-				int zoom_y = mouse_y - img_y;
+				double zoom_x = mouse_x - img_x;
+				double zoom_y = mouse_y - img_y;
 
 				if (zoom_x > scaled_w) {
 					zoom_x = scaled_w;
@@ -115,11 +115,11 @@ public class GraphPanel extends JPanel {
 					zoom_y = 0;
 				}
 
-				img_x = (int)(mouse_x - zoom_x * zoom);
-				img_y = (int)(mouse_y - zoom_y * zoom);
+				img_x = mouse_x - zoom_x * zoom;
+				img_y = mouse_y - zoom_y * zoom;
 
-				scaled_w = (int)new_w;
-				scaled_h = (int)new_h;
+				scaled_w = new_w;
+				scaled_h = new_h;
 
 				repaint();
 			}
@@ -145,8 +145,8 @@ public class GraphPanel extends JPanel {
 	 * @param y y coordinate
 	 */
 	private void graphPress(int x, int y) {
-		int trans_x = (int)((x - img_x) * (img_w/(double)scaled_w));
-		int trans_y = (int)((y - img_y) * (img_h/(double)scaled_h));
+		int trans_x = (int)((x - img_x) * img_w/scaled_w);
+		int trans_y = (int)((y - img_y) * img_h/scaled_h);
 
 		Object obj = mxgc.getCellAt(trans_x, trans_y);;
 		if (obj != null) {
@@ -186,7 +186,7 @@ public class GraphPanel extends JPanel {
 		g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
 			RenderingHints.VALUE_INTERPOLATION_BICUBIC);
 
-		g2d.drawImage(orig_img, img_x, img_y, scaled_w, scaled_h, null);
+		g2d.drawImage(orig_img, (int)img_x, (int)img_y, (int)scaled_w, (int)scaled_h, null);
 	}
 
 	public void refresh() {
@@ -201,20 +201,20 @@ public class GraphPanel extends JPanel {
 		final int orig_w = orig_img.getWidth();
 		final int orig_h = orig_img.getHeight();
 
-		img_w = orig_w;
-		img_h = orig_h;
+		img_w = (int)orig_w;
+		img_h = (int)orig_h;
 
 		if (img_w > img_h) {
 			double ratio = PANEL_W/(double)img_w;
-			scaled_w = (int)(ratio * img_w);
-			scaled_h = (int)(ratio * img_h);
+			scaled_w = ratio * img_w;
+			scaled_h = ratio * img_h;
 
 			img_x = 0;
 			img_y = PANEL_H/2 - scaled_h/2;
 		} else {
 			double ratio = PANEL_H/(double)img_h;
-			scaled_w = (int)(ratio * img_w);
-			scaled_h = (int)(ratio * img_h);
+			scaled_w = ratio * img_w;
+			scaled_h = ratio * img_h;
 
 			img_x = PANEL_W/2 - scaled_w/2;
 			img_y = 0;

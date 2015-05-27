@@ -105,7 +105,6 @@ public class VistaInici extends JFrame {
 			txtpnWelcomeToThe.setBackground(new Color(255, 165, 0));
 			txtpnWelcomeToThe.setText(p.getProperty(pc.getLanguage()+"title"));
 			txtpnWelcomeToThe.setBounds(22, 116, 850, 78);
-			txtpnWelcomeToThe.setHorizontalTextPosition( SwingConstants.CENTER );
 			contentPane.add(txtpnWelcomeToThe);
 
 			/**
