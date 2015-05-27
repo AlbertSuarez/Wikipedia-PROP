@@ -2,6 +2,7 @@ package wikipedia.presentation;
 
 import g13.*;
 
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,6 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileInputStream;
 import java.util.Properties;
+import java.util.Scanner;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,7 +25,7 @@ public class VistaGraph extends JFrame {
 	private JPanel contentPane;
 	private String node;
 	private JTextPane txtpn;
-	
+
 	/**
 	 * Create the frame.
 	 */
@@ -42,16 +44,15 @@ public class VistaGraph extends JFrame {
 			contentPane.setLayout(new BorderLayout(0, 0));
 			setContentPane(contentPane);
 			contentPane.setLayout(null);
-			
+
 			JPanel panel = new JPanel();
 			panel.setBounds(0,0,900,600);
 			contentPane.add(panel);
 
 			OGraph g = pc.getGraph();
-			GraphPanel gp = new GraphPanel(g, 900, 600, cc);
+			final GraphPanel gp = new GraphPanel(g, 900, 600, cc);
 			gp.addOnItemClickListener(new GraphPanelOnItemClickListener() {
 				public void onItemClick(String item) {
-					System.out.println("Item click event: " + item);
 					setBounds((width/2)-450,(height/2)-300,1200,600);
 					txtpn.setText(p.getProperty(pc.getLanguage()+"graph1") + " " + item +
 						p.getProperty(pc.getLanguage()+"graph2"));
@@ -60,19 +61,19 @@ public class VistaGraph extends JFrame {
 			});
 			gp.setBackground(new Color(255, 255,255));
 			panel.add(gp);
-			
+
 			JPanel panel_1 = new JPanel();
 			panel_1.setBounds(900, 0, 300, 600);
 			contentPane.add(panel_1);
 			panel_1.setBackground(new Color(255, 255,255));
 			panel_1.setLayout(null);
-			
+
 			txtpn = new JTextPane();
 			txtpn.setText("");
 			txtpn.setEditable(false);
 			txtpn.setBounds(10, 134, 280, 76);
 			panel_1.add(txtpn);
-			
+
 			/**
 			 * Btn Borrar
 			 */
@@ -80,21 +81,29 @@ public class VistaGraph extends JFrame {
 			btnBorrar.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
+
+					String node_aux = node.split(":")[1];
+
 					if (node.contains("Node")) {
-						String node_aux = node.split(":")[1];
 						if (pc.isCat(node_aux)) pc.delCat(node_aux);
 						else pc.delPage(node_aux);
 					}
 					else {
-						
+						String[] split = node_aux.split(", ");
+
+						String a = split[0].substring(1);
+						String b = split[1];
+
+						pc.delLink(a, b);
 					}
+					gp.refresh();
 					setBounds((width/2)-450,(height/2)-300,900,600);
 				}
 			});
 			btnBorrar.setBounds(26, 276, 89, 23);
 			panel_1.add(btnBorrar);
 			if (cc) btnBorrar.setVisible(false);
-			
+
 			/**
 			 * Btn Modificar Element
 			 */
@@ -106,13 +115,14 @@ public class VistaGraph extends JFrame {
 						String node_aux = node.split(":")[1];
 						pc.modElement(node_aux,"NOU_NOM");
 					}
+					gp.refresh();
 					setBounds((width/2)-450,(height/2)-300,900,600);
 				}
 			});
 			btnMod.setBounds(173, 276, 89, 23);
 			panel_1.add(btnMod);
 			if (cc) btnMod.setVisible(false);
-			
+
 			/**
 			 * Btn Modificar Comunitat
 			 */
@@ -130,13 +140,13 @@ public class VistaGraph extends JFrame {
 			btnCom.setBounds(26, 276, 89, 23);
 			panel_1.add(btnCom);
 			if (!cc) btnCom.setVisible(false);
-			
+
 			setVisible(true);
 
 			/*
 			OGraph g = pc.getGraph();
 			final GraphPanel gp = new GraphPanel(g, 900, 600, cc);
-			
+
 			/**
 			 * Button Delete
 			 */
@@ -146,7 +156,7 @@ public class VistaGraph extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					if (node.contains("Edge")) {
-						
+
 					}
 					else {
 						String node_aux = node.split(":")[1];
@@ -162,7 +172,7 @@ public class VistaGraph extends JFrame {
 			contentPane.add(btnDelCategory);
 			btnDelCategory.setVisible(false);
 
-			
+
 			/**
 			 * When click to node or edge
 			 */
@@ -178,7 +188,7 @@ public class VistaGraph extends JFrame {
 				}
 			});
 			contentPane.add(gp);
-			
+
 			pack();
 			setVisible(true);*/
 		}

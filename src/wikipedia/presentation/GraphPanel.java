@@ -44,6 +44,8 @@ public class GraphPanel extends JPanel {
 	private int img_y;
 	private int mouse_x;
 	private int mouse_y;
+	private boolean cc;
+	private OGraph g;
 
 	/**
 	 * Creates a Graph Panel
@@ -59,31 +61,10 @@ public class GraphPanel extends JPanel {
 		PANEL_W = w;
 		PANEL_H = h;
 
-		mxg = g.toMxGraph(cc);
-		mxgc = new mxGraphComponent(mxg);
+		this.g = g;
+		this.cc = cc;
 
-		orig_img = mxCellRenderer.createBufferedImage(mxg, null, 1, Color.WHITE, true, null);
-		final int orig_w = orig_img.getWidth();
-		final int orig_h = orig_img.getHeight();
-
-		img_w = orig_w;
-		img_h = orig_h;
-
-		if (img_w > img_h) {
-			double ratio = PANEL_W/(double)img_w;
-			scaled_w = (int)(ratio * img_w);
-			scaled_h = (int)(ratio * img_h);
-
-			img_x = 0;
-			img_y = PANEL_H/2 - scaled_h/2;
-		} else {
-			double ratio = PANEL_H/(double)img_h;
-			scaled_w = (int)(ratio * img_w);
-			scaled_h = (int)(ratio * img_h);
-
-			img_x = PANEL_W/2 - scaled_w/2;
-			img_y = 0;
-		}
+		refresh();
 
 		addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -152,12 +133,12 @@ public class GraphPanel extends JPanel {
 	 * @param h new height
 	 */
 	public void setSizeImage(int w, int h) {
-		
+
 		scaled_w = w;
 		scaled_h = h;
 		repaint();
 	}
-	
+
 	/**
 	 * Press to the graph
 	 * @param x x coordinate
@@ -208,6 +189,39 @@ public class GraphPanel extends JPanel {
 		g2d.drawImage(orig_img, img_x, img_y, scaled_w, scaled_h, null);
 	}
 
+	public void refresh() {
+
+		mxg = g.toMxGraph(cc);
+		mxgc = new mxGraphComponent(mxg);
+
+		orig_img = mxCellRenderer.createBufferedImage(mxg, null, 1, Color.WHITE, true, null);
+		if (orig_img == null)
+			return;
+
+		final int orig_w = orig_img.getWidth();
+		final int orig_h = orig_img.getHeight();
+
+		img_w = orig_w;
+		img_h = orig_h;
+
+		if (img_w > img_h) {
+			double ratio = PANEL_W/(double)img_w;
+			scaled_w = (int)(ratio * img_w);
+			scaled_h = (int)(ratio * img_h);
+
+			img_x = 0;
+			img_y = PANEL_H/2 - scaled_h/2;
+		} else {
+			double ratio = PANEL_H/(double)img_h;
+			scaled_w = (int)(ratio * img_w);
+			scaled_h = (int)(ratio * img_h);
+
+			img_x = PANEL_W/2 - scaled_w/2;
+			img_y = 0;
+		}
+		repaint();
+	}
+
 	/**
 	 * Add on item listener
 	 * @param listener the listener
@@ -215,7 +229,7 @@ public class GraphPanel extends JPanel {
 	public void addOnItemClickListener(GraphPanelOnItemClickListener listener) {
 		listenerList.add(GraphPanelOnItemClickListener.class, listener);
 	}
-	
+
 	/**
 	 * Remove on item listener
 	 * @param listener the listener
@@ -223,7 +237,7 @@ public class GraphPanel extends JPanel {
 	public void removeOnItemClickListener(GraphPanelOnItemClickListener listener) {
 		listenerList.remove(GraphPanelOnItemClickListener.class, listener);
 	}
-	
+
 	/**
 	 * Fire on item click
 	 * @param item the item

@@ -71,11 +71,12 @@ public class OGraph extends Graph
 			Element.ElementType et = on.getElement().getElementType();
 			Object obj = null;
 			boolean put = false;
+			int node_w = Math.max(50, title.length()*8);
 			if (et == Element.ElementType.ELEMENT_CATEGORY) {
-				obj = mxg.insertVertex(parent, "Node:" + title, title, 0, 0, 50, 50, "CatStyle");
+				obj = mxg.insertVertex(parent, "Node:" + title, title, 0, 0, node_w, 50, "CatStyle");
 				put = true;
 			} else if (!cc) {
-				obj = mxg.insertVertex(parent, "Node:" + title, title, 0, 0, 50, 50, "PageStyle");
+				obj = mxg.insertVertex(parent, "Node:" + title, title, 0, 0, node_w, 50, "PageStyle");
 				put = true;
 			}
 
@@ -89,6 +90,7 @@ public class OGraph extends Graph
 			if ((cc && oe.isValid()) || !cc) {
 				ONode node1 = (ONode)oe.getOrigNode();
 				ONode node2 = (ONode)oe.getDestNode();
+
 				mxg.insertEdge(parent, "Edge:" + oe.toString(), null,
 					objMap.get(node1.getElement().getTitle()),
 					objMap.get(node2.getElement().getTitle()));

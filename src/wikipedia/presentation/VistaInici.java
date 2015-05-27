@@ -25,7 +25,7 @@ public class VistaInici extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	
+
 	/**
 	 * Create the frame.
 	 */
@@ -46,7 +46,7 @@ public class VistaInici extends JFrame {
 			contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 			setContentPane(contentPane);
 			contentPane.setLayout(null);
-			
+
 			/**
 			 * Subtitle
 			 */
@@ -57,7 +57,7 @@ public class VistaInici extends JFrame {
 			txtpnToStartDoing.setText(p.getProperty(pc.getLanguage()+"subtitle"));
 			txtpnToStartDoing.setBounds(142, 192, 583, 82);
 			contentPane.add(txtpnToStartDoing);
-			
+
 			/**
 			 * Button Load Graph
 			 */
@@ -76,7 +76,7 @@ public class VistaInici extends JFrame {
 				}
 			});
 			btnContinue.setFont(new Font("Tahoma", Font.BOLD, 20));
-			
+
 			/**
 			 * Button Write Graph
 			 */
@@ -95,7 +95,7 @@ public class VistaInici extends JFrame {
 			btnWriteGraph.setFont(new Font("Tahoma", Font.BOLD, 20));
 			btnWriteGraph.setBounds(509, 387, 216, 60);
 			contentPane.add(btnWriteGraph);
-			
+
 			/**
 			 * Title
 			 */
@@ -105,29 +105,30 @@ public class VistaInici extends JFrame {
 			txtpnWelcomeToThe.setBackground(new Color(255, 165, 0));
 			txtpnWelcomeToThe.setText(p.getProperty(pc.getLanguage()+"title"));
 			txtpnWelcomeToThe.setBounds(22, 116, 850, 78);
+			txtpnWelcomeToThe.setHorizontalTextPosition( SwingConstants.CENTER );
 			contentPane.add(txtpnWelcomeToThe);
-			
+
 			/**
 			 * Menu Empty
 			 */
 			JMenuBar MenuEmpty = new JMenuBar();
 			MenuEmpty.setBounds(150, 0, 770, 21);
 			contentPane.add(MenuEmpty);
-			
+
 			JMenu mnNewMenu = new JMenu("");
 			MenuEmpty.add(mnNewMenu);
-			
+
 			/**
 			 * Menu Language
 			 */
 			JMenuBar MenuLanguage = new JMenuBar();
 			MenuLanguage.setBounds(60, 0, 90, 21);
 			contentPane.add(MenuLanguage);
-			
+
 			JMenu mnLanguage = new JMenu(p.getProperty(pc.getLanguage()+"language"));
 			mnLanguage.setHorizontalAlignment(SwingConstants.CENTER);
 			MenuLanguage.add(mnLanguage);
-			
+
 			JMenuItem mntmEnglish = new JMenuItem("English");
 			mnLanguage.add(mntmEnglish);
 			mntmEnglish.addActionListener(new ActionListener() {
@@ -139,7 +140,7 @@ public class VistaInici extends JFrame {
 	                }
 	            }
 	        });
-			
+
 			JMenuItem mntmCastell = new JMenuItem("Español");
 			mnLanguage.add(mntmCastell);
 			mntmCastell.addActionListener(new ActionListener() {
@@ -151,7 +152,7 @@ public class VistaInici extends JFrame {
 	                }
 	            }
 	        });
-			
+
 			JMenuItem mntmCatala = new JMenuItem("Català");
 			mnLanguage.add(mntmCatala);
 			mntmCatala.addActionListener(new ActionListener() {
@@ -163,18 +164,18 @@ public class VistaInici extends JFrame {
 	                }
 	            }
 	        });
-			
+
 			/**
 			 * Menu File
 			 */
 			JMenuBar MenuFile = new JMenuBar();
 			MenuFile.setBounds(0, 0, 60, 21);
 			contentPane.add(MenuFile);
-			
+
 			JMenu mnNewMenu_1 = new JMenu(p.getProperty(pc.getLanguage()+"file"));
 			mnNewMenu_1.setHorizontalAlignment(SwingConstants.CENTER);
 			MenuFile.add(mnNewMenu_1);
-			
+
 			JMenuItem mntmNewMenuItem = new JMenuItem(p.getProperty(pc.getLanguage()+"exit"));
 			mnNewMenu_1.add(mntmNewMenuItem);
 			mntmNewMenuItem.addActionListener(new ActionListener() {

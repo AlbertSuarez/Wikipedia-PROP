@@ -66,7 +66,7 @@ public class VistaOptions extends JFrame {
 			contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 			setContentPane(contentPane);
 			contentPane.setLayout(null);
-	
+
 			/**
 			 * Panel to put the outputs
 			 */
@@ -75,15 +75,15 @@ public class VistaOptions extends JFrame {
 			panel.setBounds(460, 189, 387, 361);
 			contentPane.add(panel);
 			panel.setLayout(null);
-	
+
 			JScrollPane scrollPane = new JScrollPane();
 			scrollPane.setBounds(5, 17, 375, 339);
 			panel.add(scrollPane);
-	
+
 			final JTextPane textPane = new JTextPane();
 			textPane.setEditable(false);
 			scrollPane.setViewportView(textPane);
-			
+
 			/**
 			 * Button Change Graph
 			 */
@@ -100,7 +100,7 @@ public class VistaOptions extends JFrame {
 			btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			btnNewButton.setBounds(12, 39, 169, 31);
 			contentPane.add(btnNewButton);
-			
+
 			/**
 			 * Button Show Graph
 			 */
@@ -115,7 +115,7 @@ public class VistaOptions extends JFrame {
 			btnShowGraph.setBounds(29, 483, 153, 31);
 			contentPane.add(btnShowGraph);
 			if (pc.getGraph().getNodes().size() > Integer.parseInt(p.getProperty("conf.maxnodes")) || pc.getGraph().getNodes().size() == 0) btnShowGraph.setVisible(false);
-			
+
 			/**
 			 * Button Show CC
 			 */
@@ -131,7 +131,7 @@ public class VistaOptions extends JFrame {
 			btnShowCc.setBounds(238, 483, 153, 31);
 			contentPane.add(btnShowCc);
 			if (pc.CCisEmpty() || pc.sizeCC() > Integer.parseInt(p.getProperty("conf.maxcom"))) btnShowCc.setVisible(false);
-	
+
 			/**
 			 * TextField to Add or Delete Category
 			 */
@@ -139,7 +139,7 @@ public class VistaOptions extends JFrame {
 			textField.setBounds(29, 90, 104, 25);
 			contentPane.add(textField);
 			textField.setColumns(10);
-	
+
 			/**
 			 * Button Add Category
 			 */
@@ -161,7 +161,7 @@ public class VistaOptions extends JFrame {
 			});
 			btnAddCategory.setBounds(145, 90, 117, 25);
 			contentPane.add(btnAddCategory);
-	
+
 			/**
 			 * Button Delete Category
 			 */
@@ -183,7 +183,7 @@ public class VistaOptions extends JFrame {
 			});
 			btnDelCategory.setBounds(274, 90, 117, 25);
 			contentPane.add(btnDelCategory);
-	
+
 			/**
 			 * Text Field to Add or Delete Page
 			 */
@@ -191,7 +191,7 @@ public class VistaOptions extends JFrame {
 			textField_1.setColumns(10);
 			textField_1.setBounds(29, 147, 104, 25);
 			contentPane.add(textField_1);
-	
+
 			/**
 			 * Button Add Page
 			 */
@@ -213,7 +213,7 @@ public class VistaOptions extends JFrame {
 			});
 			btnAddPage.setBounds(145, 144, 117, 25);
 			contentPane.add(btnAddPage);
-	
+
 			/**
 			 * Button Delete Page
 			 */
@@ -235,7 +235,7 @@ public class VistaOptions extends JFrame {
 			});
 			btnDelPage.setBounds(274, 144, 117, 25);
 			contentPane.add(btnDelPage);
-			
+
 			/**
 			 * Number of communities (NG)
 			 */
@@ -244,7 +244,7 @@ public class VistaOptions extends JFrame {
 			spinner.setBounds(847, 147, 40, 25);
 			spinner.setToolTipText(p.getProperty(pc.getLanguage()+"spinner_tool"));
 			contentPane.add(spinner);
-			
+
 			/**
 			 * Box to select algorithm
 			 */
@@ -259,7 +259,7 @@ public class VistaOptions extends JFrame {
 					else spinner.setVisible(false);
 	            }
 	        });
-	
+
 			/**
 			 * Button Community Detection
 			 */
@@ -277,7 +277,7 @@ public class VistaOptions extends JFrame {
 			btnCommunityDetection.setFont(new Font("Dialog", Font.BOLD, 12));
 			btnCommunityDetection.setBounds(460, 147, 194, 25);
 			contentPane.add(btnCommunityDetection);
-	
+
 			/**
 			 * Button Print Graph
 			 */
@@ -291,7 +291,7 @@ public class VistaOptions extends JFrame {
 			});
 			btnPrintGraph.setBounds(460, 90, 194, 25);
 			contentPane.add(btnPrintGraph);
-	
+
 			/**
 			 * Button Save Graph
 			 */
@@ -305,7 +305,7 @@ public class VistaOptions extends JFrame {
 			});
 			btnSaveGraph.setBounds(666, 90, 169, 25);
 			contentPane.add(btnSaveGraph);
-			
+
 			/**
 			 * Two Text Fields to Add or Delete Links or Modify Element or Community
 			 */
@@ -315,28 +315,28 @@ public class VistaOptions extends JFrame {
 			panel_1.setVisible(false);
 			contentPane.add(panel_1);
 			panel_1.setLayout(null);
-			
+
 			textField_2 = new JTextField();
 			textField_2.setBounds(6, 16, 117, 25);
 			panel_1.add(textField_2);
 			textField_2.setColumns(10);
-			
+
 			final JPanel panel_2 = new JPanel();
 			panel_2.setBorder(new TitledBorder(null, "", TitledBorder.CENTER, TitledBorder.TOP, null, null));
 			panel_2.setBounds(178, 372, 129, 48);
 			panel_2.setVisible(false);
 			contentPane.add(panel_2);
 			panel_2.setLayout(null);
-			
+
 			textField_3 = new JTextField();
 			textField_3.setBounds(6, 16, 117, 25);
 			panel_2.add(textField_3);
 			textField_3.setColumns(10);
-			
+
 			/**
 			 * Button Continue
 			 */
-			JButton button = new JButton("➤");
+			final JButton button = new JButton("➤");
 			button.setToolTipText(p.getProperty(pc.getLanguage()+"execute_tool"));
 			button.setVisible(false);
 			button.addActionListener(new ActionListener() {
@@ -369,7 +369,7 @@ public class VistaOptions extends JFrame {
 			});
 			button.setBounds(342, 389, 49, 23);
 			contentPane.add(button);
-			
+
 			/**
 			 * Button Add Link
 			 */
@@ -389,7 +389,7 @@ public class VistaOptions extends JFrame {
 			});
 			btnAddLink.setBounds(29, 269, 117, 25);
 			contentPane.add(btnAddLink);
-	
+
 			/**
 			 * Button Delete Link
 			 */
@@ -409,7 +409,7 @@ public class VistaOptions extends JFrame {
 			});
 			btnDelLink.setBounds(184, 269, 117, 25);
 			contentPane.add(btnDelLink);
-			
+
 			/**
 			 * Button Modify Element
 			 */
@@ -429,7 +429,7 @@ public class VistaOptions extends JFrame {
 			});
 			btnModifyElement.setBounds(29, 324, 117, 25);
 			contentPane.add(btnModifyElement);
-			
+
 			/**
 			 * Button Modify CC
 			 */
@@ -449,8 +449,8 @@ public class VistaOptions extends JFrame {
 			});
 			btnModifyCc.setBounds(184, 324, 117, 25);
 			contentPane.add(btnModifyCc);
-			
-			
+
+
 			/**
 			 * Button Validate Golden
 			 */
@@ -464,28 +464,28 @@ public class VistaOptions extends JFrame {
 			});
 			btnValidateGolden.setBounds(577, 39, 153, 31);
 			contentPane.add(btnValidateGolden);
-			
+
 			/**
 			 * Menu Empty
 			 */
 			JMenuBar MenuEmpty = new JMenuBar();
 			MenuEmpty.setBounds(150, 0, 770, 21);
 			contentPane.add(MenuEmpty);
-			
+
 			JMenu mnNewMenu = new JMenu("");
 			MenuEmpty.add(mnNewMenu);
-			
+
 			/**
 			 * Menu Language
 			 */
 			JMenuBar MenuLanguage = new JMenuBar();
 			MenuLanguage.setBounds(60, 0, 90, 21);
 			contentPane.add(MenuLanguage);
-			
+
 			JMenu mnLanguage = new JMenu(p.getProperty(pc.getLanguage()+"language"));
 			mnLanguage.setHorizontalAlignment(SwingConstants.CENTER);
 			MenuLanguage.add(mnLanguage);
-			
+
 			JMenuItem mntmEnglish = new JMenuItem("English");
 			mnLanguage.add(mntmEnglish);
 			mntmEnglish.addActionListener(new ActionListener() {
@@ -497,7 +497,7 @@ public class VistaOptions extends JFrame {
 	                }
 	            }
 	        });
-			
+
 			JMenuItem mntmCastell = new JMenuItem("Español");
 			mnLanguage.add(mntmCastell);
 			mntmCastell.addActionListener(new ActionListener() {
@@ -509,7 +509,7 @@ public class VistaOptions extends JFrame {
 	                }
 	            }
 	        });
-			
+
 			JMenuItem mntmCatala = new JMenuItem("Català ");
 			mnLanguage.add(mntmCatala);
 			mntmCatala.addActionListener(new ActionListener() {
@@ -521,31 +521,31 @@ public class VistaOptions extends JFrame {
 	                }
 	            }
 	        });
-			
+
 			/**
 			 * Menu File
 			 */
 			JMenuBar MenuFile = new JMenuBar();
 			MenuFile.setBounds(0, 0, 60, 21);
 			contentPane.add(MenuFile);
-			
+
 			JMenu mnNewMenu_1 = new JMenu(p.getProperty(pc.getLanguage()+"file"));
 			mnNewMenu_1.setHorizontalAlignment(SwingConstants.CENTER);
 			MenuFile.add(mnNewMenu_1);
-			
+
 			JMenuItem mntmNewMenuItem = new JMenuItem(p.getProperty(pc.getLanguage()+"exit"));
 			mnNewMenu_1.add(mntmNewMenuItem);
-			
+
 			mntmNewMenuItem.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
 	                pc.closeOptions();
 	            }
 	        });
-			
+
 		}
 		catch (Exception e) {
 			System.out.println("ERROR");
 		}
-		
+
 	}
 }
