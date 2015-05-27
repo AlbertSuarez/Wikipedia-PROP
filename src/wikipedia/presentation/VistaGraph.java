@@ -30,7 +30,7 @@ public class VistaGraph extends JFrame {
 	public VistaGraph(final PresentationController pc, boolean cc) {
 		super("Wikipedia");
 		try {
-			Properties p = new Properties();
+			final Properties p = new Properties();
 			p.load(new FileInputStream("conf.ini"));
 			setResizable(false);
 			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

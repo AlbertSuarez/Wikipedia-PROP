@@ -52,7 +52,7 @@ public class VistaOptions extends JFrame {
 	public VistaOptions(final PresentationController pc) {
 		super("Wikipedia");
 		try {
-			Properties p = new Properties();
+			final Properties p = new Properties();
 			p.load(new FileInputStream("conf.ini"));
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setResizable(false);
@@ -104,7 +104,7 @@ public class VistaOptions extends JFrame {
 			/**
 			 * Button Show Graph
 			 */
-			JButton btnShowGraph = new JButton(p.getProperty(pc.getLanguage()+"showgraph"));
+			final JButton btnShowGraph = new JButton(p.getProperty(pc.getLanguage()+"showgraph"));
 			btnShowGraph.setToolTipText(p.getProperty(pc.getLanguage()+"showgraph_tool"));
 			btnShowGraph.addMouseListener(new MouseAdapter() {
 				@Override
@@ -119,7 +119,7 @@ public class VistaOptions extends JFrame {
 			/**
 			 * Button Show CC
 			 */
-			JButton btnShowCc = new JButton(p.getProperty(pc.getLanguage()+"showcc"));
+			final JButton btnShowCc = new JButton(p.getProperty(pc.getLanguage()+"showcc"));
 			btnShowCc.setToolTipText(p.getProperty(pc.getLanguage()+"showcc_tool"));
 			btnShowCc.addMouseListener(new MouseAdapter() {
 				@Override
@@ -239,7 +239,7 @@ public class VistaOptions extends JFrame {
 			/**
 			 * Number of communities (NG)
 			 */
-			JSpinner spinner = new JSpinner();
+			final JSpinner spinner = new JSpinner();
 			spinner.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 			spinner.setBounds(847, 147, 40, 25);
 			spinner.setToolTipText(p.getProperty(pc.getLanguage()+"spinner_tool"));
