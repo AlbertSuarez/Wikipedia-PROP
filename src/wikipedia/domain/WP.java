@@ -31,11 +31,6 @@ public class WP
 	 */
 	private Algorithm algoritmeCPMaxim;
 
-//	/**
-//	 * The instance of the Louvain.
-//	 */
-//	private Algorithm algoritmeLouvain;
-
 	/**
 	 * Creates a new WP with an empty CommunityCollection and an empty Graph
 	 */
@@ -45,7 +40,6 @@ public class WP
 		graph = new OGraph();
 		algoritmeNG = new NewmanGirvan();
 		algoritmeCPMaxim = new CliqueMaxim();
-//		algoritmeLouvain = new Louvain();
 	}
 
 	/**
@@ -320,6 +314,7 @@ public class WP
 	 */
 	public String calculateGolden()
 	{
+		String s = "";
 		OGraph goldenIn = GraphIO.loadWP(new File("golden/ENTRADAcodigo.txt"));
 		CommunityCollection goldenOut = GraphIO.loadCC(new File("golden/SALIDAesperadaGolden.txt"));
 
@@ -329,16 +324,15 @@ public class WP
 		double affinity = calculateGoldenIt(nodes, goldenOut, NG);
 
 		CommunityCollection L = new Louvain().runAlgorithm(goldenIn, 0);
-		//CommunityCollection L = applyLouvain.runAlgorithm(goldenIn, 0);
 		double affinity1 = calculateGoldenIt(nodes, goldenOut, L);
 
 		CommunityCollection CP = algoritmeCPMaxim.runAlgorithm(goldenIn, 0);
 		double affinity2 = calculateGoldenIt(nodes, goldenOut, CP);
 
-		//System.out.println(affinity + " " + affinity1 + " " + affinity2);
-
-		if (Math.max(Math.max(affinity, affinity1),affinity2) == affinity) return "NewmanGirvan";
-		else if (Math.max(Math.max(affinity, affinity1),affinity2) == affinity1) return "Louvain";
-		else return "Clique Percolation";
+		if (Math.max(Math.max(affinity, affinity1),affinity2) == affinity) s = "NewmanGirvan";
+		else if (Math.max(Math.max(affinity, affinity1),affinity2) == affinity1) s = "Louvain";
+		else s = "Clique Percolation";
+		
+		return s + "\n" + "\n" + "Golden case:\n" + goldenOut.printCollection();
 	}
 }
