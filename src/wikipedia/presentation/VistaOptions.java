@@ -491,7 +491,7 @@ public class VistaOptions extends JFrame {
 	            }
 	        });
 			
-			JMenuItem mntmCatala = new JMenuItem("Català");
+			JMenuItem mntmCatala = new JMenuItem("Català ");
 			mnLanguage.add(mntmCatala);
 			mntmCatala.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {

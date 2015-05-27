@@ -146,7 +146,7 @@ public class VistaWrite extends JFrame {
 	            }
 	        });
 			
-			JMenuItem mntmCastell = new JMenuItem("Espa√±ol");
+			JMenuItem mntmCastell = new JMenuItem("EspaÒol");
 			mnLanguage.add(mntmCastell);
 			mntmCastell.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
@@ -158,7 +158,7 @@ public class VistaWrite extends JFrame {
 	            }
 	        });
 			
-			JMenuItem mntmCatala = new JMenuItem("Catal√†");
+			JMenuItem mntmCatala = new JMenuItem("Catal‡†");
 			mnLanguage.add(mntmCatala);
 			mntmCatala.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {

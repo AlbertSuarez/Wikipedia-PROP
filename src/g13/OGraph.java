@@ -10,7 +10,6 @@ import com.mxgraph.layout.hierarchical.mxHierarchicalLayout;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxStylesheet;
-import com.mxgraph.model.mxCell;
 
 /**
  * Own Graph implementation
@@ -90,7 +89,7 @@ public class OGraph extends Graph
 			if ((cc && oe.isValid()) || !cc) {
 				ONode node1 = (ONode)oe.getOrigNode();
 				ONode node2 = (ONode)oe.getDestNode();
-				mxCell cell = (mxCell)mxg.insertEdge(parent, "Edge:" + oe.toString(), null,
+				mxg.insertEdge(parent, "Edge:" + oe.toString(), null,
 					objMap.get(node1.getElement().getTitle()),
 					objMap.get(node2.getElement().getTitle()));
 

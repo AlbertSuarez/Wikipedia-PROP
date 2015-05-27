@@ -104,7 +104,7 @@ public class VistaInici extends JFrame {
 			txtpnWelcomeToThe.setFont(new Font("Dialog", Font.PLAIN, 56));
 			txtpnWelcomeToThe.setBackground(new Color(255, 165, 0));
 			txtpnWelcomeToThe.setText(p.getProperty(pc.getLanguage()+"title"));
-			txtpnWelcomeToThe.setBounds(22, 116, 830, 78);
+			txtpnWelcomeToThe.setBounds(22, 116, 850, 78);
 			contentPane.add(txtpnWelcomeToThe);
 			
 			/**
@@ -140,7 +140,7 @@ public class VistaInici extends JFrame {
 	            }
 	        });
 			
-			JMenuItem mntmCastell = new JMenuItem("Espa√±ol");
+			JMenuItem mntmCastell = new JMenuItem("EspaÒol");
 			mnLanguage.add(mntmCastell);
 			mntmCastell.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
@@ -152,7 +152,7 @@ public class VistaInici extends JFrame {
 	            }
 	        });
 			
-			JMenuItem mntmCatala = new JMenuItem("Catal√†");
+			JMenuItem mntmCatala = new JMenuItem("Catal‡†");
 			mnLanguage.add(mntmCatala);
 			mntmCatala.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {

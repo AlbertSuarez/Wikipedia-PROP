@@ -28,10 +28,7 @@ public final class GraphIO {
 		Map<String, ONode> nodeMap = new LinkedHashMap<String, ONode>();
 		Iterator<String> itwiki = wiki.iterator();
 		while(itwiki.hasNext()){
-			String s = itwiki.next();
-			String[] parts;
-			if (s.contains(" ")) parts = s.split(" ");
-			else parts = s.split("\\t");
+			String[] parts = itwiki.next().split(" ");
 			String name1 = parts[0];    // Read name1
 			String type1 = parts[1];    // Read type1 (cat or page)
 			String linkType = parts[2]; // Read linkType (CsupC, Csubc, CP, PA)
@@ -119,7 +116,6 @@ public final class GraphIO {
 				com.addNode(new ONode(new Category(s)));
 			}
 		}
-		if (!com.isEmpty()) col.addCommunity(com);
 		return col;
 	}
 	
