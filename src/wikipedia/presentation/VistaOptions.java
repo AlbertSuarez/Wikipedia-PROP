@@ -312,6 +312,7 @@ public class VistaOptions extends JFrame {
 			final JPanel panel_1 = new JPanel();
 			panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			panel_1.setBounds(23, 372, 129, 48);
+			panel_1.setVisible(false);
 			contentPane.add(panel_1);
 			panel_1.setLayout(null);
 			
@@ -323,6 +324,7 @@ public class VistaOptions extends JFrame {
 			final JPanel panel_2 = new JPanel();
 			panel_2.setBorder(new TitledBorder(null, "", TitledBorder.CENTER, TitledBorder.TOP, null, null));
 			panel_2.setBounds(178, 372, 129, 48);
+			panel_2.setVisible(false);
 			contentPane.add(panel_2);
 			panel_2.setLayout(null);
 			
@@ -330,6 +332,43 @@ public class VistaOptions extends JFrame {
 			textField_3.setBounds(6, 16, 117, 25);
 			panel_2.add(textField_3);
 			textField_3.setColumns(10);
+			
+			/**
+			 * Button Continue
+			 */
+			JButton button = new JButton("➤");
+			button.setToolTipText(p.getProperty(pc.getLanguage()+"execute_tool"));
+			button.setVisible(false);
+			button.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if ((!textField_2.getText().isEmpty() && !textField_2.getText().contains(" ")) && (!textField_3.getText().isEmpty() && !textField_3.getText().contains(" "))) {
+						if(option == 0){
+							pc.addLink(textField_2.getText(),textField_3.getText());
+							btnShowCc.setVisible(false);
+						}
+						else if (option == 1){
+							pc.delLink(textField_2.getText(),textField_3.getText());
+							btnShowCc.setVisible(false);
+						}
+						else if (option == 2)pc.modElement(textField_2.getText(),textField_3.getText());
+						else if (option == 3 && !pc.CCisEmpty()){
+							pc.modCommunity(textField_2.getText(),textField_3.getText());
+							textPane.setText(pc.printCC());
+						}
+						panel_1.setVisible(false);
+						panel_2.setVisible(false);
+						button.setVisible(false);
+					}
+					else textPane.setText(p.getProperty(pc.getLanguage()+"error"));
+					panel_1.setBorder(new TitledBorder(null, "", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+					panel_2.setBorder(new TitledBorder(null, "", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+					textField_2.setText("");
+					textField_3.setText("");
+					option = -1;
+				}
+			});
+			button.setBounds(342, 389, 49, 23);
+			contentPane.add(button);
 			
 			/**
 			 * Button Add Link
@@ -342,6 +381,9 @@ public class VistaOptions extends JFrame {
 					textField_3.setText("");
 					panel_1.setBorder(new TitledBorder(null, p.getProperty(pc.getLanguage()+"addlink_1"), TitledBorder.CENTER, TitledBorder.TOP, null, null));
 					panel_2.setBorder(new TitledBorder(null, p.getProperty(pc.getLanguage()+"addlink_2"), TitledBorder.CENTER, TitledBorder.TOP, null, null));
+					panel_1.setVisible(true);
+					panel_2.setVisible(true);
+					button.setVisible(true);
 					option = 0;
 				}
 			});
@@ -359,6 +401,9 @@ public class VistaOptions extends JFrame {
 					textField_3.setText("");
 					panel_1.setBorder(new TitledBorder(null, p.getProperty(pc.getLanguage()+"dellink_1"), TitledBorder.CENTER, TitledBorder.TOP, null, null));
 					panel_2.setBorder(new TitledBorder(null, p.getProperty(pc.getLanguage()+"dellink_2"), TitledBorder.CENTER, TitledBorder.TOP, null, null));
+					panel_1.setVisible(true);
+					panel_2.setVisible(true);
+					button.setVisible(true);
 					option = 1;
 				}
 			});
@@ -376,6 +421,9 @@ public class VistaOptions extends JFrame {
 					textField_3.setText("");
 					panel_1.setBorder(new TitledBorder(null, p.getProperty(pc.getLanguage()+"modifyelement_1"), TitledBorder.CENTER, TitledBorder.TOP, null, null));
 					panel_2.setBorder(new TitledBorder(null, p.getProperty(pc.getLanguage()+"modifyelement_2"), TitledBorder.CENTER, TitledBorder.TOP, null, null));
+					panel_1.setVisible(true);
+					panel_2.setVisible(true);
+					button.setVisible(true);
 					option = 2;
 				}
 			});
@@ -393,44 +441,15 @@ public class VistaOptions extends JFrame {
 					textField_3.setText("");
 					panel_1.setBorder(new TitledBorder(null, p.getProperty(pc.getLanguage()+"modifycc_1"), TitledBorder.CENTER, TitledBorder.TOP, null, null));
 					panel_2.setBorder(new TitledBorder(null, p.getProperty(pc.getLanguage()+"modifycc_2"), TitledBorder.CENTER, TitledBorder.TOP, null, null));
+					panel_1.setVisible(true);
+					panel_2.setVisible(true);
+					button.setVisible(true);
 					option = 3;
 				}
 			});
 			btnModifyCc.setBounds(184, 324, 117, 25);
 			contentPane.add(btnModifyCc);
 			
-			/**
-			 * Button Continue
-			 */
-			JButton button = new JButton("➤");
-			button.setToolTipText(p.getProperty(pc.getLanguage()+"execute_tool"));
-			button.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					if ((!textField_2.getText().isEmpty() && !textField_2.getText().contains(" ")) && (!textField_3.getText().isEmpty() && !textField_3.getText().contains(" "))) {
-						if(option == 0){
-							pc.addLink(textField_2.getText(),textField_3.getText());
-							btnShowCc.setVisible(false);
-						}
-						else if (option == 1){
-							pc.delLink(textField_2.getText(),textField_3.getText());
-							btnShowCc.setVisible(false);
-						}
-						else if (option == 2)pc.modElement(textField_2.getText(),textField_3.getText());
-						else if (option == 3 && !pc.CCisEmpty()){
-							pc.modCommunity(textField_2.getText(),textField_3.getText());
-							textPane.setText(pc.printCC());
-						}
-					}
-					else textPane.setText(p.getProperty(pc.getLanguage()+"error"));
-					panel_1.setBorder(new TitledBorder(null, "", TitledBorder.CENTER, TitledBorder.TOP, null, null));
-					panel_2.setBorder(new TitledBorder(null, "", TitledBorder.CENTER, TitledBorder.TOP, null, null));
-					textField_2.setText("");
-					textField_3.setText("");
-					option = -1;
-				}
-			});
-			button.setBounds(342, 389, 49, 23);
-			contentPane.add(button);
 			
 			/**
 			 * Button Validate Golden
