@@ -2,11 +2,12 @@ package wikipedia.presentation;
 
 import g13.*;
 
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileInputStream;
@@ -17,7 +18,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
 
 public class VistaGraph extends JFrame {
 
@@ -25,6 +29,8 @@ public class VistaGraph extends JFrame {
 	private JPanel contentPane;
 	private String node;
 	private JTextPane txtpn;
+	private JTextField textField;
+	private int option = -1;
 
 	/**
 	 * Create the frame.
@@ -100,9 +106,54 @@ public class VistaGraph extends JFrame {
 					setBounds((width/2)-450,(height/2)-300,900,600);
 				}
 			});
-			btnBorrar.setBounds(26, 276, 89, 23);
+			btnBorrar.setBounds(26, 276, 100, 23);
 			panel_1.add(btnBorrar);
 			if (cc) btnBorrar.setVisible(false);
+			
+			/*
+			 * panel  i boton continuar
+			 */
+			
+			JPanel panel_2 = new JPanel();
+			panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+			panel_2.setBounds(57, 390, 98, 43);
+			panel_2.setVisible(false);
+			panel_1.add(panel_2);
+			panel_2.setLayout(null);
+			
+			textField = new JTextField();
+			textField.setBounds(6, 16, 86, 20);
+			panel_2.add(textField);
+			textField.setColumns(10);
+			
+			JButton button = new JButton("➤");
+			button.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if ((!textField.getText().isEmpty() && !textField.getText().contains(" "))) {
+						String node_aux = node.split(":")[1];
+						if(option == 0){
+							pc.modElement(node_aux,textField.getText());
+						}
+						else if (option == 1){
+							pc.addLink(node_aux,textField.getText());
+						}
+						else if (option == 2){
+							pc.delLink(node_aux,textField.getText());
+						}
+						gp.refresh();
+						setBounds((width/2)-450,(height/2)-300,900,600);
+						panel_2.setVisible(false);
+						button.setVisible(false);
+						option = -1;
+					}
+					panel_2.setBorder(new TitledBorder(null, "", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+					textField.setText("");
+					option = -1;
+				}
+			});
+			button.setBounds(194, 402, 45, 23);
+			button.setVisible(false);
+			panel_1.add(button);
 
 			/**
 			 * Btn Modificar Element
@@ -111,15 +162,12 @@ public class VistaGraph extends JFrame {
 			btnMod.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-					if (node.contains("Node")) {
-						String node_aux = node.split(":")[1];
-						pc.modElement(node_aux,"NOU_NOM");
-					}
-					gp.refresh();
-					setBounds((width/2)-450,(height/2)-300,900,600);
+					option = 0;
+					button.setVisible(true);
+					panel_2.setVisible(true);
 				}
 			});
-			btnMod.setBounds(173, 276, 89, 23);
+			btnMod.setBounds(173, 276, 100, 23);
 			panel_1.add(btnMod);
 			if (cc) btnMod.setVisible(false);
 
@@ -139,62 +187,41 @@ public class VistaGraph extends JFrame {
 			});
 			btnCom.setBounds(26, 276, 89, 23);
 			panel_1.add(btnCom);
+			
+			/*
+			 * afegeix un link csupc amb el node indicat
+			 */
+			JButton btnAddLink = new JButton("add link");
+			btnAddLink.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					option = 1;
+					button.setVisible(true);
+					panel_2.setVisible(true);
+				}
+			});
+			btnAddLink.setBounds(26, 333, 100, 23);
+			panel_1.add(btnAddLink);
+			
+			JButton btnDelLink = new JButton("del link");
+			btnDelLink.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					option = 2;
+					button.setVisible(true);
+					panel_2.setVisible(true);
+				}
+			});
+			btnDelLink.setBounds(173, 333, 100, 23);
+			panel_1.add(btnDelLink);
+			
 			if (!cc) btnCom.setVisible(false);
 
 			setVisible(true);
 
-			/*
-			OGraph g = pc.getGraph();
-			final GraphPanel gp = new GraphPanel(g, 900, 600, cc);
-
-			/**
-			 * Button Delete
-			 */
-			/*JButton btnDelCategory = new JButton(p.getProperty(pc.getLanguage()+"deletegraph"));
-			btnDelCategory.setToolTipText(p.getProperty(pc.getLanguage()+"deletegraph"));
-			btnDelCategory.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent arg0) {
-					if (node.contains("Edge")) {
-
-					}
-					else {
-						String node_aux = node.split(":")[1];
-						if (pc.isCat(node_aux)) pc.delCat(node_aux);
-						else pc.delPage(node_aux);
-					}
-					btnDelCategory.setVisible(false);
-					gp.setSize(900, 600);
-					gp.setSizeImage(900, 600);
-				}
-			});
-			btnDelCategory.setBounds(750, 100, 117, 25);
-			contentPane.add(btnDelCategory);
-			btnDelCategory.setVisible(false);
-
-
-			/**
-			 * When click to node or edge
-			 */
-			/*gp.addOnItemClickListener(new GraphPanelOnItemClickListener() {
-				public void onItemClick(String item) {
-					System.out.println("Item click event: " + item);
-					node = item;
-					if (!cc) {
-						gp.setSize(700, 600);
-						gp.setSizeImage(700, 400);
-						btnDelCategory.setVisible(true);
-					}
-				}
-			});
-			contentPane.add(gp);
-
-			pack();
-			setVisible(true);*/
 		}
 		catch (Exception e) {
 			System.out.println("ERROR");
 		}
 	}
-
 }
