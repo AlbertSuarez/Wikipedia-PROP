@@ -44,6 +44,7 @@ public class VistaOptions extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private JButton btnModifyCc;
 	private int option;
 
 	/**
@@ -155,6 +156,7 @@ public class VistaOptions extends JFrame {
 							btnShowGraph.setVisible(true);
 						}
 						btnShowCc.setVisible(false);
+						btnModifyCc.setVisible(false);
 					}
 					else textPane.setText(p.getProperty(pc.getLanguage()+"error"));
 				}
@@ -177,6 +179,7 @@ public class VistaOptions extends JFrame {
 							btnShowGraph.setVisible(false);
 						}
 						btnShowCc.setVisible(false);
+						btnModifyCc.setVisible(false);
 					}
 					else textPane.setText(p.getProperty(pc.getLanguage()+"error"));
 				}
@@ -207,6 +210,7 @@ public class VistaOptions extends JFrame {
 							btnShowGraph.setVisible(true);
 						}
 						btnShowCc.setVisible(false);
+						btnModifyCc.setVisible(false);
 					}
 					else textPane.setText(p.getProperty(pc.getLanguage()+"error"));
 				}
@@ -229,6 +233,7 @@ public class VistaOptions extends JFrame {
 							btnShowGraph.setVisible(false);
 						}
 						btnShowCc.setVisible(false);
+						btnModifyCc.setVisible(false);
 					}
 					else textPane.setText(p.getProperty(pc.getLanguage()+"error"));
 				}
@@ -272,6 +277,7 @@ public class VistaOptions extends JFrame {
 					textPane.setText(pc.communityDetection(comboBox.getSelectedIndex(),(Integer)spinner.getValue()));
 					if (!pc.CCisEmpty() && pc.sizeCC() <= Integer.parseInt(p.getProperty("conf.maxcom"))) btnShowCc.setVisible(true);
 					else btnShowCc.setVisible(false);
+					btnModifyCc.setVisible(true);
 				}
 			});
 			btnCommunityDetection.setFont(new Font("Dialog", Font.BOLD, 12));
@@ -345,10 +351,12 @@ public class VistaOptions extends JFrame {
 						if(option == 0){
 							pc.addLink(textField_2.getText(),textField_3.getText());
 							btnShowCc.setVisible(false);
+							btnModifyCc.setVisible(false);
 						}
 						else if (option == 1){
 							pc.delLink(textField_2.getText(),textField_3.getText());
 							btnShowCc.setVisible(false);
+							btnModifyCc.setVisible(false);
 						}
 						else if (option == 2)pc.modElement(textField_2.getText(),textField_3.getText());
 						else if (option == 3 && !pc.CCisEmpty()){
@@ -433,7 +441,7 @@ public class VistaOptions extends JFrame {
 			/**
 			 * Button Modify CC
 			 */
-			JButton btnModifyCc = new JButton(p.getProperty(pc.getLanguage()+"modifycc"));
+			btnModifyCc = new JButton(p.getProperty(pc.getLanguage()+"modifycc"));
 			btnModifyCc.setToolTipText(p.getProperty(pc.getLanguage()+"modifycc_tool"));
 			btnModifyCc.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
@@ -449,6 +457,7 @@ public class VistaOptions extends JFrame {
 			});
 			btnModifyCc.setBounds(184, 324, 117, 25);
 			contentPane.add(btnModifyCc);
+			if (pc.CCisEmpty()) btnModifyCc.setVisible(false);
 
 
 			/**
