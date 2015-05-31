@@ -3,13 +3,14 @@ package wikipedia.persistence;
 import wikipedia.utils.Utils;
 import g13.OGraph;
 import java.io.IOException;
+import java.io.File;
 
 /**
  * Driver Persistence Class
  * @author G13.2
  */
 public class DriverPersistence {
-    
+
 	/**
 	 * The string's representation of operation
 	 */
@@ -53,7 +54,7 @@ public class DriverPersistence {
 
 	/**
 	* Read a String
-	* @return The read String 
+	* @return The read String
 	* @throws IOException if you can't write the String
 	*/
 	public static String readString() throws IOException {
@@ -76,9 +77,9 @@ public class DriverPersistence {
      */
     public static void main(String args[]) throws IOException {
 	OGraph G = new OGraph();
- 
+
 	printOptions();
- 
+
 	readOption();
 	while (!op.equals("EXIT")) {
 		switch(op) {
@@ -95,15 +96,15 @@ public class DriverPersistence {
 				//G = GraphIO.loadWP();
 				break;
 			case "SAVE_GRAPH":
-				print("Salva el grafo implicito en un fichero.");
-				GraphIO.saveWP(G);
+				print("Salva el grafo escrito en un fichero");
+				GraphIO.saveWP(G, Utils.save("Specify the name of the file to save"));
 				break;
 			case "READ_AND_SAVE_GRAPH":
 				print("Introduce un grafo con el formato de Wikipedia:");
 				OGraph w = new OGraph();
 				//w = GraphIO.readGraphWPformat();
 				print("Salva el grafo escrito en un fichero");
-				GraphIO.saveWP(w);
+				GraphIO.saveWP(w, Utils.save("Specify the name of the file to save"));
 				break;
 			case "WRITE_DOT_FORMAT":
 					print("Escribe el grafo en formato DOT");
@@ -112,7 +113,8 @@ public class DriverPersistence {
 					break;
 			case "SAVE_DOT_FORMAT":
 					print("Convierte el grafo implicito en formato DOT y lo salva en un fichero");
-					GraphIO.saveWP(G);
+					print("Salva el grafo escrito en un fichero");
+					GraphIO.saveWP(G, Utils.save("Specify the name of the file to save"));
 					break;
 			case "PRINT_OPTION_LIST":
 					printOptions();

@@ -317,7 +317,8 @@ public class VistaGraph extends JFrame {
 
 			menuItemExportGraph.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					wikipedia.utils.Utils.saveImage(gp.getImage());
+					wikipedia.utils.Utils.saveImage(gp.getImage(),
+						p.getProperty(pc.getLanguage()+"save_image_dialog_title"));
 				}
 			});
 

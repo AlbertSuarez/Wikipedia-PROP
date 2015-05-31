@@ -261,9 +261,13 @@ public class PresentationController
 
 	/**
 	 * Saves with the WP format from the implicit graph
+	 * @param dialogTitle the title of the dialog
 	 */
-	public void saveGraph() {
-		dc.saveWP();
+	public void saveGraph(String dialogTitle) {
+		File f = wikipedia.utils.Utils.save(dialogTitle);
+		if (f != null) {
+			dc.saveWP(f);
+		}
 	}
 
 	/**

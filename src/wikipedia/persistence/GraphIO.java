@@ -32,6 +32,10 @@ public final class GraphIO {
 			String[] parts;
 			if (s.contains(" ")) parts = s.split(" ");
 			else parts = s.split("\\t");
+
+			// Fix exception
+			if (parts.length < 5) continue;
+
 			String name1 = parts[0];    // Read name1
 			String type1 = parts[1];    // Read type1 (cat or page)
 			String linkType = parts[2]; // Read linkType (CsupC, Csubc, CP, PA)
@@ -122,7 +126,7 @@ public final class GraphIO {
 		if (!com.isEmpty()) col.addCommunity(com);
 		return col;
 	}
-	
+
 	/**
 	 * Loads an OGraph with the WP format from an external file
 	 * @return the loaded OGraph
@@ -132,7 +136,7 @@ public final class GraphIO {
 		readWP(wiki,f);
 		return readGraphWPformat(wiki);
 	}
-	
+
 	public static CommunityCollection loadCC(File f) {
 		ArrayList<String> cc = new ArrayList<String>();
 		readWP(cc,f);
@@ -143,9 +147,8 @@ public final class GraphIO {
 	 * Saves an OGraph with the WP format to an external file
 	 * @param g the OGraph to save
 	 */
-	public static void saveWP(OGraph g) {
+	public static void saveWP(OGraph g, File f) {
 		Collection<Edge> edgeSet = g.getEdges();
-		File f = save();
 		for (Edge e: edgeSet) {
 			OEdge oe = (OEdge)e;
 			ONode node1 = (ONode)e.getNode();

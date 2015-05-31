@@ -209,10 +209,10 @@ public class Utils
 	 * Save to file
 	 * @return A file
 	 */
-	public static File save(){
+	public static File save(String dialogTitle){
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-		fileChooser.setDialogTitle("Specify the name of the file to save");
+		fileChooser.setDialogTitle(dialogTitle);
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
 		fileChooser.setFileFilter(filter);
 		int result = fileChooser.showSaveDialog(fileChooser);
@@ -224,18 +224,18 @@ public class Utils
 	}
 
 	private static String getFileExtension(String fileName) {
-		if(fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
-		return fileName.substring(fileName.lastIndexOf(".")+1);
+		if (fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
+			return fileName.substring(fileName.lastIndexOf(".")+1);
 		else return "";
 	}
 
 	/**
 	 * Save and image to a file
 	 */
-	public static void saveImage(BufferedImage img) {
+	public static void saveImage(BufferedImage img, String dialogTitle) {
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setSelectedFile(new File(System.getProperty("user.home") + "/image.jpg"));
-		fileChooser.setDialogTitle("Specify the name of the file to save the image");
+		fileChooser.setDialogTitle(dialogTitle);
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files", "jpg", "png", "gif", "jpeg");
 		fileChooser.setFileFilter(filter);
 		int result = fileChooser.showSaveDialog(fileChooser);

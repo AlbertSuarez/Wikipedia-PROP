@@ -78,7 +78,7 @@ public class DomainController
 		else if (wikipedia.catExists(a) && wikipedia.catExists(b)) wikipedia.delLink(new Category(a), new Category(b));
 		else if (wikipedia.pagExists(a) && wikipedia.catExists(b)) wikipedia.delLink(new Category(b), new Page(a));
 	}
-	
+
 	/**
 	 * Check the type of node
 	 * @param a title of the node
@@ -124,8 +124,8 @@ public class DomainController
 	/**
 	 * Saves with the WP format from the implicit graph
 	 */
-	public void saveWP() {
-		GraphIO.saveWP(wikipedia.getGraph());
+	public void saveWP(File f) {
+		GraphIO.saveWP(wikipedia.getGraph(), f);
 	}
 
 	/**

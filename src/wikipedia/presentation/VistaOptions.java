@@ -306,7 +306,7 @@ public class VistaOptions extends JFrame {
 			btnSaveGraph.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-					pc.saveGraph();
+					pc.saveGraph(p.getProperty(pc.getLanguage()+"save_graph_dialog_title"));
 				}
 			});
 			btnSaveGraph.setBounds(666, 90, 169, 25);
