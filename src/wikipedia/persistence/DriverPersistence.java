@@ -3,7 +3,6 @@ package wikipedia.persistence;
 import wikipedia.utils.Utils;
 import g13.OGraph;
 import java.io.IOException;
-import java.io.File;
 
 /**
  * Driver Persistence Class

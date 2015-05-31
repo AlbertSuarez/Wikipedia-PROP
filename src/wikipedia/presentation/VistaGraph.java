@@ -1,8 +1,6 @@
 package wikipedia.presentation;
 
 import g13.*;
-import static wikipedia.utils.Utils.*;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -17,14 +15,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 import javax.swing.SwingConstants;
 
@@ -73,6 +69,7 @@ public class VistaGraph extends JFrame {
 
 			OGraph g = pc.getGraph();
 			gp = new GraphPanel(g, 900, 600, cc);
+			
 			/**
 			 * Al clickar sobre un item:
 			 */
