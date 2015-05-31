@@ -1,6 +1,7 @@
 package wikipedia.presentation;
 
 import g13.*;
+import static wikipedia.utils.Utils.*;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -12,6 +13,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileInputStream;
 import java.util.Properties;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,6 +26,7 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+import javax.swing.SwingConstants;
 
 public class VistaGraph extends JFrame {
 
@@ -37,7 +44,8 @@ public class VistaGraph extends JFrame {
 	private JButton btnCom;
 	private JButton btnAddLink;
 	private JButton btnDelLink;
-	
+	private GraphPanel gp;
+
 	private int option = -1;
 
 	/**
@@ -60,11 +68,11 @@ public class VistaGraph extends JFrame {
 			contentPane.setLayout(null);
 
 			JPanel panel = new JPanel();
-			panel.setBounds(0,0,900,600);
+			panel.setBounds(0,20,900,600);
 			contentPane.add(panel);
 
 			OGraph g = pc.getGraph();
-			final GraphPanel gp = new GraphPanel(g, 900, 600, cc);
+			gp = new GraphPanel(g, 900, 600, cc);
 			/**
 			 * Al clickar sobre un item:
 			 */
@@ -206,7 +214,7 @@ public class VistaGraph extends JFrame {
 						panel_2.setVisible(false);
 						buttonDo.setVisible(false);
 						textField.setVisible(false);
-						
+
 						option = -1;
 					}
 					panel_2.setBorder(new TitledBorder(null, "", TitledBorder.CENTER, TitledBorder.TOP, null, null));
@@ -292,7 +300,36 @@ public class VistaGraph extends JFrame {
 			btnDelLink.setBounds(173, 333, 117, 25);
 			panel_1.add(btnDelLink);
 			btnCom.setVisible(false);
-			
+
+			/**
+			* Menu File
+			*/
+			JMenuBar MenuFile = new JMenuBar();
+			MenuFile.setBounds(0, 0, width, 21);
+			contentPane.add(MenuFile);
+
+			JMenu mnNewMenu_1 = new JMenu(p.getProperty(pc.getLanguage()+"file"));
+			mnNewMenu_1.setHorizontalAlignment(SwingConstants.CENTER);
+			MenuFile.add(mnNewMenu_1);
+
+			JMenuItem menuItemExportGraph = new JMenuItem(p.getProperty(pc.getLanguage()+"export_graph"));
+			mnNewMenu_1.add(menuItemExportGraph);
+
+			menuItemExportGraph.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					wikipedia.utils.Utils.saveImage(gp.getImage());
+				}
+			});
+
+			JMenuItem mntmNewMenuItem = new JMenuItem(p.getProperty(pc.getLanguage()+"exit"));
+			mnNewMenu_1.add(mntmNewMenuItem);
+
+			mntmNewMenuItem.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					dispose();
+				}
+			});
+
 			setVisible(true);
 
 		}

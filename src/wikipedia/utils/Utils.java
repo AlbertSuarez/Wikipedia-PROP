@@ -4,6 +4,8 @@ import java.util.*;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
 
 /**
  * Utils class
@@ -16,7 +18,7 @@ public class Utils
 	 * @author G13.2
 	 */
 	static public class cin {
-		
+
 		/**
 		 * Scanner
 		 */
@@ -53,7 +55,7 @@ public class Utils
 			return input.next();
 		}
 	}
-	
+
 	/**
 	 * Print with a newline
 	 * @param obj Object to be printed
@@ -62,7 +64,7 @@ public class Utils
 	{
 		System.out.println(obj);
 	}
-	
+
 	/**
 	 * Print with a newline by itself
 	 */
@@ -70,8 +72,8 @@ public class Utils
 	{
 		System.out.println();
 	}
-	
-	
+
+
 	/**
 	 * Print with a no line break
 	 * @param obj Object to be printed
@@ -80,8 +82,8 @@ public class Utils
 	{
 		System.out.print(obj);
 	}
-	
-	
+
+
 	/**
 	 * The new Java SE5 printf()
 	 * @param format The format to print
@@ -91,7 +93,7 @@ public class Utils
 	public static PrintStream printf(String format, Object... args) {
 		return System.out.printf(format, args);
 	}
-	
+
 	/**
 	 * Read with line break
 	 * @return The read String
@@ -102,8 +104,8 @@ public class Utils
 		String s = read.readLine();
 		return s;
 	}
-	
-	
+
+
 	/**
 	 * Read a String
 	 * @param s Contains the first line of the file named from file
@@ -142,7 +144,7 @@ public class Utils
 			System.out.println("Error al leer");
 		}
 	}
-		
+
 	/**
 	 * Write a String
 	 * @param s Has been added to the data file
@@ -154,7 +156,7 @@ public class Utils
 			File data=new File(file);
 			//el segundo apartado nos dice si sobreescribimos o escribimos al final
 			//como está en true, no sobreescribimos.
-			FileWriter escribe=new FileWriter(data,true); 
+			FileWriter escribe=new FileWriter(data,true);
 			escribe.write(s);
 			escribe.close();
 			}
@@ -162,7 +164,7 @@ public class Utils
 			System.out.println("Error al escribir");
 		}
 	}
-	
+
 	/**
 	 * Write a String with WP format
 	 * @param s The line contained in has been added to the data file
@@ -172,7 +174,7 @@ public class Utils
 	public static void writeWPline(String[] s, File file) {
 		try {
 			//creamos o abrimos acceso a fichero txt
-			FileWriter escribe=new FileWriter(file,true); 
+			FileWriter escribe=new FileWriter(file,true);
 			for(int i = 0; i < s.length;++i){
 				if( i != 0)escribe.write(" ");
 				escribe.write(s[i]);
@@ -184,7 +186,7 @@ public class Utils
 			System.out.println("Error al escribir");
 		}
 	}
-	
+
 	/**
 	 * Choose a file
 	 * @return A file
@@ -202,7 +204,7 @@ public class Utils
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Save to file
 	 * @return A file
@@ -220,5 +222,35 @@ public class Utils
 		}
 		return null;
 	}
-		
+
+	private static String getFileExtension(String fileName) {
+		if(fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
+		return fileName.substring(fileName.lastIndexOf(".")+1);
+		else return "";
+	}
+
+	/**
+	 * Save and image to a file
+	 */
+	public static void saveImage(BufferedImage img) {
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setSelectedFile(new File(System.getProperty("user.home") + "/image.jpg"));
+		fileChooser.setDialogTitle("Specify the name of the file to save the image");
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files", "jpg", "png", "gif", "jpeg");
+		fileChooser.setFileFilter(filter);
+		int result = fileChooser.showSaveDialog(fileChooser);
+		if (result == JFileChooser.APPROVE_OPTION) {
+			String filename = fileChooser.getSelectedFile().getAbsolutePath();
+			String ext = getFileExtension(filename);
+			if (ext.equals("jpeg") || ext.equals("")) ext = "jpg";
+			File selectedFile = fileChooser.getSelectedFile();
+			try {
+				ImageIO.write(img, ext, selectedFile);
+			} catch (Exception e) {
+				System.out.println("ERROR");
+			}
+
+		}
+	}
+
 }

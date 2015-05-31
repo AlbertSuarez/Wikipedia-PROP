@@ -26,11 +26,6 @@ public class WP
 	 */
 	private Algorithm algoritmeNG;
 
-	/**
-	 * The instance of the Clique Percolation (Slow version).
-	 */
-	private Algorithm algoritmeCPMaxim;
-
 
 	/**
 	 * Creates a new WP with an empty CommunityCollection and an empty Graph
@@ -40,7 +35,6 @@ public class WP
 		cc = new CommunityCollection();
 		graph = new OGraph();
 		algoritmeNG = new NewmanGirvan();
-		algoritmeCPMaxim = new CliqueMaxim();
 	}
 
 	/**
@@ -95,7 +89,8 @@ public class WP
 	 */
 	public CommunityCollection applyCliquePercolationMaxim()
 	{
-		return algoritmeCPMaxim.runAlgorithm(graph, 0);
+		graph.validateAllEdges();
+		return new CliqueMaxim().runAlgorithm(graph, 0);
 	}
 
 	/**
@@ -327,13 +322,13 @@ public class WP
 		CommunityCollection L = new Louvain().runAlgorithm(goldenIn, 0);
 		double affinity1 = calculateGoldenIt(nodes, goldenOut, L);
 
-		CommunityCollection CP = algoritmeCPMaxim.runAlgorithm(goldenIn, 0);
+		CommunityCollection CP = new CliqueMaxim().runAlgorithm(goldenIn, 0);
 		double affinity2 = calculateGoldenIt(nodes, goldenOut, CP);
 
 		if (Math.max(Math.max(affinity, affinity1),affinity2) == affinity) s = "NewmanGirvan";
 		else if (Math.max(Math.max(affinity, affinity1),affinity2) == affinity1) s = "Louvain";
 		else s = "Clique Percolation";
-		
+
 		return s + "\n" + "\n" + "Golden case:\n" + goldenOut.printCollection();
 	}
 }

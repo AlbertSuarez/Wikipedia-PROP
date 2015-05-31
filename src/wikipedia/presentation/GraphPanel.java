@@ -250,4 +250,11 @@ public class GraphPanel extends JPanel {
 			}
 		}
 	}
+
+	/**
+	 * Returns the current image
+	 */
+	public BufferedImage getImage() {
+		return orig_img;
+	}
 }
