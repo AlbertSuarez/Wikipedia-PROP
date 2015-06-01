@@ -133,7 +133,21 @@ public class VistaOptions extends JFrame {
 			btnShowCc.setBounds(238, 483, 153, 31);
 			contentPane.add(btnShowCc);
 			if (pc.CCisEmpty() || pc.sizeCC() > Integer.parseInt(p.getProperty("conf.maxcom"))) btnShowCc.setVisible(false);
-
+			
+			/**
+			 * Button Show Golden
+			 */
+			final JButton btnShowGolden = new JButton(p.getProperty(pc.getLanguage()+"showgolden"));
+			btnShowGolden.setToolTipText(p.getProperty(pc.getLanguage()+"showgolden_tool"));
+			btnShowGolden.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					pc.optionsToGolden();
+				}
+			});
+			btnShowGolden.setBounds(133, 539, 153, 31);
+			contentPane.add(btnShowGolden);
+			
 			/**
 			 * TextField to Add or Delete Category
 			 */

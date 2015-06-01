@@ -137,14 +137,21 @@ public class PresentationController
 	 * Change options to graph window
 	 */
 	public void optionsToGraph() {
-		new VistaGraph(this, false).setVisible(true);
+		new VistaGraph(this, false, false).setVisible(true);
 	}
 
 	/**
 	 * Change options to cc window
 	 */
 	public void optionsToCC() {
-		new VistaGraph(this, true).setVisible(true);
+		new VistaGraph(this, true, false).setVisible(true);
+	}
+	
+	/**
+	 * Change options to golden window
+	 */
+	public void optionsToGolden() {
+		new VistaGraph(this, false, true).setVisible(true);
 	}
 
 	// FUNCIONS DELS BOTONS

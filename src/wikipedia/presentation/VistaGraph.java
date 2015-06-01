@@ -1,6 +1,7 @@
 package wikipedia.presentation;
 
 import g13.*;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,8 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.io.FileInputStream;
 import java.util.Properties;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -23,6 +26,8 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.SwingConstants;
+
+import wikipedia.persistence.GraphIO;
 
 public class VistaGraph extends JFrame {
 
@@ -48,8 +53,9 @@ public class VistaGraph extends JFrame {
 	 * Create the frame.
 	 * @param pc the PresentationController
 	 * @param cc indicates if show graph or communities
+	 * @param golden indicates if show golden or not
 	 */
-	public VistaGraph(final PresentationController pc, boolean cc) {
+	public VistaGraph(final PresentationController pc, boolean cc, boolean golden) {
 		super("Wikipedia");
 		try {
 			final Properties p = new Properties();
@@ -69,15 +75,17 @@ public class VistaGraph extends JFrame {
 			panel.setBounds(0,20,900,600);
 			contentPane.add(panel);
 
-			OGraph g = pc.getGraph();
+			OGraph g;
+			if (!golden) g = pc.getGraph();
+			else g = GraphIO.loadWP(new File("golden/ENTRADAcodigo.txt"));
 			gp = new GraphPanel(g, 900, 600, cc);
-
+			
 			/**
 			 * Al clickar sobre un item:
 			 */
 			gp.addOnItemClickListener(new GraphPanelOnItemClickListener() {
 				public void onItemClick(String item) {
-					if (item != lastItem && ((cc && item.contains("Node")) || !cc)) {
+					if (item != lastItem && ((cc && item.contains("Node")) || !cc) && !golden) {
 						setBounds((width/2)-450,(height/2)-300,1200,600);
 						txtpn.setText(p.getProperty(pc.getLanguage()+"graph1") + " " + item +
 							p.getProperty(pc.getLanguage()+"graph2"));
