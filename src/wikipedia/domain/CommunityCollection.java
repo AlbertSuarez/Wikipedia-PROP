@@ -8,20 +8,20 @@ import g13.*;
  * @author G13.2
  */
 public class CommunityCollection {
-	
+
 	/**
 	 * Represents the community collection
 	 */
 	private ArrayList<Community> collection;
-	
+
 	/**
 	 * Create a empty Community Collection
 	 */
 	public CommunityCollection()
-	{ 
+	{
 		collection = new ArrayList<Community>();
 	}
-	
+
 	/**
 	 * Add community to collection
 	 * @param c The community to be added
@@ -31,7 +31,7 @@ public class CommunityCollection {
 	{
 		collection.add(c);
 	}
-	
+
 	/**
 	 * Get communities from collection
 	 * @return An array list of all Communities of the Collection
@@ -40,7 +40,7 @@ public class CommunityCollection {
 	{
 		return collection;
 	}
-	
+
 	/**
 	 * Get a determinate community from collection
 	 * @param i The community's index to be get
@@ -50,7 +50,7 @@ public class CommunityCollection {
 	{
 		return collection.get(i);
 	}
-	
+
 	/**
 	 * Change a determinate community from collection for an other community
 	 * @param i The community's index to be change
@@ -60,7 +60,7 @@ public class CommunityCollection {
 	{
 		collection.set(i,c);
 	}
-	
+
 	/**
 	 * Get the number of communities of the collection
 	 * @return The number of communities
@@ -69,7 +69,7 @@ public class CommunityCollection {
 	{
 		return collection.size();
 	}
-	
+
 	/**
 	 * Erase community to collection
 	 * @param c The community to be erased
@@ -79,7 +79,7 @@ public class CommunityCollection {
 	{
 		collection.remove(c);
 	}
-	
+
 	/**
 	 * Reset the Community Collection
 	 */
@@ -87,7 +87,7 @@ public class CommunityCollection {
 	{
 		collection.clear();
 	}
-		
+
 	/**
 	 * See if a node belongs to community
 	 * @param n The node
@@ -100,7 +100,7 @@ public class CommunityCollection {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Get the community of node
 	 * @param n the node
@@ -113,12 +113,13 @@ public class CommunityCollection {
 				if (nod.equals(n)) return i;
 			}
 		}
-		
+
 		return -1;
 	}
-	
+
 	/**
 	 * Print all communities.
+	 * @return CommunityCollection to String
 	 */
 	public String printCollection()
 	{
@@ -130,5 +131,5 @@ public class CommunityCollection {
 		}
 		return s;
 	}
-	
+
 }

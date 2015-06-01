@@ -305,6 +305,7 @@ public class PresentationController
 
 	/**
 	 * Get Graph
+	 * @return the OGraph
 	 */
 	public OGraph getGraph() {
 		return dc.getGraph();
@@ -333,6 +334,11 @@ public class PresentationController
 		return dc.sizeCC();
 	}
 
+	/**
+	 * Checks if exists a category with title a
+	 * @param a title of category
+	 * @return true if exists, false otherwise
+	 */
 	public boolean isCat(String a) {
 		return dc.isCat(a);
 	}

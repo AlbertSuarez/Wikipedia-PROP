@@ -49,6 +49,7 @@ public class VistaOptions extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param pc the PresentationController
 	 */
 	public VistaOptions(final PresentationController pc) {
 		super("Wikipedia");

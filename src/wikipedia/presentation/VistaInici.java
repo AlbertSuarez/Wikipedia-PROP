@@ -28,6 +28,7 @@ public class VistaInici extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param pc the PresentationController
 	 */
 	public VistaInici(final PresentationController pc) {
 		super("Wikipedia");

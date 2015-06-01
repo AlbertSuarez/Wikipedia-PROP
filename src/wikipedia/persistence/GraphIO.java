@@ -21,6 +21,7 @@ public final class GraphIO {
 
 	/**
 	 * Reads an OGraph with the WP format from the standard input
+	 * @param wiki, WP in Strings
 	 * @return the read OGraph
 	 */
 	public static OGraph readGraphWPformat(ArrayList<String> wiki) {
@@ -79,6 +80,7 @@ public final class GraphIO {
 	/**
 	 * Writes an OGraph with the WP format to the standard output
 	 * @param g the OGraph to write
+	 * @return WP to String
 	 */
 	public static String writeGraphWPformat(OGraph g) {
 		Collection<Edge> edgeSet = g.getEdges();
@@ -109,6 +111,11 @@ public final class GraphIO {
 		return s;
 	}
 
+	/**
+	 * Converts an String to CommunityCollection
+	 * @param cc String representation of CommunityCollection
+	 * @return A CommunityCollection object
+	 */
 	public static CommunityCollection writeCC(ArrayList<String> cc) {
 		CommunityCollection col = new CommunityCollection();
 		Iterator<String> itcol = cc.iterator();
@@ -129,6 +136,7 @@ public final class GraphIO {
 
 	/**
 	 * Loads an OGraph with the WP format from an external file
+	 * @param f File for reading
 	 * @return the loaded OGraph
 	 */
 	public static OGraph loadWP(File f) {
@@ -137,6 +145,11 @@ public final class GraphIO {
 		return readGraphWPformat(wiki);
 	}
 
+	/**
+	 * Loads from file a CommunityCollection
+	 * @param f File for reading
+	 * @return A CommunityCollection object
+	 */
 	public static CommunityCollection loadCC(File f) {
 		ArrayList<String> cc = new ArrayList<String>();
 		readWP(cc,f);
@@ -145,6 +158,7 @@ public final class GraphIO {
 
 	/**
 	 * Saves an OGraph with the WP format to an external file
+	 * @param f File to save g
 	 * @param g the OGraph to save
 	 */
 	public static void saveWP(OGraph g, File f) {

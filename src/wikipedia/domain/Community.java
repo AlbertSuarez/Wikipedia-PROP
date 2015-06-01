@@ -10,12 +10,12 @@ import g13.*;
  * @author G13.2
  */
 public class Community {
-	
+
 	/**
 	 * Represents the community
 	 */
 	private Set<Node> nodeSet;
-	
+
 	/**
 	 * Create a empty Community
 	 */
@@ -23,17 +23,17 @@ public class Community {
 	{
 		nodeSet = new LinkedHashSet<Node>();
 	}
-	
+
 	/**
 	 * Add node to community
 	 * @param n The node to be added
 	 * @pre n is not in Community
 	 */
 	public void addNode(Node n)
-	{ 
+	{
 		nodeSet.add(n);
 	}
-	
+
 	/**
 	 * Get nodes from community
 	 * @return An non-modificable set of all Nodes of the Community
@@ -42,7 +42,7 @@ public class Community {
 	{
 		return Collections.unmodifiableSet(nodeSet);
 	}
-	
+
 	/**
 	 * Erase node from community
 	 * @param n The node to be erased
@@ -52,7 +52,7 @@ public class Community {
 	{
 		nodeSet.remove(n);
 	}
-	
+
 	/**
 	 * See if community is empty
 	 * @return True if the community is empty, false alternatively
@@ -61,19 +61,20 @@ public class Community {
 	{
 		return nodeSet.isEmpty();
 	}
-	
+
 	/**
 	 * Print a ordered list of all nodes.
+	 * @return Community to String
 	 */
 	public String printCommunity()
-	{ 
+	{
 		String s = "";
 		for (Node nn : nodeSet){
 			s = s + (nn.toString()) + "\n";
 		}
 		return s;
 	}
-	
+
 	/**
 	 * See if a node belongs to community
 	 * @param n The node

@@ -8,7 +8,7 @@ import java.util.*;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class CliqueMaxim implements Algorithm {
-	
+
 	private ArrayList<HashSet<Node>> Cliques;
 	private Table<Integer,Integer,Integer> matrix;;
 	private class BKAlgorithm {
@@ -17,7 +17,7 @@ public class CliqueMaxim implements Algorithm {
 		private LinkedHashSet<Node> R, P, X;
 		private static final String ERR_VOID_SET =
 						"The set is empty, but this is not expected";
-		
+
 		public BKAlgorithm(Graph graph) {
 			if (graph == null) throw new NullPointerException();
 			g = graph;
@@ -30,16 +30,17 @@ public class CliqueMaxim implements Algorithm {
 		    	P.add(n);
 		    }
 		}
-		
+
 		public void executeBK() {
 			recursiveBK(R, P, X);
 		}
-		
+
        /**
         * Recursive method that developed Bron-Kerbosch method; a method
         * to find maximal cliques in a graph.
-        *
-        * @param r,p,x set of nodes.
+        * @param r set of nodes
+        * @param p set of nodes
+        * @param x set of nodes
         */
        private void recursiveBK(Set<Node> r, Set<Node> p, Set<Node> x) {
            if (p.isEmpty() && x.isEmpty()) {
@@ -63,11 +64,11 @@ public class CliqueMaxim implements Algorithm {
                x.add(v); // x U {v}
            }
        }
-       
+
        public ArrayList<HashSet<Node>> getallMaximalCliques() {
            return Cliqs;
        }
-       
+
        /**
         * Returns the pivot node, the node with more neighbours in V.
         *
@@ -151,7 +152,7 @@ public class CliqueMaxim implements Algorithm {
         		if (i == j) {
         			if (matrix.get(i, j) < k) {
         				matrix.put(i, j, 0);
-        			} 
+        			}
         			else {
         				matrix.put(i, j, 1);
         			}
@@ -176,7 +177,7 @@ public class CliqueMaxim implements Algorithm {
            }
            que.clear();
        }
-       
+
         G.invalidateAllEdges();
         for(Edge e: G.getEdges()){
            if(cc.getCommunityOfNode(e.getNode()) == cc.getCommunityOfNode(e.getNeighbor(e.getNode()))){
@@ -189,6 +190,10 @@ public class CliqueMaxim implements Algorithm {
 	/**
 	* Returns a community of nodes find in the
 	* overlapping matrix.
+	* @param m Table
+	* @param Clicks cliques
+	* @param q queue
+	* @param n int
 	* @return A community of nodes.
 	*/
 	private Community BT(Table<Integer,Integer,Integer> m, ArrayList<Set<Node>> Clicks, Queue<Integer> q, int n) {

@@ -109,6 +109,7 @@ public class DomainController
 
 	/**
 	 * Reads with the WP format into the implicit graph
+	 * @param wiki String WP
 	 */
 	public void readWPformat(ArrayList<String> wiki) {
 		wikipedia.setGraph(GraphIO.readGraphWPformat(wiki));
@@ -116,6 +117,7 @@ public class DomainController
 
 	/**
 	 * Loads with the WP format into the implicit graph
+	 * @param f the file
 	 */
 	public void loadWP(File f) {
 		wikipedia.setGraph(GraphIO.loadWP(f));
@@ -123,6 +125,7 @@ public class DomainController
 
 	/**
 	 * Saves with the WP format from the implicit graph
+	 * @param f the file
 	 */
 	public void saveWP(File f) {
 		GraphIO.saveWP(wikipedia.getGraph(), f);

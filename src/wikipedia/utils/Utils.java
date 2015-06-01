@@ -207,6 +207,7 @@ public class Utils
 
 	/**
 	 * Save to file
+	 * @param dialogTitle string
 	 * @return A file
 	 */
 	public static File save(String dialogTitle){
@@ -223,6 +224,11 @@ public class Utils
 		return null;
 	}
 
+	/**
+	 * Get File Extension
+	 * @param fileName String
+	 * @return extension
+	 */
 	private static String getFileExtension(String fileName) {
 		if (fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
 			return fileName.substring(fileName.lastIndexOf(".")+1);
@@ -231,6 +237,8 @@ public class Utils
 
 	/**
 	 * Save and image to a file
+	 * @param img the image
+	 * @param dialogTitle String
 	 */
 	public static void saveImage(BufferedImage img, String dialogTitle) {
 		JFileChooser fileChooser = new JFileChooser();

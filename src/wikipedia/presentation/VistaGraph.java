@@ -46,6 +46,8 @@ public class VistaGraph extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param pc the PresentationController
+	 * @param cc indicates if show graph or communities
 	 */
 	public VistaGraph(final PresentationController pc, boolean cc) {
 		super("Wikipedia");
@@ -69,7 +71,7 @@ public class VistaGraph extends JFrame {
 
 			OGraph g = pc.getGraph();
 			gp = new GraphPanel(g, 900, 600, cc);
-			
+
 			/**
 			 * Al clickar sobre un item:
 			 */
