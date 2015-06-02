@@ -81,7 +81,7 @@ public class VistaOptions extends JFrame {
 
 
 			/* Animated loading window */
-			loading = new ImageIcon("loading.gif");
+			loading = new ImageIcon("Images/loading.gif");
 			loadingFrame = new JFrame("Animation");
 			loadingFrame.setLayout(new FlowLayout());
 			loadingFrame.getContentPane().add(new JLabel(loading));
