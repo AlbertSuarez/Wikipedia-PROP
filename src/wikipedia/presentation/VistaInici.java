@@ -20,6 +20,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.SwingConstants;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 public class VistaInici extends JFrame {
 
@@ -178,6 +180,16 @@ public class VistaInici extends JFrame {
 
 			JMenuItem mntmNewMenuItem = new JMenuItem(p.getProperty(pc.getLanguage()+"exit"));
 			mnNewMenu_1.add(mntmNewMenuItem);
+			
+			JLabel lblNewLabel = new JLabel("New label");
+			lblNewLabel.setIcon(new ImageIcon("Images/logoUPC70.png"));
+			lblNewLabel.setBounds(22, 33, 70, 70);
+			contentPane.add(lblNewLabel);
+			
+			JLabel lblNewLabel_1 = new JLabel("New label");
+			lblNewLabel_1.setIcon(new ImageIcon("Images/Logo_FIB100x40.png"));
+			lblNewLabel_1.setBounds(772, 48, 100, 40);
+			contentPane.add(lblNewLabel_1);
 			mntmNewMenuItem.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
 	                pc.closeInici();
