@@ -55,7 +55,7 @@ public class VistaGraph extends JFrame {
 	 * @param cc indicates if show graph or communities
 	 * @param golden indicates if show golden or not
 	 */
-	public VistaGraph(final PresentationController pc, boolean cc, boolean golden) {
+	public VistaGraph(final PresentationController pc, final boolean cc, final boolean golden) {
 		super("Wikipedia");
 		try {
 			final Properties p = new Properties();

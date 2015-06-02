@@ -19,7 +19,7 @@ rio cat CP remo page
 rio cat CP descenso page
 aereo cat CP puenting page
 aereo cat CP parapente page
-aereo cat CP ala delta page
+aereo cat CP aladelta page
 motor cat CsupC dosruedas cat
 motor cat CsupC cuatroruedas cat
 motor cat CsupC nautico cat
@@ -52,10 +52,7 @@ skiing cat CsupC alpino cat
 skiing cat CsupC nordico cat
 snow cat CP boarder page
 snow cat CP freestyle page
-alpino cat CP speed page
-alpino cat CP telemark page
 nordico cat CP biatlon page
-nordico cat CP triatlon page
 raqueta cat CP badminton page
 raqueta cat CP paddle page
 raqueta cat CP frontenis page
