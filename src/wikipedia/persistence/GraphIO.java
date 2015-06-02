@@ -87,8 +87,8 @@ public final class GraphIO {
 		String s = "";
 		for (Edge e: edgeSet) {
 			OEdge oe = (OEdge)e;
-			ONode node1 = (ONode)e.getNode();
-			ONode node2 = (ONode)e.getNeighbor(node1);
+			ONode node1 = (ONode)oe.getOrigNode();
+			ONode node2 = (ONode)oe.getDestNode();
 
 			String[] wiki = new String[5];
 			wiki[0] = node1.getElement().getTitle();
