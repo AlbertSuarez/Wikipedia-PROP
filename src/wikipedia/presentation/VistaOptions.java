@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.FlowLayout;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -26,6 +27,11 @@ import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
+
+import javax.swing.SwingUtilities;
+import java.lang.Thread;
+import javax.swing.*;
+import javax.swing.JLabel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -46,6 +52,10 @@ public class VistaOptions extends JFrame {
 	private JTextField textField_3;
 	private JButton btnModifyCc;
 	private int option;
+
+	/* Animated loading window */
+	private JFrame loadingFrame;
+	private Icon loading;
 
 	/**
 	 * Create the frame.
@@ -68,6 +78,18 @@ public class VistaOptions extends JFrame {
 			contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 			setContentPane(contentPane);
 			contentPane.setLayout(null);
+
+
+			/* Animated loading window */
+			loading = new ImageIcon("loading.gif");
+			loadingFrame = new JFrame("Animation");
+			loadingFrame.setLayout(new FlowLayout());
+			loadingFrame.getContentPane().add(new JLabel(loading));
+			loadingFrame.getContentPane().add(new JLabel("Loading..."));
+			loadingFrame.setUndecorated(true);
+			loadingFrame.pack();
+			loadingFrame.setLocationRelativeTo(null);
+			loadingFrame.setVisible(false);
 
 			/**
 			 * Panel to put the outputs
@@ -133,7 +155,7 @@ public class VistaOptions extends JFrame {
 			btnShowCc.setBounds(238, 483, 153, 31);
 			contentPane.add(btnShowCc);
 			if (pc.CCisEmpty() || pc.sizeCC() > Integer.parseInt(p.getProperty("conf.maxcom"))) btnShowCc.setVisible(false);
-			
+
 			/**
 			 * Button Show Golden
 			 */
@@ -147,7 +169,7 @@ public class VistaOptions extends JFrame {
 			});
 			btnShowGolden.setBounds(133, 539, 153, 31);
 			contentPane.add(btnShowGolden);
-			
+
 			/**
 			 * TextField to Add or Delete Category
 			 */
@@ -288,11 +310,23 @@ public class VistaOptions extends JFrame {
 			btnCommunityDetection.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-					pc.cleanCC();
-					textPane.setText(pc.communityDetection(comboBox.getSelectedIndex(),(Integer)spinner.getValue()));
-					if (!pc.CCisEmpty() && pc.sizeCC() <= Integer.parseInt(p.getProperty("conf.maxcom"))) btnShowCc.setVisible(true);
-					else btnShowCc.setVisible(false);
-					btnModifyCc.setVisible(true);
+					loadingFrame.setVisible(true);
+					new Thread(new Runnable() {
+						@Override
+						public void run() {
+							//time consuming algorithm.
+							pc.cleanCC();
+							textPane.setText(pc.communityDetection(comboBox.getSelectedIndex(),(Integer)spinner.getValue()));
+							if (!pc.CCisEmpty() && pc.sizeCC() <= Integer.parseInt(p.getProperty("conf.maxcom"))) btnShowCc.setVisible(true);
+							else btnShowCc.setVisible(false);
+							btnModifyCc.setVisible(true);
+							SwingUtilities.invokeLater(new Runnable() {
+								@Override public void run(){
+									loadingFrame.setVisible(false);
+								}
+							});
+						}
+					}).start();
 				}
 			});
 			btnCommunityDetection.setFont(new Font("Dialog", Font.BOLD, 12));
