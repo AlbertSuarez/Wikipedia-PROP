@@ -89,6 +89,7 @@ public class VistaOptions extends JFrame {
 			loadingFrame.setUndecorated(true);
 			loadingFrame.pack();
 			loadingFrame.setLocationRelativeTo(null);
+			loadingFrame.setResizable(false);
 			loadingFrame.setVisible(false);
 
 			/**
@@ -315,6 +316,7 @@ public class VistaOptions extends JFrame {
 						@Override
 						public void run() {
 							//time consuming algorithm.
+							setVisible(false);
 							pc.cleanCC();
 							textPane.setText(pc.communityDetection(comboBox.getSelectedIndex(),(Integer)spinner.getValue()));
 							if (!pc.CCisEmpty() && pc.sizeCC() <= Integer.parseInt(p.getProperty("conf.maxcom"))) btnShowCc.setVisible(true);
@@ -323,6 +325,7 @@ public class VistaOptions extends JFrame {
 							SwingUtilities.invokeLater(new Runnable() {
 								@Override public void run(){
 									loadingFrame.setVisible(false);
+									setVisible(true);
 								}
 							});
 						}
