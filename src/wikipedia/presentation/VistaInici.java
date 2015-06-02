@@ -58,7 +58,7 @@ public class VistaInici extends JFrame {
 			txtpnToStartDoing.setFont(new Font("Arial", Font.PLAIN, 32));
 			txtpnToStartDoing.setBackground(new Color(255, 165, 0));
 			txtpnToStartDoing.setText(p.getProperty(pc.getLanguage()+"subtitle"));
-			txtpnToStartDoing.setBounds(142, 192, 583, 82);
+			txtpnToStartDoing.setBounds(142, 216, 583, 82);
 			contentPane.add(txtpnToStartDoing);
 
 			/**
@@ -107,7 +107,7 @@ public class VistaInici extends JFrame {
 			txtpnWelcomeToThe.setFont(new Font("Dialog", Font.PLAIN, 56));
 			txtpnWelcomeToThe.setBackground(new Color(255, 165, 0));
 			txtpnWelcomeToThe.setText(p.getProperty(pc.getLanguage()+"title"));
-			txtpnWelcomeToThe.setBounds(22, 116, 850, 78);
+			txtpnWelcomeToThe.setBounds(22, 142, 850, 78);
 			contentPane.add(txtpnWelcomeToThe);
 
 			/**
@@ -183,13 +183,18 @@ public class VistaInici extends JFrame {
 			
 			JLabel lblNewLabel = new JLabel("New label");
 			lblNewLabel.setIcon(new ImageIcon("Images/logoUPC70.png"));
-			lblNewLabel.setBounds(22, 33, 70, 70);
+			lblNewLabel.setBounds(22, 43, 70, 70);
 			contentPane.add(lblNewLabel);
 			
 			JLabel lblNewLabel_1 = new JLabel("New label");
 			lblNewLabel_1.setIcon(new ImageIcon("Images/Logo_FIB100x40.png"));
-			lblNewLabel_1.setBounds(772, 48, 100, 40);
+			lblNewLabel_1.setBounds(772, 58, 100, 40);
 			contentPane.add(lblNewLabel_1);
+			
+			JLabel lblNewLabel_2 = new JLabel("New label");
+			lblNewLabel_2.setIcon(new ImageIcon("Images/wikipedia3.png"));
+			lblNewLabel_2.setBounds(286, 40, 282, 90);
+			contentPane.add(lblNewLabel_2);
 			mntmNewMenuItem.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
 	                pc.closeInici();
