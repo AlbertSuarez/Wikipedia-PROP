@@ -16,7 +16,7 @@ public class NewmanGirvan implements Algorithm {
 	 * @param i The index of the first node of the connected component
 	 * @return A community with nodes of the connected component
 	 */
-	private Community putToCollectionIt(Graph G, Node[] nodes, boolean[] vist, int i) {
+	private Community putToCollectionIt(Graph G, Node[] nodes, boolean[] vist, int i, Map<Node, Integer> nodeMap) {
 		Stack<Integer> s = new Stack<Integer>();
 		Community c = new Community();
 		vist[i] = true;
@@ -26,11 +26,11 @@ public class NewmanGirvan implements Algorithm {
 			int j = s.peek();
 			c.addNode(nodes[j]);
 			s.pop();
-			Collection<Edge> adjEdgesSet = G.getAdjacencyList(nodes[j]);
+			Collection<Edge> adjEdgesSet = G.getValidAdjacencyList(nodes[j]);
 			for (Edge e : adjEdgesSet) {
 				Node adjNode = e.getNeighbor(nodes[j]);
-				int k = java.util.Arrays.asList(nodes).indexOf(adjNode);
-				if (!vist[k] && e.isValid()) {
+				int k = nodeMap.get(adjNode);
+				if (!vist[k]) {
 					vist[k] = true;
 					s.push(k);
 				}
@@ -45,7 +45,7 @@ public class NewmanGirvan implements Algorithm {
 	 * @param nodes The Nodes of the Graph
 	 * @return The community collection of the Graph
 	 */
-	private CommunityCollection putToCollection(Graph G, Node[] nodes) {
+	private CommunityCollection putToCollection(Graph G, Node[] nodes, Map<Node, Integer> nodeMap) {
 		int nodeCount = G.getOrder();
 		CommunityCollection cc = new CommunityCollection();
 
@@ -54,7 +54,7 @@ public class NewmanGirvan implements Algorithm {
 
 		for (int i = 0; i < nodeCount; ++i) {
 			if (!vist[i]) {
-				cc.addCommunity(putToCollectionIt(G, nodes, vist, i));
+				cc.addCommunity(putToCollectionIt(G, nodes, vist, i, nodeMap));
 			}
 		}
 		return cc;
@@ -67,7 +67,7 @@ public class NewmanGirvan implements Algorithm {
 	 * @param vist Indicate if the node are visited or not
 	 * @param i The index of the first node of the connected component
 	 */
-	private void getConnectedComponentCountIt(Graph G, Node[] nodes, boolean[] vist, int i) {
+	private void getConnectedComponentCountIt(Graph G, Node[] nodes, boolean[] vist, int i, Map<Node, Integer> nodeMap) {
 		Stack<Integer> s = new Stack<Integer>();
 		vist[i] = true;
 
@@ -75,11 +75,11 @@ public class NewmanGirvan implements Algorithm {
 		while (!s.isEmpty()) {
 			int j = s.peek();
 			s.pop();
-			Collection<Edge> adjEdgesSet = G.getAdjacencyList(nodes[j]);
+			Collection<Edge> adjEdgesSet = G.getValidAdjacencyList(nodes[j]);
 			for (Edge e : adjEdgesSet) {
 				Node adjNode = e.getNeighbor(nodes[j]);
-				int k = java.util.Arrays.asList(nodes).indexOf(adjNode);
-				if (!vist[k] && e.isValid()) {
+				int k = nodeMap.get(adjNode);
+				if (!vist[k]) {
 					vist[k] = true;
 					s.push(k);
 				}
@@ -93,7 +93,7 @@ public class NewmanGirvan implements Algorithm {
 	 * @param nodes The Nodes of the Graph
 	 * @return The number of connected components
 	 */
-	private int getConnectedComponentCount(Graph G, Node[] nodes) {
+	private int getConnectedComponentCount(Graph G, Node[] nodes, Map<Node, Integer> nodeMap) {
 		int nodeCount = G.getOrder();
 
 		boolean[] vist = new boolean[nodeCount];
@@ -104,7 +104,7 @@ public class NewmanGirvan implements Algorithm {
 			//if (!vist[i]) {
 			// Arregla incoherencia con el boton de la vista?
 			if (!vist[i] && ((ONode)nodes[i]).getElement().getElementType() != Element.ElementType.ELEMENT_PAGE) {
-				getConnectedComponentCountIt(G, nodes, vist, i);
+				getConnectedComponentCountIt(G, nodes, vist, i, nodeMap);
 				++count;
 			}
 		}
@@ -120,7 +120,7 @@ public class NewmanGirvan implements Algorithm {
 	 * @param s The node that applies BFS
 	 * @param pila The integer stack that be used for the algorithm
 	 */
-	private void stage1_BFS(Graph G, Node[] nodes, double[] d, double[] w, int s, Stack<Integer> pila) {
+	private void stage1_BFS(Graph G, Node[] nodes, double[] d, double[] w, int s, Stack<Integer> pila, Map<Node, Integer> nodeMap) {
 
 		int nodeCount = G.getOrder();
 		boolean[] vist = new boolean[nodeCount];
@@ -139,20 +139,18 @@ public class NewmanGirvan implements Algorithm {
 			int u = q.poll();
 			if (!vist[u]) {
 				vist[u] = true;
-				Collection<Edge> adjEdgesSet = G.getAdjacencyList(nodes[u]);
+				Collection<Edge> adjEdgesSet = G.getValidAdjacencyList(nodes[u]);
 
 				for (Edge e : adjEdgesSet) {
-					if (e.isValid()) {
-						Node adjNode = e.getNeighbor(nodes[u]);
-						int v = java.util.Arrays.asList(nodes).indexOf(adjNode);
-						if (d[v] > d[u] + 1) {
-							d[v] = d[u] + 1;
-							w[v] = w[u];
-							q.add(v);
-							pila.push(v); // Guardar orden inverso
-						} else if (d[v] == d[u] + 1) {
-							w[v] += w[u];
-						}
+					Node adjNode = e.getNeighbor(nodes[u]);
+					int v = nodeMap.get(adjNode);
+					if (d[v] > d[u] + 1) {
+						d[v] = d[u] + 1;
+						w[v] = w[u];
+						q.add(v);
+						pila.push(v); // Guardar orden inverso
+					} else if (d[v] == d[u] + 1) {
+						w[v] += w[u];
 					}
 				}
 			}
@@ -171,17 +169,17 @@ public class NewmanGirvan implements Algorithm {
 	 * @param arco The weight of the nodes
 	 */
 	private void stage2_betweenness(Graph G, Node[] nodes, Map<Edge, Integer> edgeMap, Stack<Integer> pila, double[] d,
-							double[] b, double[] w, double[] arco) {
+							double[] b, double[] w, double[] arco, Map<Node, Integer> nodeMap) {
 
 		while (!pila.isEmpty()) {
 			int u = pila.pop();
 			b[u] += 1;
 
-			Collection<Edge> adjEdgesSet = G.getAdjacencyList(nodes[u]);
+			Collection<Edge> adjEdgesSet = G.getValidAdjacencyList(nodes[u]);
 
 			for (Edge e : adjEdgesSet) {
 				Node adjNode = e.getNeighbor(nodes[u]);
-				int v = java.util.Arrays.asList(nodes).indexOf(adjNode);
+				int v = nodeMap.get(adjNode);
 				int uvArco = edgeMap.get(e);
 				if (d[v] < d[u]) {
 					double calc = w[v]/w[u]*b[u];
@@ -200,20 +198,12 @@ public class NewmanGirvan implements Algorithm {
 	 * @param nodes The nodes of the Graph
 	 * @param edges The edges of the Graph
 	 */
-	private void runNGAlgorithmIt(Graph G, Node[] nodes, Edge[] edges) {
+	private void runNGAlgorithmIt(Graph G, Node[] nodes, Edge[] edges, Map<Edge, Integer> edgeMap, Map<Node, Integer> nodeMap) {
 		int nodeCount = G.getOrder();
 		// Build the edgeId -> Edge hashtable (*TODO*)
 		double[] arco = new double[G.getEdgeCount()];
 		// Reset vector<> arco
 		Arrays.fill(arco, 0);
-		// Create edgeMap
-		Collection<Edge> edgeSet = G.getEdges();
-		Map<Edge, Integer> edgeMap = new LinkedHashMap<Edge, Integer>();
-
-		Integer id = 0;
-		for (Edge e: edgeSet) {
-			edgeMap.put(e, id++);
-		}
 
 		for (int i = 0; i < nodeCount; ++i) {
 			double[] d; //Distancia
@@ -223,12 +213,11 @@ public class NewmanGirvan implements Algorithm {
 			w = new double[nodeCount];
 
 			Stack<Integer> pila = new Stack<Integer>();
-			stage1_BFS(G, nodes, d, w, i, pila);
+			stage1_BFS(G, nodes, d, w, i, pila, nodeMap);
 
 			double[] b = new double[G.getOrder()]; //Number shortest path between source to any
 											//vertex in graph pass through vertex i
-
-			stage2_betweenness(G, nodes, edgeMap, pila, d, b, w, arco);
+			stage2_betweenness(G, nodes, edgeMap, pila, d, b, w, arco, nodeMap);
 
 		}
 
@@ -236,13 +225,16 @@ public class NewmanGirvan implements Algorithm {
 			print(arco[i]);
 		}*/
 
-		int max = 0;
-		for (int i = 1; i < arco.length; i++) {
-			if (arco[max]/edges[max].getWeight()
-				< arco[i]/edges[i].getWeight()) max = i;
+		int imax = -1;
+		double max = -1;
+		for (int i = 0; i < arco.length; i++) {
+			if (!edges[i].isValid()) continue;
+			if (max	< arco[i]/edges[i].getWeight()) {
+				imax = i;
+				max = arco[i]/edges[i].getWeight();
+			}
 		}
-
-		edges[max].setValidity(false);
+		edges[imax].setValidity(false);
 	}
 
 	/**
@@ -259,16 +251,27 @@ public class NewmanGirvan implements Algorithm {
 		Node[] nodes = G.getNodes().toArray(new Node[G.getOrder()]);
 		// Create edges array
 		Edge[] edges = G.getEdges().toArray(new Edge[G.getEdgeCount()]);
-
+		// Create nodeMap
+		Map<Node, Integer> nodeMap = new LinkedHashMap<Node, Integer>();
+		for (int i = 0; i < nodes.length; i++) {
+			nodeMap.put(nodes[i], i);
+		}
+		// Create edgeMap
+		Map<Edge, Integer> edgeMap = new LinkedHashMap<Edge, Integer>();
+		for (int i = 0; i < edges.length; i++) {
+			edgeMap.put(edges[i], i);
+		}
+		
+		
 		for (Edge e : G.getEdges()) e.setValidity(true);
-		int ncc = getConnectedComponentCount(G, nodes);
+		int ncc = getConnectedComponentCount(G, nodes, nodeMap);
 
 		// Si no hay mas aristas en el grafo paramos
 		while (nCom > ncc && G.getValidEdgeCount() > 0) {
-			runNGAlgorithmIt(G, nodes, edges);
-			ncc = getConnectedComponentCount(G, nodes);
+			runNGAlgorithmIt(G, nodes, edges, edgeMap, nodeMap);
+			ncc = getConnectedComponentCount(G, nodes, nodeMap);
 		}
 		//GraphIO.saveDOTformat((OGraph)G, "graph_out.dot");
-		return putToCollection(G, nodes);
+		return putToCollection(G, nodes, nodeMap);
 	}
 };
