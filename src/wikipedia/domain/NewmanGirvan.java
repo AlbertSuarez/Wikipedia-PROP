@@ -14,6 +14,7 @@ public class NewmanGirvan implements Algorithm {
 	 * @param nodes The Nodes of the Graph
 	 * @param vist Indicate if the node are visited or not
 	 * @param i The index of the first node of the connected component
+	 * @param nodeMap Node to Idx
 	 * @return A community with nodes of the connected component
 	 */
 	private Community putToCollectionIt(Graph G, Node[] nodes, boolean[] vist, int i, Map<Node, Integer> nodeMap) {
@@ -43,6 +44,7 @@ public class NewmanGirvan implements Algorithm {
 	 * Put the nodes of Graph to community collection
 	 * @param G The Graph where the nodes are
 	 * @param nodes The Nodes of the Graph
+	 * @param nodeMap Node to Idx
 	 * @return The community collection of the Graph
 	 */
 	private CommunityCollection putToCollection(Graph G, Node[] nodes, Map<Node, Integer> nodeMap) {
@@ -66,6 +68,7 @@ public class NewmanGirvan implements Algorithm {
 	 * @param nodes The Nodes of the Graph
 	 * @param vist Indicate if the node are visited or not
 	 * @param i The index of the first node of the connected component
+	 * @param nodeMap Node to Idx
 	 */
 	private void getConnectedComponentCountIt(Graph G, Node[] nodes, boolean[] vist, int i, Map<Node, Integer> nodeMap) {
 		Stack<Integer> s = new Stack<Integer>();
@@ -91,6 +94,7 @@ public class NewmanGirvan implements Algorithm {
 	 * Get the number of connected components
 	 * @param G The Graph where the nodes are
 	 * @param nodes The Nodes of the Graph
+	 * @param nodeMap Node to Idx
 	 * @return The number of connected components
 	 */
 	private int getConnectedComponentCount(Graph G, Node[] nodes, Map<Node, Integer> nodeMap) {
@@ -119,6 +123,7 @@ public class NewmanGirvan implements Algorithm {
 	 * @param w The number shortest path from source to s
 	 * @param s The node that applies BFS
 	 * @param pila The integer stack that be used for the algorithm
+	 * @param nodeMap Node to Idx
 	 */
 	private void stage1_BFS(Graph G, Node[] nodes, double[] d, double[] w, int s, Stack<Integer> pila, Map<Node, Integer> nodeMap) {
 
@@ -167,6 +172,7 @@ public class NewmanGirvan implements Algorithm {
 	 * @param b Number shortest path between source to any vertex in graph pass through vertex i
 	 * @param w The number shortest path from source to s
 	 * @param arco The weight of the nodes
+	 * @param nodeMap Node to Idx
 	 */
 	private void stage2_betweenness(Graph G, Node[] nodes, Map<Edge, Integer> edgeMap, Stack<Integer> pila, double[] d,
 							double[] b, double[] w, double[] arco, Map<Node, Integer> nodeMap) {
@@ -197,6 +203,8 @@ public class NewmanGirvan implements Algorithm {
 	 * @param G the Graph to apply the Newman-Girvan algorithm
 	 * @param nodes The nodes of the Graph
 	 * @param edges The edges of the Graph
+	 * @param edgeMap The Map representation of Edge's Set
+	 * @param nodeMap Node to Idx
 	 */
 	private void runNGAlgorithmIt(Graph G, Node[] nodes, Edge[] edges, Map<Edge, Integer> edgeMap, Map<Node, Integer> nodeMap) {
 		int nodeCount = G.getOrder();
@@ -261,8 +269,8 @@ public class NewmanGirvan implements Algorithm {
 		for (int i = 0; i < edges.length; i++) {
 			edgeMap.put(edges[i], i);
 		}
-		
-		
+
+
 		for (Edge e : G.getEdges()) e.setValidity(true);
 		int ncc = getConnectedComponentCount(G, nodes, nodeMap);
 
